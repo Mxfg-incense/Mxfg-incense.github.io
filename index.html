@@ -343,11 +343,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>#字符集与字符编码</p>
-<p>​	字符集从字符到一个数字的映射。编码是一种规则，即如何将这个字符转变为二进制数。</p>
+          <h1 id="字符集和编码"><a href="#字符集和编码" class="headerlink" title="字符集和编码"></a>字符集和编码</h1><p>​	字符集从字符到一个数字的映射。编码是一种规则，即如何将这个字符转变为二进制数。</p>
 <h2 id="ASCLL"><a href="#ASCLL" class="headerlink" title="ASCLL"></a>ASCLL</h2><p>​	计算机处理字符总是需要将其变为一个个 bit 所以最开始的字符集是 <a target="_blank" rel="noopener" href="https://www.ascii-code.com/"><strong>ASCLL</strong></a> 码，将不同的英文字母，数字，以及控制字符映射到 8-bits 中。一开始 ASCLL 码只用到了 0 - 127。后来新增加了扩展 ASCLL 码， 利用了 128 - 255 剩下的一半字符。当称为 ASCLL 集的时候作为一种字符集，ASCLL 码时，是一种编码规则。</p>
-<h2 id="GB"><a href="#GB" class="headerlink" title="GB"></a>GB</h2><p>###GB2312</p>
-<p> GB2312 是一种中文的字符集，分区管理， 共计 94 个区， 每个区含 94 个位，共8836 码位。 码位按照按照区，行，列一次决定，比如「侃」字在 57 区 0 行 9 列， 码位就是 5709，十六进制为 <code>0x39 0x09</code> 分别加上 <code>0xA0</code> 得到 <code>0xD9</code> 和 <code>0xA9</code> ，得到最终的 GB2312 为 <code>0xD90xA9</code> 。 加 <code>0xA0</code> 的目的可能使得高位和低位的值都大于 127， 向下兼容 ASCLL 码。当机器遇到连续两位大于 127 的 byte 时就能以此区分究竟是 ASCLL 码还是 GB2312 码。 GB2312 是双字节编码，为了与 ASCII 码区分开，字节的第8位必须是1，所以GB2312是8位编码。所以至少要从 0x80 128, 1000 0000) 开始吧，但是根据上面的规定，0x80 - 0x9f 要留给控制块，所以只能从 0xA0 开始咯。那为什么 GB2312 编码不是从 0xA0 开始，而是 0xA1 开始呢？ 因为 0xA0 正好是图形块的空格，所以就从 0xA1 编码，这就是 0xA0 的由来</p>
+<h2 id="GB"><a href="#GB" class="headerlink" title="GB"></a>GB</h2><h3 id="GB-2312"><a href="#GB-2312" class="headerlink" title="GB 2312"></a>GB 2312</h3><p> GB2312 是一种中文的字符集，分区管理， 共计 94 个区， 每个区含 94 个位，共8836 码位。 码位按照按照区，行，列一次决定，比如「侃」字在 57 区 0 行 9 列， 码位就是 5709，十六进制为 <code>0x39 0x09</code> 分别加上 <code>0xA0</code> 得到 <code>0xD9</code> 和 <code>0xA9</code> ，得到最终的 GB2312 为 <code>0xD90xA9</code> 。 加 <code>0xA0</code> 的目的可能使得高位和低位的值都大于 127， 向下兼容 ASCLL 码。当机器遇到连续两位大于 127 的 byte 时就能以此区分究竟是 ASCLL 码还是 GB2312 码。 GB2312 是双字节编码，为了与 ASCII 码区分开，字节的第8位必须是1，所以GB2312是8位编码。所以至少要从 0x80 128, 1000 0000) 开始吧，但是根据上面的规定，0x80 - 0x9f 要留给控制块，所以只能从 0xA0 开始咯。那为什么 GB2312 编码不是从 0xA0 开始，而是 0xA1 开始呢？ 因为 0xA0 正好是图形块的空格，所以就从 0xA1 编码，这就是 0xA0 的由来</p>
 <h3 id="GBK"><a href="#GBK" class="headerlink" title="GBK"></a>GBK</h3><p>​	拓展，不规定低位大于 127 ，新增近 20000 个汉字符号。对应的字符编码叫 GBK 码</p>
 <h3 id="GB18030"><a href="#GB18030" class="headerlink" title="GB18030"></a>GB18030</h3><p>​	新增少数民族文字</p>
 <h2 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h2><p>​	是一个规则，包含字符集和对应的编码规则。把世界上所有的字符放在一起。</p>
