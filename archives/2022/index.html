@@ -320,5 +320,20 @@
 
 
 
+
+<script class="next-config" data-name="valine" type="application/json">{"enable":true,"appId":"iOksy7Et1sVUCJdrSbOWneSO-MdYXbMMI","appKey":"bVAOBHFwBU9ytq32r08jPJMb","serverURLs":"www.fineincense.cn","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":false,"recordIP":true,"enableQQ":false,"requiredFields":[],"el":"#valine-comments","path":"/archives/2022/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.valine.el)
+    .then(() => NexT.utils.getScript(
+      'https://fastly.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js',
+      { condition: window.Valine }
+    ))
+    .then(() => {
+      new Valine(CONFIG.valine);
+    });
+});
+</script>
+
 </body>
 </html>
