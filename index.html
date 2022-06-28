@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.css" integrity="sha384-bsHo4/LA+lkZv61JspMDQB9QP1TtO4IgOf2yYS+J6VdAYLVyx1c3XKcsHh0Vy8Ws" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.js" integrity="sha384-4z8mjH4yIpuK9dIQGR1JwbrfYsStrNK6MP+2Enhue4eyo0XlBDXOIPc8b6ZU0ajz" crossorigin="anonymous"></script>
-
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
@@ -249,51 +246,61 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h3><p>​    设 $\Sigma(t)$ 是平面 $x+y+z=t$ 被球面 $x^2+y^2+z^2=1$ 截下的部分，设</p>
-<script type="math/tex; mode=display">
-F(x,y,z)=1-(x^2+y^2+z^2),</script><p>​    求证，对于 $\left| t \right| \leq \sqrt 3$ 时，有</p>
-<script type="math/tex; mode=display">
-\int _{\Sigma(t)} F(x,y,z)\,d\sigma = \frac{\pi}{18} (3-t^2)^2</script><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>​    将原坐标系 $X Y Z$ 进行变换，新坐标系的 $X’OY’$ 平面为原坐标系的平面 $x+y+z=0$ ，坐标 $z’$ 为点在原坐标系下距离 $\Sigma(0)$ 的距离，$z’ = \frac {t}{\sqrt3}$ ， 为了渐变就沿用 $xyz$ 命名好了。接下来就是很普通的在 $z=\frac{t}{\sqrt 3}$ 上将 $xy$ 化为极坐标的积分了。</p>
-<script type="math/tex; mode=display">
+          <h3 id="题面">题面</h3>
+<p>​ 设 <span class="math inline">\(\Sigma(t)\)</span> 是平面 <span class="math inline">\(x+y+z=t\)</span> 被球面 <span class="math inline">\(x^2+y^2+z^2=1\)</span> 截下的部分，设 <span class="math display">\[
+F(x,y,z)=1-(x^2+y^2+z^2),
+\]</span> ​ 求证，对于 <span class="math inline">\(\left| t \right| \leq \sqrt 3\)</span> 时，有 <span class="math display">\[
+\int _{\Sigma(t)} F(x,y,z)\,d\sigma = \frac{\pi}{18} (3-t^2)^2
+\]</span></p>
+<h3 id="方法一">方法一</h3>
+<p>​ 将原坐标系 <span class="math inline">\(X Y Z\)</span> 进行变换，新坐标系的 <span class="math inline">\(X&#39;OY&#39;\)</span> 平面为原坐标系的平面 <span class="math inline">\(x+y+z=0\)</span> ，坐标 <span class="math inline">\(z&#39;\)</span> 为点在原坐标系下距离 <span class="math inline">\(\Sigma(0)\)</span> 的距离，<span class="math inline">\(z&#39; = \frac {t}{\sqrt3}\)</span> ， 为了渐变就沿用 <span class="math inline">\(xyz\)</span> 命名好了。接下来就是很普通的在 <span class="math inline">\(z=\frac{t}{\sqrt 3}\)</span> 上将 <span class="math inline">\(xy\)</span> 化为极坐标的积分了。 <span class="math display">\[
 \begin{gather}
 \begin{aligned}
-\iint _{z=\frac{t}{\sqrt 3}} 1-z^2\,d\sigma &= \int_0^{2\pi}d\theta \int_0^{\sqrt {1-\frac{t^2}{3}}}(1-\frac{t^2}{3}-r^2) r\,dr\\
- &=\frac{\pi}{18} (3-t^2)^2
+\iint _{z=\frac{t}{\sqrt 3}} 1-z^2\,d\sigma &amp;= \int_0^{2\pi}d\theta \int_0^{\sqrt {1-\frac{t^2}{3}}}(1-\frac{t^2}{3}-r^2) r\,dr\\
+ &amp;=\frac{\pi}{18} (3-t^2)^2
  \end{aligned}
-\end{gather}</script><h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>​    这个方法比较绕，是利用 $Gauss$ 定理 + 补面的方式。但是 F 是个数量场，怎么把它变成向量场呢?</p>
-<script type="math/tex; mode=display">
+\end{gather}
+\]</span></p>
+<h3 id="方法二">方法二</h3>
+<p>​ 这个方法比较绕，是利用 <span class="math inline">\(Gauss\)</span> 定理 + 补面的方式。但是 F 是个数量场，怎么把它变成向量场呢? <span class="math display">\[
 \begin{equation}
 \iint_S F dS  =\iint_S \boldsymbol{v}\, \vec{n} \,dS
-\end{equation}</script><p>所以现在就是需要去确定一种 $\vec{v}$ 和 $\vec{n}$ 使其点乘为 $F$ ， 为了简便 $\vec{v} = (1-z^2) \,\vec{k}$ ，$\vec{n}=\vec{k}$， 在进行补面就能使用高斯同时了，设 $V$ 为 $S_1:z=\frac{t}{\sqrt3}$ 和球面 $S_2:x^2+y^2+z^2=1$ 围成的面积。</p>
-<script type="math/tex; mode=display">
+\end{equation}
+\]</span> 所以现在就是需要去确定一种 <span class="math inline">\(\vec{v}\)</span> 和 <span class="math inline">\(\vec{n}\)</span> 使其点乘为 <span class="math inline">\(F\)</span> ， 为了简便 <span class="math inline">\(\vec{v} = (1-z^2) \,\vec{k}\)</span> ，<span class="math inline">\(\vec{n}=\vec{k}\)</span>， 在进行补面就能使用高斯同时了，设 <span class="math inline">\(V\)</span> 为 <span class="math inline">\(S_1:z=\frac{t}{\sqrt3}\)</span> 和球面 <span class="math inline">\(S_2:x^2+y^2+z^2=1\)</span> 围成的面积。 <span class="math display">\[
 \begin{gather}
 \begin{aligned}
-\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS & = \iiint_V \Delta\,\vec{v} \, d\vec{S}\\
-&=\iiint_V2z \,  dxdydz
+\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS &amp; = \iiint_V \Delta\,\vec{v} \, d\vec{S}\\
+&amp;=\iiint_V2z \,  dxdydz
 \end{aligned}
-\end{gather}</script><p>注意因为高斯定理要求向量场指向平面的外侧，上面公式的 $\vec{v}$ 的方向与的我们构造的$\vec{v}$ 之间方向相反。</p>
-<p>再将$xyz$ 换为极坐标 (注意这里和 $t$ 没什么关系，$t$ 只是个常数)</p>
-<script type="math/tex; mode=display">
+\end{gather}
+\]</span> 注意因为高斯定理要求向量场指向平面的外侧，上面公式的 <span class="math inline">\(\vec{v}\)</span> 的方向与的我们构造的<span class="math inline">\(\vec{v}\)</span> 之间方向相反。</p>
+<p>再将<span class="math inline">\(xyz\)</span> 换为极坐标 (注意这里和 <span class="math inline">\(t\)</span> 没什么关系，<span class="math inline">\(t\)</span> 只是个常数) <span class="math display">\[
 \begin{cases}
 x= (1-z^2)\,r\,cos\theta\\
 y= (1-z^2)\,r\,sin\theta\\
 z=z\\
-\end{cases}</script><p>然后三重积分</p>
-<script type="math/tex; mode=display">
+\end{cases}
+\]</span> 然后三重积分 <span class="math display">\[
 \begin{gather}
 \begin{aligned}
-\iiint_V2z \,  dxdydz &= 2\pi\int_{\frac{t}{\sqrt3}}^1z\,dz\int_0^{\sqrt{1-z^2}}r\,dr\\
-& = -\frac{\pi}{18}(3-t^2)^2
+\iiint_V2z \,  dxdydz &amp;= 2\pi\int_{\frac{t}{\sqrt3}}^1z\,dz\int_0^{\sqrt{1-z^2}}r\,dr\\
+&amp; = -\frac{\pi}{18}(3-t^2)^2
 \end{aligned}
-\end{gather}</script><p>而另一方面</p>
-<script type="math/tex; mode=display">
+\end{gather}
+\]</span> 而另一方面 <span class="math display">\[
 \because 1-z^2 = 0 \,\text{in} \,S_2\\
 \therefore
 \iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS = 0\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{gathered}
 \begin{aligned}
-\iint_{S_1} \boldsymbol{v}\, \vec{n} \,dS &=\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS-\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS \\
-&=\frac{\pi}{18}(3-t^2)^2
-\end{aligned}</script>
+\iint_{S_1} \boldsymbol{v}\, \vec{n} \,dS &amp;=\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS-\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS \\
+&amp;=\frac{\pi}{18}(3-t^2)^2
+\end{aligned}
+\end{gathered}
+\]</span></p>
+
       
     </div>
 
@@ -374,23 +381,32 @@ z=z\\
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Hexo-的分类和标签"><a href="#Hexo-的分类和标签" class="headerlink" title="Hexo 的分类和标签"></a>Hexo 的分类和标签</h1><h2 id="Front-matter"><a href="#Front-matter" class="headerlink" title="Front-matter"></a>Front-matter</h2><p>​    Front-matter是文件上方的区域，用于储存该文件在站点 中的基本信息</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206271720124.png" alt="image-20220627172046732"></p>
-<h2 id="分类和标签"><a href="#分类和标签" class="headerlink" title="分类和标签"></a>分类和标签</h2><p>分类： 有层次，下面指定方法：</p>
+          <h1 id="hexo-的分类和标签">Hexo 的分类和标签</h1>
+<h2 id="front-matter">Front-matter</h2>
+<p>​ Front-matter是文件上方的区域，用于储存该文件在站点 中的基本信息</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206271720124.png" alt="image-20220627172046732" /><figcaption aria-hidden="true">image-20220627172046732</figcaption>
+</figure>
+<h2 id="分类和标签">分类和标签</h2>
+<p>分类： 有层次，下面指定方法：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">catagories:</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">Diary</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">Life</span></span><br></pre></td></tr></table></figure>
 <p>会使 Life 为 Diary 的子类。 如果你需要为文章添加并列分类，可以尝试以下 list 中的方法 ：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="bullet">-</span> [<span class="string">Diary</span>, <span class="string">PlayStation</span>]</span><br><span class="line"><span class="bullet">-</span> [<span class="string">Diary</span>, <span class="string">Games</span>]</span><br><span class="line"><span class="bullet">-</span> [<span class="string">Life</span>]</span><br></pre></td></tr></table></figure>
-<p>此时这篇文章同时包括三个分类： <code>PlayStation</code> 和 <code>Games</code> 分别都是父分类 <code>Diary</code> 的子分类，同时 <code>Life</code> 是一个没有子分类的分类。 </p>
+<p>此时这篇文章同时包括三个分类： <code>PlayStation</code> 和 <code>Games</code> 分别都是父分类 <code>Diary</code> 的子分类，同时 <code>Life</code> 是一个没有子分类的分类。</p>
 <p>标签： 是一篇文章所含的关键字，或者是一种要素。</p>
-<h2 id="插件-auto-categories"><a href="#插件-auto-categories" class="headerlink" title="插件 auto-categories"></a>插件 auto-categories</h2><h3 id="获取插件"><a href="#获取插件" class="headerlink" title="获取插件"></a>获取插件</h3><p><a href="*https://hexo.io/plugins/*">hexo官方插件下载地址</a></p>
+<h2 id="插件-auto-categories">插件 auto-categories</h2>
+<h3 id="获取插件">获取插件</h3>
+<p><a href="*https://hexo.io/plugins/*">hexo官方插件下载地址</a></p>
 <p>直接在站点文件夹下输入 npm 命令</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-auto-category --save</span><br></pre></td></tr></table></figure>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>打开站点文件 <code>_config.yaml</code>  找到 <code>plugin:</code> 字段，将 <code>hexo-auto-categories</code> 插件写入</p>
+<h3 id="配置">配置</h3>
+<p>打开站点文件 <code>_config.yaml</code> 找到 <code>plugin:</code> 字段，将 <code>hexo-auto-categories</code> 插件写入</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Plugins:</span> </span><br><span class="line">  <span class="bullet">-</span> <span class="string">hexo-auto-category</span></span><br></pre></td></tr></table></figure>
 <p>再加入</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Generate categories from directory-tree</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/xu-song/hexo-auto-category</span></span><br><span class="line"><span class="comment"># depth: the depth of directory-tree you want to generate, should &gt; 0</span></span><br><span class="line"><span class="attr">auto_category:</span></span><br><span class="line"> <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line"> <span class="attr">depth:</span> </span><br></pre></td></tr></table></figure>
 <p>depth 是最大工作树的深度</p>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<h3 id="优点">优点</h3>
+<ul>
 <li>文件移动后不用再反复修改 Front-matter</li>
 </ul>
 
@@ -470,35 +486,61 @@ z=z\\
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="字符集和编码"><a href="#字符集和编码" class="headerlink" title="字符集和编码"></a>字符集和编码</h1><p>​    字符集从字符到一个数字的映射。编码是一种规则，即如何将这个字符转变为二进制数。</p>
-<h2 id="ASCLL"><a href="#ASCLL" class="headerlink" title="ASCLL"></a>ASCLL</h2><p>​    计算机处理字符总是需要将其变为一个个 bit 所以最开始的字符集是 <a target="_blank" rel="noopener" href="https://www.ascii-code.com/"><strong>ASCLL</strong></a> 码，将不同的英文字母，数字，以及控制字符映射到 8-bits 中。一开始 ASCLL 码只用到了 0 - 127。后来新增加了扩展 ASCLL 码， 利用了 128 - 255 剩下的一半字符。当称为 ASCLL 集的时候作为一种字符集，ASCLL 码时，是一种编码规则。</p>
-<h2 id="GB"><a href="#GB" class="headerlink" title="GB"></a>GB</h2><h3 id="GB-2312"><a href="#GB-2312" class="headerlink" title="GB 2312"></a>GB 2312</h3><p> GB2312 是一种中文的字符集，分区管理， 共计 94 个区， 每个区含 94 个位，共8836 码位。 码位按照按照区，行，列一次决定，比如「侃」字在 57 区 0 行 9 列， 码位就是 5709，十六进制为 <code>0x39 0x09</code> 分别加上 <code>0xA0</code> 得到 <code>0xD9</code> 和 <code>0xA9</code> ，得到最终的 GB2312 为 <code>0xD90xA9</code> 。 加 <code>0xA0</code> 的目的可能使得高位和低位的值都大于 127， 向下兼容 ASCLL 码。当机器遇到连续两位大于 127 的 byte 时就能以此区分究竟是 ASCLL 码还是 GB2312 码。 GB2312 是双字节编码，为了与 ASCII 码区分开，字节的第8位必须是1，所以GB2312是8位编码。所以至少要从 0x80 128, 1000 0000) 开始吧，但是根据上面的规定，0x80 - 0x9f 要留给控制块，所以只能从 0xA0 开始咯。那为什么 GB2312 编码不是从 0xA0 开始，而是 0xA1 开始呢？ 因为 0xA0 正好是图形块的空格，所以就从 0xA1 编码，这就是 0xA0 的由来</p>
-<h3 id="GBK"><a href="#GBK" class="headerlink" title="GBK"></a>GBK</h3><p>​    拓展，不规定低位大于 127 ，新增近 20000 个汉字符号。对应的字符编码叫 GBK 码</p>
-<h3 id="GB18030"><a href="#GB18030" class="headerlink" title="GB18030"></a>GB18030</h3><p>​    新增少数民族文字</p>
-<h2 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h2><p>​    是一个规则，包含字符集和对应的编码规则。把世界上所有的字符放在一起。</p>
-<h3 id="UCS-2-字符集"><a href="#UCS-2-字符集" class="headerlink" title="UCS-2 字符集"></a>UCS-2 字符集</h3><p>​    <code>0x0000 - 0xFFFF</code> ，可表示 65536 个字符。这里只是一个字符集，并不算真正意义上的编码。</p>
-<h3 id="UCS-4-字符集"><a href="#UCS-4-字符集" class="headerlink" title="UCS-4 字符集"></a>UCS-4 字符集</h3><p>​    <code>0x00000000 - 0xFFFFFFFF</code> ， 可表示 43 亿字符。</p>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>​    储存空间过大</p>
-<h3 id="UTF-8-编码"><a href="#UTF-8-编码" class="headerlink" title="UTF-8 编码"></a>UTF-8 编码</h3><p>​    每次传送 8 位 数字，而且可变长，节省流量和内存空间，是目前最广泛使用的编码规则</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206272300871.png" alt="image-20220627230028146"></p>
-<h2 id="编码的应用举例"><a href="#编码的应用举例" class="headerlink" title="编码的应用举例"></a>编码的应用举例</h2><ul>
-<li>​    在计算机内存中是使用 Unicode 字符集， 当进行文本编辑时保存之前时用的 Unicode 数据。但是当数据写入磁盘的时候就和操作系统有关了，Linux 下是 UTF-8，在  Windows 下使用 GBK 编码。 比如写入一个文本文件时， 使用 UTF-8 编码 ， 自然当打开文件时也应该默认使用 UTF-8 解码，在转为 Unicode 数据在内存里。 比如当使用 Python的 <em>open( )</em> 函数时，是内存中的进程与磁盘的交互，而这个交互过程中的编码格式则是使用操作系统的默认编码（ Linux 为 utf-8，Windows 为 gbk）</li>
-<li>而当编译器读取.py 文件时，需要将储存好的 Bytes 数据解码。Python 2 默认 ASCLL 码， 而Python 3 默认 UTF-8 编码。 所以当用 python 2 执行含有中文字符串的文件时会解码错误。于是在开头加行  <code>\#-*-coding:utf-8-*-</code></li>
+          <h1 id="字符集和编码">字符集和编码</h1>
+<p>​ 字符集从字符到一个数字的映射。编码是一种规则，即如何将这个字符转变为二进制数。</p>
+<h2 id="ascll">ASCLL</h2>
+<p>​ 计算机处理字符总是需要将其变为一个个 bit 所以最开始的字符集是 <a target="_blank" rel="noopener" href="https://www.ascii-code.com/"><strong>ASCLL</strong></a> 码，将不同的英文字母，数字，以及控制字符映射到 8-bits 中。一开始 ASCLL 码只用到了 0 - 127。后来新增加了扩展 ASCLL 码， 利用了 128 - 255 剩下的一半字符。当称为 ASCLL 集的时候作为一种字符集，ASCLL 码时，是一种编码规则。</p>
+<h2 id="gb">GB</h2>
+<h3 id="gb-2312">GB 2312</h3>
+<p>GB2312 是一种中文的字符集，分区管理， 共计 94 个区， 每个区含 94 个位，共8836 码位。 码位按照按照区，行，列一次决定，比如「侃」字在 57 区 0 行 9 列， 码位就是 5709，十六进制为 <code>0x39 0x09</code> 分别加上 <code>0xA0</code> 得到 <code>0xD9</code> 和 <code>0xA9</code> ，得到最终的 GB2312 为 <code>0xD90xA9</code> 。 加 <code>0xA0</code> 的目的可能使得高位和低位的值都大于 127， 向下兼容 ASCLL 码。当机器遇到连续两位大于 127 的 byte 时就能以此区分究竟是 ASCLL 码还是 GB2312 码。 GB2312 是双字节编码，为了与 ASCII 码区分开，字节的第8位必须是1，所以GB2312是8位编码。所以至少要从 0x80 128, 1000 0000) 开始吧，但是根据上面的规定，0x80 - 0x9f 要留给控制块，所以只能从 0xA0 开始咯。那为什么 GB2312 编码不是从 0xA0 开始，而是 0xA1 开始呢？ 因为 0xA0 正好是图形块的空格，所以就从 0xA1 编码，这就是 0xA0 的由来</p>
+<h3 id="gbk">GBK</h3>
+<p>​ 拓展，不规定低位大于 127 ，新增近 20000 个汉字符号。对应的字符编码叫 GBK 码</p>
+<h3 id="gb18030">GB18030</h3>
+<p>​ 新增少数民族文字</p>
+<h2 id="unicode">Unicode</h2>
+<p>​ 是一个规则，包含字符集和对应的编码规则。把世界上所有的字符放在一起。</p>
+<h3 id="ucs-2-字符集">UCS-2 字符集</h3>
+<p>​ <code>0x0000 - 0xFFFF</code> ，可表示 65536 个字符。这里只是一个字符集，并不算真正意义上的编码。</p>
+<h3 id="ucs-4-字符集">UCS-4 字符集</h3>
+<p>​ <code>0x00000000 - 0xFFFFFFFF</code> ， 可表示 43 亿字符。</p>
+<h3 id="缺点">缺点</h3>
+<p>​ 储存空间过大</p>
+<h3 id="utf-8-编码">UTF-8 编码</h3>
+<p>​ 每次传送 8 位 数字，而且可变长，节省流量和内存空间，是目前最广泛使用的编码规则</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206272300871.png" alt="image-20220627230028146" /><figcaption aria-hidden="true">image-20220627230028146</figcaption>
+</figure>
+<h2 id="编码的应用举例">编码的应用举例</h2>
+<ul>
+<li>​ 在计算机内存中是使用 Unicode 字符集， 当进行文本编辑时保存之前时用的 Unicode 数据。但是当数据写入磁盘的时候就和操作系统有关了，Linux 下是 UTF-8，在 Windows 下使用 GBK 编码。 比如写入一个文本文件时， 使用 UTF-8 编码 ， 自然当打开文件时也应该默认使用 UTF-8 解码，在转为 Unicode 数据在内存里。 比如当使用 Python的 <em>open( )</em> 函数时，是内存中的进程与磁盘的交互，而这个交互过程中的编码格式则是使用操作系统的默认编码（ Linux 为 utf-8，Windows 为 gbk）</li>
+<li>而当编译器读取.py 文件时，需要将储存好的 Bytes 数据解码。Python 2 默认 ASCLL 码， 而Python 3 默认 UTF-8 编码。 所以当用 python 2 执行含有中文字符串的文件时会解码错误。于是在开头加行 <code>\#-*-coding:utf-8-*-</code></li>
 </ul>
-<h2 id="Python-2"><a href="#Python-2" class="headerlink" title="Python 2"></a>Python 2</h2><p>​    编码过程：写的代码通过 utf-8 写入，再通过解释器将其 Bytes 转换为另外编码形式的的 Bytes, utf-8 向下兼容 ASCLL。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280008191.png" alt="image-20220628000845318"></p>
-<p>以上的数据都是以 bytes 形式存储的，在Python 2 中成为 str 类型。通过 <code>print repr(a)</code> 来查看内存中储存的形式。如果在字符串前面加上 u <code>str = u&#39;你好&#39;</code>，则 u 后面的字符串通过 Unicode 加载进内存。 这种类型称为为 Unicode </p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280018694.png" alt="image-20220628001647028"></p>
-<h3 id="Unicode-和-str-类型的转换"><a href="#Unicode-和-str-类型的转换" class="headerlink" title="Unicode 和 str 类型的转换"></a>Unicode 和 str 类型的转换</h3><p>​    其实 str 就是 Bytes ，就是将Unicode 进行编码后的到的结果。 </p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280018560.png" alt="image-20220628001829089"></p>
+<h2 id="python-2">Python 2</h2>
+<p>​ 编码过程：写的代码通过 utf-8 写入，再通过解释器将其 Bytes 转换为另外编码形式的的 Bytes, utf-8 向下兼容 ASCLL。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280008191.png" alt="image-20220628000845318" /><figcaption aria-hidden="true">image-20220628000845318</figcaption>
+</figure>
+<p>以上的数据都是以 bytes 形式存储的，在Python 2 中成为 str 类型。通过 <code>print repr(a)</code> 来查看内存中储存的形式。如果在字符串前面加上 u <code>str = u'你好'</code>，则 u 后面的字符串通过 Unicode 加载进内存。 这种类型称为为 Unicode</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280018694.png" alt="image-20220628001647028" /><figcaption aria-hidden="true">image-20220628001647028</figcaption>
+</figure>
+<h3 id="unicode-和-str-类型的转换">Unicode 和 str 类型的转换</h3>
+<p>​ 其实 str 就是 Bytes ，就是将Unicode 进行编码后的到的结果。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280018560.png" alt="image-20220628001829089" /><figcaption aria-hidden="true">image-20220628001829089</figcaption>
+</figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding : utf-8</span></span><br><span class="line"><span class="built_in">str</span> = <span class="string">&quot;你好&quot;</span></span><br><span class="line"><span class="built_in">print</span> <span class="built_in">str</span>.decode(<span class="string">&#x27;ascll&#x27;</span>) <span class="comment">#错误，ascll支持中文</span></span><br><span class="line"><span class="built_in">print</span> <span class="built_in">str</span>.decode(<span class="string">&#x27;utf-8&#x27;</span>) <span class="comment">#结果 你好</span></span><br><span class="line"><span class="built_in">print</span> <span class="built_in">str</span>.decode(<span class="string">&#x27;gb2312&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="Python-3"><a href="#Python-3" class="headerlink" title="Python 3"></a>Python 3</h3><p>默认以 Unicode 从硬盘中加载进内存。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280024379.png" alt="image-20220628002447002"></p>
-<p>表示 bytes 内容，  <code>str = b&#39;你好&#39;</code></p>
+<h3 id="python-3">Python 3</h3>
+<p>默认以 Unicode 从硬盘中加载进内存。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280024379.png" alt="image-20220628002447002" /><figcaption aria-hidden="true">image-20220628002447002</figcaption>
+</figure>
+<p>表示 bytes 内容， <code>str = b'你好'</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&quot;你好&quot;</span></span><br><span class="line"><span class="built_in">print</span> a.encode(<span class="string">&#x27;ascll&#x27;</span>) <span class="comment">#错误 无法将中文编码为 ascll 码</span></span><br><span class="line"><span class="built_in">print</span> a.encode (<span class="string">&#x27;utf-8&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>将 Bytes 解码为 Unicode </p>
+<p>将 Bytes 解码为 Unicode</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">b&#x27;\xe4\xbd\xa0&#x27;</span></span><br><span class="line"><span class="built_in">print</span> a.decode(<span class="string">&#x27;utf-8&#x27;</span>) <span class="comment">#输出 你</span></span><br></pre></td></tr></table></figure>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1XK4y1t7D4?share_source=copy_web">https://www.bilibili.com/video/BV1XK4y1t7D4?share_source=copy_web</a></p>
+<h3 id="参考">参考</h3>
+<p>https://www.bilibili.com/video/BV1XK4y1t7D4?share_source=copy_web</p>
 
       
     </div>
@@ -568,6 +610,12 @@ z=z\\
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.1/es5/tex-mml-chtml.js","integrity":"sha256-hlC2uSQYTmPsrzGZTEQEg9PZ1a/+SV6VBCTclohf2og="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 
