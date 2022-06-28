@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="题面​    设 $\Sigma(t)$ 是平面 $x+y+z&#x3D;t$ 被球面 $x^2+y^2+z^2&#x3D;1$ 截下的部分，设  F(x,y,z)&#x3D;1-(x^2+y^2+z^2),​    求证，对于 $\left| t \right| \leq \sqrt 3$ 时，有  \int _{\Sigma(t)} F(x,y,z)\,d\sigma &#x3D; \frac{\pi}{18} (3-t^2)^2方">
+    <meta name="description" content="题面 ​ 设 \(\Sigma(t)\) 是平面 \(x+y+z&#x3D;t\) 被球面 \(x^2+y^2+z^2&#x3D;1\) 截下的部分，设 \[ F(x,y,z)&#x3D;1-(x^2+y^2+z^2), \] ​ 求证，对于 \(\left| t \right| \leq \sqrt 3\) 时，有 \[ \int _{\Sigma(t)} F(x,y,z)\,d\sigma &#x3D; \frac{\pi}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="将数量场转为向量场的例题">
 <meta property="og:url" content="http://example.com/2022/06/28/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98/%E5%B0%86%E6%95%B0%E9%87%8F%E5%9C%BA%E8%BD%AC%E4%B8%BA%E5%90%91%E9%87%8F%E5%9C%BA/index.html">
 <meta property="og:site_name" content="Mxfg&#39;s Blog">
-<meta property="og:description" content="题面​    设 $\Sigma(t)$ 是平面 $x+y+z&#x3D;t$ 被球面 $x^2+y^2+z^2&#x3D;1$ 截下的部分，设  F(x,y,z)&#x3D;1-(x^2+y^2+z^2),​    求证，对于 $\left| t \right| \leq \sqrt 3$ 时，有  \int _{\Sigma(t)} F(x,y,z)\,d\sigma &#x3D; \frac{\pi}{18} (3-t^2)^2方">
+<meta property="og:description" content="题面 ​ 设 \(\Sigma(t)\) 是平面 \(x+y+z&#x3D;t\) 被球面 \(x^2+y^2+z^2&#x3D;1\) 截下的部分，设 \[ F(x,y,z)&#x3D;1-(x^2+y^2+z^2), \] ​ 求证，对于 \(\left| t \right| \leq \sqrt 3\) 时，有 \[ \int _{\Sigma(t)} F(x,y,z)\,d\sigma &#x3D; \frac{\pi}">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-27T16:00:00.000Z">
 <meta property="article:modified_time" content="2022-06-27T16:00:00.000Z">
@@ -261,53 +261,61 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h3><p>​    设 $\Sigma(t)$ 是平面 $x+y+z=t$ 被球面 $x^2+y^2+z^2=1$ 截下的部分，设</p>
-<script type="math/tex; mode=display">
-F(x,y,z)=1-(x^2+y^2+z^2),</script><p>​    求证，对于 $\left| t \right| \leq \sqrt 3$ 时，有</p>
-<script type="math/tex; mode=display">
-\int _{\Sigma(t)} F(x,y,z)\,d\sigma = \frac{\pi}{18} (3-t^2)^2</script><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>​    将原坐标系 $X Y Z$ 进行变换，新坐标系的 $X’OY’$ 平面为原坐标系的平面 $x+y+z=0$ ，坐标 $z’$ 为点在原坐标系下距离 $\Sigma(0)$ 的距离，$z’ = \frac {t}{\sqrt3}$ ， 为了渐变就沿用 $xyz$ 命名好了。接下来就是很普通的在 $z=\frac{t}{\sqrt 3}$ 上将 $xy$ 化为极坐标的积分了。</p>
-<script type="math/tex; mode=display">
+        <h3 id="题面">题面</h3>
+<p>​ 设 <span class="math inline">\(\Sigma(t)\)</span> 是平面 <span class="math inline">\(x+y+z=t\)</span> 被球面 <span class="math inline">\(x^2+y^2+z^2=1\)</span> 截下的部分，设 <span class="math display">\[
+F(x,y,z)=1-(x^2+y^2+z^2),
+\]</span> ​ 求证，对于 <span class="math inline">\(\left| t \right| \leq \sqrt 3\)</span> 时，有 <span class="math display">\[
+\int _{\Sigma(t)} F(x,y,z)\,d\sigma = \frac{\pi}{18} (3-t^2)^2
+\]</span></p>
+<h3 id="方法一">方法一</h3>
+<p>​ 将原坐标系 <span class="math inline">\(X Y Z\)</span> 进行变换，新坐标系的 <span class="math inline">\(X&#39;OY&#39;\)</span> 平面为原坐标系的平面 <span class="math inline">\(x+y+z=0\)</span> ，坐标 <span class="math inline">\(z&#39;\)</span> 为点在原坐标系下距离 <span class="math inline">\(\Sigma(0)\)</span> 的距离，<span class="math inline">\(z&#39; = \frac {t}{\sqrt3}\)</span> ， 为了渐变就沿用 <span class="math inline">\(xyz\)</span> 命名好了。接下来就是很普通的在 <span class="math inline">\(z=\frac{t}{\sqrt 3}\)</span> 上将 <span class="math inline">\(xy\)</span> 化为极坐标的积分了。 <span class="math display">\[
 \begin{gather}
 \begin{aligned}
-\iint _{z=\frac{t}{\sqrt 3}} 1-z^2\,d\sigma &= \int_0^{2\pi}d\theta \int_0^{\sqrt {1-\frac{t^2}{3}}}(1-\frac{t^2}{3}-r^2) r\,dr\\
- &=\frac{\pi}{18} (3-t^2)^2
+\iint _{z=\frac{t}{\sqrt 3}} 1-z^2\,d\sigma &amp;= \int_0^{2\pi}d\theta \int_0^{\sqrt {1-\frac{t^2}{3}}}(1-\frac{t^2}{3}-r^2) r\,dr\\
+ &amp;=\frac{\pi}{18} (3-t^2)^2
  \end{aligned}
-\end{gather}</script><h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>​    这个方法比较绕，是利用 $Gauss$ 定理 + 补面的方式。但是 F 是个数量场，怎么把它变成向量场呢?</p>
-<script type="math/tex; mode=display">
+\end{gather}
+\]</span></p>
+<h3 id="方法二">方法二</h3>
+<p>​ 这个方法比较绕，是利用 <span class="math inline">\(Gauss\)</span> 定理 + 补面的方式。但是 F 是个数量场，怎么把它变成向量场呢? <span class="math display">\[
 \begin{equation}
 \iint_S F dS  =\iint_S \boldsymbol{v}\, \vec{n} \,dS
-\end{equation}</script><p>所以现在就是需要去确定一种 $\vec{v}$ 和 $\vec{n}$ 使其点乘为 $F$ ， 为了简便 $\vec{v} = (1-z^2) \,\vec{k}$ ，$\vec{n}=\vec{k}$， 在进行补面就能使用高斯公式了，设 $V$ 为 $S_1:z=\frac{t}{\sqrt3}$ 和球面 $S_2:x^2+y^2+z^2=1$ 围成的面积。</p>
-<script type="math/tex; mode=display">
+\end{equation}
+\]</span> 所以现在就是需要去确定一种 <span class="math inline">\(\vec{v}\)</span> 和 <span class="math inline">\(\vec{n}\)</span> 使其点乘为 <span class="math inline">\(F\)</span> ， 为了简便 <span class="math inline">\(\vec{v} = (1-z^2) \,\vec{k}\)</span> ，<span class="math inline">\(\vec{n}=\vec{k}\)</span>， 在进行补面就能使用高斯公式了，设 <span class="math inline">\(V\)</span> 为 <span class="math inline">\(S_1:z=\frac{t}{\sqrt3}\)</span> 和球面 <span class="math inline">\(S_2:x^2+y^2+z^2=1\)</span> 围成的面积。 <span class="math display">\[
 \begin{gather}
 \begin{aligned}
-\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS & = \iiint_V \Delta\,\vec{v} \, d\vec{S}\\
-&=\iiint_V2z \,  dxdydz
+\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS &amp; = \iiint_V \Delta\,\vec{v} \, d\vec{S}\\
+&amp;=\iiint_V2z \,  dxdydz
 \end{aligned}
-\end{gather}</script><p>注意因为高斯定理要求向量场指向平面的外侧，上面公式的 $\vec{v}$ 的方向与的我们构造的$\vec{v}$ 之间方向相反。</p>
-<p>再将$xyz$ 换为极坐标 (注意这里和 $t$ 没什么关系，$t$ 只是个常数)</p>
-<script type="math/tex; mode=display">
+\end{gather}
+\]</span> 注意因为高斯定理要求向量场指向平面的外侧，上面公式的 <span class="math inline">\(\vec{v}\)</span> 的方向与的我们构造的<span class="math inline">\(\vec{v}\)</span> 之间方向相反。</p>
+<p>再将<span class="math inline">\(xyz\)</span> 换为极坐标 (注意这里和 <span class="math inline">\(t\)</span> 没什么关系，<span class="math inline">\(t\)</span> 只是个常数) <span class="math display">\[
 \begin{cases}
 x= (1-z^2)\,r\,cos\theta\\
 y= (1-z^2)\,r\,sin\theta\\
 z=z\\
-\end{cases}</script><p>然后三重积分</p>
-<script type="math/tex; mode=display">
+\end{cases}
+\]</span> 然后三重积分 <span class="math display">\[
 \begin{gather}
 \begin{aligned}
-\iiint_V2z \,  dxdydz &= 2\pi\int_{\frac{t}{\sqrt3}}^1z\,dz\int_0^{\sqrt{1-z^2}}r\,dr\\
-& = -\frac{\pi}{18}(3-t^2)^2
+\iiint_V2z \,  dxdydz &amp;= 2\pi\int_{\frac{t}{\sqrt3}}^1z\,dz\int_0^{\sqrt{1-z^2}}r\,dr\\
+&amp; = -\frac{\pi}{18}(3-t^2)^2
 \end{aligned}
-\end{gather}</script><p>而另一方面</p>
-<script type="math/tex; mode=display">
+\end{gather}
+\]</span> 而另一方面 <span class="math display">\[
 \because 1-z^2 = 0 \,\text{in} \,S_2\\
 \therefore
-\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS = 0\\</script><script type="math/tex; mode=display">
+\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS = 0\\
+\]</span></p>
+<p><span class="math display">\[
 \begin{gathered}
 \begin{aligned}
-\iint_{S_1} \boldsymbol{v}\, \vec{n} \,dS &=\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS-\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS \\
-&=\frac{\pi}{18}(3-t^2)^2
+\iint_{S_1} \boldsymbol{v}\, \vec{n} \,dS &amp;=\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS-\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS \\
+&amp;=\frac{\pi}{18}(3-t^2)^2
 \end{aligned}
-\end{gathered}</script>
+\end{gathered}
+\]</span></p>
+
     </div>
 
     
