@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.pthm","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="只要明确值不被改变就应该声明为 const ，以此获得编译器的襄助，保证规则不被违反。 顶层 const 与 底层 const const pointer 成为顶层 const, pointer 指向的数据为 const 称为底层 const. 12345char greeting[] &#x3D; &quot;hello world&quot;; 	&#x2F;&#x2F; greeting 类型为 char [12]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Item 03 - Use const whenever possible">
+<meta property="og:url" content="http://example.pthm/2022/06/30/C++/Effective_C++/Item03_const/index.html">
+<meta property="og:site_name" content="Mxfg&#39;s Blog">
+<meta property="og:description" content="只要明确值不被改变就应该声明为 const ，以此获得编译器的襄助，保证规则不被违反。 顶层 const 与 底层 const const pointer 成为顶层 const, pointer 指向的数据为 const 称为底层 const. 12345char greeting[] &#x3D; &quot;hello world&quot;; 	&#x2F;&#x2F; greeting 类型为 char [12]">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-30T06:44:30.000Z">
+<meta property="article:modified_time" content="2022-06-30T06:44:30.000Z">
+<meta property="article:author" content="Mxfg">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="const">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.pthm/2022/06/30/C++/Effective_C++/Item03_const/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.pthm/2022/06/30/C++/Effective_C++/Item03_const/","path":"2022/06/30/C++/Effective_C++/Item03_const/","title":"Item 03 - Use const whenever possible"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Item 03 - Use const whenever possible | Mxfg's Blog</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?9a2891da8b3e1e53d6216681feb6a1a3"></script>
+
+
+
+<link rel="dns-prefetch" href="waline-server-ecru.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Mxfg's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Hello world</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B6%E5%B1%82-const-%E4%B8%8E-%E5%BA%95%E5%B1%82-const"><span class="nav-number">1.</span> <span class="nav-text">顶层 const 与 底层 const</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">2.</span> <span class="nav-text">函数返回值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#const-%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">const 成员函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%AE%E7%9A%84"><span class="nav-number">3.0.1.</span> <span class="nav-text">目的</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bitwise-const-and-logical-const"><span class="nav-number">3.1.</span> <span class="nav-text">bitwise const and logical const</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8-const-%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E5%92%8C-non-const-%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E4%B8%AD%E9%81%BF%E5%85%8D%E9%87%8D%E5%A4%8D"><span class="nav-number">4.</span> <span class="nav-text">在 const 成员函数和 non-const 成员函数中避免重复</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Mxfg"
+      src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206271209189.jpg">
+  <p class="site-author-name" itemprop="name">Mxfg</p>
+  <div class="site-description" itemprop="description">Win or die</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:yangmxfg@gmail.com" title="E-Mail → mailto:yangmxfg@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/miao-xiang-fo-guo-25" title="zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;miao-xiang-fo-guo-25" rel="noopener" target="_blank"><i class="fab fa-zhihu fa-fw"></i>zhihu</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.pthm/2022/06/30/C++/Effective_C++/Item03_const/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206271209189.jpg">
+      <meta itemprop="name" content="Mxfg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mxfg's Blog">
+      <meta itemprop="description" content="Win or die">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Item 03 - Use const whenever possible | Mxfg's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Item 03 - Use const whenever possible
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-06-30 14:44:30" itemprop="dateCreated datePublished" datetime="2022-06-30T14:44:30+08:00">2022-06-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C/Effective-C/" itemprop="url" rel="index"><span itemprop="name">Effective_C++</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/06/30/C++/Effective_C++/Item03_const/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/06/30/C++/Effective_C++/Item03_const/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>只要明确值不被改变就应该声明为 <code>const</code> ，以此获得编译器的襄助，保证规则不被违反。</p>
+<h2 id="顶层-const-与-底层-const">顶层 <code>const</code> 与 底层 <code>const</code></h2>
+<p>const pointer 成为顶层 const, pointer 指向的数据为 const 称为底层 const.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> greeting[] = <span class="string">&quot;hello world&quot;</span>; 	<span class="comment">// greeting 类型为 char [12]</span></span><br><span class="line"><span class="type">const</span> <span class="type">char</span> *p = greeting;			<span class="comment">// 添加底层const const data , non-const pointer</span></span><br><span class="line"><span class="type">char</span> * <span class="type">const</span> p = greeting;			<span class="comment">// 顶层const non-const data , const pointer </span></span><br><span class="line"><span class="type">const</span> <span class="type">char</span> * <span class="type">const</span> p =greeting 		<span class="comment">// const data , const pointer</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>底层 const 的以下两种写法等价</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">char</span> *p;			</span><br><span class="line"><span class="type">char</span> <span class="type">const</span> *p;</span><br></pre></td></tr></table></figure>
+<p><strong>STL</strong> 中的 iterator 类似于 (T*) 指针。声明迭代器为 const 类似于 <code>T * const</code> ，顶层const。而如果需要迭代器所指向的数据不被修改，需要 <code>const_iterator</code> 。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">std::vector&lt;<span class="type">int</span>&gt; v&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="type">const</span> std::vector&lt;<span class="type">int</span>&gt;::iterator it = v.<span class="built_in">begin</span>();      <span class="comment">//顶层const </span></span><br><span class="line">*it = <span class="number">1</span>;  <span class="comment">//正确，可被修改</span></span><br><span class="line">++it;   <span class="comment">//错误，不能修改迭代器本身</span></span><br><span class="line">std::vector&lt;<span class="type">int</span>&gt;::const_iterator itt = v.<span class="built_in">begin</span>();      <span class="comment">//底层const </span></span><br><span class="line">*itt = <span class="number">1</span>;  <span class="comment">//错误，被指向的数据不可被修改</span></span><br><span class="line">++itt;   <span class="comment">//正确，可以递增迭代器本身</span></span><br></pre></td></tr></table></figure>
+<h2 id="函数返回值">函数返回值</h2>
+<p>将函数范围值声明为 const 可以减少不必要的麻烦,比如</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Rational</span> &#123;</span><br><span class="line">&#125;;</span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="type">const</span> Rational *<span class="title">operator</span><span class="params">(<span class="type">const</span> Rational &amp;lhs, <span class="type">const</span> Rational &amp;rhs)</span> </span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+<p>如果去掉返回值的 const ，你的用户可能做出如下行为</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">3</span>*<span class="number">5</span>) = <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<p>你可能觉得根本不会有人做出怎么奇怪的操作，但是下面这个错误就比较隐蔽， 用户在条件语句中将 <code>==</code> 写成了 <code>=</code>，发生隐式 <strong>bool</strong> 类型的转化：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( (<span class="number">3</span>*<span class="number">5</span>) = <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>尽量将使用 <em>reference-to-const</em> 作为参数不仅避免拷贝，还能绑定到右值，比如:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">foo</span> <span class="params">(std::string &amp; s)</span></span></span><br><span class="line"><span class="function">...</span></span><br><span class="line"><span class="function">std::string str</span>;</span><br><span class="line"><span class="built_in">foo</span>(str)		<span class="comment">//正确，绑定到左值</span></span><br><span class="line"><span class="built_in">foo</span>(<span class="string">&quot;hello&quot;</span>)	<span class="comment">//错误，不能绑定右值 &quot;hello&quot; </span></span><br></pre></td></tr></table></figure>
+<p>尽管 const 只有六个字符，但是却能避免很多不必要的麻烦。</p>
+<h2 id="const-成员函数">const 成员函数</h2>
+<h4 id="目的">目的</h4>
+<ol type="1">
+<li>使得 class 接口容易被理解，明白哪些函数改动内容，而哪些不行</li>
+<li>使得 ‘操作 const 对象’ 成为可能。因为很多情况需要使用 <em>pass by reference-to-const</em> ，这项技术的前提就是需要 const 成员函数。</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TextBlock</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> &amp;<span class="keyword">operator</span>[](std::<span class="type">size_t</span> pos) <span class="type">const</span> &#123; </span><br><span class="line">      <span class="keyword">return</span> text[pos];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">char</span> &amp;<span class="keyword">operator</span>[](std::<span class="type">size_t</span> pos)  &#123;</span><br><span class="line">      <span class="keyword">return</span> text[pos];</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    std::string text;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>下面是调用 operator [] 的例子</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(<span class="type">const</span> TextBlock &amp; str)</span> </span>&#123; <span class="comment">//str 是 const 对象</span></span><br><span class="line">  std::cout &lt;&lt; str[<span class="number">0</span>];       <span class="comment">//调用 const 成员函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果 operator [] 的返回值类型是 <strong>char reference</strong> ，如果是 char 的话，下面句子无法编译: <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str[<span class="number">0</span>] = <span class="string">&#x27;x&#x27;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="bitwise-const-and-logical-const">bitwise const and logical const</h3>
+<ul>
+<li><strong>bitwise const</strong>: class 内部的成员变量不能修改 ，编译器检测的方式</li>
+<li><strong>logical const</strong>: 设计者期望的常量</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CTextBlock</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">CTextBlock</span>(<span class="type">char</span> *str):<span class="built_in">p</span>(str)&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">char</span> &amp; <span class="keyword">operator</span>[](std::<span class="type">size_t</span> pos) <span class="type">const</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> p[pos];</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    <span class="type">char</span> *p;</span><br><span class="line">&#125;;</span><br><span class="line">...</span><br><span class="line"><span class="type">char</span> str[] = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="function"><span class="type">const</span> CTextBlock <span class="title">ccb</span><span class="params">(str)</span></span>;</span><br><span class="line"><span class="type">char</span> *p = &amp;ccb[<span class="number">0</span>];</span><br><span class="line">*p = <span class="string">&#x27;J&#x27;</span>;			<span class="comment">//还是被修改了</span></span><br></pre></td></tr></table></figure>
+<p>这里我们想要的 const 是 p 的内部值不被改变，但是 operator[] 返回值没加 const 时也能编译成功，即逃过了编译器 <strong>bitwise const</strong> 检查。所以尽可能使用 <strong>STL</strong> 中的 string 而非手动管理内存。</p>
+<p>下面在介绍一个 <strong>logical const</strong> 被 编译器 <strong>bitwise const </strong>所过度限制的例子。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CTextBlock</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function">std::<span class="type">size_t</span> <span class="title">length</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    <span class="type">char</span> *pText;</span><br><span class="line">    std::<span class="type">size_t</span> textlength;</span><br><span class="line">    <span class="type">bool</span> lengthIsvalid;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">std::<span class="type">size_t</span> <span class="title">CTextBlock::length</span><span class="params">()</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!lengthIsvalid) &#123;</span><br><span class="line">    textlength = std::<span class="built_in">strlen</span>(pText);</span><br><span class="line">    lengthIsvalid = <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> textlength;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>显然 <code>length()</code> 不是 <code>bitwise const</code> ， 因为 <code>textlength</code> 发生了改变。但是对于我们而言，<code>textlength</code> 与 <code>lengthIsvalid</code> 是可以接受的。 我们可以使用 <code>mutable</code> 关键字释放掉 non-static 成员变量 <strong>bitwise const</strong> 的约束。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CTextBlock</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function">std::<span class="type">size_t</span> <span class="title">length</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    <span class="type">char</span> *pText;</span><br><span class="line">    <span class="keyword">mutable</span> std::<span class="type">size_t</span> textlength; <span class="comment">//现在可在 const 成员函数中被修改</span></span><br><span class="line">    <span class="keyword">mutable</span> <span class="type">bool</span> lengthIsvalid;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">std::<span class="type">size_t</span> <span class="title">CTextBlock::length</span><span class="params">()</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!lengthIsvalid) &#123;</span><br><span class="line">    textlength = std::<span class="built_in">strlen</span>(pText);</span><br><span class="line">    lengthIsvalid = <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> textlength;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="在-const-成员函数和-non-const-成员函数中避免重复">在 const 成员函数和 non-const 成员函数中避免重复</h2>
+<p>在对某个函数实现 const 与 non-const 重载时，会产生大量的代码重复，比如在上面的例子中放入更多复杂的操作</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TextBlock</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> &amp;<span class="keyword">operator</span>[](std::<span class="type">size_t</span> pos) <span class="type">const</span> &#123; </span><br><span class="line">      <span class="comment">//do  somethings</span></span><br><span class="line">      <span class="keyword">return</span> text[pos];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">char</span> &amp;<span class="keyword">operator</span>[](std::<span class="type">size_t</span> pos)  &#123;</span><br><span class="line">      <span class="comment">// do somethings</span></span><br><span class="line">      <span class="keyword">return</span> text[pos];</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    std::string text;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>我们应该考虑令其中的一个调用另一个，这是一种很重要的思想，在重载 <code>+=</code> 和 <code>+</code> 是也利用之。利用 const 成员函数实现 non-const</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TextBlock</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> &amp;<span class="keyword">operator</span>[](std::<span class="type">size_t</span> pos) <span class="type">const</span> &#123; </span><br><span class="line">      <span class="comment">//do  somethings</span></span><br><span class="line">      <span class="keyword">return</span> text[pos];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">char</span> &amp;<span class="keyword">operator</span>[](std::<span class="type">size_t</span> pos)  &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">const_cast</span>&lt;<span class="type">char</span> &amp;&gt;(      <span class="comment">//移除 op[] 的 const </span></span><br><span class="line">          <span class="built_in">static_cast</span>&lt;<span class="type">const</span> TextBlock&amp;&gt;(*<span class="keyword">this</span>)[pos]);  <span class="comment">//为当前对象添加 const </span></span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    std::string text;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这里用到两次转型 分别是为 <code>*this</code> 添加 const ， 为 op[ ] 的返回值移除 const. 注意 <code>const_cast</code> 与 <code>static_const</code> 的区别。只有 <code>const_cast</code> 能移除 const。</p>
+<p>但是反向做法：利用 non-const 成员函数实现 const 是不正确的。这是一个危险的行为，首先 <strong>non-const</strong> 函数并未声明不对对象进行修改，而 <strong>const</strong> 成员函数依赖与一个改变对象的函数显然是不合理的。而且你不得不使用 <code>const_cast</code> 去除 const，最终实现的 <strong>const</strong> 成员函数不能保证真正的 const. const 成员函数声明也就失效了。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TextBlock</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> &amp;<span class="keyword">operator</span>[](std::<span class="type">size_t</span> pos) <span class="type">const</span> &#123; </span><br><span class="line">      <span class="comment">//do  somethings</span></span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">static_cast</span>&lt;<span class="type">const</span> <span class="type">char</span> &amp;&gt;(      <span class="comment">//添加 op[] 的 const </span></span><br><span class="line">          <span class="built_in">const_cast</span>&lt;TextBlock&amp;&gt;(*<span class="keyword">this</span>)[pos]);  <span class="comment">//为当前对象移除 const </span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">char</span> &amp;<span class="keyword">operator</span>[](std::<span class="type">size_t</span> pos)  &#123;</span><br><span class="line">      <span class="comment">// do somethings</span></span><br><span class="line">      text[pos] = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">      <span class="keyword">return</span> text[pos];</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    std::string text;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="总结">总结</h2>
+<ul>
+<li>将某些东西声明为 const 可帮助编译器侦测错误用法。const 可作用于对象，函数参数，函数返回值类型，成员函数本体。</li>
+<li>编译器实施 <strong>bitwise constness</strong> ，但编写程序时应使用 <strong>conceptual constness</strong>.</li>
+<li>non-const 版本调用 const 版本避免代码重复</li>
+</ul>
+<h2 id="参考">参考</h2>
+<p>Effective C++ 中文版（第三版）</p>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C++</a>
+              <a href="/tags/const/" rel="tag"># const</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/06/29/Blog%E6%90%AD%E5%BB%BA/Hexo/Hexo-Next%E4%B8%BB%E9%A2%98%E5%A4%96%E6%8E%A5%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" rel="prev" title="Hexo美化：为Next主题外接 Waline 评论系统">
+                  <i class="fa fa-chevron-left"></i> Hexo美化：为Next主题外接 Waline 评论系统
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mxfg</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"mhchem":false,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.1/es5/tex-mml-chtml.js","integrity":"sha256-hlC2uSQYTmPsrzGZTEQEg9PZ1a/+SV6VBCTclohf2og="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"waline-server-ecru.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"appIdL":"bVAOBHFwBU9ytq32r08jPJMb","appKey":"bVAOBHFwBU9ytq32r08jPJMb","locale":{"placeholder":"疑义相与析，畅所欲言，不登录也没关系哒"},"avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":false,"requiredFields":["nick"],"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","login":null,"el":"#waline","comment":true,"path":"/2022/06/30/C++/Effective_C++/Item03_const/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>
