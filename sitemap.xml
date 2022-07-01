@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://example.pthm/googledf25dfe2c102b112.html</loc>
+    
+    <lastmod>2022-07-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://example.pthm/baidu_verify_code-vhncS8Y0Ht.html</loc>
     
     <lastmod>2022-07-01</lastmod>
@@ -162,6 +171,13 @@
   </url>
   
   <url>
+    <loc>http://example.pthm/tags/Hexo/</loc>
+    <lastmod>2022-07-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://example.pthm/tags/C/</loc>
     <lastmod>2022-07-01</lastmod>
     <changefreq>weekly</changefreq>
@@ -170,13 +186,6 @@
   
   <url>
     <loc>http://example.pthm/tags/const/</loc>
-    <lastmod>2022-07-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.pthm/tags/Hexo/</loc>
     <lastmod>2022-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -234,14 +243,14 @@
   </url>
   
   <url>
-    <loc>http://example.pthm/categories/C/</loc>
+    <loc>http://example.pthm/categories/Blog%E6%90%AD%E5%BB%BA/</loc>
     <lastmod>2022-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.pthm/categories/Blog%E6%90%AD%E5%BB%BA/</loc>
+    <loc>http://example.pthm/categories/C/</loc>
     <lastmod>2022-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -255,14 +264,14 @@
   </url>
   
   <url>
-    <loc>http://example.pthm/categories/C/Effective-C/</loc>
+    <loc>http://example.pthm/categories/Blog%E6%90%AD%E5%BB%BA/Hexo/</loc>
     <lastmod>2022-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.pthm/categories/Blog%E6%90%AD%E5%BB%BA/Hexo/</loc>
+    <loc>http://example.pthm/categories/C/Effective-C/</loc>
     <lastmod>2022-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
