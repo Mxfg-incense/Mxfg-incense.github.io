@@ -26,6 +26,7 @@
 <p>​ 字符集从字符到一个数字的映射。编码是一种规则，即如何将这个字符转变为二进制数。</p>
 <h2 id="ascll">ASCLL</h2>
 <p>​ 计算机处理字符总是需要将其变为一个个 bit 所以最开始的字符集是 <a href="https://www.ascii-code.com/"><strong>ASCLL</strong></a> 码，将不同的英文字母，数字，以及控制字符映射到 8-bits 中。一开始 ASCLL 码只用到了 0 - 127。后来新增加了扩展 ASCLL 码， 利用了 128 - 255 剩下的一半字符。当称为 ASCLL 集的时候作为一种字符集，ASCLL 码时，是一种编码规则。</p>
+<span id="more"></span>
 <h2 id="gb">GB</h2>
 <h3 id="gb-2312">GB 2312</h3>
 <p>GB2312 是一种中文的字符集，分区管理， 共计 94 个区， 每个区含 94 个位，共8836 码位。 码位按照按照区，行，列一次决定，比如「侃」字在 57 区 0 行 9 列， 码位就是 5709，十六进制为 <code>0x39 0x09</code> 分别加上 <code>0xA0</code> 得到 <code>0xD9</code> 和 <code>0xA9</code> ，得到最终的 GB2312 为 <code>0xD90xA9</code> 。 加 <code>0xA0</code> 的目的可能使得高位和低位的值都大于 127， 向下兼容 ASCLL 码。当机器遇到连续两位大于 127 的 byte 时就能以此区分究竟是 ASCLL 码还是 GB2312 码。 GB2312 是双字节编码，为了与 ASCII 码区分开，字节的第8位必须是1，所以GB2312是8位编码。所以至少要从 0x80 128, 1000 0000) 开始吧，但是根据上面的规定，0x80 - 0x9f 要留给控制块，所以只能从 0xA0 开始咯。那为什么 GB2312 编码不是从 0xA0 开始，而是 0xA1 开始呢？ 因为 0xA0 正好是图形块的空格，所以就从 0xA1 编码，这就是 0xA0 的由来</p>
@@ -86,91 +87,12 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo美化：为Next主题外接 Waline 评论系统</title>
-    <url>/2022/06/29/Blog%E6%90%AD%E5%BB%BA/Hexo/Hexo-Next%E4%B8%BB%E9%A2%98%E5%A4%96%E6%8E%A5%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h3 id="前言">前言</h3>
-<p>​ <strong>Waline</strong> 是一款基于 <strong>Valine</strong> 衍生的评论系统，首先在笔者目前使用的 NexT 8.12.1 下已经不再内置 Valine 系统，需要自己手动配置。 看了一圈其他的评论系统，貌似只有 Waline 支持数学公式，所以最终选择 Waline 评论系统</p>
-<h3 id="配置数据库和服务端部署">配置数据库和服务端部署</h3>
-<p>​ 选择 <a href="%5BLeanCloud%5D(https://www.leancloud.cn/)">Leanclound</a> 作为评论数据库，在 Vercel 上部署服务端。接着就按照 <span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWwjbGVhbmNsb3VkLSVFOCVBRSVCRSVFNyVCRCVBRS0lRTYlOTUlQjAlRTYlOEQlQUUlRTUlQkElOTM=">Waline的官方文档<i class="fa fa-external-link-alt"></i></span> 进行操作即可。这里介绍几个注意的点：</p>
-<ol type="1">
-<li><p>注册时推荐使用国际版，否则需要绑定备案的域名，比较麻烦。</p></li>
-<li><p>在 Vercel 上部署服务端时，注意环境变量名称 <code>LEAN_ID</code>, <code>LEAN_KEY</code> 和 <code>LEAN_MASTER_KEY</code>一定要一字不差。遇到访客评论系统在不登录账号时报错如下:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Invalid value type for field &#x27;link&#x27;,value &#x27;&quot;&quot;&#x27;,expect type is &#123;:type &quot;Object&quot;&#125;,but it is &#x27;&#123;:type &quot;String&quot;&#125;&#x27;. [400 POST https://ioksy7et.api.lncldglobal.com/1.1/classes/Comment]</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>​ 解决方法：重新在 Leanclound 上创建 <code>Comment</code> 类。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206301329339.png" alt="在数据储存中创建新的Comment类" /><figcaption aria-hidden="true">在<code>数据储存</code>中创建新的Comment类</figcaption>
-</figure>
-<h3 id="在-hexo-上使用-waline">在 Hexo 上使用 Waline</h3>
-<p>在 Hexo 根目录下执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install @waline/hexo-next</span><br></pre></td></tr></table></figure>
-<p>接着你可以在 Hexo 根目录下 <code>\node_modules\@waline</code> 中找到 <code>default.yaml</code> 文件，里面就是所有 Waline 的设置选项了。 为了方便将其中需要改变的选项手动写入到 <code>next</code> 主题下 的 <code>_config.yaml</code>中， 以下是部分参考，更多的选项设置在上述 <code>default.yaml</code> 中：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment">#是否开启</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">waline-server-ecru.vercel.app</span> <span class="comment"># Waline #服务端地址，我们这里就是上面部署的 Vercel 地址</span></span><br><span class="line">  <span class="attr">locale:</span></span><br><span class="line">    <span class="attr">placeholder:</span> <span class="string">疑义相与析，畅所欲言，不登录也没关系哒</span> <span class="comment"># #评论框的默认文字</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># 头像风格</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>,<span class="string">mail</span>] <span class="comment"># 自定义评论框上面的三个输入框的内容</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># 评论数量多少时显示分页</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># 语言, 可选值: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># 文章阅读统计</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示</span></span><br><span class="line">  <span class="attr">requiredFields:</span> [<span class="string">nick</span>] <span class="comment"># 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]</span></span><br><span class="line">  <span class="attr">libUrl:</span> <span class="string">https://unpkg.com/@waline/client@v2/dist/waline.js</span> <span class="comment"># Set custom library cdn url</span></span><br><span class="line">  <span class="attr">login:</span> <span class="string">enable</span></span><br></pre></td></tr></table></figure>
-<h3 id="登录服务端">登录服务端</h3>
-<p>接着部署后就能够看到登录按钮，进行登录，貌似第一个登录的账号就会有个 <strong>博主</strong> 的标识。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206292335984.png" alt="进入登录界面" /><figcaption aria-hidden="true">进入登录界面</figcaption>
-</figure>
-<p>但是访客不登陆也能评论。访客填写不同的邮箱会显示其对应账号的头像。</p>
-<p>最后效果可以参见<span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnLw==">官方文档<i class="fa fa-external-link-alt"></i></span> 。</p>
-<h3 id="参考">参考</h3>
-<p><span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWw=">官方文档<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9xaWFuZmFuZ3VvamluLnRvcC8yMDIyLzAxLzIwL0hleG8lRTUlOEQlOUElRTUlQUUlQTIlRTglQkYlOUIlRTklOTglQjYlRUYlQkMlOUElRTQlQjglQkEtTmV4dC0lRTQlQjglQkIlRTklQTIlOTglRTYlQjclQkIlRTUlOEElQTAtV2FsaW5lLSVFOCVBRiU4NCVFOCVBRSVCQSVFNyVCMyVCQiVFNyVCQiU5Ri8=">谢同学博客<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Blog搭建</category>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo 的分类和标签</title>
-    <url>/2022/06/27/Blog%E6%90%AD%E5%BB%BA/Hexo/Hexo-%E7%9A%84%E5%88%86%E7%B1%BB%E5%92%8C%E6%A0%87%E7%AD%BE/</url>
-    <content><![CDATA[<h1 id="hexo-的分类和标签">Hexo 的分类和标签</h1>
-<h2 id="front-matter">Front-matter</h2>
-<p>​ Front-matter是文件上方的区域，用于储存该文件在站点 中的基本信息</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206271720124.png" alt="image-20220627172046732" /><figcaption aria-hidden="true">image-20220627172046732</figcaption>
-</figure>
-<h2 id="分类和标签">分类和标签</h2>
-<p>分类： 有层次，下面指定方法：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">catagories:</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">Diary</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">Life</span></span><br></pre></td></tr></table></figure>
-<p>会使 Life 为 Diary 的子类。 如果你需要为文章添加并列分类，可以尝试以下 list 中的方法 ：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="bullet">-</span> [<span class="string">Diary</span>, <span class="string">PlayStation</span>]</span><br><span class="line"><span class="bullet">-</span> [<span class="string">Diary</span>, <span class="string">Games</span>]</span><br><span class="line"><span class="bullet">-</span> [<span class="string">Life</span>]</span><br></pre></td></tr></table></figure>
-<p>此时这篇文章同时包括三个分类： <code>PlayStation</code> 和 <code>Games</code> 分别都是父分类 <code>Diary</code> 的子分类，同时 <code>Life</code> 是一个没有子分类的分类。</p>
-<p>标签： 是一篇文章所含的关键字，或者是一种要素。</p>
-<h2 id="插件-auto-categories">插件 auto-categories</h2>
-<h3 id="获取插件">获取插件</h3>
-<p><a href="*https://hexo.io/plugins/*">hexo官方插件下载地址</a></p>
-<p>直接在站点文件夹下输入 npm 命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-auto-category --save</span><br></pre></td></tr></table></figure>
-<h3 id="配置">配置</h3>
-<p>打开站点文件 <code>_config.yaml</code> 找到 <code>plugin:</code> 字段，将 <code>hexo-auto-categories</code> 插件写入</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">Plugins:</span> </span><br><span class="line">  <span class="bullet">-</span> <span class="string">hexo-auto-category</span></span><br></pre></td></tr></table></figure>
-<p>再加入</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Generate categories from directory-tree</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/xu-song/hexo-auto-category</span></span><br><span class="line"><span class="comment"># depth: the depth of directory-tree you want to generate, should &gt; 0</span></span><br><span class="line"><span class="attr">auto_category:</span></span><br><span class="line"> <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line"> <span class="attr">depth:</span> </span><br></pre></td></tr></table></figure>
-<p>depth 是最大工作树的深度</p>
-<h3 id="优点">优点</h3>
-<ul>
-<li>文件移动后不用再反复修改 Front-matter</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Blog搭建</category>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Item 03 - Use const whenever possible</title>
     <url>/2022/06/30/C++/Effective_C++/Item03_const/</url>
     <content><![CDATA[<p>只要明确值不被改变就应该声明为 <code>const</code> ，以此获得编译器的襄助，保证规则不被违反。</p>
 <h2 id="顶层-const-与-底层-const">顶层 <code>const</code> 与 底层 <code>const</code></h2>
 <p>const pointer 成为顶层 const, pointer 指向的数据为 const 称为底层 const.</p>
+<span id="more"></span>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">char</span> greeting[] = <span class="string">&quot;hello world&quot;</span>; 	<span class="comment">// greeting 类型为 char [12]</span></span><br><span class="line"><span class="type">const</span> <span class="type">char</span> *p = greeting;			<span class="comment">// 添加底层const const data , non-const pointer</span></span><br><span class="line"><span class="type">char</span> * <span class="type">const</span> p = greeting;			<span class="comment">// 顶层const non-const data , const pointer </span></span><br><span class="line"><span class="type">const</span> <span class="type">char</span> * <span class="type">const</span> p =greeting 		<span class="comment">// const data , const pointer</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>底层 const 的以下两种写法等价</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">char</span> *p;			</span><br><span class="line"><span class="type">char</span> <span class="type">const</span> *p;</span><br></pre></td></tr></table></figure>
@@ -234,13 +156,55 @@
       </tags>
   </entry>
   <entry>
+    <title>Hexo美化：为Next主题外接 Waline 评论系统</title>
+    <url>/2022/06/29/Blog%E6%90%AD%E5%BB%BA/Hexo/Hexo-Next%E4%B8%BB%E9%A2%98%E5%A4%96%E6%8E%A5%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h3 id="前言">前言</h3>
+<p>​ <strong>Waline</strong> 是一款基于 <strong>Valine</strong> 衍生的评论系统，首先在笔者目前使用的 NexT 8.12.1 下已经不再内置 Valine 系统，需要自己手动配置。 看了一圈其他的评论系统，貌似只有 Waline 支持数学公式，所以最终选择 Waline 评论系统</p>
+<span id="more"></span>
+<h3 id="配置数据库和服务端部署">配置数据库和服务端部署</h3>
+<p>​ 选择 <a href="%5BLeanCloud%5D(https://www.leancloud.cn/)">Leanclound</a> 作为评论数据库，在 Vercel 上部署服务端。接着就按照 <span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWwjbGVhbmNsb3VkLSVFOCVBRSVCRSVFNyVCRCVBRS0lRTYlOTUlQjAlRTYlOEQlQUUlRTUlQkElOTM=">Waline的官方文档<i class="fa fa-external-link-alt"></i></span> 进行操作即可。这里介绍几个注意的点：</p>
+<ol type="1">
+<li><p>注册时推荐使用国际版，否则需要绑定备案的域名，比较麻烦。</p></li>
+<li><p>在 Vercel 上部署服务端时，注意环境变量名称 <code>LEAN_ID</code>, <code>LEAN_KEY</code> 和 <code>LEAN_MASTER_KEY</code>一定要一字不差。遇到访客评论系统在不登录账号时报错如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Invalid value type for field &#x27;link&#x27;,value &#x27;&quot;&quot;&#x27;,expect type is &#123;:type &quot;Object&quot;&#125;,but it is &#x27;&#123;:type &quot;String&quot;&#125;&#x27;. [400 POST https://ioksy7et.api.lncldglobal.com/1.1/classes/Comment]</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>​ 解决方法：重新在 Leanclound 上创建 <code>Comment</code> 类。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206301329339.png" alt="在数据储存中创建新的Comment类" /><figcaption aria-hidden="true">在<code>数据储存</code>中创建新的Comment类</figcaption>
+</figure>
+<h3 id="在-hexo-上使用-waline">在 Hexo 上使用 Waline</h3>
+<p>在 Hexo 根目录下执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install @waline/hexo-next</span><br></pre></td></tr></table></figure>
+<p>接着你可以在 Hexo 根目录下 <code>\node_modules\@waline</code> 中找到 <code>default.yaml</code> 文件，里面就是所有 Waline 的设置选项了。 为了方便将其中需要改变的选项手动写入到 <code>next</code> 主题下 的 <code>_config.yaml</code>中， 以下是部分参考，更多的选项设置在上述 <code>default.yaml</code> 中：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment">#是否开启</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">waline-server-ecru.vercel.app</span> <span class="comment"># Waline #服务端地址，我们这里就是上面部署的 Vercel 地址</span></span><br><span class="line">  <span class="attr">locale:</span></span><br><span class="line">    <span class="attr">placeholder:</span> <span class="string">疑义相与析，畅所欲言，不登录也没关系哒</span> <span class="comment"># #评论框的默认文字</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># 头像风格</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>,<span class="string">mail</span>] <span class="comment"># 自定义评论框上面的三个输入框的内容</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># 评论数量多少时显示分页</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># 语言, 可选值: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># 文章阅读统计</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示</span></span><br><span class="line">  <span class="attr">requiredFields:</span> [<span class="string">nick</span>] <span class="comment"># 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]</span></span><br><span class="line">  <span class="attr">libUrl:</span> <span class="string">https://unpkg.com/@waline/client@v2/dist/waline.js</span> <span class="comment"># Set custom library cdn url</span></span><br><span class="line">  <span class="attr">login:</span> <span class="string">enable</span></span><br></pre></td></tr></table></figure>
+<h3 id="登录服务端">登录服务端</h3>
+<p>接着部署后就能够看到登录按钮，进行登录，貌似第一个登录的账号就会有个 <strong>博主</strong> 的标识。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206292335984.png" alt="进入登录界面" /><figcaption aria-hidden="true">进入登录界面</figcaption>
+</figure>
+<p>但是访客不登陆也能评论。访客填写不同的邮箱会显示其对应账号的头像。</p>
+<p>最后效果可以参见<span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnLw==">官方文档<i class="fa fa-external-link-alt"></i></span> 。</p>
+<h3 id="参考">参考</h3>
+<p><span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWw=">官方文档<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9xaWFuZmFuZ3VvamluLnRvcC8yMDIyLzAxLzIwL0hleG8lRTUlOEQlOUElRTUlQUUlQTIlRTglQkYlOUIlRTklOTglQjYlRUYlQkMlOUElRTQlQjglQkEtTmV4dC0lRTQlQjglQkIlRTklQTIlOTglRTYlQjclQkIlRTUlOEElQTAtV2FsaW5lLSVFOCVBRiU4NCVFOCVBRSVCQSVFNyVCMyVCQiVFNyVCQiU5Ri8=">谢同学博客<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Blog搭建</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>三角形中的几个恒等式</title>
     <url>/2022/07/01/%E6%95%B0%E5%AD%A6/%E5%85%B6%E4%BB%96/%E4%B8%89%E8%A7%92%E5%BD%A2%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%81%92%E7%AD%89%E5%BC%8F/</url>
     <content><![CDATA[<p>在 <span class="math inline">\(\Delta ABC\)</span> 中，以下等式成立</p>
 <h3 id="正余弦平方和">正余弦平方和</h3>
 <p><span class="math display">\[
 \sin A+\sin B+\sin C=4\cos  \frac{A}{2}\cos  \frac{B}{2}\cos  \frac{C}{2}\ \tag{1}
-\]</span> 证： <span class="math display">\[
+\]</span> <span id="more"></span></p>
+<p>证： <span class="math display">\[
 \begin{gather}
 \begin{aligned}
 LHS &amp;= 2\,\sin \frac{A+B}{2}\,\cos \frac{A-B}{2} +\sin C  \\
@@ -339,6 +303,7 @@ F(x,y,z)=1-(x^2+y^2+z^2),
 \]</span> ​ 求证，对于 <span class="math inline">\(\left| t \right| \leq \sqrt 3\)</span> 时，有 <span class="math display">\[
 \int _{\Sigma(t)} F(x,y,z)\,d\sigma = \frac{\pi}{18} (3-t^2)^2
 \]</span></p>
+<span id="more"></span>
 <h3 id="方法一">方法一</h3>
 <p>​ 将原坐标系 <span class="math inline">\(X Y Z\)</span> 进行变换，新坐标系的 <span class="math inline">\(X&#39;OY&#39;\)</span> 平面为原坐标系的平面 <span class="math inline">\(x+y+z=0\)</span> ，坐标 <span class="math inline">\(z&#39;\)</span> 为点在原坐标系下距离 <span class="math inline">\(\Sigma(0)\)</span> 的距离，<span class="math inline">\(z&#39; = \frac {t}{\sqrt3}\)</span> ， 为了渐变就沿用 <span class="math inline">\(xyz\)</span> 命名好了。接下来就是很普通的在 <span class="math inline">\(z=\frac{t}{\sqrt 3}\)</span> 上将 <span class="math inline">\(xy\)</span> 化为极坐标的积分了。 <span class="math display">\[
 \begin{gather}
