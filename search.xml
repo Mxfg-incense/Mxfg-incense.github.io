@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>加密</title>
+    <url>/2022/06/30/%E9%9A%8F%E7%AC%94/test/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="1fd10544d79b7ce0f2fdff594f7b54c907c417ac119a8f5d412fe3edcf0a275b">4630436162ade97ba2718b7d0c4b3b63aa2ab1619d9cdbb4bb5fd57226dc61d2</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>一文搞懂字符编码</title>
+    <url>/2022/06/27/%E7%BC%96%E7%A0%81/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/</url>
+    <content><![CDATA[<h1 id="字符集和编码">字符集和编码</h1>
+<p>​ 字符集从字符到一个数字的映射。编码是一种规则，即如何将这个字符转变为二进制数。</p>
+<h2 id="ascll">ASCLL</h2>
+<p>​ 计算机处理字符总是需要将其变为一个个 bit 所以最开始的字符集是 <a href="https://www.ascii-code.com/"><strong>ASCLL</strong></a> 码，将不同的英文字母，数字，以及控制字符映射到 8-bits 中。一开始 ASCLL 码只用到了 0 - 127。后来新增加了扩展 ASCLL 码， 利用了 128 - 255 剩下的一半字符。当称为 ASCLL 集的时候作为一种字符集，ASCLL 码时，是一种编码规则。</p>
+<h2 id="gb">GB</h2>
+<h3 id="gb-2312">GB 2312</h3>
+<p>GB2312 是一种中文的字符集，分区管理， 共计 94 个区， 每个区含 94 个位，共8836 码位。 码位按照按照区，行，列一次决定，比如「侃」字在 57 区 0 行 9 列， 码位就是 5709，十六进制为 <code>0x39 0x09</code> 分别加上 <code>0xA0</code> 得到 <code>0xD9</code> 和 <code>0xA9</code> ，得到最终的 GB2312 为 <code>0xD90xA9</code> 。 加 <code>0xA0</code> 的目的可能使得高位和低位的值都大于 127， 向下兼容 ASCLL 码。当机器遇到连续两位大于 127 的 byte 时就能以此区分究竟是 ASCLL 码还是 GB2312 码。 GB2312 是双字节编码，为了与 ASCII 码区分开，字节的第8位必须是1，所以GB2312是8位编码。所以至少要从 0x80 128, 1000 0000) 开始吧，但是根据上面的规定，0x80 - 0x9f 要留给控制块，所以只能从 0xA0 开始咯。那为什么 GB2312 编码不是从 0xA0 开始，而是 0xA1 开始呢？ 因为 0xA0 正好是图形块的空格，所以就从 0xA1 编码，这就是 0xA0 的由来</p>
+<h3 id="gbk">GBK</h3>
+<p>​ 拓展，不规定低位大于 127 ，新增近 20000 个汉字符号。对应的字符编码叫 GBK 码</p>
+<h3 id="gb18030">GB18030</h3>
+<p>​ 新增少数民族文字</p>
+<h2 id="unicode">Unicode</h2>
+<p>​ 是一个规则，包含字符集和对应的编码规则。把世界上所有的字符放在一起。</p>
+<h3 id="ucs-2-字符集">UCS-2 字符集</h3>
+<p>​ <code>0x0000 - 0xFFFF</code> ，可表示 65536 个字符。这里只是一个字符集，并不算真正意义上的编码。</p>
+<h3 id="ucs-4-字符集">UCS-4 字符集</h3>
+<p>​ <code>0x00000000 - 0xFFFFFFFF</code> ， 可表示 43 亿字符。</p>
+<h3 id="缺点">缺点</h3>
+<p>​ 储存空间过大</p>
+<h3 id="utf-8-编码">UTF-8 编码</h3>
+<p>​ 每次传送 8 位 数字，而且可变长，节省流量和内存空间，是目前最广泛使用的编码规则</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206272300871.png" alt="image-20220627230028146" /><figcaption aria-hidden="true">image-20220627230028146</figcaption>
+</figure>
+<h2 id="编码的应用举例">编码的应用举例</h2>
+<ul>
+<li>​ 在计算机内存中是使用 Unicode 字符集， 当进行文本编辑时保存之前时用的 Unicode 数据。但是当数据写入磁盘的时候就和操作系统有关了，Linux 下是 UTF-8，在 Windows 下使用 GBK 编码。 比如写入一个文本文件时， 使用 UTF-8 编码 ， 自然当打开文件时也应该默认使用 UTF-8 解码，在转为 Unicode 数据在内存里。 比如当使用 Python的 <em>open( )</em> 函数时，是内存中的进程与磁盘的交互，而这个交互过程中的编码格式则是使用操作系统的默认编码（ Linux 为 utf-8，Windows 为 gbk）</li>
+<li>而当编译器读取.py 文件时，需要将储存好的 Bytes 数据解码。Python 2 默认 ASCLL 码， 而Python 3 默认 UTF-8 编码。 所以当用 python 2 执行含有中文字符串的文件时会解码错误。于是在开头加行 <code>\#-*-coding:utf-8-*-</code></li>
+</ul>
+<h2 id="python-2">Python 2</h2>
+<p>​ 编码过程：写的代码通过 utf-8 写入，再通过解释器将其 Bytes 转换为另外编码形式的的 Bytes, utf-8 向下兼容 ASCLL。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280008191.png" alt="image-20220628000845318" /><figcaption aria-hidden="true">image-20220628000845318</figcaption>
+</figure>
+<p>以上的数据都是以 bytes 形式存储的，在Python 2 中成为 str 类型。通过 <code>print repr(a)</code> 来查看内存中储存的形式。如果在字符串前面加上 u <code>str = u'你好'</code>，则 u 后面的字符串通过 Unicode 加载进内存。 这种类型称为为 Unicode</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280018694.png" alt="image-20220628001647028" /><figcaption aria-hidden="true">image-20220628001647028</figcaption>
+</figure>
+<h3 id="unicode-和-str-类型的转换">Unicode 和 str 类型的转换</h3>
+<p>​ 其实 str 就是 Bytes ，就是将Unicode 进行编码后的到的结果。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280018560.png" alt="image-20220628001829089" /><figcaption aria-hidden="true">image-20220628001829089</figcaption>
+</figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># coding : utf-8</span></span><br><span class="line"><span class="built_in">str</span> = <span class="string">&quot;你好&quot;</span></span><br><span class="line"><span class="built_in">print</span> <span class="built_in">str</span>.decode(<span class="string">&#x27;ascll&#x27;</span>) <span class="comment">#错误，ascll支持中文</span></span><br><span class="line"><span class="built_in">print</span> <span class="built_in">str</span>.decode(<span class="string">&#x27;utf-8&#x27;</span>) <span class="comment">#结果 你好</span></span><br><span class="line"><span class="built_in">print</span> <span class="built_in">str</span>.decode(<span class="string">&#x27;gb2312&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="python-3">Python 3</h3>
+<p>默认以 Unicode 从硬盘中加载进内存。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280024379.png" alt="image-20220628002447002" /><figcaption aria-hidden="true">image-20220628002447002</figcaption>
+</figure>
+<p>表示 bytes 内容， <code>str = b'你好'</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = <span class="string">&quot;你好&quot;</span></span><br><span class="line"><span class="built_in">print</span> a.encode(<span class="string">&#x27;ascll&#x27;</span>) <span class="comment">#错误 无法将中文编码为 ascll 码</span></span><br><span class="line"><span class="built_in">print</span> a.encode (<span class="string">&#x27;utf-8&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>将 Bytes 解码为 Unicode</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = <span class="string">b&#x27;\xe4\xbd\xa0&#x27;</span></span><br><span class="line"><span class="built_in">print</span> a.decode(<span class="string">&#x27;utf-8&#x27;</span>) <span class="comment">#输出 你</span></span><br></pre></td></tr></table></figure>
+<h3 id="参考">参考</h3>
+<p>https://www.bilibili.com/video/BV1XK4y1t7D4?share_source=copy_web</p>
+]]></content>
+      <categories>
+        <category>编码</category>
+      </categories>
+      <tags>
+        <tag>编码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo美化：为Next主题外接 Waline 评论系统</title>
+    <url>/2022/06/29/Blog%E6%90%AD%E5%BB%BA/Hexo/Hexo-Next%E4%B8%BB%E9%A2%98%E5%A4%96%E6%8E%A5%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h3 id="前言">前言</h3>
+<p>​ <strong>Waline</strong> 是一款基于 <strong>Valine</strong> 衍生的评论系统，首先在笔者目前使用的 NexT 8.12.1 下已经不再内置 Valine 系统，需要自己手动配置。 看了一圈其他的评论系统，貌似只有 Waline 支持数学公式，所以最终选择 Waline 评论系统</p>
+<h3 id="配置数据库和服务端部署">配置数据库和服务端部署</h3>
+<p>​ 选择 <a href="%5BLeanCloud%5D(https://www.leancloud.cn/)">Leanclound</a> 作为评论数据库，在 Vercel 上部署服务端。接着就按照 <span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWwjbGVhbmNsb3VkLSVFOCVBRSVCRSVFNyVCRCVBRS0lRTYlOTUlQjAlRTYlOEQlQUUlRTUlQkElOTM=">Waline的官方文档<i class="fa fa-external-link-alt"></i></span> 进行操作即可。这里介绍几个注意的点：</p>
+<ol type="1">
+<li><p>注册时推荐使用国际版，否则需要绑定备案的域名，比较麻烦。</p></li>
+<li><p>在 Vercel 上部署服务端时，注意环境变量名称 <code>LEAN_ID</code>, <code>LEAN_KEY</code> 和 <code>LEAN_MASTER_KEY</code>一定要一字不差。遇到访客评论系统在不登录账号时报错如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Invalid value type for field &#x27;link&#x27;,value &#x27;&quot;&quot;&#x27;,expect type is &#123;:type &quot;Object&quot;&#125;,but it is &#x27;&#123;:type &quot;String&quot;&#125;&#x27;. [400 POST https://ioksy7et.api.lncldglobal.com/1.1/classes/Comment]</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>​ 解决方法：重新在 Leanclound 上创建 <code>Comment</code> 类。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206301329339.png" alt="在数据储存中创建新的Comment类" /><figcaption aria-hidden="true">在<code>数据储存</code>中创建新的Comment类</figcaption>
+</figure>
+<h3 id="在-hexo-上使用-waline">在 Hexo 上使用 Waline</h3>
+<p>在 Hexo 根目录下执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install @waline/hexo-next</span><br></pre></td></tr></table></figure>
+<p>接着你可以在 Hexo 根目录下 <code>\node_modules\@waline</code> 中找到 <code>default.yaml</code> 文件，里面就是所有 Waline 的设置选项了。 为了方便将其中需要改变的选项手动写入到 <code>next</code> 主题下 的 <code>_config.yaml</code>中， 以下是部分参考，更多的选项设置在上述 <code>default.yaml</code> 中：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment">#是否开启</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">waline-server-ecru.vercel.app</span> <span class="comment"># Waline #服务端地址，我们这里就是上面部署的 Vercel 地址</span></span><br><span class="line">  <span class="attr">locale:</span></span><br><span class="line">    <span class="attr">placeholder:</span> <span class="string">疑义相与析，畅所欲言，不登录也没关系哒</span> <span class="comment"># #评论框的默认文字</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># 头像风格</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>,<span class="string">mail</span>] <span class="comment"># 自定义评论框上面的三个输入框的内容</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># 评论数量多少时显示分页</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># 语言, 可选值: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># 文章阅读统计</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示</span></span><br><span class="line">  <span class="attr">requiredFields:</span> [<span class="string">nick</span>] <span class="comment"># 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]</span></span><br><span class="line">  <span class="attr">libUrl:</span> <span class="string">https://unpkg.com/@waline/client@v2/dist/waline.js</span> <span class="comment"># Set custom library cdn url</span></span><br><span class="line">  <span class="attr">login:</span> <span class="string">enable</span></span><br></pre></td></tr></table></figure>
+<h3 id="登录服务端">登录服务端</h3>
+<p>接着部署后就能够看到登录按钮，进行登录，貌似第一个登录的账号就会有个 <strong>博主</strong> 的标识。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206292335984.png" alt="进入登录界面" /><figcaption aria-hidden="true">进入登录界面</figcaption>
+</figure>
+<p>但是访客不登陆也能评论。访客填写不同的邮箱会显示其对应账号的头像。</p>
+<p>最后效果可以参见<span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnLw==">官方文档<i class="fa fa-external-link-alt"></i></span> 。</p>
+<h3 id="参考">参考</h3>
+<p><span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWw=">官方文档<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9xaWFuZmFuZ3VvamluLnRvcC8yMDIyLzAxLzIwL0hleG8lRTUlOEQlOUElRTUlQUUlQTIlRTglQkYlOUIlRTklOTglQjYlRUYlQkMlOUElRTQlQjglQkEtTmV4dC0lRTQlQjglQkIlRTklQTIlOTglRTYlQjclQkIlRTUlOEElQTAtV2FsaW5lLSVFOCVBRiU4NCVFOCVBRSVCQSVFNyVCMyVCQiVFNyVCQiU5Ri8=">谢同学博客<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Blog搭建</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo 的分类和标签</title>
+    <url>/2022/06/27/Blog%E6%90%AD%E5%BB%BA/Hexo/Hexo-%E7%9A%84%E5%88%86%E7%B1%BB%E5%92%8C%E6%A0%87%E7%AD%BE/</url>
+    <content><![CDATA[<h1 id="hexo-的分类和标签">Hexo 的分类和标签</h1>
+<h2 id="front-matter">Front-matter</h2>
+<p>​ Front-matter是文件上方的区域，用于储存该文件在站点 中的基本信息</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206271720124.png" alt="image-20220627172046732" /><figcaption aria-hidden="true">image-20220627172046732</figcaption>
+</figure>
+<h2 id="分类和标签">分类和标签</h2>
+<p>分类： 有层次，下面指定方法：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">catagories:</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">Diary</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">Life</span></span><br></pre></td></tr></table></figure>
+<p>会使 Life 为 Diary 的子类。 如果你需要为文章添加并列分类，可以尝试以下 list 中的方法 ：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="bullet">-</span> [<span class="string">Diary</span>, <span class="string">PlayStation</span>]</span><br><span class="line"><span class="bullet">-</span> [<span class="string">Diary</span>, <span class="string">Games</span>]</span><br><span class="line"><span class="bullet">-</span> [<span class="string">Life</span>]</span><br></pre></td></tr></table></figure>
+<p>此时这篇文章同时包括三个分类： <code>PlayStation</code> 和 <code>Games</code> 分别都是父分类 <code>Diary</code> 的子分类，同时 <code>Life</code> 是一个没有子分类的分类。</p>
+<p>标签： 是一篇文章所含的关键字，或者是一种要素。</p>
+<h2 id="插件-auto-categories">插件 auto-categories</h2>
+<h3 id="获取插件">获取插件</h3>
+<p><a href="*https://hexo.io/plugins/*">hexo官方插件下载地址</a></p>
+<p>直接在站点文件夹下输入 npm 命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-auto-category --save</span><br></pre></td></tr></table></figure>
+<h3 id="配置">配置</h3>
+<p>打开站点文件 <code>_config.yaml</code> 找到 <code>plugin:</code> 字段，将 <code>hexo-auto-categories</code> 插件写入</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">Plugins:</span> </span><br><span class="line">  <span class="bullet">-</span> <span class="string">hexo-auto-category</span></span><br></pre></td></tr></table></figure>
+<p>再加入</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Generate categories from directory-tree</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/xu-song/hexo-auto-category</span></span><br><span class="line"><span class="comment"># depth: the depth of directory-tree you want to generate, should &gt; 0</span></span><br><span class="line"><span class="attr">auto_category:</span></span><br><span class="line"> <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line"> <span class="attr">depth:</span> </span><br></pre></td></tr></table></figure>
+<p>depth 是最大工作树的深度</p>
+<h3 id="优点">优点</h3>
+<ul>
+<li>文件移动后不用再反复修改 Front-matter</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Blog搭建</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Item 03 - Use const whenever possible</title>
+    <url>/2022/06/30/C++/Effective_C++/Item03_const/</url>
+    <content><![CDATA[<p>只要明确值不被改变就应该声明为 <code>const</code> ，以此获得编译器的襄助，保证规则不被违反。</p>
+<h2 id="顶层-const-与-底层-const">顶层 <code>const</code> 与 底层 <code>const</code></h2>
+<p>const pointer 成为顶层 const, pointer 指向的数据为 const 称为底层 const.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">char</span> greeting[] = <span class="string">&quot;hello world&quot;</span>; 	<span class="comment">// greeting 类型为 char [12]</span></span><br><span class="line"><span class="type">const</span> <span class="type">char</span> *p = greeting;			<span class="comment">// 添加底层const const data , non-const pointer</span></span><br><span class="line"><span class="type">char</span> * <span class="type">const</span> p = greeting;			<span class="comment">// 顶层const non-const data , const pointer </span></span><br><span class="line"><span class="type">const</span> <span class="type">char</span> * <span class="type">const</span> p =greeting 		<span class="comment">// const data , const pointer</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>底层 const 的以下两种写法等价</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">char</span> *p;			</span><br><span class="line"><span class="type">char</span> <span class="type">const</span> *p;</span><br></pre></td></tr></table></figure>
+<p><strong>STL</strong> 中的 iterator 类似于 (T*) 指针。声明迭代器为 const 类似于 <code>T * const</code> ，顶层const。而如果需要迭代器所指向的数据不被修改，需要 <code>const_iterator</code> 。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">std::vector&lt;<span class="type">int</span>&gt; v&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="type">const</span> std::vector&lt;<span class="type">int</span>&gt;::iterator it = v.<span class="built_in">begin</span>();      <span class="comment">//顶层const </span></span><br><span class="line">*it = <span class="number">1</span>;  <span class="comment">//正确，可被修改</span></span><br><span class="line">++it;   <span class="comment">//错误，不能修改迭代器本身</span></span><br><span class="line">std::vector&lt;<span class="type">int</span>&gt;::const_iterator itt = v.<span class="built_in">begin</span>();      <span class="comment">//底层const </span></span><br><span class="line">*itt = <span class="number">1</span>;  <span class="comment">//错误，被指向的数据不可被修改</span></span><br><span class="line">++itt;   <span class="comment">//正确，可以递增迭代器本身</span></span><br></pre></td></tr></table></figure>
+<h2 id="函数返回值">函数返回值</h2>
+<p>将函数范围值声明为 const 可以减少不必要的麻烦,比如</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Rational</span> &#123;</span><br><span class="line">&#125;;</span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="type">const</span> Rational *<span class="title">operator</span><span class="params">(<span class="type">const</span> Rational &amp;lhs, <span class="type">const</span> Rational &amp;rhs)</span> </span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+<p>如果去掉返回值的 const ，你的用户可能做出如下行为</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">(<span class="number">3</span>*<span class="number">5</span>) = <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<p>你可能觉得根本不会有人做出怎么奇怪的操作，但是下面这个错误就比较隐蔽， 用户在条件语句中将 <code>==</code> 写成了 <code>=</code>，发生隐式 <strong>bool</strong> 类型的转化：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>( (<span class="number">3</span>*<span class="number">5</span>) = <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>尽量将使用 <em>reference-to-const</em> 作为参数不仅避免拷贝，还能绑定到右值，比如:</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">foo</span> <span class="params">(std::string &amp; s)</span></span></span><br><span class="line"><span class="function">...</span></span><br><span class="line"><span class="function">std::string str</span>;</span><br><span class="line"><span class="built_in">foo</span>(str)		<span class="comment">//正确，绑定到左值</span></span><br><span class="line"><span class="built_in">foo</span>(<span class="string">&quot;hello&quot;</span>)	<span class="comment">//错误，不能绑定右值 &quot;hello&quot; </span></span><br></pre></td></tr></table></figure>
+<p>尽管 const 只有六个字符，但是却能避免很多不必要的麻烦。</p>
+<h2 id="const-成员函数">const 成员函数</h2>
+<h4 id="目的">目的</h4>
+<ol type="1">
+<li>使得 class 接口容易被理解，明白哪些函数改动内容，而哪些不行</li>
+<li>使得 ‘操作 const 对象’ 成为可能。因为很多情况需要使用 <em>pass by reference-to-const</em> ，这项技术的前提就是需要 const 成员函数。</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TextBlock</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> &amp;<span class="keyword">operator</span>[](std::<span class="type">size_t</span> pos) <span class="type">const</span> &#123; </span><br><span class="line">      <span class="keyword">return</span> text[pos];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">char</span> &amp;<span class="keyword">operator</span>[](std::<span class="type">size_t</span> pos)  &#123;</span><br><span class="line">      <span class="keyword">return</span> text[pos];</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    std::string text;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>下面是调用 operator [] 的例子</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(<span class="type">const</span> TextBlock &amp; str)</span> </span>&#123; <span class="comment">//str 是 const 对象</span></span><br><span class="line">  std::cout &lt;&lt; str[<span class="number">0</span>];       <span class="comment">//调用 const 成员函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果 operator [] 的返回值类型是 <strong>char reference</strong> ，如果是 char 的话，下面句子无法编译: <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">str[<span class="number">0</span>] = <span class="string">&#x27;x&#x27;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="bitwise-const-and-logical-const">bitwise const and logical const</h3>
+<ul>
+<li><strong>bitwise const</strong>: class 内部的成员变量不能修改 ，编译器检测的方式</li>
+<li><strong>logical const</strong>: 设计者期望的常量</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CTextBlock</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">CTextBlock</span>(<span class="type">char</span> *str):<span class="built_in">p</span>(str)&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">char</span> &amp; <span class="keyword">operator</span>[](std::<span class="type">size_t</span> pos) <span class="type">const</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> p[pos];</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    <span class="type">char</span> *p;</span><br><span class="line">&#125;;</span><br><span class="line">...</span><br><span class="line"><span class="type">char</span> str[] = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="function"><span class="type">const</span> CTextBlock <span class="title">ccb</span><span class="params">(str)</span></span>;</span><br><span class="line"><span class="type">char</span> *p = &amp;ccb[<span class="number">0</span>];</span><br><span class="line">*p = <span class="string">&#x27;J&#x27;</span>;			<span class="comment">//还是被修改了</span></span><br></pre></td></tr></table></figure>
+<p>这里我们想要的 const 是 p 的内部值不被改变，但是 operator[] 返回值没加 const 时也能编译成功，即逃过了编译器 <strong>bitwise const</strong> 检查。所以尽可能使用 <strong>STL</strong> 中的 string 而非手动管理内存。</p>
+<p>下面在介绍一个 <strong>logical const</strong> 被 编译器 <strong>bitwise const </strong>所过度限制的例子。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CTextBlock</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function">std::<span class="type">size_t</span> <span class="title">length</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    <span class="type">char</span> *pText;</span><br><span class="line">    std::<span class="type">size_t</span> textlength;</span><br><span class="line">    <span class="type">bool</span> lengthIsvalid;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">std::<span class="type">size_t</span> <span class="title">CTextBlock::length</span><span class="params">()</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!lengthIsvalid) &#123;</span><br><span class="line">    textlength = std::<span class="built_in">strlen</span>(pText);</span><br><span class="line">    lengthIsvalid = <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> textlength;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>显然 <code>length()</code> 不是 <code>bitwise const</code> ， 因为 <code>textlength</code> 发生了改变。但是对于我们而言，<code>textlength</code> 与 <code>lengthIsvalid</code> 是可以接受的。 我们可以使用 <code>mutable</code> 关键字释放掉 non-static 成员变量 <strong>bitwise const</strong> 的约束。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CTextBlock</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function">std::<span class="type">size_t</span> <span class="title">length</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    <span class="type">char</span> *pText;</span><br><span class="line">    <span class="keyword">mutable</span> std::<span class="type">size_t</span> textlength; <span class="comment">//现在可在 const 成员函数中被修改</span></span><br><span class="line">    <span class="keyword">mutable</span> <span class="type">bool</span> lengthIsvalid;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">std::<span class="type">size_t</span> <span class="title">CTextBlock::length</span><span class="params">()</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!lengthIsvalid) &#123;</span><br><span class="line">    textlength = std::<span class="built_in">strlen</span>(pText);</span><br><span class="line">    lengthIsvalid = <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> textlength;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="在-const-成员函数和-non-const-成员函数中避免重复">在 const 成员函数和 non-const 成员函数中避免重复</h2>
+<p>在对某个函数实现 const 与 non-const 重载时，会产生大量的代码重复，比如在上面的例子中放入更多复杂的操作</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TextBlock</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> &amp;<span class="keyword">operator</span>[](std::<span class="type">size_t</span> pos) <span class="type">const</span> &#123; </span><br><span class="line">      <span class="comment">//do  somethings</span></span><br><span class="line">      <span class="keyword">return</span> text[pos];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">char</span> &amp;<span class="keyword">operator</span>[](std::<span class="type">size_t</span> pos)  &#123;</span><br><span class="line">      <span class="comment">// do somethings</span></span><br><span class="line">      <span class="keyword">return</span> text[pos];</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    std::string text;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>我们应该考虑令其中的一个调用另一个，这是一种很重要的思想，在重载 <code>+=</code> 和 <code>+</code> 是也利用之。利用 const 成员函数实现 non-const</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TextBlock</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> &amp;<span class="keyword">operator</span>[](std::<span class="type">size_t</span> pos) <span class="type">const</span> &#123; </span><br><span class="line">      <span class="comment">//do  somethings</span></span><br><span class="line">      <span class="keyword">return</span> text[pos];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">char</span> &amp;<span class="keyword">operator</span>[](std::<span class="type">size_t</span> pos)  &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">const_cast</span>&lt;<span class="type">char</span> &amp;&gt;(      <span class="comment">//移除 op[] 的 const </span></span><br><span class="line">          <span class="built_in">static_cast</span>&lt;<span class="type">const</span> TextBlock&amp;&gt;(*<span class="keyword">this</span>)[pos]);  <span class="comment">//为当前对象添加 const </span></span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    std::string text;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这里用到两次转型 分别是为 <code>*this</code> 添加 const ， 为 op[ ] 的返回值移除 const. 注意 <code>const_cast</code> 与 <code>static_const</code> 的区别。只有 <code>const_cast</code> 能移除 const。</p>
+<p>但是反向做法：利用 non-const 成员函数实现 const 是不正确的。这是一个危险的行为，首先 <strong>non-const</strong> 函数并未声明不对对象进行修改，而 <strong>const</strong> 成员函数依赖与一个改变对象的函数显然是不合理的。而且你不得不使用 <code>const_cast</code> 去除 const，最终实现的 <strong>const</strong> 成员函数不能保证真正的 const. const 成员函数声明也就失效了。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TextBlock</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> &amp;<span class="keyword">operator</span>[](std::<span class="type">size_t</span> pos) <span class="type">const</span> &#123; </span><br><span class="line">      <span class="comment">//do  somethings</span></span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">static_cast</span>&lt;<span class="type">const</span> <span class="type">char</span> &amp;&gt;(      <span class="comment">//添加 op[] 的 const </span></span><br><span class="line">          <span class="built_in">const_cast</span>&lt;TextBlock&amp;&gt;(*<span class="keyword">this</span>)[pos]);  <span class="comment">//为当前对象移除 const </span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">char</span> &amp;<span class="keyword">operator</span>[](std::<span class="type">size_t</span> pos)  &#123;</span><br><span class="line">      <span class="comment">// do somethings</span></span><br><span class="line">      text[pos] = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">      <span class="keyword">return</span> text[pos];</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    std::string text;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="总结">总结</h2>
+<ul>
+<li>将某些东西声明为 const 可帮助编译器侦测错误用法。const 可作用于对象，函数参数，函数返回值类型，成员函数本体。</li>
+<li>编译器实施 <strong>bitwise constness</strong> ，但编写程序时应使用 <strong>conceptual constness</strong>.</li>
+<li>non-const 版本调用 const 版本避免代码重复</li>
+</ul>
+<h2 id="参考">参考</h2>
+<p>Effective C++ 中文版（第三版）</p>
+]]></content>
+      <categories>
+        <category>C++</category>
+        <category>Effective_C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>const</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>三角形中的几个恒等式</title>
+    <url>/2022/07/01/%E6%95%B0%E5%AD%A6/%E5%85%B6%E4%BB%96/%E4%B8%89%E8%A7%92%E5%BD%A2%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%81%92%E7%AD%89%E5%BC%8F/</url>
+    <content><![CDATA[<p>在 <span class="math inline">\(\Delta ABC\)</span> 中，以下等式成立</p>
+<h3 id="正余弦平方和">正余弦平方和</h3>
+<p><span class="math display">\[
+\sin A+\sin B+\sin C=4\cos  \frac{A}{2}\cos  \frac{B}{2}\cos  \frac{C}{2}\ \tag{1}
+\]</span> 证： <span class="math display">\[
+\begin{gather}
+\begin{aligned}
+LHS &amp;= 2\,\sin \frac{A+B}{2}\,\cos \frac{A-B}{2} +\sin C  \\
+&amp;= 2 \,\cos  \frac{C}{2}\,\cos \frac{A-B}{2}+2\,\sin \frac{C}{2}\,\cos \frac{C}{2}\\
+&amp;=2\,\cos  \frac{C}{2}\,(\cos \frac{A-B}{2}+\cos \frac{A+B}{2})\\
+&amp;=4\,\cos \frac{A}{2}\,\cos \frac{B}{2}\,\cos \frac{C}{2}
+\end{aligned}
+\end{gather}
+\]</span></p>
+<p><span class="math display">\[
+\cos A+\cos B+\cos C=1+4\sin  \frac{A}{2}\sin  \frac{B}{2}\sin  \frac{C}{2}\\ \tag{2}
+\]</span> 证： <span class="math display">\[
+\begin{gather}
+\begin{aligned}
+LHS &amp;= 2\,\cos \frac{A+B}{2}\,\cos \frac{A-B}{2} + 1-2\,\sin ^2\frac{C}{2}  \\ 
+&amp;= 1-2\,\sin \frac{C}{2}\,(\sin \frac{C}{2}-\cos \frac{A-B}{2})  \\
+&amp;=1-2\,\sin \frac{C}{2}\,(\cos \frac{A+B}{2}-\cos \frac{A-B}{2})   \\
+&amp;=1-2\,\sin \frac{C}{2}\,(-2\,\sin \frac{A}{2}\,\sin \frac{B}{2})\\
+&amp;=1+4\sin  \frac{A}{2}\sin  \frac{B}{2}\sin  \frac{C}{2}
+\end{aligned}
+\end{gather}
+\]</span></p>
+<h3 id="正余半角平方和">正余半角平方和</h3>
+<p><span class="math display">\[
+\sin ^2\frac{A}{2}+\sin ^2\frac{B}{2}+\sin ^2\frac{C}{2}= 1-2\,\sin \frac{A}{2}\sin \frac{B}{2}\sin \frac{C}{2}\tag{3}
+\]</span></p>
+<p>证： <span class="math display">\[
+\begin{gather}
+\begin{aligned}
+RHS &amp;= 1+\sin \frac{C}{2}\,(\cos \frac{A+B}{2}-\cos \frac{A-B}{2}) \\
+&amp;=  1+\sin ^2\frac{C}{2}- \cos \frac{A+B}{2}\cos \frac{A-B}{2}\\
+&amp;=  1+\sin ^2\frac{C}{2}-\frac{\cos A+\cos B}{2} \\
+&amp;= 1+\sin ^2\frac{C}{2}-\frac{2-2\sin ^2\frac{A}{2}-2\sin ^2\frac{B}{2}}{2}   \\
+&amp;=  \sin ^2\frac{A}{2}+\sin ^2\frac{B}{2}+\sin ^2\frac{C}{2}
+\end{aligned}
+\end{gather}
+\]</span></p>
+<p>同理易得: <span class="math display">\[
+\cos ^2\frac{A}{2}+\cos ^2\frac{B}{2}+\cos ^2\frac{C}{2}= 2+2\,\sin \frac{A}{2}\sin \frac{B}{2}\sin \frac{C}{2}\tag{4}
+\]</span></p>
+<h3 id="正割余割和">正割余割和</h3>
+<p><span class="math display">\[
+\tan A+\tan B+\tan C=\tan A\;\tan B\;\tan C \tag{5} \label{5}
+\]</span> 证： <span class="math display">\[
+\begin{gather}
+\text{和角公式：}\tan C = -\frac{\tan A+\tan B}{1-\tan A\;\tan B}\\
+\tan C-\tan A\;\tan B\;\tan C = -(\tan A+\tan B)\\
+\text{移项后得到结论}
+\end{gather}
+\]</span> 推论 <span class="math display">\[
+\cot A\,\cot B+\cot A\,\cot C+\cot B\,\cot C =1\tag{6}
+\]</span> 证： <span class="math display">\[
+\begin{aligned}
+\text{由 \eqref{5}得到: }\frac{1}{\tan A\,\tan B}&amp;=\frac{\tan C}{\tan A+\tan B+\tan C}\\
+\frac{1}{\tan A\,\tan C}&amp;=\frac{\tan B}{\tan A+\tan B+\tan C}\\
+\frac{1}{\tan B\,\tan C}&amp;=\frac{\tan A}{\tan A+\tan B+\tan C}\\
+\end{aligned}
+\]</span> 三个式子相加即可</p>
+<h3 id="正余割半角">正余割半角</h3>
+<p><span class="math display">\[
+\cot \frac{A}{2}\cot \frac{B}{2}\cot \frac{C}{2} = \cot \frac{A}{2}\,\cot \frac{B}{2}\,\cot \frac{C}{2} \tag{7} \label{7}
+\]</span></p>
+<p>证： 收 <span class="math inline">\(\eqref{5}\)</span> 启发，只需证明 <span class="math display">\[
+\cot \frac{C}{2} = -\frac{\cot \frac{A}{2}+\cot \frac{B}{2}}{1-\cot \frac{A}{2}\,\cot \frac{B}{2}}
+\]</span> 即证 <span class="math display">\[
+\begin{gather}
+\tan\frac{C}{2} =\frac{\cot \frac{A}{2}\,\cot \frac{B}{2}-1}{\cot \frac{A}{2}+\cot \frac{B}{2}}\\
+\Leftarrow \tan\frac{C}{2} = \frac{1-\tan\frac{A}{2}\tan\frac{B}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}}
+\end{gather}
+\]</span></p>
+<p>推论： <span class="math display">\[
+\tan\frac{A}{2}\tan\frac{B}{2}+\tan\frac{B}{2}\tan\frac{C}{2}+\tan\frac{A}{2}\tan\frac{C}{2} = 1 \tag{8}
+\]</span></p>
+<p>由 <span class="math inline">\(\eqref{7}\)</span> 移项得到 <span class="math display">\[
+\begin{gather}
+\tan\frac{A}{2}\tan\frac{B}{2}=\frac{\tan\frac{A}{2}\,\tan\frac{B}{2}\,\tan\frac{B}{2}\,\cot\frac{C}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}+\tan\frac{C}{2}}\\
+\tan\frac{A}{2}\tan\frac{C}{2}=\frac{\tan\frac{A}{2}\,\tan\frac{B}{2}\,\tan\frac{B}{2}\,\cot\frac{B}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}+\tan\frac{C}{2}}\\
+\tan\frac{B}{2}\tan\frac{C}{2}=\frac{\tan\frac{A}{2}\,\tan\frac{B}{2}\,\tan\frac{B}{2}\,\cot\frac{A}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}+\tan\frac{C}{2}}\\
+\end{gather}
+\]</span> 三个式子相加即可</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>三角函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>将数量场转为向量场的例题</title>
+    <url>/2022/06/28/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98/%E5%B0%86%E6%95%B0%E9%87%8F%E5%9C%BA%E8%BD%AC%E4%B8%BA%E5%90%91%E9%87%8F%E5%9C%BA/</url>
+    <content><![CDATA[<h3 id="题面">题面</h3>
+<p>​ 设 <span class="math inline">\(\Sigma(t)\)</span> 是平面 <span class="math inline">\(x+y+z=t\)</span> 被球面 <span class="math inline">\(x^2+y^2+z^2=1\)</span> 截下的部分，设 <span class="math display">\[
+F(x,y,z)=1-(x^2+y^2+z^2),
+\]</span> ​ 求证，对于 <span class="math inline">\(\left| t \right| \leq \sqrt 3\)</span> 时，有 <span class="math display">\[
+\int _{\Sigma(t)} F(x,y,z)\,d\sigma = \frac{\pi}{18} (3-t^2)^2
+\]</span></p>
+<h3 id="方法一">方法一</h3>
+<p>​ 将原坐标系 <span class="math inline">\(X Y Z\)</span> 进行变换，新坐标系的 <span class="math inline">\(X&#39;OY&#39;\)</span> 平面为原坐标系的平面 <span class="math inline">\(x+y+z=0\)</span> ，坐标 <span class="math inline">\(z&#39;\)</span> 为点在原坐标系下距离 <span class="math inline">\(\Sigma(0)\)</span> 的距离，<span class="math inline">\(z&#39; = \frac {t}{\sqrt3}\)</span> ， 为了渐变就沿用 <span class="math inline">\(xyz\)</span> 命名好了。接下来就是很普通的在 <span class="math inline">\(z=\frac{t}{\sqrt 3}\)</span> 上将 <span class="math inline">\(xy\)</span> 化为极坐标的积分了。 <span class="math display">\[
+\begin{gather}
+\begin{aligned}
+\iint _{z=\frac{t}{\sqrt 3}} 1-z^2\,d\sigma &amp;= \int_0^{2\pi}d\theta \int_0^{\sqrt {1-\frac{t^2}{3}}}(1-\frac{t^2}{3}-r^2) r\,dr\\
+ &amp;=\frac{\pi}{18} (3-t^2)^2
+ \end{aligned}
+\end{gather}
+\]</span></p>
+<h3 id="方法二">方法二</h3>
+<p>​ 这个方法比较绕，是利用 <span class="math inline">\(Gauss\)</span> 定理 + 补面的方式。但是 F 是个数量场，怎么把它变成向量场呢? <span class="math display">\[
+\begin{equation}
+\iint_S F dS  =\iint_S \boldsymbol{v}\, \vec{n} \,dS
+\end{equation}
+\]</span> 所以现在就是需要去确定一种 <span class="math inline">\(\vec{v}\)</span> 和 <span class="math inline">\(\vec{n}\)</span> 使其点乘为 <span class="math inline">\(F\)</span> ， 为了简便 <span class="math inline">\(\vec{v} = (1-z^2) \,\vec{k}\)</span> ，<span class="math inline">\(\vec{n}=\vec{k}\)</span>， 在进行补面就能使用高斯公式了，设 <span class="math inline">\(V\)</span> 为 <span class="math inline">\(S_1:z=\frac{t}{\sqrt3}\)</span> 和球面 <span class="math inline">\(S_2:x^2+y^2+z^2=1\)</span> 围成的面积。 <span class="math display">\[
+\begin{gather}
+\begin{aligned}
+\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS &amp; = \iiint_V \Delta\,\vec{v} \, d\vec{S}\\
+&amp;=\iiint_V2z \,  dxdydz
+\end{aligned}
+\end{gather}
+\]</span> 注意因为高斯定理要求向量场指向平面的外侧，上面公式的 <span class="math inline">\(\vec{v}\)</span> 的方向与的我们构造的<span class="math inline">\(\vec{v}\)</span> 之间方向相反。</p>
+<p>再将<span class="math inline">\(xyz\)</span> 换为极坐标 (注意这里和 <span class="math inline">\(t\)</span> 没什么关系，<span class="math inline">\(t\)</span> 只是个常数) <span class="math display">\[
+\begin{cases}
+x= (1-z^2)\,r\,cos\theta\\
+y= (1-z^2)\,r\,sin\theta\\
+z=z\\
+\end{cases}
+\]</span> 然后三重积分 <span class="math display">\[
+\begin{gather}
+\begin{aligned}
+\iiint_V2z \,  dxdydz &amp;= 2\pi\int_{\frac{t}{\sqrt3}}^1z\,dz\int_0^{\sqrt{1-z^2}}r\,dr\\
+&amp; = -\frac{\pi}{18}(3-t^2)^2
+\end{aligned}
+\end{gather}
+\]</span> 而另一方面 <span class="math display">\[
+\because 1-z^2 = 0 \,\text{in} \,S_2\\
+\therefore
+\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS = 0\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{gathered}
+\begin{aligned}
+\iint_{S_1} \boldsymbol{v}\, \vec{n} \,dS &amp;=\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS-\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS \\
+&amp;=\frac{\pi}{18}(3-t^2)^2
+\end{aligned}
+\end{gathered}
+\]</span></p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>数学分析</category>
+        <category>习题</category>
+      </categories>
+      <tags>
+        <tag>数学分析</tag>
+        <tag>高等数学</tag>
+        <tag>高斯公式</tag>
+        <tag>曲面积分</tag>
+      </tags>
+  </entry>
+</search>
