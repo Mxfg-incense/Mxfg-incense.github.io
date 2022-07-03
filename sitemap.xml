@@ -162,20 +162,6 @@
   </url>
   
   <url>
-    <loc>http://example.pthm/tags/Hexo/</loc>
-    <lastmod>2022-07-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.pthm/tags/%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0/</loc>
-    <lastmod>2022-07-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://example.pthm/tags/C/</loc>
     <lastmod>2022-07-03</lastmod>
     <changefreq>weekly</changefreq>
@@ -184,6 +170,20 @@
   
   <url>
     <loc>http://example.pthm/tags/const/</loc>
+    <lastmod>2022-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.pthm/tags/Hexo/</loc>
+    <lastmod>2022-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.pthm/tags/%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0/</loc>
     <lastmod>2022-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -220,6 +220,13 @@
 
   
   <url>
+    <loc>http://example.pthm/categories/%E7%BC%96%E7%A0%81/</loc>
+    <lastmod>2022-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://example.pthm/categories/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2022-07-03</lastmod>
     <changefreq>weekly</changefreq>
@@ -227,7 +234,7 @@
   </url>
   
   <url>
-    <loc>http://example.pthm/categories/%E7%BC%96%E7%A0%81/</loc>
+    <loc>http://example.pthm/categories/C/</loc>
     <lastmod>2022-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -248,7 +255,7 @@
   </url>
   
   <url>
-    <loc>http://example.pthm/categories/C/</loc>
+    <loc>http://example.pthm/categories/C/Effective-C/</loc>
     <lastmod>2022-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -263,13 +270,6 @@
   
   <url>
     <loc>http://example.pthm/categories/%E6%95%B0%E5%AD%A6/%E5%85%B6%E4%BB%96/</loc>
-    <lastmod>2022-07-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.pthm/categories/C/Effective-C/</loc>
     <lastmod>2022-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

@@ -3015,9 +3015,9 @@ mjx-container[display='true'] + br {
   }
 }
 body {
-  background-attachment: fixed;
   background: url("https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207020031691.jpg");
-  background-repeat: non-repeat;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
   background-position: 50% 50%;
 }
