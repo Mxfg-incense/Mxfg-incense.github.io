@@ -3063,3 +3063,7 @@ body {
 .popup {
   opacity: 0.9;
 }
+.katex-display {
+  overflow-x: auto;
+  overflow-y: clip;
+}
