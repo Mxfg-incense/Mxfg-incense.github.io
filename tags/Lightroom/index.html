@@ -22,29 +22,25 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.pthm","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.1","exturl":true,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#75664d","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="ISP_2022 For ようこそ">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Introduction to Inequality">
-<meta property="og:url" content="http://example.pthm/2022/07/05/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/ISP_equiality/index.html">
+    <meta name="description" content="Win or die">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mxfg&#39;s Blog">
+<meta property="og:url" content="http://example.pthm/tags/Lightroom/index.html">
 <meta property="og:site_name" content="Mxfg&#39;s Blog">
-<meta property="og:description" content="ISP_2022 For ようこそ">
+<meta property="og:description" content="Win or die">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-07-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-07-04T16:00:00.000Z">
 <meta property="article:author" content="Mxfg">
-<meta property="article:tag" content="不等式">
-<meta property="article:tag" content="Fourier">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.pthm/2022/07/05/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/ISP_equiality/">
+<link rel="canonical" href="http://example.pthm/tags/Lightroom/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.pthm/2022/07/05/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/ISP_equiality/","path":"2022/07/05/数学/数学分析/课堂笔记/ISP_equiality/","title":"Introduction to Inequality"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"tags/Lightroom/index.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Introduction to Inequality | Mxfg's Blog</title>
+<title>标签: Lightroom | Mxfg's Blog</title>
   
 
 
@@ -141,7 +137,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -154,7 +150,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#oscillation"><span class="nav-number">1.</span> <span class="nav-text">Oscillation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fourier-series"><span class="nav-number">1.1.</span> <span class="nav-text">Fourier series</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#introduction-a-norm"><span class="nav-number">1.2.</span> <span class="nav-text">introduction a norm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#l2-estimate-crude"><span class="nav-number">1.3.</span> <span class="nav-text">\(L^2\)-estimate: Crude</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#theorem-3-parsevals-identity"><span class="nav-number">1.4.</span> <span class="nav-text">Theorem 3 (Parseval&#39;s identity)</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -235,231 +230,51 @@
 </noscript>
 
 
-    <div class="main-inner post posts-expand">
+    <div class="main-inner tag posts-collapse">
 
 
   
-
-
-<div class="post-block">
   
   
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.pthm/2022/07/05/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/ISP_equiality/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206271209189.jpg">
-      <meta itemprop="name" content="Mxfg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mxfg's Blog">
-      <meta itemprop="description" content="Win or die">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Introduction to Inequality | Mxfg's Blog">
-      <meta itemprop="description" content="ISP_2022 For ようこそ">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Introduction to Inequality
+  <div class="post-block">
+    <div class="post-content">
+      <div class="collection-title">
+        <h1 class="collection-header">Lightroom
+          <small>标签</small>
         </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-05 00:00:00" itemprop="dateCreated datePublished" datetime="2022-07-05T00:00:00+08:00">2022-07-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数学分析</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="busuanzi_value_page_pv"></span>
-    </span>
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/2022/07/05/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/ISP_equiality/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/07/05/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/ISP_equiality/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-            <div class="post-description">ISP_2022 For ようこそ</div>
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-        <h2 id="oscillation">Oscillation</h2>
-<p>Example: <span class="math display">\[
-\begin{gather}
-b_n=c_n \, a_n=(-1)^{n+1}a_n \text, \, a_n \geq 0\\
-\sum_{n=1}^{N} b_n \leq \sum_{n=1}^{N}\left| b_n \right| = \sum_{n=1}^N a_n
-\end{gather}
-\]</span> Use <em>Euler's formula</em> to rewrite <span class="math display">\[
-(-1)^n=e^{2\pi in\frac{1}{2}}=\cos(2\pi n\frac{1}{2})+i\sin(2\pi n\frac{1}{2})
-\]</span> Periodicity is 2. Moreover , Take periodicity k <span class="math display">\[
-(e^{2\pi i\frac{1}{k}})^{n+k}= (e^{2\pi i\frac{1}{k}})^{n}\\
-\]</span></p>
-<h3 id="fourier-series">Fourier series</h3>
-<p>More generally, for $ x$, consider <span class="math inline">\(e^{-i\omega n}\)</span>: Periodicity <span class="math inline">\(\frac{1}{x}\)</span>, and <span class="math inline">\(\omega = \frac{2\pi}{x}\)</span> <span class="math display">\[
-F(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}\text{     ,              }
-F_N(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}    
-\]</span> Generate a new function on <span class="math inline">\(\left[-1,1\right]\)</span> , known as Fourier analysis.</p>
-<p>Since <span class="math inline">\(|e^{i\theta}|\leq 1\)</span>, therefore</p>
-<h3 id="introduction-a-norm">introduction a norm</h3>
-<p>For a sequence <span class="math inline">\((a_n)_{n\in\mathbb{Z}}\in\mathbb{R}\)</span>, Let <span class="math display">\[
-\left\|a_n \right\|_{\boldsymbol l^2}:= (\sum _{n=-\infty}^\infty |a_n|^p )^\frac{1}{p} \text{  for } p\in [1,\infty]
-\]</span> and <span class="math display">\[
-\|a_n\| = \mathop{sup}\limits_{n\in\mathbb{Z}}|a_n|
-\]</span> We can measure the distance between two sequences e.g. for <span class="math inline">\(c_n=(-1)^{n+1}\)</span> and <span class="math inline">\(d_n=(-1)^{n+1}(1+\frac{1}{n})\)</span>. <span class="math display">\[
-\|c_n-d_n\|=(\sum_{n=-\infty}^{\infty}\frac{1}{n^2})^\frac{1}{2}=\frac{\pi}{\sqrt6}\leq2
-\]</span></p>
-<h3 id="l2-estimate-crude"><span class="math inline">\(L^2\)</span>-estimate: Crude</h3>
-<p>Recall the crude estimate :<span class="math inline">\(|F_N(x)| \leq \sum_{n=-N}^{n=N} a_n\)</span> ：no oscillation</p>
-<p>This yields <span class="math display">\[
-\begin{aligned}
-\|F_N\|_{L^2}&amp;=(\int_{-1}^1(F_N(x))^2d\,x)^\frac{1}{2}\\
-&amp;\leq(\int_{-1}^1a_n^2d\,x)^\frac{1}{2})\\
-&amp;=2^{\frac{1}{2}}\sum_{n=-N}^{N} a_n
-\end{aligned}
-\]</span> In particular, if <span class="math inline">\(a_n=1\)</span> for all <span class="math inline">\(|n|\leq N\)</span> then <span class="math display">\[
-\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| \leq 2^\frac{3}{2}N
-\]</span> <span class="math inline">\(L^2\)</span> -size of <span class="math inline">\(F_N(x)\)</span> is bounded by <span class="math inline">\(O(N)\)</span></p>
-<h3 id="theorem-3-parsevals-identity">Theorem 3 (Parseval's identity)</h3>
-<p><span class="math display">\[
-\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| \leq 2N^\frac{3}{2}\ll2^\frac{3}{2}N
-\]</span></p>
-<p>Multiplying out the square: <span class="math display">\[
-\begin{aligned}
-\|\sum_{n=-N}^N e^{-i\omega n}\| &amp;=(\int_{-1}^1(\sum_{n=-N}^N e^{-i\omega n}) ^2d\,x)^\frac{1}{2}\\
-&amp;=\int_{-1}^1 \sum_{n=-N}^N e^{-i\omega n}\sum_{m=-N}^N e^{-i\omega n}d\,x\\
-&amp;= \sum_{n=-N}^N\sum_{m=-N}^N \int_{-1}^1  e^{-i\omega (n-m)}d\,x
-\end{aligned}
-\]</span> For the diagonal case (m=n) <span class="math display">\[
-\int_{-1}^1  e^{-i\omega (n-m)}d\,x =2
-\]</span> For the non-diagonal case (<span class="math inline">\(n\neq m\)</span>) <span class="math display">\[
-\int_{-1}^1  e^{-i\omega (n-m)}d\,x =-\frac{1}{2\pi i (n-m)}(e^{-2\pi i (n-m)}-e^{2\pi i (n-m)})=0
-\]</span></p>
-<p>Same argument shows more generally <span class="math display">\[
-\begin{gather}
-\text{For any }a_n \;s.t.\|a_n\|_{l^2}=(\sum_{n=-\infty}^\infty |a_n|^2)^{\frac{1}{2}}&lt;\infty.\\
-\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| _{l^2}=2^{\frac{1}{2}}\|a_n\|_{l^2}
-\end{gather}
-\]</span></p>
-
-    </div>
-
-    
-    
-    
-      
-
-
-    <footer class="post-footer">
-          <div class="followme">
-  <span>欢迎关注我的其它发布渠道</span>
-
-  <div class="social-list">
-
-      <div class="social-item">
-        <a target="_blank" class="social-link" href="https://www.zhihu.com/people/miao-xiang-fo-guo-25">
-          <span class="icon">
-            <i class="fab fa-zhihu"></i>
-          </span>
-
-          <span class="label">Zhihu</span>
-        </a>
       </div>
-  </div>
-</div>
 
-          <div class="post-tags">
-              <a href="/tags/%E4%B8%8D%E7%AD%89%E5%BC%8F/" rel="tag"># 不等式</a>
-              <a href="/tags/Fourier/" rel="tag"># Fourier</a>
-          </div>
+      
+    <div class="collection-year">
+      <span class="collection-header">2022</span>
+    </div>
 
-        
-  <div class="post-widgets">
-    <div class="wpac-rating-container">
-      <div id="wpac-rating"></div>
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2022-07-13T00:00:00+08:00"
+              content="2022-07-13">
+          07-13
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/2022/07/13/%E5%85%B6%E4%BB%96/lightroomcahce/" itemprop="url">
+            <span itemprop="name">Lightroom 缓存</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
+
     </div>
   </div>
+  
+  
+  
 
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2022/07/05/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E5%90%AF%E5%8A%9F%E7%BB%99%E4%BD%A0%E8%AE%B2%E4%B9%A6%E6%B3%95/" rel="prev" title="启功带你学书法-破除迷信">
-                  <i class="fa fa-chevron-left"></i> 启功带你学书法-破除迷信
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2022/07/01/%E6%95%B0%E5%AD%A6/%E5%85%B6%E4%BB%96/%E4%B8%89%E8%A7%92%E5%BD%A2%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%81%92%E7%AD%89%E5%BC%8F/" rel="next" title="三角形中的几个恒等式">
-                  三角形中的几个恒等式 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
-</div>
-
-
-
-
-
-
-    <div class="comments" id="waline"></div>
 </div>
   </main>
 
@@ -558,11 +373,11 @@ F_N(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"mhchem":false,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.1/es5/tex-mml-chtml.js","integrity":"sha256-hlC2uSQYTmPsrzGZTEQEg9PZ1a/+SV6VBCTclohf2og="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"mhchem":false,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.1/es5/tex-mml-chtml.js","integrity":"sha256-hlC2uSQYTmPsrzGZTEQEg9PZ1a/+SV6VBCTclohf2og="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"waline-server-ecru.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"appId":"iOksy7Et1sVUCJdrSbOWneSO-MdYXbMMI","appKey":"bVAOBHFwBU9ytq32r08jPJMb","locale":{"placeholder":"疑义相与析，畅所欲言，不登录也没关系哒"},"avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":false,"requiredFields":["nick"],"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","login":null,"el":"#waline","comment":true,"path":"/2022/07/05/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/ISP_equiality/"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"waline-server-ecru.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"appId":"iOksy7Et1sVUCJdrSbOWneSO-MdYXbMMI","appKey":"bVAOBHFwBU9ytq32r08jPJMb","locale":{"placeholder":"疑义相与析，畅所欲言，不登录也没关系哒"},"avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":false,"requiredFields":["nick"],"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","login":null,"el":"#waline","comment":true,"path":"/tags/Lightroom/"}</script>
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {

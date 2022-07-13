@@ -1,6 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Lightroom 缓存</title>
+    <url>/2022/07/13/%E5%85%B6%E4%BB%96/lightroomcahce/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="目录缓存-catalog">目录缓存 (Catalog)</h2>
+<p>​ 引导 LR 到照片在硬盘中的位置信息，对其进行远程操控，不用再复制一遍文件,不占用过多内存，也就是操作面板左侧的部分。只保存操作信息。在 <code>编辑-目录设置</code>中找到其缓存位置。</p>
+<figure>
+<img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20220713221432407.png" alt="目录缓存位置" /><figcaption aria-hidden="true">目录缓存位置</figcaption>
+</figure>
+<p>有三个文件夹</p>
+<ol type="1">
+<li><p><strong>Backup</strong> : 备份目录缓存，不会备份照片。</p></li>
+<li><p><strong>Helper</strong>: 搜索目录缓存</p></li>
+<li><p><strong>Preview</strong>: 图片预览缓存，可删除，下次进入会重新加载</p></li>
+</ol>
+<h2 id="相机原始缓存-camera-raw">相机原始缓存 (Camera RAW)</h2>
+<p>​ 将图片完整加载进入 <strong>camera RAW </strong> 缓存，获得更大的调整范围。<code>编辑-首选项-性能</code> 中可进行清理和配置，</p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>Lightroom</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>加密</title>
+    <url>/2022/06/30/%E5%85%B6%E4%BB%96/test/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="34d306308e78602647ee2af0e1ba120e81fb02111f2ccf6c53f776b9a3b4401d">4630436162ade97ba2718b7d0c4b3b630ef8b034c35893a7afa4c54a5752d90eba191a593f89497fdfca691efaf72d5caa0c664d8e7a85bd833fac72ade59ddbf66b4bdec75a2ed1e83f57bcb279b78c8202c7ce8d3eb34051070935a62ccbf9be563b576fcb19a6e4c095e03496f05d0fec5de7a8af18b78d977beffb6874da4670293f572d11dfa81b48ce6cd0448f0a018d399d177f54eb76d77c6c17f9c36f9f255c3de0f225f9e9c6b4f23d83fc3307cf9be8ef0d2bb8d0474ceec45d7300894f4b8f11650b44ad991ba7d432283e64e8468c79d445b4aef43276f04ffecdc0b540f5d74022a21d6c663658536777acea65da1c70d7ceedf635d566051a343742697d7f69fae8d58a663affc9c692b5e6979adbae0ddec5d44de1e87c283ee769f49dc2014a109295dad07c418b</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>启功带你学书法-破除迷信</title>
+    <url>/2022/07/05/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E5%90%AF%E5%8A%9F%E7%BB%99%E4%BD%A0%E8%AE%B2%E4%B9%A6%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>​ 启功先生以破除迷信的思想贯穿全书，很实在，不故弄玄虚。扫清各种神秘的古怪学说为初学者造成的困惑和恐吓。</p>
+<span id="more"></span>
+<h3 id="碑和帖">碑和帖</h3>
+<p>​ 碑在《说文解字》中解释为「竖石也」。原本是坟墓面前的石头。后来逐渐扩展为活人也立碑，比如谁在此留下丰功伟绩。常常带有纪念意义，史学价值比较高，所以需要是大家共同认得的字。所以大部分时间里，碑都是以楷书为主要的，但是也有例外。比如武则天为张昌宗立碑，叫《升仙太子碑》，完全用草书写，成为草书写碑的开端。碑通常是书写者直接在碑上书写，是书写者与刻工的共同参与。</p>
+<p>​ 帖是字条，是平常生活中用来彼此传达信息的，是一种随意的书写，字体行草书偏多。刻帖要求还书写精神的原貌，需要先用墨迹摹写之后，再以字勾勒。</p>
+<h3 id="入门练习">入门练习</h3>
+<p>​ 临帖和读帖同样重要，不能偏废。</p>
+<p>​ 临帖临碑时注意和现实中的用笔区别，再好的拓本也只能反映字的外形轮廓，里面墨色的浓淡、干湿、轻重的细节是丢失的。另外，有的石刻过于方正，是可能用排笔，板刷写出的，不用强求。</p>
+<h3 id="用笔">用笔</h3>
+<blockquote>
+<p>赵雪松云：“书法以用笔为上，而结字亦须用工”。窃以为不然。</p>
+</blockquote>
+<p>不可被用笔至上论所迷惑，以结字为先。</p>
+<blockquote>
+<p>无麻不成笔</p>
+</blockquote>
+<h3 id="选临碑帖">选临碑帖</h3>
+<p>可以有自己的创造性，按照古代已有的方法去做，吸取最有效的部分，为我所用。</p>
+<blockquote>
+<p>名家之书，皆古人之妙处与自家之病处相结合耳。</p>
+</blockquote>
+<h3 id="悬腕之说">悬腕之说</h3>
+<p>「悬腕」是宋初以后的说法，宋代以前，没有高桌椅，都是席地而坐，因此没有地方能够搁放自己的手腕和手肘，显得用笔灵活，上下左右，提按自如。但是如今在高桌椅上写<strong>小字</strong>的时候，如果强行悬腕，反而右臂僵硬，无法运用臂力。</p>
+<h3 id="求人不如求己">求人不如求己</h3>
+<blockquote>
+<p>文章千古事，得失寸心知</p>
+</blockquote>
+<p>意思是做文章是千古的事情，有失有得，只有自家知道。</p>
+<p>书中有一个方法：把自己认为写的好的贴在墙上，过几天再瞧，就觉得很惭愧了，然后再修改，自己就明白了。</p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>书法理论</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>一文搞懂字符编码</title>
     <url>/2022/06/27/%E7%BC%96%E7%A0%81/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="字符集和编码">字符集和编码</h1>
@@ -68,63 +151,44 @@
       </tags>
   </entry>
   <entry>
-    <title>三角形中的几个恒等式</title>
-    <url>/2022/07/01/%E6%95%B0%E5%AD%A6/%E5%85%B6%E4%BB%96/%E4%B8%89%E8%A7%92%E5%BD%A2%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%81%92%E7%AD%89%E5%BC%8F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>在 <span class="math inline">\(\Delta ABC\)</span> 中，以下等式成立</p>
-<h3 id="正余弦平方和">正余弦平方和</h3>
-<p><span class="math display">\[
-\sin A+\sin B+\sin C=4\cos  \frac{A}{2}\cos  \frac{B}{2}\cos  \frac{C}{2}\ \tag{1}
-\]</span> 证： <span class="math display">\[
-\begin{aligned} LHS &amp;= 2\,\sin \frac{A+B}{2}\,\cos \frac{A-B}{2} +\sin C  \\ &amp;= 2 \,\cos  \frac{C}{2}\,\cos \frac{A-B}{2}+2\,\sin \frac{C}{2}\,\cos \frac{C}{2}\\ &amp;=2\,\cos  \frac{C}{2}\,(\cos \frac{A-B}{2}+\cos \frac{A+B}{2})\\ &amp;=4\,\cos \frac{A}{2}\,\cos \frac{B}{2}\,\cos \frac{C}{2} \\ \end{aligned}
-\]</span></p>
-<p><span class="math display">\[
- \cos A+\cos B+\cos C=1+4\sin  \frac{A}{2}\sin  \frac{B}{2}\sin  \frac{C}{2}\\ \tag{2}
-\]</span> 证： <span class="math display">\[
-\begin{aligned} LHS &amp;= 2\,\cos \frac{A+B}{2}\,\cos \frac{A-B}{2} + 1-2\,\sin ^2\frac{C}{2}  \\  &amp;= 1-2\,\sin \frac{C}{2}\,(\sin \frac{C}{2}-\cos \frac{A-B}{2})  \\ &amp;=1-2\,\sin \frac{C}{2}\,(\cos \frac{A+B}{2}-\cos \frac{A-B}{2})   \\ &amp;=1-2\,\sin \frac{C}{2}\,(-2\,\sin \frac{A}{2}\,\sin \frac{B}{2})\\ &amp;=1+4\sin  \frac{A}{2}\sin  \frac{B}{2}\sin  \frac{C}{2} \end{aligned} 
-\]</span></p>
-<h3 id="正余半角平方和">正余半角平方和</h3>
-<p><span class="math display">\[
-\sin ^2\frac{A}{2}+\sin ^2\frac{B}{2}+\sin ^2\frac{C}{2}= 1-2\,\sin \frac{A}{2}\sin \frac{B}{2}\sin \frac{C}{2}\tag{3}
-\]</span></p>
-<p>证： <span class="math display">\[
-\begin{aligned} RHS &amp;= 1+\sin \frac{C}{2}\,(\cos \frac{A+B}{2}-\cos \frac{A-B}{2}) \\ &amp;=  1+\sin ^2\frac{C}{2}- \cos \frac{A+B}{2}\cos \frac{A-B}{2}\\ &amp;=  1+\sin ^2\frac{C}{2}-\frac{\cos A+\cos B}{2} \\ &amp;= 1+\sin ^2\frac{C}{2}-\frac{2-2\sin ^2\frac{A}{2}-2\sin ^2\frac{B}{2}}{2}   \\ &amp;=  \sin ^2\frac{A}{2}+\sin ^2\frac{B}{2}+\sin ^2\frac{C}{2} \end{aligned}
-\]</span></p>
-<p>同理易得： <span class="math display">\[
-\cos ^2\frac{A}{2}+\cos ^2\frac{B}{2}+\cos ^2\frac{C}{2}= 2+2\,\sin \frac{A}{2}\sin \frac{B}{2}\sin \frac{C}{2}\tag{4}
-\]</span></p>
-<h3 id="正割余割和">正割余割和</h3>
-<p><span class="math display">\[
-\tan A+\tan B+\tan C=\tan A\;\tan B\;\tan C \tag{5}
-\]</span> 证： <span class="math display">\[
-\begin{gather*} \text{和角公式：}\tan C = -\frac{\tan A+\tan B}{1-\tan A\;\tan B}\\ \tan C-\tan A\;\tan B\;\tan C = -(\tan A+\tan B)\\ \text{移项后得到结论} \end{gather*} 
-\]</span></p>
-<p>推论： <span class="math display">\[
-\cot A\,\cot B+\cot A\,\cot C+\cot B\,\cot C =1\tag{6} 
-\]</span></p>
-<p>证： <span class="math display">\[
-\begin{aligned} \text{由 (5)得到: }\frac{1}{\tan A\,\tan B}&amp;=\frac{\tan C}{\tan A+\tan B+\tan C}\\ \frac{1}{\tan A\,\tan C}&amp;=\frac{\tan B}{\tan A+\tan B+\tan C}\\ \frac{1}{\tan B\,\tan C}&amp;=\frac{\tan A}{\tan A+\tan B+\tan C}\\ \end{aligned}
-\]</span> 三个式子相加即可</p>
-<h3 id="正余割半角">正余割半角</h3>
-<p><span class="math display">\[
-\cot \frac{A}{2}\cot \frac{B}{2}\cot \frac{C}{2} = \cot \frac{A}{2}\,\cot \frac{B}{2}\,\cot \frac{C}{2} \tag{7}
-\]</span></p>
-<p>证： 受到 (5) 启发，只需证明 <span class="math display">\[
-cot \frac{C}{2} = -\frac{\cot \frac{A}{2}+\cot \frac{B}{2}}{1-\cot \frac{A}{2}\,\cot \frac{B}{2}}
-\]</span></p>
-<p>即证： <span class="math display">\[
-\begin{gather*} \tan\frac{C}{2} =\frac{\cot \frac{A}{2}\,\cot \frac{B}{2}-1}{\cot \frac{A}{2}+\cot \frac{B}{2}}\\ \Leftarrow \tan\frac{C}{2} = \frac{1-\tan\frac{A}{2}\tan\frac{B}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}} \end{gather*}
-\]</span> 推论： <span class="math display">\[
-\tan\frac{A}{2}\tan\frac{B}{2}+\tan\frac{B}{2}\tan\frac{C}{2}+\tan\frac{A}{2}\tan\frac{C}{2} = 1 \tag{8}
-\]</span> 由 (7) 移项得到 <span class="math display">\[
-\begin{gather*} \tan\frac{A}{2}\tan\frac{B}{2}=\frac{\tan\frac{A}{2}\,\tan\frac{B}{2}\,\tan\frac{B}{2}\,\cot\frac{C}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}+\tan\frac{C}{2}}\\ \tan\frac{A}{2}\tan\frac{C}{2}=\frac{\tan\frac{A}{2}\,\tan\frac{B}{2}\,\tan\frac{B}{2}\,\cot\frac{B}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}+\tan\frac{C}{2}}\\ \tan\frac{B}{2}\tan\frac{C}{2}=\frac{\tan\frac{A}{2}\,\tan\frac{B}{2}\,\tan\frac{B}{2}\,\cot\frac{A}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}+\tan\frac{C}{2}}\\ \end{gather*} \\
-\]</span> 三个式子相加即可</p>
+    <title>Hexo美化：为Next主题外接 Waline 评论系统</title>
+    <url>/2022/06/29/Blog%E6%90%AD%E5%BB%BA/Hexo/Hexo-Next%E4%B8%BB%E9%A2%98%E5%A4%96%E6%8E%A5%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="前言">前言</h3>
+<p>​ <strong>Waline</strong> 是一款基于 <strong>Valine</strong> 衍生的评论系统，首先在笔者目前使用的 NexT 8.12.1 下已经不再内置 Valine 系统，需要自己手动配置。 看了一圈其他的评论系统，貌似只有 Waline 支持数学公式，所以最终选择 Waline 评论系统</p>
+<span id="more"></span>
+<h3 id="配置数据库和服务端部署">配置数据库和服务端部署</h3>
+<p>​ 选择 <a href="%5BLeanCloud%5D(https://www.leancloud.cn/)">Leanclound</a> 作为评论数据库，在 Vercel 上部署服务端。接着就按照 <span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWwjbGVhbmNsb3VkLSVFOCVBRSVCRSVFNyVCRCVBRS0lRTYlOTUlQjAlRTYlOEQlQUUlRTUlQkElOTM=">Waline的官方文档<i class="fa fa-external-link-alt"></i></span> 进行操作即可。这里介绍几个注意的点：</p>
+<ol type="1">
+<li><p>注册时推荐使用国际版，否则需要绑定备案的域名，比较麻烦。</p></li>
+<li><p>在 Vercel 上部署服务端时，注意环境变量名称 <code>LEAN_ID</code>, <code>LEAN_KEY</code> 和 <code>LEAN_MASTER_KEY</code>一定要一字不差。遇到访客评论系统在不登录账号时报错如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Invalid value type for field &#x27;link&#x27;,value &#x27;&quot;&quot;&#x27;,expect type is &#123;:type &quot;Object&quot;&#125;,but it is &#x27;&#123;:type &quot;String&quot;&#125;&#x27;. [400 POST https://ioksy7et.api.lncldglobal.com/1.1/classes/Comment]</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>​ 解决方法：重新在 Leanclound 上创建 <code>Comment</code> 类。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206301329339.png" alt="在数据储存中创建新的Comment类" /><figcaption aria-hidden="true">在<code>数据储存</code>中创建新的Comment类</figcaption>
+</figure>
+<h3 id="在-hexo-上使用-waline">在 Hexo 上使用 Waline</h3>
+<p>在 Hexo 根目录下执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install @waline/hexo-next</span><br></pre></td></tr></table></figure>
+<p>接着你可以在 Hexo 根目录下 <code>\node_modules\@waline</code> 中找到 <code>default.yaml</code> 文件，里面就是所有 Waline 的设置选项了。 为了方便将其中需要改变的选项手动写入到 <code>next</code> 主题下 的 <code>_config.yaml</code>中， 以下是部分参考，更多的选项设置在上述 <code>default.yaml</code> 中：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment">#是否开启</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">waline-server-ecru.vercel.app</span> <span class="comment"># Waline #服务端地址，我们这里就是上面部署的 Vercel 地址</span></span><br><span class="line">  <span class="attr">locale:</span></span><br><span class="line">    <span class="attr">placeholder:</span> <span class="string">疑义相与析，畅所欲言，不登录也没关系哒</span> <span class="comment"># #评论框的默认文字</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># 头像风格</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>,<span class="string">mail</span>] <span class="comment"># 自定义评论框上面的三个输入框的内容</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># 评论数量多少时显示分页</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># 语言, 可选值: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># 文章阅读统计</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示</span></span><br><span class="line">  <span class="attr">requiredFields:</span> [<span class="string">nick</span>] <span class="comment"># 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]</span></span><br><span class="line">  <span class="attr">libUrl:</span> <span class="string">https://unpkg.com/@waline/client@v2/dist/waline.js</span> <span class="comment"># Set custom library cdn url</span></span><br><span class="line">  <span class="attr">login:</span> <span class="string">enable</span></span><br></pre></td></tr></table></figure>
+<h3 id="登录服务端">登录服务端</h3>
+<p>接着部署后就能够看到登录按钮，进行登录，貌似第一个登录的账号就会有个 <strong>博主</strong> 的标识。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206292335984.png" alt="进入登录界面" /><figcaption aria-hidden="true">进入登录界面</figcaption>
+</figure>
+<p>但是访客不登陆也能评论。访客填写不同的邮箱会显示其对应账号的头像。</p>
+<p>最后效果可以参见<span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnLw==">官方文档<i class="fa fa-external-link-alt"></i></span> 。</p>
+<h3 id="参考">参考</h3>
+<p><span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWw=">官方文档<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9xaWFuZmFuZ3VvamluLnRvcC8yMDIyLzAxLzIwL0hleG8lRTUlOEQlOUElRTUlQUUlQTIlRTglQkYlOUIlRTklOTglQjYlRUYlQkMlOUElRTQlQjglQkEtTmV4dC0lRTQlQjglQkIlRTklQTIlOTglRTYlQjclQkIlRTUlOEElQTAtV2FsaW5lLSVFOCVBRiU4NCVFOCVBRSVCQSVFNyVCMyVCQiVFNyVCQiU5Ri8=">谢同学博客<i class="fa fa-external-link-alt"></i></span></p>
 ]]></content>
       <categories>
-        <category>数学</category>
-        <category>其他</category>
+        <category>Blog搭建</category>
+        <category>Hexo</category>
       </categories>
       <tags>
-        <tag>三角函数</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -197,115 +261,63 @@ cot \frac{C}{2} = -\frac{\cot \frac{A}{2}+\cot \frac{B}{2}}{1-\cot \frac{A}{2}\,
       </tags>
   </entry>
   <entry>
-    <title>Hexo美化：为Next主题外接 Waline 评论系统</title>
-    <url>/2022/06/29/Blog%E6%90%AD%E5%BB%BA/Hexo/Hexo-Next%E4%B8%BB%E9%A2%98%E5%A4%96%E6%8E%A5%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="前言">前言</h3>
-<p>​ <strong>Waline</strong> 是一款基于 <strong>Valine</strong> 衍生的评论系统，首先在笔者目前使用的 NexT 8.12.1 下已经不再内置 Valine 系统，需要自己手动配置。 看了一圈其他的评论系统，貌似只有 Waline 支持数学公式，所以最终选择 Waline 评论系统</p>
-<span id="more"></span>
-<h3 id="配置数据库和服务端部署">配置数据库和服务端部署</h3>
-<p>​ 选择 <a href="%5BLeanCloud%5D(https://www.leancloud.cn/)">Leanclound</a> 作为评论数据库，在 Vercel 上部署服务端。接着就按照 <span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWwjbGVhbmNsb3VkLSVFOCVBRSVCRSVFNyVCRCVBRS0lRTYlOTUlQjAlRTYlOEQlQUUlRTUlQkElOTM=">Waline的官方文档<i class="fa fa-external-link-alt"></i></span> 进行操作即可。这里介绍几个注意的点：</p>
-<ol type="1">
-<li><p>注册时推荐使用国际版，否则需要绑定备案的域名，比较麻烦。</p></li>
-<li><p>在 Vercel 上部署服务端时，注意环境变量名称 <code>LEAN_ID</code>, <code>LEAN_KEY</code> 和 <code>LEAN_MASTER_KEY</code>一定要一字不差。遇到访客评论系统在不登录账号时报错如下:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Invalid value type for field &#x27;link&#x27;,value &#x27;&quot;&quot;&#x27;,expect type is &#123;:type &quot;Object&quot;&#125;,but it is &#x27;&#123;:type &quot;String&quot;&#125;&#x27;. [400 POST https://ioksy7et.api.lncldglobal.com/1.1/classes/Comment]</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>​ 解决方法：重新在 Leanclound 上创建 <code>Comment</code> 类。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206301329339.png" alt="在数据储存中创建新的Comment类" /><figcaption aria-hidden="true">在<code>数据储存</code>中创建新的Comment类</figcaption>
-</figure>
-<h3 id="在-hexo-上使用-waline">在 Hexo 上使用 Waline</h3>
-<p>在 Hexo 根目录下执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install @waline/hexo-next</span><br></pre></td></tr></table></figure>
-<p>接着你可以在 Hexo 根目录下 <code>\node_modules\@waline</code> 中找到 <code>default.yaml</code> 文件，里面就是所有 Waline 的设置选项了。 为了方便将其中需要改变的选项手动写入到 <code>next</code> 主题下 的 <code>_config.yaml</code>中， 以下是部分参考，更多的选项设置在上述 <code>default.yaml</code> 中：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment">#是否开启</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">waline-server-ecru.vercel.app</span> <span class="comment"># Waline #服务端地址，我们这里就是上面部署的 Vercel 地址</span></span><br><span class="line">  <span class="attr">locale:</span></span><br><span class="line">    <span class="attr">placeholder:</span> <span class="string">疑义相与析，畅所欲言，不登录也没关系哒</span> <span class="comment"># #评论框的默认文字</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># 头像风格</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>,<span class="string">mail</span>] <span class="comment"># 自定义评论框上面的三个输入框的内容</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># 评论数量多少时显示分页</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># 语言, 可选值: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># 文章阅读统计</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示</span></span><br><span class="line">  <span class="attr">requiredFields:</span> [<span class="string">nick</span>] <span class="comment"># 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]</span></span><br><span class="line">  <span class="attr">libUrl:</span> <span class="string">https://unpkg.com/@waline/client@v2/dist/waline.js</span> <span class="comment"># Set custom library cdn url</span></span><br><span class="line">  <span class="attr">login:</span> <span class="string">enable</span></span><br></pre></td></tr></table></figure>
-<h3 id="登录服务端">登录服务端</h3>
-<p>接着部署后就能够看到登录按钮，进行登录，貌似第一个登录的账号就会有个 <strong>博主</strong> 的标识。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206292335984.png" alt="进入登录界面" /><figcaption aria-hidden="true">进入登录界面</figcaption>
-</figure>
-<p>但是访客不登陆也能评论。访客填写不同的邮箱会显示其对应账号的头像。</p>
-<p>最后效果可以参见<span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnLw==">官方文档<i class="fa fa-external-link-alt"></i></span> 。</p>
-<h3 id="参考">参考</h3>
-<p><span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWw=">官方文档<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9xaWFuZmFuZ3VvamluLnRvcC8yMDIyLzAxLzIwL0hleG8lRTUlOEQlOUElRTUlQUUlQTIlRTglQkYlOUIlRTklOTglQjYlRUYlQkMlOUElRTQlQjglQkEtTmV4dC0lRTQlQjglQkIlRTklQTIlOTglRTYlQjclQkIlRTUlOEElQTAtV2FsaW5lLSVFOCVBRiU4NCVFOCVBRSVCQSVFNyVCMyVCQiVFNyVCQiU5Ri8=">谢同学博客<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Blog搭建</category>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Introduction to Inequality</title>
-    <url>/2022/07/05/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/ISP_equiality/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="oscillation">Oscillation</h2>
-<p>Example: <span class="math display">\[
-\begin{gather}
-b_n=c_n \, a_n=(-1)^{n+1}a_n \text, \, a_n \geq 0\\
-\sum_{n=1}^{N} b_n \leq \sum_{n=1}^{N}\left| b_n \right| = \sum_{n=1}^N a_n
-\end{gather}
-\]</span> Use <em>Euler's formula</em> to rewrite <span class="math display">\[
-(-1)^n=e^{2\pi in\frac{1}{2}}=\cos(2\pi n\frac{1}{2})+i\sin(2\pi n\frac{1}{2})
-\]</span> Periodicity is 2. Moreover , Take periodicity k <span class="math display">\[
-(e^{2\pi i\frac{1}{k}})^{n+k}= (e^{2\pi i\frac{1}{k}})^{n}\\
-\]</span></p>
-<h3 id="fourier-series">Fourier series</h3>
-<p>More generally, for $ x$, consider <span class="math inline">\(e^{-i\omega n}\)</span>: Periodicity <span class="math inline">\(\frac{1}{x}\)</span>, and <span class="math inline">\(\omega = \frac{2\pi}{x}\)</span> <span class="math display">\[
-F(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}\text{     ,              }
-F_N(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}    
-\]</span> Generate a new function on <span class="math inline">\(\left[-1,1\right]\)</span> , known as Fourier analysis.</p>
-<p>Since <span class="math inline">\(|e^{i\theta}|\leq 1\)</span>, therefore</p>
-<h3 id="introduction-a-norm">introduction a norm</h3>
-<p>For a sequence <span class="math inline">\((a_n)_{n\in\mathbb{Z}}\in\mathbb{R}\)</span>, Let <span class="math display">\[
-\left\|a_n \right\|_{\boldsymbol l^2}:= (\sum _{n=-\infty}^\infty |a_n|^p )^\frac{1}{p} \text{  for } p\in [1,\infty]
-\]</span> and <span class="math display">\[
-\|a_n\| = \mathop{sup}\limits_{n\in\mathbb{Z}}|a_n|
-\]</span> We can measure the distance between two sequences e.g. for <span class="math inline">\(c_n=(-1)^{n+1}\)</span> and <span class="math inline">\(d_n=(-1)^{n+1}(1+\frac{1}{n})\)</span>. <span class="math display">\[
-\|c_n-d_n\|=(\sum_{n=-\infty}^{\infty}\frac{1}{n^2})^\frac{1}{2}=\frac{\pi}{\sqrt6}\leq2
-\]</span></p>
-<h3 id="l2-estimate-crude"><span class="math inline">\(L^2\)</span>-estimate: Crude</h3>
-<p>Recall the crude estimate :<span class="math inline">\(|F_N(x)| \leq \sum_{n=-N}^{n=N} a_n\)</span> ：no oscillation</p>
-<p>This yields <span class="math display">\[
-\begin{aligned}
-\|F_N\|_{L^2}&amp;=(\int_{-1}^1(F_N(x))^2d\,x)^\frac{1}{2}\\
-&amp;\leq(\int_{-1}^1a_n^2d\,x)^\frac{1}{2})\\
-&amp;=2^{\frac{1}{2}}\sum_{n=-N}^{N} a_n
-\end{aligned}
-\]</span> In particular, if <span class="math inline">\(a_n=1\)</span> for all <span class="math inline">\(|n|\leq N\)</span> then <span class="math display">\[
-\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| \leq 2^\frac{3}{2}N
-\]</span> <span class="math inline">\(L^2\)</span> -size of <span class="math inline">\(F_N(x)\)</span> is bounded by <span class="math inline">\(O(N)\)</span></p>
-<h3 id="theorem-3-parsevals-identity">Theorem 3 (Parseval's identity)</h3>
+    <title>三角形中的几个恒等式</title>
+    <url>/2022/07/01/%E6%95%B0%E5%AD%A6/%E5%85%B6%E4%BB%96/%E4%B8%89%E8%A7%92%E5%BD%A2%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%81%92%E7%AD%89%E5%BC%8F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>在 <span class="math inline">\(\Delta ABC\)</span> 中，以下等式成立</p>
+<h3 id="正余弦平方和">正余弦平方和</h3>
 <p><span class="math display">\[
-\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| \leq 2N^\frac{3}{2}\ll2^\frac{3}{2}N
+\sin A+\sin B+\sin C=4\cos  \frac{A}{2}\cos  \frac{B}{2}\cos  \frac{C}{2}\ \tag{1}
+\]</span> 证： <span class="math display">\[
+\begin{aligned} LHS &amp;= 2\,\sin \frac{A+B}{2}\,\cos \frac{A-B}{2} +\sin C  \\ &amp;= 2 \,\cos  \frac{C}{2}\,\cos \frac{A-B}{2}+2\,\sin \frac{C}{2}\,\cos \frac{C}{2}\\ &amp;=2\,\cos  \frac{C}{2}\,(\cos \frac{A-B}{2}+\cos \frac{A+B}{2})\\ &amp;=4\,\cos \frac{A}{2}\,\cos \frac{B}{2}\,\cos \frac{C}{2} \\ \end{aligned}
 \]</span></p>
-<p>Multiplying out the square: <span class="math display">\[
-\begin{aligned}
-\|\sum_{n=-N}^N e^{-i\omega n}\| &amp;=(\int_{-1}^1(\sum_{n=-N}^N e^{-i\omega n}) ^2d\,x)^\frac{1}{2}\\
-&amp;=\int_{-1}^1 \sum_{n=-N}^N e^{-i\omega n}\sum_{m=-N}^N e^{-i\omega n}d\,x\\
-&amp;= \sum_{n=-N}^N\sum_{m=-N}^N \int_{-1}^1  e^{-i\omega (n-m)}d\,x
-\end{aligned}
-\]</span> For the diagonal case (m=n) <span class="math display">\[
-\int_{-1}^1  e^{-i\omega (n-m)}d\,x =2
-\]</span> For the non-diagonal case (<span class="math inline">\(n\neq m\)</span>) <span class="math display">\[
-\int_{-1}^1  e^{-i\omega (n-m)}d\,x =-\frac{1}{2\pi i (n-m)}(e^{-2\pi i (n-m)}-e^{2\pi i (n-m)})=0
+<p><span class="math display">\[
+ \cos A+\cos B+\cos C=1+4\sin  \frac{A}{2}\sin  \frac{B}{2}\sin  \frac{C}{2}\\ \tag{2}
+\]</span> 证： <span class="math display">\[
+\begin{aligned} LHS &amp;= 2\,\cos \frac{A+B}{2}\,\cos \frac{A-B}{2} + 1-2\,\sin ^2\frac{C}{2}  \\  &amp;= 1-2\,\sin \frac{C}{2}\,(\sin \frac{C}{2}-\cos \frac{A-B}{2})  \\ &amp;=1-2\,\sin \frac{C}{2}\,(\cos \frac{A+B}{2}-\cos \frac{A-B}{2})   \\ &amp;=1-2\,\sin \frac{C}{2}\,(-2\,\sin \frac{A}{2}\,\sin \frac{B}{2})\\ &amp;=1+4\sin  \frac{A}{2}\sin  \frac{B}{2}\sin  \frac{C}{2} \end{aligned} 
 \]</span></p>
-<p>Same argument shows more generally <span class="math display">\[
-\begin{gather}
-\text{For any }a_n \;s.t.\|a_n\|_{l^2}=(\sum_{n=-\infty}^\infty |a_n|^2)^{\frac{1}{2}}&lt;\infty.\\
-\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| _{l^2}=2^{\frac{1}{2}}\|a_n\|_{l^2}
-\end{gather}
+<h3 id="正余半角平方和">正余半角平方和</h3>
+<p><span class="math display">\[
+\sin ^2\frac{A}{2}+\sin ^2\frac{B}{2}+\sin ^2\frac{C}{2}= 1-2\,\sin \frac{A}{2}\sin \frac{B}{2}\sin \frac{C}{2}\tag{3}
 \]</span></p>
+<p>证： <span class="math display">\[
+\begin{aligned} RHS &amp;= 1+\sin \frac{C}{2}\,(\cos \frac{A+B}{2}-\cos \frac{A-B}{2}) \\ &amp;=  1+\sin ^2\frac{C}{2}- \cos \frac{A+B}{2}\cos \frac{A-B}{2}\\ &amp;=  1+\sin ^2\frac{C}{2}-\frac{\cos A+\cos B}{2} \\ &amp;= 1+\sin ^2\frac{C}{2}-\frac{2-2\sin ^2\frac{A}{2}-2\sin ^2\frac{B}{2}}{2}   \\ &amp;=  \sin ^2\frac{A}{2}+\sin ^2\frac{B}{2}+\sin ^2\frac{C}{2} \end{aligned}
+\]</span></p>
+<p>同理易得： <span class="math display">\[
+\cos ^2\frac{A}{2}+\cos ^2\frac{B}{2}+\cos ^2\frac{C}{2}= 2+2\,\sin \frac{A}{2}\sin \frac{B}{2}\sin \frac{C}{2}\tag{4}
+\]</span></p>
+<h3 id="正割余割和">正割余割和</h3>
+<p><span class="math display">\[
+\tan A+\tan B+\tan C=\tan A\;\tan B\;\tan C \tag{5}
+\]</span> 证： <span class="math display">\[
+\begin{gather*} \text{和角公式：}\tan C = -\frac{\tan A+\tan B}{1-\tan A\;\tan B}\\ \tan C-\tan A\;\tan B\;\tan C = -(\tan A+\tan B)\\ \text{移项后得到结论} \end{gather*} 
+\]</span></p>
+<p>推论： <span class="math display">\[
+\cot A\,\cot B+\cot A\,\cot C+\cot B\,\cot C =1\tag{6} 
+\]</span></p>
+<p>证： <span class="math display">\[
+\begin{aligned} \text{由 (5)得到: }\frac{1}{\tan A\,\tan B}&amp;=\frac{\tan C}{\tan A+\tan B+\tan C}\\ \frac{1}{\tan A\,\tan C}&amp;=\frac{\tan B}{\tan A+\tan B+\tan C}\\ \frac{1}{\tan B\,\tan C}&amp;=\frac{\tan A}{\tan A+\tan B+\tan C}\\ \end{aligned}
+\]</span> 三个式子相加即可</p>
+<h3 id="正余割半角">正余割半角</h3>
+<p><span class="math display">\[
+\cot \frac{A}{2}\cot \frac{B}{2}\cot \frac{C}{2} = \cot \frac{A}{2}\,\cot \frac{B}{2}\,\cot \frac{C}{2} \tag{7}
+\]</span></p>
+<p>证： 受到 (5) 启发，只需证明 <span class="math display">\[
+cot \frac{C}{2} = -\frac{\cot \frac{A}{2}+\cot \frac{B}{2}}{1-\cot \frac{A}{2}\,\cot \frac{B}{2}}
+\]</span></p>
+<p>即证： <span class="math display">\[
+\begin{gather*} \tan\frac{C}{2} =\frac{\cot \frac{A}{2}\,\cot \frac{B}{2}-1}{\cot \frac{A}{2}+\cot \frac{B}{2}}\\ \Leftarrow \tan\frac{C}{2} = \frac{1-\tan\frac{A}{2}\tan\frac{B}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}} \end{gather*}
+\]</span> 推论： <span class="math display">\[
+\tan\frac{A}{2}\tan\frac{B}{2}+\tan\frac{B}{2}\tan\frac{C}{2}+\tan\frac{A}{2}\tan\frac{C}{2} = 1 \tag{8}
+\]</span> 由 (7) 移项得到 <span class="math display">\[
+\begin{gather*} \tan\frac{A}{2}\tan\frac{B}{2}=\frac{\tan\frac{A}{2}\,\tan\frac{B}{2}\,\tan\frac{B}{2}\,\cot\frac{C}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}+\tan\frac{C}{2}}\\ \tan\frac{A}{2}\tan\frac{C}{2}=\frac{\tan\frac{A}{2}\,\tan\frac{B}{2}\,\tan\frac{B}{2}\,\cot\frac{B}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}+\tan\frac{C}{2}}\\ \tan\frac{B}{2}\tan\frac{C}{2}=\frac{\tan\frac{A}{2}\,\tan\frac{B}{2}\,\tan\frac{B}{2}\,\cot\frac{A}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}+\tan\frac{C}{2}}\\ \end{gather*} \\
+\]</span> 三个式子相加即可</p>
 ]]></content>
       <categories>
         <category>数学</category>
-        <category>数学分析</category>
-        <category>课堂笔记</category>
+        <category>其他</category>
       </categories>
       <tags>
-        <tag>不等式</tag>
-        <tag>Fourier</tag>
+        <tag>三角函数</tag>
       </tags>
   </entry>
   <entry>
@@ -380,68 +392,74 @@ z=z\\
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2022/07/13/%E5%85%B6%E4%BB%96/lightroomcahce/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>
-]]></content>
-  </entry>
-  <entry>
-    <title>启功带你学书法-破除迷信</title>
-    <url>/2022/07/05/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E5%90%AF%E5%8A%9F%E7%BB%99%E4%BD%A0%E8%AE%B2%E4%B9%A6%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>​ 启功先生以破除迷信的思想贯穿全书，很实在，不故弄玄虚。扫清各种神秘的古怪学说为初学者造成的困惑和恐吓。</p>
-<span id="more"></span>
-<h3 id="碑和帖">碑和帖</h3>
-<p>​ 碑在《说文解字》中解释为「竖石也」。原本是坟墓面前的石头。后来逐渐扩展为活人也立碑，比如谁在此留下丰功伟绩。常常带有纪念意义，史学价值比较高，所以需要是大家共同认得的字。所以大部分时间里，碑都是以楷书为主要的，但是也有例外。比如武则天为张昌宗立碑，叫《升仙太子碑》，完全用草书写，成为草书写碑的开端。碑通常是书写者直接在碑上书写，是书写者与刻工的共同参与。</p>
-<p>​ 帖是字条，是平常生活中用来彼此传达信息的，是一种随意的书写，字体行草书偏多。刻帖要求还书写精神的原貌，需要先用墨迹摹写之后，再以字勾勒。</p>
-<h3 id="入门练习">入门练习</h3>
-<p>​ 临帖和读帖同样重要，不能偏废。</p>
-<p>​ 临帖临碑时注意和现实中的用笔区别，再好的拓本也只能反映字的外形轮廓，里面墨色的浓淡、干湿、轻重的细节是丢失的。另外，有的石刻过于方正，是可能用排笔，板刷写出的，不用强求。</p>
-<h3 id="用笔">用笔</h3>
-<blockquote>
-<p>赵雪松云：“书法以用笔为上，而结字亦须用工”。窃以为不然。</p>
-</blockquote>
-<p>不可被用笔至上论所迷惑，以结字为先。</p>
-<blockquote>
-<p>无麻不成笔</p>
-</blockquote>
-<h3 id="选临碑帖">选临碑帖</h3>
-<p>可以有自己的创造性，按照古代已有的方法去做，吸取最有效的部分，为我所用。</p>
-<blockquote>
-<p>名家之书，皆古人之妙处与自家之病处相结合耳。</p>
-</blockquote>
-<h3 id="悬腕之说">悬腕之说</h3>
-<p>「悬腕」是宋初以后的说法，宋代以前，没有高桌椅，都是席地而坐，因此没有地方能够搁放自己的手腕和手肘，显得用笔灵活，上下左右，提按自如。但是如今在高桌椅上写<strong>小字</strong>的时候，如果强行悬腕，反而右臂僵硬，无法运用臂力。</p>
-<h3 id="求人不如求己">求人不如求己</h3>
-<blockquote>
-<p>文章千古事，得失寸心知</p>
-</blockquote>
-<p>意思是做文章是千古的事情，有失有得，只有自家知道。</p>
-<p>书中有一个方法：把自己认为写的好的贴在墙上，过几天再瞧，就觉得很惭愧了，然后再修改，自己就明白了。</p>
+    <title>Introduction to Inequality</title>
+    <url>/2022/07/05/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/ISP_equiality/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="oscillation">Oscillation</h2>
+<p>Example: <span class="math display">\[
+\begin{gather}
+b_n=c_n \, a_n=(-1)^{n+1}a_n \text, \, a_n \geq 0\\
+\sum_{n=1}^{N} b_n \leq \sum_{n=1}^{N}\left| b_n \right| = \sum_{n=1}^N a_n
+\end{gather}
+\]</span> Use <em>Euler's formula</em> to rewrite <span class="math display">\[
+(-1)^n=e^{2\pi in\frac{1}{2}}=\cos(2\pi n\frac{1}{2})+i\sin(2\pi n\frac{1}{2})
+\]</span> Periodicity is 2. Moreover , Take periodicity k <span class="math display">\[
+(e^{2\pi i\frac{1}{k}})^{n+k}= (e^{2\pi i\frac{1}{k}})^{n}\\
+\]</span></p>
+<h3 id="fourier-series">Fourier series</h3>
+<p>More generally, for $ x$, consider <span class="math inline">\(e^{-i\omega n}\)</span>: Periodicity <span class="math inline">\(\frac{1}{x}\)</span>, and <span class="math inline">\(\omega = \frac{2\pi}{x}\)</span> <span class="math display">\[
+F(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}\text{     ,              }
+F_N(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}    
+\]</span> Generate a new function on <span class="math inline">\(\left[-1,1\right]\)</span> , known as Fourier analysis.</p>
+<p>Since <span class="math inline">\(|e^{i\theta}|\leq 1\)</span>, therefore</p>
+<h3 id="introduction-a-norm">introduction a norm</h3>
+<p>For a sequence <span class="math inline">\((a_n)_{n\in\mathbb{Z}}\in\mathbb{R}\)</span>, Let <span class="math display">\[
+\left\|a_n \right\|_{\boldsymbol l^2}:= (\sum _{n=-\infty}^\infty |a_n|^p )^\frac{1}{p} \text{  for } p\in [1,\infty]
+\]</span> and <span class="math display">\[
+\|a_n\| = \mathop{sup}\limits_{n\in\mathbb{Z}}|a_n|
+\]</span> We can measure the distance between two sequences e.g. for <span class="math inline">\(c_n=(-1)^{n+1}\)</span> and <span class="math inline">\(d_n=(-1)^{n+1}(1+\frac{1}{n})\)</span>. <span class="math display">\[
+\|c_n-d_n\|=(\sum_{n=-\infty}^{\infty}\frac{1}{n^2})^\frac{1}{2}=\frac{\pi}{\sqrt6}\leq2
+\]</span></p>
+<h3 id="l2-estimate-crude"><span class="math inline">\(L^2\)</span>-estimate: Crude</h3>
+<p>Recall the crude estimate :<span class="math inline">\(|F_N(x)| \leq \sum_{n=-N}^{n=N} a_n\)</span> ：no oscillation</p>
+<p>This yields <span class="math display">\[
+\begin{aligned}
+\|F_N\|_{L^2}&amp;=(\int_{-1}^1(F_N(x))^2d\,x)^\frac{1}{2}\\
+&amp;\leq(\int_{-1}^1a_n^2d\,x)^\frac{1}{2})\\
+&amp;=2^{\frac{1}{2}}\sum_{n=-N}^{N} a_n
+\end{aligned}
+\]</span> In particular, if <span class="math inline">\(a_n=1\)</span> for all <span class="math inline">\(|n|\leq N\)</span> then <span class="math display">\[
+\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| \leq 2^\frac{3}{2}N
+\]</span> <span class="math inline">\(L^2\)</span> -size of <span class="math inline">\(F_N(x)\)</span> is bounded by <span class="math inline">\(O(N)\)</span></p>
+<h3 id="theorem-3-parsevals-identity">Theorem 3 (Parseval's identity)</h3>
+<p><span class="math display">\[
+\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| \leq 2N^\frac{3}{2}\ll2^\frac{3}{2}N
+\]</span></p>
+<p>Multiplying out the square: <span class="math display">\[
+\begin{aligned}
+\|\sum_{n=-N}^N e^{-i\omega n}\| &amp;=(\int_{-1}^1(\sum_{n=-N}^N e^{-i\omega n}) ^2d\,x)^\frac{1}{2}\\
+&amp;=\int_{-1}^1 \sum_{n=-N}^N e^{-i\omega n}\sum_{m=-N}^N e^{-i\omega n}d\,x\\
+&amp;= \sum_{n=-N}^N\sum_{m=-N}^N \int_{-1}^1  e^{-i\omega (n-m)}d\,x
+\end{aligned}
+\]</span> For the diagonal case (m=n) <span class="math display">\[
+\int_{-1}^1  e^{-i\omega (n-m)}d\,x =2
+\]</span> For the non-diagonal case (<span class="math inline">\(n\neq m\)</span>) <span class="math display">\[
+\int_{-1}^1  e^{-i\omega (n-m)}d\,x =-\frac{1}{2\pi i (n-m)}(e^{-2\pi i (n-m)}-e^{2\pi i (n-m)})=0
+\]</span></p>
+<p>Same argument shows more generally <span class="math display">\[
+\begin{gather}
+\text{For any }a_n \;s.t.\|a_n\|_{l^2}=(\sum_{n=-\infty}^\infty |a_n|^2)^{\frac{1}{2}}&lt;\infty.\\
+\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| _{l^2}=2^{\frac{1}{2}}\|a_n\|_{l^2}
+\end{gather}
+\]</span></p>
 ]]></content>
       <categories>
-        <category>阅读笔记</category>
+        <category>数学</category>
+        <category>数学分析</category>
+        <category>课堂笔记</category>
       </categories>
       <tags>
-        <tag>书法理论</tag>
+        <tag>不等式</tag>
+        <tag>Fourier</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>加密</title>
-    <url>/2022/06/30/%E5%85%B6%E4%BB%96/test/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="34d306308e78602647ee2af0e1ba120e81fb02111f2ccf6c53f776b9a3b4401d">4630436162ade97ba2718b7d0c4b3b630ef8b034c35893a7afa4c54a5752d90eba191a593f89497fdfca691efaf72d5caa0c664d8e7a85bd833fac72ade59ddbf66b4bdec75a2ed1e83f57bcb279b78c8202c7ce8d3eb34051070935a62ccbf9be563b576fcb19a6e4c095e03496f05d0fec5de7a8af18b78d977beffb6874da4670293f572d11dfa81b48ce6cd0448f0a018d399d177f54eb76d77c6c17f9c36f9f255c3de0f225f9e9c6b4f23d83fc3307cf9be8ef0d2bb8d0474ceec45d7300894f4b8f11650b44ad991ba7d432283e64e8468c79d445b4aef43276f04ffecdc0b540f5d74022a21d6c663658536777acea65da1c70d7ceedf635d566051a343742697d7f69fae8d58a663affc9c692b5e6979adbae0ddec5d44de1e87c283ee769f49dc2014a109295dad07c418b</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
   </entry>
 </search>
