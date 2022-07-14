@@ -6,7 +6,7 @@
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="目录缓存-catalog">目录缓存 (Catalog)</h2>
 <p>​ 引导 LR 到照片在硬盘中的位置信息，对其进行远程操控，不用再复制一遍文件,不占用过多内存，也就是操作面板左侧的部分。只保存操作信息。在 <code>编辑-目录设置</code>中找到其缓存位置。</p>
 <figure>
-<img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20220713221432407.png" alt="目录缓存位置" /><figcaption aria-hidden="true">目录缓存位置</figcaption>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207141203760.png" alt="目录缓存位置" /><figcaption aria-hidden="true">目录缓存位置</figcaption>
 </figure>
 <p>有三个文件夹</p>
 <ol type="1">
@@ -18,7 +18,7 @@
 <p>​ 将图片完整加载进入 <strong>camera RAW </strong> 缓存，获得更大的调整范围。<code>编辑-首选项-性能</code> 中可进行清理和配置，</p>
 ]]></content>
       <categories>
-        <category>C++</category>
+        <category>其他</category>
       </categories>
       <tags>
         <tag>Lightroom</tag>
@@ -151,47 +151,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo美化：为Next主题外接 Waline 评论系统</title>
-    <url>/2022/06/29/Blog%E6%90%AD%E5%BB%BA/Hexo/Hexo-Next%E4%B8%BB%E9%A2%98%E5%A4%96%E6%8E%A5%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="前言">前言</h3>
-<p>​ <strong>Waline</strong> 是一款基于 <strong>Valine</strong> 衍生的评论系统，首先在笔者目前使用的 NexT 8.12.1 下已经不再内置 Valine 系统，需要自己手动配置。 看了一圈其他的评论系统，貌似只有 Waline 支持数学公式，所以最终选择 Waline 评论系统</p>
-<span id="more"></span>
-<h3 id="配置数据库和服务端部署">配置数据库和服务端部署</h3>
-<p>​ 选择 <a href="%5BLeanCloud%5D(https://www.leancloud.cn/)">Leanclound</a> 作为评论数据库，在 Vercel 上部署服务端。接着就按照 <span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWwjbGVhbmNsb3VkLSVFOCVBRSVCRSVFNyVCRCVBRS0lRTYlOTUlQjAlRTYlOEQlQUUlRTUlQkElOTM=">Waline的官方文档<i class="fa fa-external-link-alt"></i></span> 进行操作即可。这里介绍几个注意的点：</p>
-<ol type="1">
-<li><p>注册时推荐使用国际版，否则需要绑定备案的域名，比较麻烦。</p></li>
-<li><p>在 Vercel 上部署服务端时，注意环境变量名称 <code>LEAN_ID</code>, <code>LEAN_KEY</code> 和 <code>LEAN_MASTER_KEY</code>一定要一字不差。遇到访客评论系统在不登录账号时报错如下:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Invalid value type for field &#x27;link&#x27;,value &#x27;&quot;&quot;&#x27;,expect type is &#123;:type &quot;Object&quot;&#125;,but it is &#x27;&#123;:type &quot;String&quot;&#125;&#x27;. [400 POST https://ioksy7et.api.lncldglobal.com/1.1/classes/Comment]</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>​ 解决方法：重新在 Leanclound 上创建 <code>Comment</code> 类。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206301329339.png" alt="在数据储存中创建新的Comment类" /><figcaption aria-hidden="true">在<code>数据储存</code>中创建新的Comment类</figcaption>
-</figure>
-<h3 id="在-hexo-上使用-waline">在 Hexo 上使用 Waline</h3>
-<p>在 Hexo 根目录下执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install @waline/hexo-next</span><br></pre></td></tr></table></figure>
-<p>接着你可以在 Hexo 根目录下 <code>\node_modules\@waline</code> 中找到 <code>default.yaml</code> 文件，里面就是所有 Waline 的设置选项了。 为了方便将其中需要改变的选项手动写入到 <code>next</code> 主题下 的 <code>_config.yaml</code>中， 以下是部分参考，更多的选项设置在上述 <code>default.yaml</code> 中：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment">#是否开启</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">waline-server-ecru.vercel.app</span> <span class="comment"># Waline #服务端地址，我们这里就是上面部署的 Vercel 地址</span></span><br><span class="line">  <span class="attr">locale:</span></span><br><span class="line">    <span class="attr">placeholder:</span> <span class="string">疑义相与析，畅所欲言，不登录也没关系哒</span> <span class="comment"># #评论框的默认文字</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># 头像风格</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>,<span class="string">mail</span>] <span class="comment"># 自定义评论框上面的三个输入框的内容</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># 评论数量多少时显示分页</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># 语言, 可选值: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># 文章阅读统计</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示</span></span><br><span class="line">  <span class="attr">requiredFields:</span> [<span class="string">nick</span>] <span class="comment"># 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]</span></span><br><span class="line">  <span class="attr">libUrl:</span> <span class="string">https://unpkg.com/@waline/client@v2/dist/waline.js</span> <span class="comment"># Set custom library cdn url</span></span><br><span class="line">  <span class="attr">login:</span> <span class="string">enable</span></span><br></pre></td></tr></table></figure>
-<h3 id="登录服务端">登录服务端</h3>
-<p>接着部署后就能够看到登录按钮，进行登录，貌似第一个登录的账号就会有个 <strong>博主</strong> 的标识。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206292335984.png" alt="进入登录界面" /><figcaption aria-hidden="true">进入登录界面</figcaption>
-</figure>
-<p>但是访客不登陆也能评论。访客填写不同的邮箱会显示其对应账号的头像。</p>
-<p>最后效果可以参见<span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnLw==">官方文档<i class="fa fa-external-link-alt"></i></span> 。</p>
-<h3 id="参考">参考</h3>
-<p><span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWw=">官方文档<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9xaWFuZmFuZ3VvamluLnRvcC8yMDIyLzAxLzIwL0hleG8lRTUlOEQlOUElRTUlQUUlQTIlRTglQkYlOUIlRTklOTglQjYlRUYlQkMlOUElRTQlQjglQkEtTmV4dC0lRTQlQjglQkIlRTklQTIlOTglRTYlQjclQkIlRTUlOEElQTAtV2FsaW5lLSVFOCVBRiU4NCVFOCVBRSVCQSVFNyVCMyVCQiVFNyVCQiU5Ri8=">谢同学博客<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Blog搭建</category>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Item 03 - Use const whenever possible</title>
     <url>/2022/06/30/C++/Effective_C++/Item03_const/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>只要明确值不被改变就应该声明为 <code>const</code> ，以此获得编译器的襄助，保证规则不被违反。</p>
@@ -261,6 +220,47 @@
       </tags>
   </entry>
   <entry>
+    <title>Hexo美化：为Next主题外接 Waline 评论系统</title>
+    <url>/2022/06/29/Blog%E6%90%AD%E5%BB%BA/Hexo/Hexo-Next%E4%B8%BB%E9%A2%98%E5%A4%96%E6%8E%A5%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="前言">前言</h3>
+<p>​ <strong>Waline</strong> 是一款基于 <strong>Valine</strong> 衍生的评论系统，首先在笔者目前使用的 NexT 8.12.1 下已经不再内置 Valine 系统，需要自己手动配置。 看了一圈其他的评论系统，貌似只有 Waline 支持数学公式，所以最终选择 Waline 评论系统</p>
+<span id="more"></span>
+<h3 id="配置数据库和服务端部署">配置数据库和服务端部署</h3>
+<p>​ 选择 <a href="%5BLeanCloud%5D(https://www.leancloud.cn/)">Leanclound</a> 作为评论数据库，在 Vercel 上部署服务端。接着就按照 <span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWwjbGVhbmNsb3VkLSVFOCVBRSVCRSVFNyVCRCVBRS0lRTYlOTUlQjAlRTYlOEQlQUUlRTUlQkElOTM=">Waline的官方文档<i class="fa fa-external-link-alt"></i></span> 进行操作即可。这里介绍几个注意的点：</p>
+<ol type="1">
+<li><p>注册时推荐使用国际版，否则需要绑定备案的域名，比较麻烦。</p></li>
+<li><p>在 Vercel 上部署服务端时，注意环境变量名称 <code>LEAN_ID</code>, <code>LEAN_KEY</code> 和 <code>LEAN_MASTER_KEY</code>一定要一字不差。遇到访客评论系统在不登录账号时报错如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Invalid value type for field &#x27;link&#x27;,value &#x27;&quot;&quot;&#x27;,expect type is &#123;:type &quot;Object&quot;&#125;,but it is &#x27;&#123;:type &quot;String&quot;&#125;&#x27;. [400 POST https://ioksy7et.api.lncldglobal.com/1.1/classes/Comment]</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>​ 解决方法：重新在 Leanclound 上创建 <code>Comment</code> 类。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206301329339.png" alt="在数据储存中创建新的Comment类" /><figcaption aria-hidden="true">在<code>数据储存</code>中创建新的Comment类</figcaption>
+</figure>
+<h3 id="在-hexo-上使用-waline">在 Hexo 上使用 Waline</h3>
+<p>在 Hexo 根目录下执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install @waline/hexo-next</span><br></pre></td></tr></table></figure>
+<p>接着你可以在 Hexo 根目录下 <code>\node_modules\@waline</code> 中找到 <code>default.yaml</code> 文件，里面就是所有 Waline 的设置选项了。 为了方便将其中需要改变的选项手动写入到 <code>next</code> 主题下 的 <code>_config.yaml</code>中， 以下是部分参考，更多的选项设置在上述 <code>default.yaml</code> 中：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment">#是否开启</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">waline-server-ecru.vercel.app</span> <span class="comment"># Waline #服务端地址，我们这里就是上面部署的 Vercel 地址</span></span><br><span class="line">  <span class="attr">locale:</span></span><br><span class="line">    <span class="attr">placeholder:</span> <span class="string">疑义相与析，畅所欲言，不登录也没关系哒</span> <span class="comment"># #评论框的默认文字</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># 头像风格</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>,<span class="string">mail</span>] <span class="comment"># 自定义评论框上面的三个输入框的内容</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># 评论数量多少时显示分页</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># 语言, 可选值: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># 文章阅读统计</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示</span></span><br><span class="line">  <span class="attr">requiredFields:</span> [<span class="string">nick</span>] <span class="comment"># 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]</span></span><br><span class="line">  <span class="attr">libUrl:</span> <span class="string">https://unpkg.com/@waline/client@v2/dist/waline.js</span> <span class="comment"># Set custom library cdn url</span></span><br><span class="line">  <span class="attr">login:</span> <span class="string">enable</span></span><br></pre></td></tr></table></figure>
+<h3 id="登录服务端">登录服务端</h3>
+<p>接着部署后就能够看到登录按钮，进行登录，貌似第一个登录的账号就会有个 <strong>博主</strong> 的标识。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206292335984.png" alt="进入登录界面" /><figcaption aria-hidden="true">进入登录界面</figcaption>
+</figure>
+<p>但是访客不登陆也能评论。访客填写不同的邮箱会显示其对应账号的头像。</p>
+<p>最后效果可以参见<span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnLw==">官方文档<i class="fa fa-external-link-alt"></i></span> 。</p>
+<h3 id="参考">参考</h3>
+<p><span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWw=">官方文档<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9xaWFuZmFuZ3VvamluLnRvcC8yMDIyLzAxLzIwL0hleG8lRTUlOEQlOUElRTUlQUUlQTIlRTglQkYlOUIlRTklOTglQjYlRUYlQkMlOUElRTQlQjglQkEtTmV4dC0lRTQlQjglQkIlRTklQTIlOTglRTYlQjclQkIlRTUlOEElQTAtV2FsaW5lLSVFOCVBRiU4NCVFOCVBRSVCQSVFNyVCMyVCQiVFNyVCQiU5Ri8=">谢同学博客<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Blog搭建</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>三角形中的几个恒等式</title>
     <url>/2022/07/01/%E6%95%B0%E5%AD%A6/%E5%85%B6%E4%BB%96/%E4%B8%89%E8%A7%92%E5%BD%A2%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%81%92%E7%AD%89%E5%BC%8F/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>在 <span class="math inline">\(\Delta ABC\)</span> 中，以下等式成立</p>
@@ -318,77 +318,6 @@ cot \frac{C}{2} = -\frac{\cot \frac{A}{2}+\cot \frac{B}{2}}{1-\cot \frac{A}{2}\,
       </categories>
       <tags>
         <tag>三角函数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>将数量场转为向量场的例题</title>
-    <url>/2022/06/28/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98/%E5%B0%86%E6%95%B0%E9%87%8F%E5%9C%BA%E8%BD%AC%E4%B8%BA%E5%90%91%E9%87%8F%E5%9C%BA/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="题面">题面</h3>
-<p>​ 设 <span class="math inline">\(\Sigma(t)\)</span> 是平面 <span class="math inline">\(x+y+z=t\)</span> 被球面 <span class="math inline">\(x^2+y^2+z^2=1\)</span> 截下的部分，设 <span class="math display">\[
-F(x,y,z)=1-(x^2+y^2+z^2),
-\]</span> ​ 求证，对于 <span class="math inline">\(\left| t \right| \leq \sqrt 3\)</span> 时，有 <span class="math display">\[
-\int _{\Sigma(t)} F(x,y,z)\,d\sigma = \frac{\pi}{18} (3-t^2)^2
-\]</span></p>
-<span id="more"></span>
-<h3 id="方法一">方法一</h3>
-<p>​ 将原坐标系 <span class="math inline">\(X Y Z\)</span> 进行变换，新坐标系的 <span class="math inline">\(X&#39;OY&#39;\)</span> 平面为原坐标系的平面 <span class="math inline">\(x+y+z=0\)</span> ，坐标 <span class="math inline">\(z&#39;\)</span> 为点在原坐标系下距离 <span class="math inline">\(\Sigma(0)\)</span> 的距离，<span class="math inline">\(z&#39; = \frac {t}{\sqrt3}\)</span> ， 为了渐变就沿用 <span class="math inline">\(xyz\)</span> 命名好了。接下来就是很普通的在 <span class="math inline">\(z=\frac{t}{\sqrt 3}\)</span> 上将 <span class="math inline">\(xy\)</span> 化为极坐标的积分了。 <span class="math display">\[
-\begin{gather}
-\begin{aligned}
-\iint _{z=\frac{t}{\sqrt 3}} 1-z^2\,d\sigma &amp;= \int_0^{2\pi}d\theta \int_0^{\sqrt {1-\frac{t^2}{3}}}(1-\frac{t^2}{3}-r^2) r\,dr\\
- &amp;=\frac{\pi}{18} (3-t^2)^2
- \end{aligned}
-\end{gather}
-\]</span></p>
-<h3 id="方法二">方法二</h3>
-<p>​ 这个方法比较绕，是利用 <span class="math inline">\(Gauss\)</span> 定理 + 补面的方式。但是 F 是个数量场，怎么把它变成向量场呢? <span class="math display">\[
-\begin{equation}
-\iint_S F dS  =\iint_S \boldsymbol{v}\, \vec{n} \,dS
-\end{equation}
-\]</span> 所以现在就是需要去确定一种 <span class="math inline">\(\vec{v}\)</span> 和 <span class="math inline">\(\vec{n}\)</span> 使其点乘为 <span class="math inline">\(F\)</span> ， 为了简便 <span class="math inline">\(\vec{v} = (1-z^2) \,\vec{k}\)</span> ，<span class="math inline">\(\vec{n}=\vec{k}\)</span>， 在进行补面就能使用高斯公式了，设 <span class="math inline">\(V\)</span> 为 <span class="math inline">\(S_1:z=\frac{t}{\sqrt3}\)</span> 和球面 <span class="math inline">\(S_2:x^2+y^2+z^2=1\)</span> 围成的面积。 <span class="math display">\[
-\begin{gather}
-\begin{aligned}
-\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS &amp; = \iiint_V \Delta\,\vec{v} \, d\vec{S}\\
-&amp;=\iiint_V2z \,  dxdydz
-\end{aligned}
-\end{gather}
-\]</span> 注意因为高斯定理要求向量场指向平面的外侧，上面公式的 <span class="math inline">\(\vec{v}\)</span> 的方向与的我们构造的<span class="math inline">\(\vec{v}\)</span> 之间方向相反。</p>
-<p>再将<span class="math inline">\(xyz\)</span> 换为极坐标 (注意这里和 <span class="math inline">\(t\)</span> 没什么关系，<span class="math inline">\(t\)</span> 只是个常数) <span class="math display">\[
-\begin{cases}
-x= (1-z^2)\,r\,cos\theta\\
-y= (1-z^2)\,r\,sin\theta\\
-z=z\\
-\end{cases}
-\]</span> 然后三重积分 <span class="math display">\[
-\begin{gather}
-\begin{aligned}
-\iiint_V2z \,  dxdydz &amp;= 2\pi\int_{\frac{t}{\sqrt3}}^1z\,dz\int_0^{\sqrt{1-z^2}}r\,dr\\
-&amp; = -\frac{\pi}{18}(3-t^2)^2
-\end{aligned}
-\end{gather}
-\]</span> 而另一方面 <span class="math display">\[
-\because 1-z^2 = 0 \,\text{in} \,S_2\\
-\therefore
-\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS = 0\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{gathered}
-\begin{aligned}
-\iint_{S_1} \boldsymbol{v}\, \vec{n} \,dS &amp;=\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS-\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS \\
-&amp;=\frac{\pi}{18}(3-t^2)^2
-\end{aligned}
-\end{gathered}
-\]</span></p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>数学分析</category>
-        <category>习题</category>
-      </categories>
-      <tags>
-        <tag>数学分析</tag>
-        <tag>高等数学</tag>
-        <tag>高斯公式</tag>
-        <tag>曲面积分</tag>
       </tags>
   </entry>
   <entry>
@@ -460,6 +389,77 @@ F_N(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}
       <tags>
         <tag>不等式</tag>
         <tag>Fourier</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>将数量场转为向量场的例题</title>
+    <url>/2022/06/28/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98/%E5%B0%86%E6%95%B0%E9%87%8F%E5%9C%BA%E8%BD%AC%E4%B8%BA%E5%90%91%E9%87%8F%E5%9C%BA/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="题面">题面</h3>
+<p>​ 设 <span class="math inline">\(\Sigma(t)\)</span> 是平面 <span class="math inline">\(x+y+z=t\)</span> 被球面 <span class="math inline">\(x^2+y^2+z^2=1\)</span> 截下的部分，设 <span class="math display">\[
+F(x,y,z)=1-(x^2+y^2+z^2),
+\]</span> ​ 求证，对于 <span class="math inline">\(\left| t \right| \leq \sqrt 3\)</span> 时，有 <span class="math display">\[
+\int _{\Sigma(t)} F(x,y,z)\,d\sigma = \frac{\pi}{18} (3-t^2)^2
+\]</span></p>
+<span id="more"></span>
+<h3 id="方法一">方法一</h3>
+<p>​ 将原坐标系 <span class="math inline">\(X Y Z\)</span> 进行变换，新坐标系的 <span class="math inline">\(X&#39;OY&#39;\)</span> 平面为原坐标系的平面 <span class="math inline">\(x+y+z=0\)</span> ，坐标 <span class="math inline">\(z&#39;\)</span> 为点在原坐标系下距离 <span class="math inline">\(\Sigma(0)\)</span> 的距离，<span class="math inline">\(z&#39; = \frac {t}{\sqrt3}\)</span> ， 为了渐变就沿用 <span class="math inline">\(xyz\)</span> 命名好了。接下来就是很普通的在 <span class="math inline">\(z=\frac{t}{\sqrt 3}\)</span> 上将 <span class="math inline">\(xy\)</span> 化为极坐标的积分了。 <span class="math display">\[
+\begin{gather}
+\begin{aligned}
+\iint _{z=\frac{t}{\sqrt 3}} 1-z^2\,d\sigma &amp;= \int_0^{2\pi}d\theta \int_0^{\sqrt {1-\frac{t^2}{3}}}(1-\frac{t^2}{3}-r^2) r\,dr\\
+ &amp;=\frac{\pi}{18} (3-t^2)^2
+ \end{aligned}
+\end{gather}
+\]</span></p>
+<h3 id="方法二">方法二</h3>
+<p>​ 这个方法比较绕，是利用 <span class="math inline">\(Gauss\)</span> 定理 + 补面的方式。但是 F 是个数量场，怎么把它变成向量场呢? <span class="math display">\[
+\begin{equation}
+\iint_S F dS  =\iint_S \boldsymbol{v}\, \vec{n} \,dS
+\end{equation}
+\]</span> 所以现在就是需要去确定一种 <span class="math inline">\(\vec{v}\)</span> 和 <span class="math inline">\(\vec{n}\)</span> 使其点乘为 <span class="math inline">\(F\)</span> ， 为了简便 <span class="math inline">\(\vec{v} = (1-z^2) \,\vec{k}\)</span> ，<span class="math inline">\(\vec{n}=\vec{k}\)</span>， 在进行补面就能使用高斯公式了，设 <span class="math inline">\(V\)</span> 为 <span class="math inline">\(S_1:z=\frac{t}{\sqrt3}\)</span> 和球面 <span class="math inline">\(S_2:x^2+y^2+z^2=1\)</span> 围成的面积。 <span class="math display">\[
+\begin{gather}
+\begin{aligned}
+\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS &amp; = \iiint_V \Delta\,\vec{v} \, d\vec{S}\\
+&amp;=\iiint_V2z \,  dxdydz
+\end{aligned}
+\end{gather}
+\]</span> 注意因为高斯定理要求向量场指向平面的外侧，上面公式的 <span class="math inline">\(\vec{v}\)</span> 的方向与的我们构造的<span class="math inline">\(\vec{v}\)</span> 之间方向相反。</p>
+<p>再将<span class="math inline">\(xyz\)</span> 换为极坐标 (注意这里和 <span class="math inline">\(t\)</span> 没什么关系，<span class="math inline">\(t\)</span> 只是个常数) <span class="math display">\[
+\begin{cases}
+x= (1-z^2)\,r\,cos\theta\\
+y= (1-z^2)\,r\,sin\theta\\
+z=z\\
+\end{cases}
+\]</span> 然后三重积分 <span class="math display">\[
+\begin{gather}
+\begin{aligned}
+\iiint_V2z \,  dxdydz &amp;= 2\pi\int_{\frac{t}{\sqrt3}}^1z\,dz\int_0^{\sqrt{1-z^2}}r\,dr\\
+&amp; = -\frac{\pi}{18}(3-t^2)^2
+\end{aligned}
+\end{gather}
+\]</span> 而另一方面 <span class="math display">\[
+\because 1-z^2 = 0 \,\text{in} \,S_2\\
+\therefore
+\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS = 0\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{gathered}
+\begin{aligned}
+\iint_{S_1} \boldsymbol{v}\, \vec{n} \,dS &amp;=\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS-\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS \\
+&amp;=\frac{\pi}{18}(3-t^2)^2
+\end{aligned}
+\end{gathered}
+\]</span></p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>数学分析</category>
+        <category>习题</category>
+      </categories>
+      <tags>
+        <tag>数学分析</tag>
+        <tag>高等数学</tag>
+        <tag>高斯公式</tag>
+        <tag>曲面积分</tag>
       </tags>
   </entry>
 </search>
