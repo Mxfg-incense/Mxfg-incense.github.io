@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title></title>
+    <url>/2022/07/22/%E5%85%B6%E4%BB%96/Ananconda%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>打开 <strong>Anaconda</strong> 时出现</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207221820298.png" /></p>
+<h3 id="解决方法">解决方法</h3>
+<p>取消代理</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207221821701.png" /></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Lightroom 缓存</title>
     <url>/2022/07/13/%E5%85%B6%E4%BB%96/lightroomcahce/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="目录缓存-catalog">目录缓存 (Catalog)</h2>
@@ -25,6 +35,16 @@
       </tags>
   </entry>
   <entry>
+    <title></title>
+    <url>/2022/07/23/%E5%85%B6%E4%BB%96/np.random.rand%20vs%20np.random.random/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>二者都连续均匀地在 <span class="math inline">\([0,1]\)</span> 生成 (uniform distribution) 样本，但接受地参数不同. <code>np.random.rand</code> 接受分隔地参数，<code>np.random.random</code> 接受一个 tuple.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = np.random.rand(<span class="number">2</span>,<span class="number">7</span>)</span><br><span class="line">a = np.random.random((<span class="number">2.7</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="推荐写法">推荐写法</h3>
+<p>自 Numpy 1.17 后， 提供新的 方法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rng = np.random.default_rng()  <span class="comment"># Create a default Generator.</span></span><br><span class="line">rng.random(size=<span class="number">10</span>)  <span class="comment"># Generate 10 samples.</span></span><br><span class="line">array([<span class="number">0.00416913</span>, <span class="number">0.31533329</span>, <span class="number">0.19057857</span>, <span class="number">0.48732511</span>, <span class="number">0.40638395</span>,</span><br><span class="line">       <span class="number">0.32165646</span>, <span class="number">0.02597142</span>, <span class="number">0.19788567</span>, <span class="number">0.08142055</span>, <span class="number">0.15755424</span>])</span><br><span class="line">rng = np.random.uniform(<span class="number">0</span>,<span class="number">1</span>,size=(<span class="number">2</span>,<span class="number">3</span>)) <span class="comment">#specify bound </span></span><br></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
     <title>加密</title>
     <url>/2022/06/30/%E5%85%B6%E4%BB%96/test/</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
@@ -44,43 +64,59 @@
       </categories>
   </entry>
   <entry>
-    <title>启功带你学书法-破除迷信</title>
-    <url>/2022/07/05/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E5%90%AF%E5%8A%9F%E7%BB%99%E4%BD%A0%E8%AE%B2%E4%B9%A6%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>​ 启功先生以破除迷信的思想贯穿全书，很实在，不故弄玄虚。扫清各种神秘的古怪学说为初学者造成的困惑和恐吓。</p>
-<span id="more"></span>
-<h3 id="碑和帖">碑和帖</h3>
-<p>​ 碑在《说文解字》中解释为「竖石也」。原本是坟墓面前的石头。后来逐渐扩展为活人也立碑，比如谁在此留下丰功伟绩。常常带有纪念意义，史学价值比较高，所以需要是大家共同认得的字。所以大部分时间里，碑都是以楷书为主要的，但是也有例外。比如武则天为张昌宗立碑，叫《升仙太子碑》，完全用草书写，成为草书写碑的开端。碑通常是书写者直接在碑上书写，是书写者与刻工的共同参与。</p>
-<p>​ 帖是字条，是平常生活中用来彼此传达信息的，是一种随意的书写，字体行草书偏多。刻帖要求还书写精神的原貌，需要先用墨迹摹写之后，再以字勾勒。</p>
-<h3 id="入门练习">入门练习</h3>
-<p>​ 临帖和读帖同样重要，不能偏废。</p>
-<p>​ 临帖临碑时注意和现实中的用笔区别，再好的拓本也只能反映字的外形轮廓，里面墨色的浓淡、干湿、轻重的细节是丢失的。另外，有的石刻过于方正，是可能用排笔，板刷写出的，不用强求。</p>
-<h3 id="用笔">用笔</h3>
+    <title></title>
+    <url>/2022/07/27/%E5%85%B6%E4%BB%96/%E5%A4%A7%E7%90%86%E7%81%AB%E6%8A%8A%E8%8A%82%E6%9D%A5%E5%8E%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>普遍流传火烧松明楼的故事缺乏证据。该说法大概在明清时期广泛为人接受。如清代学者 师范曾在《滇系·杂载》中总结出以下几点：</p>
+<ol type="1">
+<li>火把节即星回节</li>
+<li>起源一：武侯征南，于是日擒孟获，侵夜入城，城中父老设庭燎以迎之</li>
+<li>起源二：纪念曼阿奴之妻阿南，焚夫衣后横刀自断。</li>
+<li><strong>起源三：火烧松明楼，纪念慈善夫人（也称柏洁夫人），此最为广传的一种。</strong></li>
+</ol>
+<p>但元明清常常流传着很多关于大理白族火把节的记载与南诏时期不符。比如南诏时期，《太平广记》中引南诏王诗文《星回节游避风台与清平官赋》:</p>
 <blockquote>
-<p>赵雪松云：“书法以用笔为上，而结字亦须用工”。窃以为不然。</p>
+<p>避风善阐台,极目见藤越,悲哉古与今,依然烟与月。自我居震旦,翊卫类夔契。伊昔颈皇运,艰难仰忠烈。不觉岁云暮,感极星回节。元昶同一心,子孙堪贻厥。</p>
 </blockquote>
-<p>不可被用笔至上论所迷惑，以结字为先。</p>
-<blockquote>
-<p>无麻不成笔</p>
-</blockquote>
-<h3 id="选临碑帖">选临碑帖</h3>
-<p>可以有自己的创造性，按照古代已有的方法去做，吸取最有效的部分，为我所用。</p>
-<blockquote>
-<p>名家之书，皆古人之妙处与自家之病处相结合耳。</p>
-</blockquote>
-<h3 id="悬腕之说">悬腕之说</h3>
-<p>「悬腕」是宋初以后的说法，宋代以前，没有高桌椅，都是席地而坐，因此没有地方能够搁放自己的手腕和手肘，显得用笔灵活，上下左右，提按自如。但是如今在高桌椅上写<strong>小字</strong>的时候，如果强行悬腕，反而右臂僵硬，无法运用臂力。</p>
-<h3 id="求人不如求己">求人不如求己</h3>
-<blockquote>
-<p>文章千古事，得失寸心知</p>
-</blockquote>
-<p>意思是做文章是千古的事情，有失有得，只有自家知道。</p>
-<p>书中有一个方法：把自己认为写的好的贴在墙上，过几天再瞧，就觉得很惭愧了，然后再修改，自己就明白了。</p>
+<p>从「岁云暮」应该看出星回节应该位于年末，而火把节位于六月二十五，二者应该是两个节日。但是在明清的记载中大多将二者混为一谈。</p>
+<p>因此，《火烧松明楼》作为白族火把节的起源这一说法，应该只是穿凿附会之说。</p>
+<p>尽管如此，纪念柏洁夫人已然作为节日庆祝的主要载体。比如海东镇的赛龙舟与“捞尸会”，染手花（虽然已经不多见）与白洁夫人手刨火烧残余至十指染血有关，大理北门村和西门村等多地更是将“白洁夫人”奉为本主。</p>
+<p>目前还有一种的说法是大理白族火把节其真正的象征源于男性的垄断生育。抢升斗的必须是新婚的男性，象征着得子。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2022/07/14/%E5%85%B6%E4%BB%96/%E7%94%98%E5%8D%97%E6%B8%B8%E8%AE%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="备冬草">备冬草</h2>
+<p>于是乎直接沿着最快的线路，沿着京昆高速和兰海高速直抵舟曲县。随后沿着一条小路经过腊子口到达岷县。在路上遇到了牧民准备冬草。把收割的草晒在路沿上，然后在收起来打捆屯在冬天。准备冬草规模浩大，十分忙碌，大概就是农忙？草原气候，夏季多雨，草肥物盛，冬季雪灾，大雪也会覆盖在草场上，牛羊没有新鲜牧草可以吃，所以趁着牧草枯草前割掉一些，晒干后作为牛羊冬天的食物。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142030421.jpg" alt="储备冬草" /><figcaption aria-hidden="true">储备冬草</figcaption>
+</figure>
+<h2 id="铁尺梁">铁尺梁</h2>
+<p>​ 然后顺着蜿蜒的山路盘旋而上，到达险关腊子口，红军在此激战，突破了国民党军队的防线。可以沿着栈道顺着腊子河谷看到留下的碉堡。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142031021.jpg" alt="腊子口纪念碑" /><figcaption aria-hidden="true">腊子口纪念碑</figcaption>
+</figure>
+<h2 id="铁尺梁-1">铁尺梁</h2>
+<p>​ 铁尺梁因如直立的铁尺而得名，众山之巅，诸神之上。无色经幡飘扬。可以俯瞰蜿蜒的盘山公路，散落在低谷的人家。平视可以看到叠锋隐约，错落有致，有个山峰形状酷似。据说毛泽东在此写下七律长征。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142034408.jpg" alt="酷似熊的山峰" /><figcaption aria-hidden="true">酷似熊的山峰</figcaption>
+</figure>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142036607.jpg" alt="月亮与经幡" /><figcaption aria-hidden="true">月亮与经幡</figcaption>
+</figure>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142038251.jpg" alt="成群的牛羊" /><figcaption aria-hidden="true">成群的牛羊</figcaption>
+</figure>
+<h2 id="达尔宗圣湖">达尔宗圣湖</h2>
+<p>​</p>
+<p>​</p>
 ]]></content>
       <categories>
-        <category>阅读笔记</category>
+        <category>其他</category>
       </categories>
       <tags>
-        <tag>书法理论</tag>
+        <tag>摄影</tag>
+        <tag>旅游</tag>
       </tags>
   </entry>
   <entry>
@@ -148,6 +184,87 @@
       </categories>
       <tags>
         <tag>编码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>启功带你学书法-破除迷信</title>
+    <url>/2022/07/05/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E5%90%AF%E5%8A%9F%E7%BB%99%E4%BD%A0%E8%AE%B2%E4%B9%A6%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>​ 启功先生以破除迷信的思想贯穿全书，很实在，不故弄玄虚。扫清各种神秘的古怪学说为初学者造成的困惑和恐吓。</p>
+<span id="more"></span>
+<h3 id="碑和帖">碑和帖</h3>
+<p>​ 碑在《说文解字》中解释为「竖石也」。原本是坟墓面前的石头。后来逐渐扩展为活人也立碑，比如谁在此留下丰功伟绩。常常带有纪念意义，史学价值比较高，所以需要是大家共同认得的字。所以大部分时间里，碑都是以楷书为主要的，但是也有例外。比如武则天为张昌宗立碑，叫《升仙太子碑》，完全用草书写，成为草书写碑的开端。碑通常是书写者直接在碑上书写，是书写者与刻工的共同参与。</p>
+<p>​ 帖是字条，是平常生活中用来彼此传达信息的，是一种随意的书写，字体行草书偏多。刻帖要求还书写精神的原貌，需要先用墨迹摹写之后，再以字勾勒。</p>
+<h3 id="入门练习">入门练习</h3>
+<p>​ 临帖和读帖同样重要，不能偏废。</p>
+<p>​ 临帖临碑时注意和现实中的用笔区别，再好的拓本也只能反映字的外形轮廓，里面墨色的浓淡、干湿、轻重的细节是丢失的。另外，有的石刻过于方正，是可能用排笔，板刷写出的，不用强求。</p>
+<h3 id="用笔">用笔</h3>
+<blockquote>
+<p>赵雪松云：“书法以用笔为上，而结字亦须用工”。窃以为不然。</p>
+</blockquote>
+<p>不可被用笔至上论所迷惑，以结字为先。</p>
+<blockquote>
+<p>无麻不成笔</p>
+</blockquote>
+<h3 id="选临碑帖">选临碑帖</h3>
+<p>可以有自己的创造性，按照古代已有的方法去做，吸取最有效的部分，为我所用。</p>
+<blockquote>
+<p>名家之书，皆古人之妙处与自家之病处相结合耳。</p>
+</blockquote>
+<h3 id="悬腕之说">悬腕之说</h3>
+<p>「悬腕」是宋初以后的说法，宋代以前，没有高桌椅，都是席地而坐，因此没有地方能够搁放自己的手腕和手肘，显得用笔灵活，上下左右，提按自如。但是如今在高桌椅上写<strong>小字</strong>的时候，如果强行悬腕，反而右臂僵硬，无法运用臂力。</p>
+<h3 id="求人不如求己">求人不如求己</h3>
+<blockquote>
+<p>文章千古事，得失寸心知</p>
+</blockquote>
+<p>意思是做文章是千古的事情，有失有得，只有自家知道。</p>
+<p>书中有一个方法：把自己认为写的好的贴在墙上，过几天再瞧，就觉得很惭愧了，然后再修改，自己就明白了。</p>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+      <tags>
+        <tag>书法理论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo美化：为Next主题外接 Waline 评论系统</title>
+    <url>/2022/06/29/Blog%E6%90%AD%E5%BB%BA/Hexo/Hexo-Next%E4%B8%BB%E9%A2%98%E5%A4%96%E6%8E%A5%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="前言">前言</h3>
+<p>​ <strong>Waline</strong> 是一款基于 <strong>Valine</strong> 衍生的评论系统，首先在笔者目前使用的 NexT 8.12.1 下已经不再内置 Valine 系统，需要自己手动配置。 看了一圈其他的评论系统，貌似只有 Waline 支持数学公式，所以最终选择 Waline 评论系统</p>
+<span id="more"></span>
+<h3 id="配置数据库和服务端部署">配置数据库和服务端部署</h3>
+<p>​ 选择 <a href="%5BLeanCloud%5D(https://www.leancloud.cn/)">Leanclound</a> 作为评论数据库，在 Vercel 上部署服务端。接着就按照 <span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWwjbGVhbmNsb3VkLSVFOCVBRSVCRSVFNyVCRCVBRS0lRTYlOTUlQjAlRTYlOEQlQUUlRTUlQkElOTM=">Waline的官方文档<i class="fa fa-external-link-alt"></i></span> 进行操作即可。这里介绍几个注意的点：</p>
+<ol type="1">
+<li><p>注册时推荐使用国际版，否则需要绑定备案的域名，比较麻烦。</p></li>
+<li><p>在 Vercel 上部署服务端时，注意环境变量名称 <code>LEAN_ID</code>, <code>LEAN_KEY</code> 和 <code>LEAN_MASTER_KEY</code>一定要一字不差。遇到访客评论系统在不登录账号时报错如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Invalid value type for field &#x27;link&#x27;,value &#x27;&quot;&quot;&#x27;,expect type is &#123;:type &quot;Object&quot;&#125;,but it is &#x27;&#123;:type &quot;String&quot;&#125;&#x27;. [400 POST https://ioksy7et.api.lncldglobal.com/1.1/classes/Comment]</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>​ 解决方法：重新在 Leanclound 上创建 <code>Comment</code> 类。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206301329339.png" alt="在数据储存中创建新的Comment类" /><figcaption aria-hidden="true">在<code>数据储存</code>中创建新的Comment类</figcaption>
+</figure>
+<h3 id="在-hexo-上使用-waline">在 Hexo 上使用 Waline</h3>
+<p>在 Hexo 根目录下执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install @waline/hexo-next</span><br></pre></td></tr></table></figure>
+<p>接着你可以在 Hexo 根目录下 <code>\node_modules\@waline</code> 中找到 <code>default.yaml</code> 文件，里面就是所有 Waline 的设置选项了。 为了方便将其中需要改变的选项手动写入到 <code>next</code> 主题下 的 <code>_config.yaml</code>中， 以下是部分参考，更多的选项设置在上述 <code>default.yaml</code> 中：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment">#是否开启</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">waline-server-ecru.vercel.app</span> <span class="comment"># Waline #服务端地址，我们这里就是上面部署的 Vercel 地址</span></span><br><span class="line">  <span class="attr">locale:</span></span><br><span class="line">    <span class="attr">placeholder:</span> <span class="string">疑义相与析，畅所欲言，不登录也没关系哒</span> <span class="comment"># #评论框的默认文字</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># 头像风格</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>,<span class="string">mail</span>] <span class="comment"># 自定义评论框上面的三个输入框的内容</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># 评论数量多少时显示分页</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># 语言, 可选值: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># 文章阅读统计</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示</span></span><br><span class="line">  <span class="attr">requiredFields:</span> [<span class="string">nick</span>] <span class="comment"># 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]</span></span><br><span class="line">  <span class="attr">libUrl:</span> <span class="string">https://unpkg.com/@waline/client@v2/dist/waline.js</span> <span class="comment"># Set custom library cdn url</span></span><br><span class="line">  <span class="attr">login:</span> <span class="string">enable</span></span><br></pre></td></tr></table></figure>
+<h3 id="登录服务端">登录服务端</h3>
+<p>接着部署后就能够看到登录按钮，进行登录，貌似第一个登录的账号就会有个 <strong>博主</strong> 的标识。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206292335984.png" alt="进入登录界面" /><figcaption aria-hidden="true">进入登录界面</figcaption>
+</figure>
+<p>但是访客不登陆也能评论。访客填写不同的邮箱会显示其对应账号的头像。</p>
+<p>最后效果可以参见<span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnLw==">官方文档<i class="fa fa-external-link-alt"></i></span> 。</p>
+<h3 id="参考">参考</h3>
+<p><span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWw=">官方文档<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9xaWFuZmFuZ3VvamluLnRvcC8yMDIyLzAxLzIwL0hleG8lRTUlOEQlOUElRTUlQUUlQTIlRTglQkYlOUIlRTklOTglQjYlRUYlQkMlOUElRTQlQjglQkEtTmV4dC0lRTQlQjglQkIlRTklQTIlOTglRTYlQjclQkIlRTUlOEElQTAtV2FsaW5lLSVFOCVBRiU4NCVFOCVBRSVCQSVFNyVCMyVCQiVFNyVCQiU5Ri8=">谢同学博客<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Blog搭建</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -220,47 +337,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo美化：为Next主题外接 Waline 评论系统</title>
-    <url>/2022/06/29/Blog%E6%90%AD%E5%BB%BA/Hexo/Hexo-Next%E4%B8%BB%E9%A2%98%E5%A4%96%E6%8E%A5%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="前言">前言</h3>
-<p>​ <strong>Waline</strong> 是一款基于 <strong>Valine</strong> 衍生的评论系统，首先在笔者目前使用的 NexT 8.12.1 下已经不再内置 Valine 系统，需要自己手动配置。 看了一圈其他的评论系统，貌似只有 Waline 支持数学公式，所以最终选择 Waline 评论系统</p>
-<span id="more"></span>
-<h3 id="配置数据库和服务端部署">配置数据库和服务端部署</h3>
-<p>​ 选择 <a href="%5BLeanCloud%5D(https://www.leancloud.cn/)">Leanclound</a> 作为评论数据库，在 Vercel 上部署服务端。接着就按照 <span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWwjbGVhbmNsb3VkLSVFOCVBRSVCRSVFNyVCRCVBRS0lRTYlOTUlQjAlRTYlOEQlQUUlRTUlQkElOTM=">Waline的官方文档<i class="fa fa-external-link-alt"></i></span> 进行操作即可。这里介绍几个注意的点：</p>
-<ol type="1">
-<li><p>注册时推荐使用国际版，否则需要绑定备案的域名，比较麻烦。</p></li>
-<li><p>在 Vercel 上部署服务端时，注意环境变量名称 <code>LEAN_ID</code>, <code>LEAN_KEY</code> 和 <code>LEAN_MASTER_KEY</code>一定要一字不差。遇到访客评论系统在不登录账号时报错如下:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Invalid value type for field &#x27;link&#x27;,value &#x27;&quot;&quot;&#x27;,expect type is &#123;:type &quot;Object&quot;&#125;,but it is &#x27;&#123;:type &quot;String&quot;&#125;&#x27;. [400 POST https://ioksy7et.api.lncldglobal.com/1.1/classes/Comment]</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>​ 解决方法：重新在 Leanclound 上创建 <code>Comment</code> 类。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206301329339.png" alt="在数据储存中创建新的Comment类" /><figcaption aria-hidden="true">在<code>数据储存</code>中创建新的Comment类</figcaption>
-</figure>
-<h3 id="在-hexo-上使用-waline">在 Hexo 上使用 Waline</h3>
-<p>在 Hexo 根目录下执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install @waline/hexo-next</span><br></pre></td></tr></table></figure>
-<p>接着你可以在 Hexo 根目录下 <code>\node_modules\@waline</code> 中找到 <code>default.yaml</code> 文件，里面就是所有 Waline 的设置选项了。 为了方便将其中需要改变的选项手动写入到 <code>next</code> 主题下 的 <code>_config.yaml</code>中， 以下是部分参考，更多的选项设置在上述 <code>default.yaml</code> 中：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment">#是否开启</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">waline-server-ecru.vercel.app</span> <span class="comment"># Waline #服务端地址，我们这里就是上面部署的 Vercel 地址</span></span><br><span class="line">  <span class="attr">locale:</span></span><br><span class="line">    <span class="attr">placeholder:</span> <span class="string">疑义相与析，畅所欲言，不登录也没关系哒</span> <span class="comment"># #评论框的默认文字</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># 头像风格</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>,<span class="string">mail</span>] <span class="comment"># 自定义评论框上面的三个输入框的内容</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># 评论数量多少时显示分页</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># 语言, 可选值: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># 文章阅读统计</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示</span></span><br><span class="line">  <span class="attr">requiredFields:</span> [<span class="string">nick</span>] <span class="comment"># 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]</span></span><br><span class="line">  <span class="attr">libUrl:</span> <span class="string">https://unpkg.com/@waline/client@v2/dist/waline.js</span> <span class="comment"># Set custom library cdn url</span></span><br><span class="line">  <span class="attr">login:</span> <span class="string">enable</span></span><br></pre></td></tr></table></figure>
-<h3 id="登录服务端">登录服务端</h3>
-<p>接着部署后就能够看到登录按钮，进行登录，貌似第一个登录的账号就会有个 <strong>博主</strong> 的标识。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206292335984.png" alt="进入登录界面" /><figcaption aria-hidden="true">进入登录界面</figcaption>
-</figure>
-<p>但是访客不登陆也能评论。访客填写不同的邮箱会显示其对应账号的头像。</p>
-<p>最后效果可以参见<span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnLw==">官方文档<i class="fa fa-external-link-alt"></i></span> 。</p>
-<h3 id="参考">参考</h3>
-<p><span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWw=">官方文档<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9xaWFuZmFuZ3VvamluLnRvcC8yMDIyLzAxLzIwL0hleG8lRTUlOEQlOUElRTUlQUUlQTIlRTglQkYlOUIlRTklOTglQjYlRUYlQkMlOUElRTQlQjglQkEtTmV4dC0lRTQlQjglQkIlRTklQTIlOTglRTYlQjclQkIlRTUlOEElQTAtV2FsaW5lLSVFOCVBRiU4NCVFOCVBRSVCQSVFNyVCMyVCQiVFNyVCQiU5Ri8=">谢同学博客<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Blog搭建</category>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>三角形中的几个恒等式</title>
     <url>/2022/07/01/%E6%95%B0%E5%AD%A6/%E5%85%B6%E4%BB%96/%E4%B8%89%E8%A7%92%E5%BD%A2%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%81%92%E7%AD%89%E5%BC%8F/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>在 <span class="math inline">\(\Delta ABC\)</span> 中，以下等式成立</p>
@@ -318,77 +394,6 @@ cot \frac{C}{2} = -\frac{\cot \frac{A}{2}+\cot \frac{B}{2}}{1-\cot \frac{A}{2}\,
       </categories>
       <tags>
         <tag>三角函数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Introduction to Inequality</title>
-    <url>/2022/07/05/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/ISP_equiality/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="oscillation">Oscillation</h2>
-<p>Example: <span class="math display">\[
-\begin{gather}
-b_n=c_n \, a_n=(-1)^{n+1}a_n \text, \, a_n \geq 0\\
-\sum_{n=1}^{N} b_n \leq \sum_{n=1}^{N}\left| b_n \right| = \sum_{n=1}^N a_n
-\end{gather}
-\]</span> Use <em>Euler's formula</em> to rewrite <span class="math display">\[
-(-1)^n=e^{2\pi in\frac{1}{2}}=\cos(2\pi n\frac{1}{2})+i\sin(2\pi n\frac{1}{2})
-\]</span> Periodicity is 2. Moreover , Take periodicity k <span class="math display">\[
-(e^{2\pi i\frac{1}{k}})^{n+k}= (e^{2\pi i\frac{1}{k}})^{n}\\
-\]</span></p>
-<h3 id="fourier-series">Fourier series</h3>
-<p>More generally, for $ x$, consider <span class="math inline">\(e^{-i\omega n}\)</span>: Periodicity <span class="math inline">\(\frac{1}{x}\)</span>, and <span class="math inline">\(\omega = \frac{2\pi}{x}\)</span> <span class="math display">\[
-F(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}\text{     ,              }
-F_N(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}    
-\]</span> Generate a new function on <span class="math inline">\(\left[-1,1\right]\)</span> , known as Fourier analysis.</p>
-<p>Since <span class="math inline">\(|e^{i\theta}|\leq 1\)</span>, therefore</p>
-<h3 id="introduction-a-norm">introduction a norm</h3>
-<p>For a sequence <span class="math inline">\((a_n)_{n\in\mathbb{Z}}\in\mathbb{R}\)</span>, Let <span class="math display">\[
-\left\|a_n \right\|_{\boldsymbol l^2}:= (\sum _{n=-\infty}^\infty |a_n|^p )^\frac{1}{p} \text{  for } p\in [1,\infty]
-\]</span> and <span class="math display">\[
-\|a_n\| = \mathop{sup}\limits_{n\in\mathbb{Z}}|a_n|
-\]</span> We can measure the distance between two sequences e.g. for <span class="math inline">\(c_n=(-1)^{n+1}\)</span> and <span class="math inline">\(d_n=(-1)^{n+1}(1+\frac{1}{n})\)</span>. <span class="math display">\[
-\|c_n-d_n\|=(\sum_{n=-\infty}^{\infty}\frac{1}{n^2})^\frac{1}{2}=\frac{\pi}{\sqrt6}\leq2
-\]</span></p>
-<h3 id="l2-estimate-crude"><span class="math inline">\(L^2\)</span>-estimate: Crude</h3>
-<p>Recall the crude estimate :<span class="math inline">\(|F_N(x)| \leq \sum_{n=-N}^{n=N} a_n\)</span> ：no oscillation</p>
-<p>This yields <span class="math display">\[
-\begin{aligned}
-\|F_N\|_{L^2}&amp;=(\int_{-1}^1(F_N(x))^2d\,x)^\frac{1}{2}\\
-&amp;\leq(\int_{-1}^1a_n^2d\,x)^\frac{1}{2})\\
-&amp;=2^{\frac{1}{2}}\sum_{n=-N}^{N} a_n
-\end{aligned}
-\]</span> In particular, if <span class="math inline">\(a_n=1\)</span> for all <span class="math inline">\(|n|\leq N\)</span> then <span class="math display">\[
-\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| \leq 2^\frac{3}{2}N
-\]</span> <span class="math inline">\(L^2\)</span> -size of <span class="math inline">\(F_N(x)\)</span> is bounded by <span class="math inline">\(O(N)\)</span></p>
-<h3 id="theorem-3-parsevals-identity">Theorem 3 (Parseval's identity)</h3>
-<p><span class="math display">\[
-\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| \leq 2N^\frac{3}{2}\ll2^\frac{3}{2}N
-\]</span></p>
-<p>Multiplying out the square: <span class="math display">\[
-\begin{aligned}
-\|\sum_{n=-N}^N e^{-i\omega n}\| &amp;=(\int_{-1}^1(\sum_{n=-N}^N e^{-i\omega n}) ^2d\,x)^\frac{1}{2}\\
-&amp;=\int_{-1}^1 \sum_{n=-N}^N e^{-i\omega n}\sum_{m=-N}^N e^{-i\omega n}d\,x\\
-&amp;= \sum_{n=-N}^N\sum_{m=-N}^N \int_{-1}^1  e^{-i\omega (n-m)}d\,x
-\end{aligned}
-\]</span> For the diagonal case (m=n) <span class="math display">\[
-\int_{-1}^1  e^{-i\omega (n-m)}d\,x =2
-\]</span> For the non-diagonal case (<span class="math inline">\(n\neq m\)</span>) <span class="math display">\[
-\int_{-1}^1  e^{-i\omega (n-m)}d\,x =-\frac{1}{2\pi i (n-m)}(e^{-2\pi i (n-m)}-e^{2\pi i (n-m)})=0
-\]</span></p>
-<p>Same argument shows more generally <span class="math display">\[
-\begin{gather}
-\text{For any }a_n \;s.t.\|a_n\|_{l^2}=(\sum_{n=-\infty}^\infty |a_n|^2)^{\frac{1}{2}}&lt;\infty.\\
-\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| _{l^2}=2^{\frac{1}{2}}\|a_n\|_{l^2}
-\end{gather}
-\]</span></p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>数学分析</category>
-        <category>课堂笔记</category>
-      </categories>
-      <tags>
-        <tag>不等式</tag>
-        <tag>Fourier</tag>
       </tags>
   </entry>
   <entry>
@@ -460,6 +465,77 @@ z=z\\
         <tag>高等数学</tag>
         <tag>高斯公式</tag>
         <tag>曲面积分</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Introduction to Inequality</title>
+    <url>/2022/07/05/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/ISP_equiality/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="oscillation">Oscillation</h2>
+<p>Example: <span class="math display">\[
+\begin{gather}
+b_n=c_n \, a_n=(-1)^{n+1}a_n \text, \, a_n \geq 0\\
+\sum_{n=1}^{N} b_n \leq \sum_{n=1}^{N}\left| b_n \right| = \sum_{n=1}^N a_n
+\end{gather}
+\]</span> Use <em>Euler's formula</em> to rewrite <span class="math display">\[
+(-1)^n=e^{2\pi in\frac{1}{2}}=\cos(2\pi n\frac{1}{2})+i\sin(2\pi n\frac{1}{2})
+\]</span> Periodicity is 2. Moreover , Take periodicity k <span class="math display">\[
+(e^{2\pi i\frac{1}{k}})^{n+k}= (e^{2\pi i\frac{1}{k}})^{n}\\
+\]</span></p>
+<h3 id="fourier-series">Fourier series</h3>
+<p>More generally, for $ x$, consider <span class="math inline">\(e^{-i\omega n}\)</span>: Periodicity <span class="math inline">\(\frac{1}{x}\)</span>, and <span class="math inline">\(\omega = \frac{2\pi}{x}\)</span> <span class="math display">\[
+F(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}\text{     ,              }
+F_N(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}    
+\]</span> Generate a new function on <span class="math inline">\(\left[-1,1\right]\)</span> , known as Fourier analysis.</p>
+<p>Since <span class="math inline">\(|e^{i\theta}|\leq 1\)</span>, therefore</p>
+<h3 id="introduction-a-norm">introduction a norm</h3>
+<p>For a sequence <span class="math inline">\((a_n)_{n\in\mathbb{Z}}\in\mathbb{R}\)</span>, Let <span class="math display">\[
+\left\|a_n \right\|_{\boldsymbol l^2}:= (\sum _{n=-\infty}^\infty |a_n|^p )^\frac{1}{p} \text{  for } p\in [1,\infty]
+\]</span> and <span class="math display">\[
+\|a_n\| = \mathop{sup}\limits_{n\in\mathbb{Z}}|a_n|
+\]</span> We can measure the distance between two sequences e.g. for <span class="math inline">\(c_n=(-1)^{n+1}\)</span> and <span class="math inline">\(d_n=(-1)^{n+1}(1+\frac{1}{n})\)</span>. <span class="math display">\[
+\|c_n-d_n\|=(\sum_{n=-\infty}^{\infty}\frac{1}{n^2})^\frac{1}{2}=\frac{\pi}{\sqrt6}\leq2
+\]</span></p>
+<h3 id="l2-estimate-crude"><span class="math inline">\(L^2\)</span>-estimate: Crude</h3>
+<p>Recall the crude estimate :<span class="math inline">\(|F_N(x)| \leq \sum_{n=-N}^{n=N} a_n\)</span> ：no oscillation</p>
+<p>This yields <span class="math display">\[
+\begin{aligned}
+\|F_N\|_{L^2}&amp;=(\int_{-1}^1(F_N(x))^2d\,x)^\frac{1}{2}\\
+&amp;\leq(\int_{-1}^1a_n^2d\,x)^\frac{1}{2})\\
+&amp;=2^{\frac{1}{2}}\sum_{n=-N}^{N} a_n
+\end{aligned}
+\]</span> In particular, if <span class="math inline">\(a_n=1\)</span> for all <span class="math inline">\(|n|\leq N\)</span> then <span class="math display">\[
+\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| \leq 2^\frac{3}{2}N
+\]</span> <span class="math inline">\(L^2\)</span> -size of <span class="math inline">\(F_N(x)\)</span> is bounded by <span class="math inline">\(O(N)\)</span></p>
+<h3 id="theorem-3-parsevals-identity">Theorem 3 (Parseval's identity)</h3>
+<p><span class="math display">\[
+\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| \leq 2N^\frac{3}{2}\ll2^\frac{3}{2}N
+\]</span></p>
+<p>Multiplying out the square: <span class="math display">\[
+\begin{aligned}
+\|\sum_{n=-N}^N e^{-i\omega n}\| &amp;=(\int_{-1}^1(\sum_{n=-N}^N e^{-i\omega n}) ^2d\,x)^\frac{1}{2}\\
+&amp;=\int_{-1}^1 \sum_{n=-N}^N e^{-i\omega n}\sum_{m=-N}^N e^{-i\omega n}d\,x\\
+&amp;= \sum_{n=-N}^N\sum_{m=-N}^N \int_{-1}^1  e^{-i\omega (n-m)}d\,x
+\end{aligned}
+\]</span> For the diagonal case (m=n) <span class="math display">\[
+\int_{-1}^1  e^{-i\omega (n-m)}d\,x =2
+\]</span> For the non-diagonal case (<span class="math inline">\(n\neq m\)</span>) <span class="math display">\[
+\int_{-1}^1  e^{-i\omega (n-m)}d\,x =-\frac{1}{2\pi i (n-m)}(e^{-2\pi i (n-m)}-e^{2\pi i (n-m)})=0
+\]</span></p>
+<p>Same argument shows more generally <span class="math display">\[
+\begin{gather}
+\text{For any }a_n \;s.t.\|a_n\|_{l^2}=(\sum_{n=-\infty}^\infty |a_n|^2)^{\frac{1}{2}}&lt;\infty.\\
+\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| _{l^2}=2^{\frac{1}{2}}\|a_n\|_{l^2}
+\end{gather}
+\]</span></p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>数学分析</category>
+        <category>课堂笔记</category>
+      </categories>
+      <tags>
+        <tag>不等式</tag>
+        <tag>Fourier</tag>
       </tags>
   </entry>
 </search>
