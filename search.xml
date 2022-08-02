@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
+    <title>Anaconda问题</title>
     <url>/2022/07/22/%E5%85%B6%E4%BB%96/Ananconda%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>打开 <strong>Anaconda</strong> 时出现</p>
 <p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207221820298.png" /></p>
@@ -9,6 +9,9 @@
 <p>取消代理</p>
 <p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207221821701.png" /></p>
 ]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
   </entry>
   <entry>
     <title>Lightroom 缓存</title>
@@ -35,7 +38,7 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>np.random.rand vs np.random.random</title>
     <url>/2022/07/23/%E5%85%B6%E4%BB%96/np.random.rand%20vs%20np.random.random/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>二者都连续均匀地在 <span class="math inline">\([0,1]\)</span> 生成 (uniform distribution) 样本，但接受地参数不同. <code>np.random.rand</code> 接受分隔地参数，<code>np.random.random</code> 接受一个 tuple.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = np.random.rand(<span class="number">2</span>,<span class="number">7</span>)</span><br><span class="line">a = np.random.random((<span class="number">2.7</span>))</span><br></pre></td></tr></table></figure>
@@ -43,6 +46,9 @@
 <p>自 Numpy 1.17 后， 提供新的 方法</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rng = np.random.default_rng()  <span class="comment"># Create a default Generator.</span></span><br><span class="line">rng.random(size=<span class="number">10</span>)  <span class="comment"># Generate 10 samples.</span></span><br><span class="line">array([<span class="number">0.00416913</span>, <span class="number">0.31533329</span>, <span class="number">0.19057857</span>, <span class="number">0.48732511</span>, <span class="number">0.40638395</span>,</span><br><span class="line">       <span class="number">0.32165646</span>, <span class="number">0.02597142</span>, <span class="number">0.19788567</span>, <span class="number">0.08142055</span>, <span class="number">0.15755424</span>])</span><br><span class="line">rng = np.random.uniform(<span class="number">0</span>,<span class="number">1</span>,size=(<span class="number">2</span>,<span class="number">3</span>)) <span class="comment">#specify bound </span></span><br></pre></td></tr></table></figure>
 ]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
   </entry>
   <entry>
     <title>加密</title>
@@ -64,9 +70,10 @@
       </categories>
   </entry>
   <entry>
-    <title></title>
-    <url>/2022/07/27/%E5%85%B6%E4%BB%96/%E5%A4%A7%E7%90%86%E7%81%AB%E6%8A%8A%E8%8A%82%E6%9D%A5%E5%8E%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>普遍流传火烧松明楼的故事缺乏证据。该说法大概在明清时期广泛为人接受。如清代学者 师范曾在《滇系·杂载》中总结出以下几点：</p>
+    <title>大理火把节来历</title>
+    <url>/2022/08/01/%E5%85%B6%E4%BB%96/%E5%A4%A7%E7%90%86%E7%81%AB%E6%8A%8A%E8%8A%82%E6%9D%A5%E5%8E%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>普遍流传火烧松明楼的故事缺乏证据。该说法大概在明清时期广泛为人接受。如清代学者</p>
+<p>师范曾在《滇系·杂载》中总结出以下几点：</p>
 <ol type="1">
 <li>火把节即星回节</li>
 <li>起源一：武侯征南，于是日擒孟获，侵夜入城，城中父老设庭燎以迎之</li>
@@ -82,6 +89,9 @@
 <p>尽管如此，纪念柏洁夫人已然作为节日庆祝的主要载体。比如海东镇的赛龙舟与“捞尸会”，染手花（虽然已经不多见）与白洁夫人手刨火烧残余至十指染血有关，大理北门村和西门村等多地更是将“白洁夫人”奉为本主。</p>
 <p>目前还有一种的说法是大理白族火把节其真正的象征源于男性的垄断生育。抢升斗的必须是新婚的男性，象征着得子。</p>
 ]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
   </entry>
   <entry>
     <title></title>
@@ -537,5 +547,87 @@ F_N(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}
         <tag>不等式</tag>
         <tag>Fourier</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2022/08/02/%E5%85%B6%E4%BB%96/%E7%81%AB%E6%8A%8A%E8%8A%82%E6%84%9F%E5%8F%97%20-%20%E5%89%AF%E6%9C%AC/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>大理白族的火把节在每年六月二十日，分为竖火把，点火，抢升斗，耍火把等环节，具有独特且浓郁的名族特色，也是白族最盛大的传统节日。</p>
+<h2 id="竖火把">竖火把</h2>
+<p>火把节的资金往往由村中的新生儿女的几户人家均摊。火把往往在本主庙院子里或者附近竖立，然后在竖立的挖坑以便插入。不同于彝族，白族火把节往往高竖火把，由松木制成。然后再旁边插上竹条和稻草等助燃。最后制作『升斗』，是由细木和彩纸糊成，旁边再插上旗子，共有三层，故曰『连升三级』，象征着婴儿的出世。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012330672.png" alt="连升三级" /><figcaption aria-hidden="true">连升三级</figcaption>
+</figure>
+<h2 id="点火">点火</h2>
+<p>火把节的操办具有地域性，每个村寨都有自己的本主庙，而所有村落按照本主庙划分为不同的「辖区」，每个区域都竖立自己单独的火把，火种必须从本主庙迎出来。 然后将火把顶上的稻草引燃</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012350457.png" alt="南潘上登火把节" /><figcaption aria-hidden="true">南潘上登火把节</figcaption>
+</figure>
+<h2 id="抢升斗">抢升斗</h2>
+<p>抢升斗的人选必须是刚婚的男性，抢下『连升三级』，祝愿着得子。</p>
+<h2 id="耍火把">耍火把</h2>
+<p>这应该是火把节最高潮和有趣的部分了。每家人挤在迎来的火种前引燃自己手中的火把，将火焰传递的温暖送入自家门中。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012356921.png" alt="借火" /><figcaption aria-hidden="true">借火</figcaption>
+</figure>
+<p>纵然黑夜降临，但亲朋好友之间互相取火，将薪火不断传递，『万炬纵横，灿如星海』。正如同明代诗人杨慎笔下的『松炬荧荧宵作平』。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020001028.jpg" /></p>
+<p><img src="F:\photos\2022\大理\后期\20220723-20220723-DSC02580.jpg" /></p>
+<p>撒一把松明子，烈焰迸发，火光四射。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020009767.jpg" /></p>
+<p>尽情挥舞手中的火把，让疾风为火焰注入生命力，让黑暗中染上绚丽炽红的轨迹。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020012250.jpg" /></p>
+<p><img src="F:\photos\2022\大理\后期\20220723-20220723-DSC02658.jpg" /></p>
+<p>火把上的大火直冲云霄，点亮一片天空。火星四溅，松木崩裂，感受到火炬内部有股强劲的生命力在迸发。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020021338.jpg" /></p>
+<p>最终火把却被这股生命力反噬，仿佛英雄垂暮，摇摇欲坠，大厦将倾。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020024687.jpg" /></p>
+<p>最终轰然倒塌，仿佛火山爆发，岩浆滚滚流淌而下，又如浴火重生。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020026118.jpg" /></p>
+<p>火把节如同不断上演的光影艺术剧，绚丽多姿，多彩纷呈。白子们通过火焰的传递，传承苍洱间祖祖辈辈生活的土地。又如同一首苍老的山歌，遒劲有力，发自肺腑，全出于本性，没有丝毫扭捏造作。火焰的力量从火把的根部直顶头部，穿云裂石。舞动时，划过黑暗。这就是为何火把节象征着生育的根本吧。</p>
+<p>欢迎各位来西南地区体会独特的风土人情。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2022/08/01/%E5%85%B6%E4%BB%96/%E7%81%AB%E6%8A%8A%E8%8A%82%E6%84%9F%E5%8F%97/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>大理白族的火把节在每年六月二十日，分为竖火把，点火，抢升斗，耍火把等环节，具有独特且浓郁的名族特色，也是白族最盛大的传统节日。</p>
+<h2 id="竖火把">竖火把</h2>
+<p>火把节的资金往往由村中的新生儿女的几户人家均摊。火把往往在本主庙院子里或者附近竖立，然后在竖立的挖坑以便插入。不同于彝族，白族火把节往往高竖火把，由松木制成。然后再旁边插上竹条和稻草等助燃。最后制作『升斗』，是由细木和彩纸糊成，旁边再插上旗子，共有三层，故曰『连升三级』，象征着婴儿的出世。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012330672.png" alt="连升三级" /><figcaption aria-hidden="true">连升三级</figcaption>
+</figure>
+<h2 id="点火">点火</h2>
+<p>火把节的操办具有地域性，每个村寨都有自己的本主庙，而所有村落按照本主庙划分为不同的「辖区」，每个区域都竖立自己单独的火把，火种必须从本主庙迎出来。</p>
+<video src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012337426.mp4" title="南潘溪村迎火">
+99
+</video>
+<p>然后将火把顶上的稻草引燃</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012350457.png" alt="南潘上登火把节" /><figcaption aria-hidden="true">南潘上登火把节</figcaption>
+</figure>
+<h2 id="抢升斗">抢升斗</h2>
+<p>抢升斗的人选必须是刚婚的男性，抢下『连升三级』，祝愿着得子。</p>
+<h2 id="耍火把">耍火把</h2>
+<p>这应该是火把节最高潮和有趣的部分了。每家人挤在迎来的火种前引燃自己手中的火把，将火焰传递的温暖送入自家门中。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012356921.png" alt="借火" /><figcaption aria-hidden="true">借火</figcaption>
+</figure>
+<p>纵然黑夜降临，但亲朋好友之间互相取火，将薪火不断传递，『万炬纵横，灿如星海』。正如同明代诗人杨慎笔下的『松炬荧荧宵作平』。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020001028.jpg" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020107106.jpg" /></p>
+<p>撒一把松明子，烈焰迸发，火光四射。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020009767.jpg" /></p>
+<p>尽情挥舞手中的火把，让疾风为火焰注入生命力，让黑暗中染上绚丽炽红的轨迹。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020012250.jpg" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020105980.jpg" /></p>
+<p>火把上的大火直冲云霄，点亮一片天空。火星四溅，松木崩裂，感受到火炬内部有股强劲的生命力在迸发。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020021338.jpg" /></p>
+<p>最终火把却被这股生命力反噬，仿佛英雄垂暮，摇摇欲坠，大厦将倾。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020024687.jpg" /></p>
+<p>最终轰然倒塌，仿佛火山爆发，岩浆滚滚流淌而下，又如浴火重生。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020026118.jpg" /></p>
+<p>火把节如同不断上演的光影艺术剧，绚丽多姿，多彩纷呈。白子们通过火焰的传递，传承苍洱间祖祖辈辈生活的土地。又如同一首苍老的山歌，遒劲有力，发自肺腑，全出于本性，没有丝毫扭捏造作。火焰的力量从火把的根部直顶头部，穿云裂石。舞动时，划过黑暗。这就是为何火把节象征着生育的根本吧。</p>
+<p>欢迎各位来西南地区体会独特的风土人情。</p>
+]]></content>
   </entry>
 </search>

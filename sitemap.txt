@@ -1,4 +1,6 @@
-http://example.pthm/2022/07/27/%E5%85%B6%E4%BB%96/%E5%A4%A7%E7%90%86%E7%81%AB%E6%8A%8A%E8%8A%82%E6%9D%A5%E5%8E%86/
+http://example.pthm/2022/08/02/%E5%85%B6%E4%BB%96/%E7%81%AB%E6%8A%8A%E8%8A%82%E6%84%9F%E5%8F%97%20-%20%E5%89%AF%E6%9C%AC/
+http://example.pthm/2022/08/01/%E5%85%B6%E4%BB%96/%E7%81%AB%E6%8A%8A%E8%8A%82%E6%84%9F%E5%8F%97/
+http://example.pthm/2022/08/01/%E5%85%B6%E4%BB%96/%E5%A4%A7%E7%90%86%E7%81%AB%E6%8A%8A%E8%8A%82%E6%9D%A5%E5%8E%86/
 http://example.pthm/2022/07/23/%E5%85%B6%E4%BB%96/np.random.rand%20vs%20np.random.random/
 http://example.pthm/2022/07/22/%E5%85%B6%E4%BB%96/Ananconda%E9%97%AE%E9%A2%98/
 http://example.pthm/2022/07/14/%E5%85%B6%E4%BB%96/%E7%94%98%E5%8D%97%E6%B8%B8%E8%AE%B0/
