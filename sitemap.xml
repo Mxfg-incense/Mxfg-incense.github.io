@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.pthm/2022/08/02/%E5%85%B6%E4%BB%96/%E7%81%AB%E6%8A%8A%E8%8A%82%E6%84%9F%E5%8F%97%20-%20%E5%89%AF%E6%9C%AC/</loc>
-    
-    <lastmod>2022-08-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://example.pthm/2022/08/01/%E5%85%B6%E4%BB%96/%E7%81%AB%E6%8A%8A%E8%8A%82%E6%84%9F%E5%8F%97/</loc>
     
     <lastmod>2022-08-01</lastmod>
@@ -243,14 +234,14 @@
   </url>
   
   <url>
-    <loc>http://example.pthm/tags/%E6%91%84%E5%BD%B1/</loc>
+    <loc>http://example.pthm/tags/%E6%97%85%E6%B8%B8/</loc>
     <lastmod>2022-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.pthm/tags/%E6%97%85%E6%B8%B8/</loc>
+    <loc>http://example.pthm/tags/%E6%91%84%E5%BD%B1/</loc>
     <lastmod>2022-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
