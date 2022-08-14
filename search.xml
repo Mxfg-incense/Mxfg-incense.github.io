@@ -38,6 +38,19 @@
       </tags>
   </entry>
   <entry>
+    <title>np.random.rand vs np.random.random</title>
+    <url>/2022/07/23/%E5%85%B6%E4%BB%96/np.random.rand%20vs%20np.random.random/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>二者都连续均匀地在 <span class="math inline">\([0,1]\)</span> 生成 (uniform distribution) 样本，但接受地参数不同. <code>np.random.rand</code> 接受分隔地参数，<code>np.random.random</code> 接受一个 tuple.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = np.random.rand(<span class="number">2</span>,<span class="number">7</span>)</span><br><span class="line">a = np.random.random((<span class="number">2.7</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="推荐写法">推荐写法</h3>
+<p>自 Numpy 1.17 后， 提供新的 方法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rng = np.random.default_rng()  <span class="comment"># Create a default Generator.</span></span><br><span class="line">rng.random(size=<span class="number">10</span>)  <span class="comment"># Generate 10 samples.</span></span><br><span class="line">array([<span class="number">0.00416913</span>, <span class="number">0.31533329</span>, <span class="number">0.19057857</span>, <span class="number">0.48732511</span>, <span class="number">0.40638395</span>,</span><br><span class="line">       <span class="number">0.32165646</span>, <span class="number">0.02597142</span>, <span class="number">0.19788567</span>, <span class="number">0.08142055</span>, <span class="number">0.15755424</span>])</span><br><span class="line">rng = np.random.uniform(<span class="number">0</span>,<span class="number">1</span>,size=(<span class="number">2</span>,<span class="number">3</span>)) <span class="comment">#specify bound </span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+  </entry>
+  <entry>
     <title>加密</title>
     <url>/2022/06/30/%E5%85%B6%E4%BB%96/test/</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
@@ -52,19 +65,6 @@
   </div>
 </div>
 <script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>其他</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>np.random.rand vs np.random.random</title>
-    <url>/2022/07/23/%E5%85%B6%E4%BB%96/np.random.rand%20vs%20np.random.random/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>二者都连续均匀地在 <span class="math inline">\([0,1]\)</span> 生成 (uniform distribution) 样本，但接受地参数不同. <code>np.random.rand</code> 接受分隔地参数，<code>np.random.random</code> 接受一个 tuple.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = np.random.rand(<span class="number">2</span>,<span class="number">7</span>)</span><br><span class="line">a = np.random.random((<span class="number">2.7</span>))</span><br></pre></td></tr></table></figure>
-<h3 id="推荐写法">推荐写法</h3>
-<p>自 Numpy 1.17 后， 提供新的 方法</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rng = np.random.default_rng()  <span class="comment"># Create a default Generator.</span></span><br><span class="line">rng.random(size=<span class="number">10</span>)  <span class="comment"># Generate 10 samples.</span></span><br><span class="line">array([<span class="number">0.00416913</span>, <span class="number">0.31533329</span>, <span class="number">0.19057857</span>, <span class="number">0.48732511</span>, <span class="number">0.40638395</span>,</span><br><span class="line">       <span class="number">0.32165646</span>, <span class="number">0.02597142</span>, <span class="number">0.19788567</span>, <span class="number">0.08142055</span>, <span class="number">0.15755424</span>])</span><br><span class="line">rng = np.random.uniform(<span class="number">0</span>,<span class="number">1</span>,size=(<span class="number">2</span>,<span class="number">3</span>)) <span class="comment">#specify bound </span></span><br></pre></td></tr></table></figure>
-]]></content>
       <categories>
         <category>其他</category>
       </categories>
@@ -92,6 +92,199 @@
       <categories>
         <category>其他</category>
       </categories>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2022/08/14/%E5%85%B6%E4%BB%96/%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="使用-mlp-实现">使用 MLP 实现</h1>
+<h2 id="设置">设置</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow <span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">from</span> keras.datasets <span class="keyword">import</span> mnist</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">tf.config.list_physical_devices(<span class="string">&#x27;GPU&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>[PhysicalDevice(name=&#39;/physical_device:GPU:0&#39;, device_type=&#39;GPU&#39;)]</code></pre>
+<h2 id="载入数据">载入数据</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">(x_train,y_train),(x_test,y_test) = mnist.load_data()</span><br><span class="line"></span><br><span class="line">plt.figure()</span><br><span class="line">plt.imshow(x_test[<span class="number">0</span>])</span><br><span class="line">plt.colorbar()</span><br><span class="line">plt.grid(<span class="literal">False</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<figure>
+<img src="%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB_files/%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB_4_0.png" alt="png" /><figcaption aria-hidden="true">png</figcaption>
+</figure>
+<h4 id="load_data">load_data()</h4>
+<p><strong>返回</strong>：</p>
+<p>两个元组：</p>
+<pre><code>x_train, x_test: uint8 数组表示的灰度图像，尺寸为 (num_samples, 28, 28)
+
+y_train, y_test: uint8 数组表示的数字标签（范围在 0-9 之间的整数），尺寸为 (num_samples,)</code></pre>
+<p><strong>参数</strong>： path: 如果在本地没有索引文件 (at '~/.keras/datasets/' + path), 它将被下载到该目录 #### Mnist 数据集</p>
+<p>训练集为 60,000 张 28x28 像素灰度图像，测试集为 10,000 同规格图像，总共 10 类数字标签。</p>
+<h2 id="处理原始数据">处理原始数据</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">x_train = x_train / <span class="number">255.0</span>       <span class="comment">#隐式转换为float64</span></span><br><span class="line">x_test = x_test / <span class="number">255.0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x_train.shape,<span class="string">&quot;train data&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(x_test.shape,<span class="string">&quot;test data&quot;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>(60000, 28, 28) train data
+(10000, 28, 28) test data</code></pre>
+<p>将原始数据归一化。<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2RiYXQyMDE1L2FydGljbGUvZGV0YWlscy81MDAwODMxNQ==" title="最好的markdown教程">归一化的作用<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="转换标签">转换标签</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> keras.utils <span class="keyword">import</span> to_categorical</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">y_train = to_categorical(y_train, num_classes=<span class="number">10</span>)</span><br><span class="line">y_test = to_categorical(y_test, num_classes=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(y_test)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>[[0. 0. 0. ... 1. 0. 0.]
+ [0. 0. 1. ... 0. 0. 0.]
+ [0. 1. 0. ... 0. 0. 0.]
+ ...
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]]</code></pre>
+<p>使用 <span class="exturl" data-url="aHR0cHM6Ly93d3cuZ2Vla3Nmb3JnZWVrcy5vcmcvcHl0aG9uLWtlcmFzLWtlcmFzLXV0aWxzLXRvX2NhdGVnb3JpY2FsLw==">to_categorical()<i class="fa fa-external-link-alt"></i></span> 将标签向量转化为 binary matrix</p>
+<h2 id="构建模型">构建模型</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dense,Dropout,Flatten</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">model = Sequential()</span><br><span class="line">model.add(Flatten(input_shape=(<span class="number">28</span>,<span class="number">28</span>)))</span><br><span class="line">model.add(Dense(<span class="number">512</span>,activation=<span class="string">&#x27;relu&#x27;</span>,name=<span class="string">&quot;Dense1&quot;</span>)) <span class="comment">#添加全连接层</span></span><br><span class="line">model.add(Dropout(<span class="number">0.3</span>,name=<span class="string">&#x27;dropout1&#x27;</span>))</span><br><span class="line">model.add(Dense(<span class="number">128</span>,activation=<span class="string">&#x27;relu&#x27;</span>,name=<span class="string">&#x27;Dense2&#x27;</span>))</span><br><span class="line">model.add(Dropout(<span class="number">0.3</span>,name=<span class="string">&#x27;dropout2&#x27;</span>))</span><br><span class="line">model.add(Dense(<span class="number">10</span>,activation=<span class="string">&#x27;softmax&#x27;</span>,name=<span class="string">&#x27;softmax&#x27;</span>))</span><br><span class="line">model.summary()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>Model: &quot;sequential&quot;
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten (Flatten)            (None, 784)               0         
+_________________________________________________________________
+Dense1 (Dense)               (None, 512)               401920    
+_________________________________________________________________
+dropout1 (Dropout)           (None, 512)               0         
+_________________________________________________________________
+Dense2 (Dense)               (None, 128)               65664     
+_________________________________________________________________
+dropout2 (Dropout)           (None, 128)               0         
+_________________________________________________________________
+softmax (Dense)              (None, 10)                1290      
+=================================================================
+Total params: 468,874
+Trainable params: 468,874
+Non-trainable params: 0
+_________________________________________________________________</code></pre>
+<p>网络第一层 <code>Flatten</code> 将图像转换成以为数组，该层没有要学习的参数。</p>
+<p>每个 <code>Dense</code> 层有 512 神经元， 最后一个使用 <code>softmax</code> 激活函数，它可以将一个数值向量归一化为一个概率分布向量:</p>
+<p><span class="math display">\[
+Softmax(zi) = \frac{e^{z_i}}{\sum_j {e^{z_j}}}
+\]</span></p>
+<h2 id="编译模型">编译模型</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> keras.losses <span class="keyword">import</span> categorical_crossentropy</span><br><span class="line"><span class="keyword">from</span> keras.optimizers <span class="keyword">import</span> Adamax</span><br><span class="line"></span><br><span class="line">model.<span class="built_in">compile</span>(optimizer=Adamax(),</span><br><span class="line">              loss=<span class="string">&#x27;categorical_crossentropy&#x27;</span>,</span><br><span class="line">              metrics=[<span class="string">&#x27;accuracy&#x27;</span>])</span><br></pre></td></tr></table></figure>
+<p>使用 <code>Admax</code> <span class="exturl" data-url="aHR0cHM6Ly9rZXJhcy5pby96aC9vcHRpbWl6ZXJzLw==">优化器<i class="fa fa-external-link-alt"></i></span>，<code>categotical_crossentropy</code>（交叉熵损失） 作为<span class="exturl" data-url="aHR0cHM6Ly9rZXJhcy5pby96aC9sb3NzZXMv">损失函数<i class="fa fa-external-link-alt"></i></span>，通常与 softmax 配合使用： <span class="math display">\[
+Loss = -log(1-p_i) 
+\]</span> <span class="math inline">\(p_i\)</span>是预测样本真实标签得到的概率</p>
+<h2 id="训练模型">训练模型</h2>
+<p>调用 <code>model.fit</code> 方法，这样命名因为会将模型与训练数据进行拟合</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model.fit(x_train,y_train,batch_size=<span class="number">128</span>,epochs=<span class="number">10</span>,verbose=<span class="number">1</span>,validation_data=(x_test,y_test))</span><br></pre></td></tr></table></figure>
+<pre><code>Epoch 1/10
+469/469 [==============================] - 4s 5ms/step - loss: 0.7144 - accuracy: 0.7838 - val_loss: 0.1901 - val_accuracy: 0.9447
+Epoch 2/10
+469/469 [==============================] - 2s 4ms/step - loss: 0.2355 - accuracy: 0.9317 - val_loss: 0.1319 - val_accuracy: 0.9605
+Epoch 3/10
+469/469 [==============================] - 2s 4ms/step - loss: 0.1644 - accuracy: 0.9515 - val_loss: 0.1056 - val_accuracy: 0.9678
+Epoch 4/10
+469/469 [==============================] - 2s 4ms/step - loss: 0.1290 - accuracy: 0.9617 - val_loss: 0.0917 - val_accuracy: 0.9717
+Epoch 5/10
+469/469 [==============================] - 2s 4ms/step - loss: 0.1077 - accuracy: 0.9687 - val_loss: 0.0837 - val_accuracy: 0.9743
+Epoch 6/10
+469/469 [==============================] - 2s 4ms/step - loss: 0.0963 - accuracy: 0.9710 - val_loss: 0.0751 - val_accuracy: 0.9759
+Epoch 7/10
+469/469 [==============================] - 2s 4ms/step - loss: 0.0802 - accuracy: 0.9763 - val_loss: 0.0738 - val_accuracy: 0.9772
+Epoch 8/10
+469/469 [==============================] - 2s 4ms/step - loss: 0.0714 - accuracy: 0.9790 - val_loss: 0.0663 - val_accuracy: 0.9791
+Epoch 9/10
+469/469 [==============================] - 2s 4ms/step - loss: 0.0664 - accuracy: 0.9798 - val_loss: 0.0647 - val_accuracy: 0.9798
+Epoch 10/10
+469/469 [==============================] - 2s 4ms/step - loss: 0.0570 - accuracy: 0.9830 - val_loss: 0.0633 - val_accuracy: 0.9800
+
+
+
+
+
+&lt;tensorflow.python.keras.callbacks.History at 0x16bbb732550&gt;</code></pre>
+<p><code>epochs</code> 是训练次数，<code>validation_date</code> 是划分出测试集，训练集正确率达到98%以上</p>
+<h2 id="评估准确率">评估准确率</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">test_loss,test_acc = model.evaluate(x_test,y_test,verbose=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;\nTest accurancy&#x27;</span>, test_acc)</span><br></pre></td></tr></table></figure>
+<pre><code>313/313 [==============================] - 1s 2ms/step - loss: 0.0284 - accuracy: 0.9916
+
+Test accurancy 0.991599977016449</code></pre>
+<h2 id="进行预测">进行预测</h2>
+<p>来看第一个预测结果</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">predictions= model.predict(x_test)</span><br><span class="line">predictions[<span class="number">0</span>]</span><br><span class="line">np.argmax(predictions[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>7</code></pre>
+<p>可以绘制图表，查看对全部类的预测</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">plot_image</span>(<span class="params">i,predictions_array, true_label, img</span>):</span><br><span class="line">  predictions_array, true_label, img = predictions_array, true_label, img</span><br><span class="line">  plt.grid(<span class="literal">False</span>)</span><br><span class="line">  plt.xticks([])</span><br><span class="line">  plt.yticks([])</span><br><span class="line"></span><br><span class="line">  plt.imshow(img, cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  predicted_label = np.argmax(predictions_array)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> predicted_label == true_label:</span><br><span class="line">    color = <span class="string">&#x27;blue&#x27;</span></span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">    color = <span class="string">&#x27;red&#x27;</span></span><br><span class="line"></span><br><span class="line">  plt.xlabel(<span class="string">&quot;&#123;&#125; &#123;:3.0f&#125;% (&#123;&#125;)&quot;</span>.<span class="built_in">format</span>(predicted_label,</span><br><span class="line">                                      <span class="number">100</span>*np.<span class="built_in">max</span>(predictions_array),true_label),color=color)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_value_array</span>(<span class="params">i,predictions_array, true_label</span>):</span><br><span class="line">   predictions_array, true_label = predictions_array, true_label</span><br><span class="line">   plt.grid(<span class="literal">False</span>)</span><br><span class="line">   plt.xticks(<span class="built_in">range</span>(<span class="number">10</span>))</span><br><span class="line">   plt.yticks([])</span><br><span class="line">   thisplot = plt.bar(<span class="built_in">range</span>(<span class="number">10</span>), predictions_array, color=<span class="string">&quot;#777777&quot;</span>)</span><br><span class="line">   plt.ylim([<span class="number">0</span>,<span class="number">1</span>])</span><br><span class="line">   predicted_label = np.argmax(predictions_array)</span><br><span class="line"></span><br><span class="line">   thisplot[predicted_label].set_color(<span class="string">&#x27;red&#x27;</span>)</span><br><span class="line">   thisplot[true_label].set_color(<span class="string">&#x27;blue&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>正确标签为蓝色，错误为红色 ## 验证预测结果</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">num_rows = <span class="number">10</span></span><br><span class="line">num_cols = <span class="number">5</span></span><br><span class="line">num_images = num_rows*num_cols</span><br><span class="line">plt.figure(figsize=(<span class="number">2</span>*<span class="number">2</span>*num_cols, <span class="number">2</span>*num_rows))</span><br><span class="line">x_test.reshape(<span class="number">10000</span>,<span class="number">28</span>,<span class="number">28</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num_images):</span><br><span class="line">  t = np.argmax(y_test[i])</span><br><span class="line">  plt.subplot(num_rows, <span class="number">2</span>*num_cols, <span class="number">2</span>*i+<span class="number">1</span>)</span><br><span class="line">  plot_image(i, predictions[i], t, x_test[i])</span><br><span class="line">  plt.subplot(num_rows, <span class="number">2</span>*num_cols, <span class="number">2</span>*i+<span class="number">2</span>)</span><br><span class="line">  plot_value_array(i, predictions[i], t)</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<figure>
+<img src="%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB_files/%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB_29_0.png" alt="png" /><figcaption aria-hidden="true">png</figcaption>
+</figure>
+<h1 id="使用-cnn">使用 CNN</h1>
+<h2 id="重新载入数据">重新载入数据</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">(x_train,y_train),(x_test,y_test) = mnist.load_data()</span><br><span class="line"></span><br><span class="line">plt.figure()</span><br><span class="line">plt.imshow(x_test[<span class="number">0</span>])</span><br><span class="line">plt.colorbar()</span><br><span class="line">plt.grid(<span class="literal">False</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">x_train = np.expand_dims(x_train,-<span class="number">1</span>)</span><br><span class="line">x_test = np.expand_dims(x_test,-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">x_train = x_train / <span class="number">255.0</span></span><br><span class="line">x_test = x_test / <span class="number">255.0</span></span><br><span class="line"></span><br><span class="line">y_train = to_categorical(y_train)</span><br><span class="line">y_test = to_categorical(y_test)</span><br></pre></td></tr></table></figure>
+<figure>
+<img src="%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB_files/%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB_32_0.png" alt="png" /><figcaption aria-hidden="true">png</figcaption>
+</figure>
+<p>x.shape = (samples_nums, height, width, channels)</p>
+<h2 id="构建模型-1">构建模型</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Conv2D,MaxPooling2D</span><br><span class="line">model = Sequential()</span><br><span class="line">input_size = (<span class="number">28</span>,<span class="number">28</span>,<span class="number">1</span>)</span><br><span class="line">model.add(Conv2D(<span class="number">32</span>,</span><br><span class="line">          kernel_size = (<span class="number">3</span>,<span class="number">3</span>), </span><br><span class="line">          activation = <span class="string">&#x27;relu&#x27;</span>,</span><br><span class="line">          input_shape = input_size))</span><br><span class="line"></span><br><span class="line">model.add(Dropout(<span class="number">0.3</span>))</span><br><span class="line"></span><br><span class="line">model.add(Conv2D(<span class="number">16</span>,</span><br><span class="line">          kernel_size = (<span class="number">3</span>,<span class="number">3</span>), </span><br><span class="line">          activation = <span class="string">&#x27;relu&#x27;</span>))</span><br><span class="line">model.add(MaxPooling2D(pool_size=(<span class="number">2</span>,<span class="number">2</span>)))</span><br><span class="line">model.add(Dropout(<span class="number">0.3</span>))</span><br><span class="line">model.add(Flatten())</span><br><span class="line">model.add(Dense(<span class="number">128</span>,activation=<span class="string">&#x27;relu&#x27;</span>))</span><br><span class="line">model.add(Dropout(<span class="number">0.4</span>))</span><br><span class="line">model.add(Dense(<span class="number">10</span>,activation=<span class="string">&#x27;softmax&#x27;</span>))</span><br><span class="line">model.summary()</span><br></pre></td></tr></table></figure>
+<pre><code>Model: &quot;sequential_5&quot;
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d_8 (Conv2D)            (None, 26, 26, 32)        320       
+_________________________________________________________________
+dropout_12 (Dropout)         (None, 26, 26, 32)        0         
+_________________________________________________________________
+conv2d_9 (Conv2D)            (None, 24, 24, 16)        4624      
+_________________________________________________________________
+max_pooling2d_4 (MaxPooling2 (None, 12, 12, 16)        0         
+_________________________________________________________________
+dropout_13 (Dropout)         (None, 12, 12, 16)        0         
+_________________________________________________________________
+flatten_5 (Flatten)          (None, 2304)              0         
+_________________________________________________________________
+dense_8 (Dense)              (None, 128)               295040    
+_________________________________________________________________
+dropout_14 (Dropout)         (None, 128)               0         
+_________________________________________________________________
+dense_9 (Dense)              (None, 10)                1290      
+=================================================================
+Total params: 301,274
+Trainable params: 301,274
+Non-trainable params: 0
+_________________________________________________________________</code></pre>
+<h2 id="编译和训练模型">编译和训练模型</h2>
+<p>选择 <code>Adamdelta</code> 作为优化器</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> keras.optimizers <span class="keyword">import</span> Adam</span><br><span class="line">model.<span class="built_in">compile</span>(optimizer=Adam(), loss = <span class="string">&#x27;categorical_crossentropy&#x27;</span>, metrics=[<span class="string">&#x27;accuracy&#x27;</span>])</span><br><span class="line">model.fit(x_train,y_train,</span><br><span class="line">          batch_size=<span class="number">128</span>,</span><br><span class="line">          epochs=<span class="number">10</span>,</span><br><span class="line">          verbose=<span class="number">1</span>,</span><br><span class="line">          validation_data=(x_test,y_test))</span><br></pre></td></tr></table></figure>
+<pre><code>Epoch 1/10
+469/469 [==============================] - 6s 9ms/step - loss: 0.6243 - accuracy: 0.8000 - val_loss: 0.0790 - val_accuracy: 0.9767
+Epoch 2/10
+469/469 [==============================] - 3s 7ms/step - loss: 0.1273 - accuracy: 0.9605 - val_loss: 0.0503 - val_accuracy: 0.9837
+Epoch 3/10
+469/469 [==============================] - 3s 6ms/step - loss: 0.0927 - accuracy: 0.9715 - val_loss: 0.0396 - val_accuracy: 0.9874
+Epoch 4/10
+469/469 [==============================] - 3s 7ms/step - loss: 0.0748 - accuracy: 0.9758 - val_loss: 0.0387 - val_accuracy: 0.9891
+Epoch 5/10
+469/469 [==============================] - 3s 6ms/step - loss: 0.0634 - accuracy: 0.9814 - val_loss: 0.0355 - val_accuracy: 0.9880
+Epoch 6/10
+469/469 [==============================] - 3s 7ms/step - loss: 0.0558 - accuracy: 0.9828 - val_loss: 0.0331 - val_accuracy: 0.9900
+Epoch 7/10
+469/469 [==============================] - 3s 6ms/step - loss: 0.0502 - accuracy: 0.9835 - val_loss: 0.0295 - val_accuracy: 0.9911
+Epoch 8/10
+469/469 [==============================] - 3s 6ms/step - loss: 0.0488 - accuracy: 0.9848 - val_loss: 0.0296 - val_accuracy: 0.9906
+Epoch 9/10
+469/469 [==============================] - 3s 6ms/step - loss: 0.0439 - accuracy: 0.9856 - val_loss: 0.0313 - val_accuracy: 0.9910
+Epoch 10/10
+469/469 [==============================] - 3s 6ms/step - loss: 0.0420 - accuracy: 0.9865 - val_loss: 0.0303 - val_accuracy: 0.9912
+
+
+
+
+
+&lt;tensorflow.python.keras.callbacks.History at 0x16d0c5fa340&gt;</code></pre>
+<h2 id="评估准确率-1">评估准确率</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">test_loss, test_acc = model.evaluate(x_test, y_test, verbose= <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;\nTest accuracy:&#x27;</span>, test_acc)</span><br><span class="line"></span><br><span class="line">num_rows = <span class="number">10</span></span><br><span class="line">num_cols = <span class="number">5</span></span><br><span class="line">num_images = num_rows*num_cols</span><br><span class="line">plt.figure(figsize=(<span class="number">2</span>*<span class="number">2</span>*num_cols, <span class="number">2</span>*num_rows))</span><br><span class="line">x_test.reshape(<span class="number">10000</span>,<span class="number">28</span>,<span class="number">28</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num_images):</span><br><span class="line">  t = np.argmax(y_test[i])</span><br><span class="line">  plt.subplot(num_rows, <span class="number">2</span>*num_cols, <span class="number">2</span>*i+<span class="number">1</span>)</span><br><span class="line">  plot_image(i, predictions[i], t, x_test[i])</span><br><span class="line">  plt.subplot(num_rows, <span class="number">2</span>*num_cols, <span class="number">2</span>*i+<span class="number">2</span>)</span><br><span class="line">  plot_value_array(i, predictions[i], t)</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<pre><code>313/313 - 1s - loss: 0.0303 - accuracy: 0.9912
+
+Test accuracy: 0.9911999702453613</code></pre>
+<figure>
+<img src="%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB_files/%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB_39_1.png" alt="png" /><figcaption aria-hidden="true">png</figcaption>
+</figure>
+<h2 id="cnn-与-mlp-对比">CNN 与 MLP 对比</h2>
+<ol type="1">
+<li>CNN 能提取像素间的空间关系，而 MLP 将图像变为一维向量丢失空间信息</li>
+<li>MLP 是每一层是全连接的，参数数量多， CNN 每一层共享 kernel ，节点之间不是全连接，因此参数大小取决于 kernel 大小，参数数量少</li>
+<li>CNN　具有 <em>局部平移不变性</em>, 即无论图像出现在那个位置，都能提取到该特征。（因为共享 filter）. 而 MLP 不具有平移不变性，如果一张图片的特征出现在左上，而另一张特征出现在右下，那么 MLP 将尝试往右下修正参数。</li>
+</ol>
+]]></content>
   </entry>
   <entry>
     <title>火把节记录</title>
