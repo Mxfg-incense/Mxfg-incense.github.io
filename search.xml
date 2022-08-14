@@ -14,28 +14,32 @@
       </categories>
   </entry>
   <entry>
-    <title>Lightroom 缓存</title>
-    <url>/2022/07/13/%E5%85%B6%E4%BB%96/lightroomcahce/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="目录缓存-catalog">目录缓存 (Catalog)</h2>
-<p>​ 引导 LR 到照片在硬盘中的位置信息，对其进行远程操控，不用再复制一遍文件,不占用过多内存，也就是操作面板左侧的部分。只保存操作信息。在 <code>编辑-目录设置</code>中找到其缓存位置。</p>
+    <title>Anaconda 安装 Tensorflow-gpu 2.4.0</title>
+    <url>/2022/08/14/%E5%85%B6%E4%BB%96/Tensorflow-gpu2.4.0%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="前言">前言</h1>
+<p>装好 <code>Tensorflow 2.3.0</code> 之后，训练一个 MNIST 集花了7分钟左右，于是想安装 GPU 版本的. 于是就开始踩坑了</p>
+<h1 id="选定版本">选定版本</h1>
+<p>安装<code>Tensorflow-gpu</code> 需要安装<a href="https://www.tensorflow.org/install/source"><strong>相应的</strong> CUDA 和 cuDNN 版本</a>。这里应该先看自己的显卡所支持的 CUDA 版本，再确定 Tensorflow 版本。通过 <code>NIVIDIA-系统信息-组件</code> 查看</p>
 <figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207141203760.png" alt="目录缓存位置" /><figcaption aria-hidden="true">目录缓存位置</figcaption>
+<img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20220814185438087.png" alt="驱动支持的CUDA版本" /><figcaption aria-hidden="true">驱动支持的CUDA版本</figcaption>
 </figure>
-<p>有三个文件夹</p>
-<ol type="1">
-<li><p><strong>Backup</strong> : 备份目录缓存，不会备份照片。</p></li>
-<li><p><strong>Helper</strong>: 搜索目录缓存</p></li>
-<li><p><strong>Preview</strong>: 图片预览缓存，可删除，下次进入会重新加载</p></li>
-</ol>
-<h2 id="相机原始缓存-camera-raw">相机原始缓存 (Camera RAW)</h2>
-<p>​ 将图片完整加载进入 <strong>camera RAW </strong> 缓存，获得更大的调整范围。<code>编辑-首选项-性能</code> 中可进行清理和配置，</p>
+<p>我的显卡是 RTX 3060 版本比较高，之前安装的 2.3.0 版本不知道为什么就在编译模型，和构建模型的时候卡死。所以选择 <code>Tensorflow-gpu=2.4.0</code> 。</p>
+<h1 id="安装">安装</h1>
+<p>打开cmd, 激活虚拟环境</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda active ts</span><br></pre></td></tr></table></figure>
+<p>选择阿里云镜像源，默认源无该版本且速度慢</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install Tensorflow-gpu=2.4.0 -i https://mirrors.aliyun.com/pypi/simple/</span><br></pre></td></tr></table></figure>
+<p>听说这里应该会自动安装对应的 CUDA 和 cuDNN，然而我并没用，手动安装</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install cudnn==8.0 -i https://mirrors.aliyun.com/pypi/simple/</span><br></pre></td></tr></table></figure>
+<p>这里会自动安装 cudatookit ，接着安装 keras</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install keras==2.4.3</span><br></pre></td></tr></table></figure>
+<p>是否检测到GPU</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">tf.config.list_physical_devices(<span class="string">&#x27;GPU&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>输出 <code>[PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')]</code> 则成功。</p>
 ]]></content>
       <categories>
         <category>其他</category>
       </categories>
-      <tags>
-        <tag>Lightroom</tag>
-      </tags>
   </entry>
   <entry>
     <title>np.random.rand vs np.random.random</title>
@@ -70,6 +74,30 @@
       </categories>
   </entry>
   <entry>
+    <title>Lightroom 缓存</title>
+    <url>/2022/07/13/%E5%85%B6%E4%BB%96/lightroomcahce/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="目录缓存-catalog">目录缓存 (Catalog)</h2>
+<p>​ 引导 LR 到照片在硬盘中的位置信息，对其进行远程操控，不用再复制一遍文件,不占用过多内存，也就是操作面板左侧的部分。只保存操作信息。在 <code>编辑-目录设置</code>中找到其缓存位置。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207141203760.png" alt="目录缓存位置" /><figcaption aria-hidden="true">目录缓存位置</figcaption>
+</figure>
+<p>有三个文件夹</p>
+<ol type="1">
+<li><p><strong>Backup</strong> : 备份目录缓存，不会备份照片。</p></li>
+<li><p><strong>Helper</strong>: 搜索目录缓存</p></li>
+<li><p><strong>Preview</strong>: 图片预览缓存，可删除，下次进入会重新加载</p></li>
+</ol>
+<h2 id="相机原始缓存-camera-raw">相机原始缓存 (Camera RAW)</h2>
+<p>​ 将图片完整加载进入 <strong>camera RAW </strong> 缓存，获得更大的调整范围。<code>编辑-首选项-性能</code> 中可进行清理和配置，</p>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>Lightroom</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>大理火把节来历</title>
     <url>/2022/08/01/%E5%85%B6%E4%BB%96/%E5%A4%A7%E7%90%86%E7%81%AB%E6%8A%8A%E8%8A%82%E6%9D%A5%E5%8E%86/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>普遍流传火烧松明楼的故事缺乏证据。该说法大概在明清时期广泛为人接受。如清代学者</p>
@@ -94,7 +122,7 @@
       </categories>
   </entry>
   <entry>
-    <title></title>
+    <title>手写数字识别</title>
     <url>/2022/08/14/%E5%85%B6%E4%BB%96/%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="使用-mlp-实现">使用 MLP 实现</h1>
 <h2 id="设置">设置</h2>
@@ -102,9 +130,8 @@
 <pre><code>[PhysicalDevice(name=&#39;/physical_device:GPU:0&#39;, device_type=&#39;GPU&#39;)]</code></pre>
 <h2 id="载入数据">载入数据</h2>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">(x_train,y_train),(x_test,y_test) = mnist.load_data()</span><br><span class="line"></span><br><span class="line">plt.figure()</span><br><span class="line">plt.imshow(x_test[<span class="number">0</span>])</span><br><span class="line">plt.colorbar()</span><br><span class="line">plt.grid(<span class="literal">False</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<figure>
-<img src="%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB_files/%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB_4_0.png" alt="png" /><figcaption aria-hidden="true">png</figcaption>
-</figure>
+<p>​<br />
+<img src="%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB_files/%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB_4_0.png" alt="png" /> ​</p>
 <h4 id="load_data">load_data()</h4>
 <p><strong>返回</strong>：</p>
 <p>两个元组：</p>
@@ -203,15 +230,13 @@ Test accurancy 0.991599977016449</code></pre>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">plot_image</span>(<span class="params">i,predictions_array, true_label, img</span>):</span><br><span class="line">  predictions_array, true_label, img = predictions_array, true_label, img</span><br><span class="line">  plt.grid(<span class="literal">False</span>)</span><br><span class="line">  plt.xticks([])</span><br><span class="line">  plt.yticks([])</span><br><span class="line"></span><br><span class="line">  plt.imshow(img, cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  predicted_label = np.argmax(predictions_array)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> predicted_label == true_label:</span><br><span class="line">    color = <span class="string">&#x27;blue&#x27;</span></span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">    color = <span class="string">&#x27;red&#x27;</span></span><br><span class="line"></span><br><span class="line">  plt.xlabel(<span class="string">&quot;&#123;&#125; &#123;:3.0f&#125;% (&#123;&#125;)&quot;</span>.<span class="built_in">format</span>(predicted_label,</span><br><span class="line">                                      <span class="number">100</span>*np.<span class="built_in">max</span>(predictions_array),true_label),color=color)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_value_array</span>(<span class="params">i,predictions_array, true_label</span>):</span><br><span class="line">   predictions_array, true_label = predictions_array, true_label</span><br><span class="line">   plt.grid(<span class="literal">False</span>)</span><br><span class="line">   plt.xticks(<span class="built_in">range</span>(<span class="number">10</span>))</span><br><span class="line">   plt.yticks([])</span><br><span class="line">   thisplot = plt.bar(<span class="built_in">range</span>(<span class="number">10</span>), predictions_array, color=<span class="string">&quot;#777777&quot;</span>)</span><br><span class="line">   plt.ylim([<span class="number">0</span>,<span class="number">1</span>])</span><br><span class="line">   predicted_label = np.argmax(predictions_array)</span><br><span class="line"></span><br><span class="line">   thisplot[predicted_label].set_color(<span class="string">&#x27;red&#x27;</span>)</span><br><span class="line">   thisplot[true_label].set_color(<span class="string">&#x27;blue&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p>正确标签为蓝色，错误为红色 ## 验证预测结果</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">num_rows = <span class="number">10</span></span><br><span class="line">num_cols = <span class="number">5</span></span><br><span class="line">num_images = num_rows*num_cols</span><br><span class="line">plt.figure(figsize=(<span class="number">2</span>*<span class="number">2</span>*num_cols, <span class="number">2</span>*num_rows))</span><br><span class="line">x_test.reshape(<span class="number">10000</span>,<span class="number">28</span>,<span class="number">28</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num_images):</span><br><span class="line">  t = np.argmax(y_test[i])</span><br><span class="line">  plt.subplot(num_rows, <span class="number">2</span>*num_cols, <span class="number">2</span>*i+<span class="number">1</span>)</span><br><span class="line">  plot_image(i, predictions[i], t, x_test[i])</span><br><span class="line">  plt.subplot(num_rows, <span class="number">2</span>*num_cols, <span class="number">2</span>*i+<span class="number">2</span>)</span><br><span class="line">  plot_value_array(i, predictions[i], t)</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<figure>
-<img src="%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB_files/%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB_29_0.png" alt="png" /><figcaption aria-hidden="true">png</figcaption>
-</figure>
+<p>​<br />
+<img src="%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB_files/%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB_29_0.png" alt="png" /> ​</p>
 <h1 id="使用-cnn">使用 CNN</h1>
 <h2 id="重新载入数据">重新载入数据</h2>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">(x_train,y_train),(x_test,y_test) = mnist.load_data()</span><br><span class="line"></span><br><span class="line">plt.figure()</span><br><span class="line">plt.imshow(x_test[<span class="number">0</span>])</span><br><span class="line">plt.colorbar()</span><br><span class="line">plt.grid(<span class="literal">False</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">x_train = np.expand_dims(x_train,-<span class="number">1</span>)</span><br><span class="line">x_test = np.expand_dims(x_test,-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">x_train = x_train / <span class="number">255.0</span></span><br><span class="line">x_test = x_test / <span class="number">255.0</span></span><br><span class="line"></span><br><span class="line">y_train = to_categorical(y_train)</span><br><span class="line">y_test = to_categorical(y_test)</span><br></pre></td></tr></table></figure>
-<figure>
-<img src="%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB_files/%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB_32_0.png" alt="png" /><figcaption aria-hidden="true">png</figcaption>
-</figure>
+<p>​<br />
+<img src="%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB_files/%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB_32_0.png" alt="png" /> ​</p>
 <p>x.shape = (samples_nums, height, width, channels)</p>
 <h2 id="构建模型-1">构建模型</h2>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Conv2D,MaxPooling2D</span><br><span class="line">model = Sequential()</span><br><span class="line">input_size = (<span class="number">28</span>,<span class="number">28</span>,<span class="number">1</span>)</span><br><span class="line">model.add(Conv2D(<span class="number">32</span>,</span><br><span class="line">          kernel_size = (<span class="number">3</span>,<span class="number">3</span>), </span><br><span class="line">          activation = <span class="string">&#x27;relu&#x27;</span>,</span><br><span class="line">          input_shape = input_size))</span><br><span class="line"></span><br><span class="line">model.add(Dropout(<span class="number">0.3</span>))</span><br><span class="line"></span><br><span class="line">model.add(Conv2D(<span class="number">16</span>,</span><br><span class="line">          kernel_size = (<span class="number">3</span>,<span class="number">3</span>), </span><br><span class="line">          activation = <span class="string">&#x27;relu&#x27;</span>))</span><br><span class="line">model.add(MaxPooling2D(pool_size=(<span class="number">2</span>,<span class="number">2</span>)))</span><br><span class="line">model.add(Dropout(<span class="number">0.3</span>))</span><br><span class="line">model.add(Flatten())</span><br><span class="line">model.add(Dense(<span class="number">128</span>,activation=<span class="string">&#x27;relu&#x27;</span>))</span><br><span class="line">model.add(Dropout(<span class="number">0.4</span>))</span><br><span class="line">model.add(Dense(<span class="number">10</span>,activation=<span class="string">&#x27;softmax&#x27;</span>))</span><br><span class="line">model.summary()</span><br></pre></td></tr></table></figure>
@@ -285,6 +310,14 @@ Test accuracy: 0.9911999702453613</code></pre>
 <li>CNN　具有 <em>局部平移不变性</em>, 即无论图像出现在那个位置，都能提取到该特征。（因为共享 filter）. 而 MLP 不具有平移不变性，如果一张图片的特征出现在左上，而另一张特征出现在右下，那么 MLP 将尝试往右下修正参数。</li>
 </ol>
 ]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>CNN</tag>
+        <tag>MLP</tag>
+      </tags>
   </entry>
   <entry>
     <title>火把节记录</title>
@@ -327,42 +360,6 @@ Test accuracy: 0.9911999702453613</code></pre>
 <p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020026118.jpg" /></p>
 <p>火把节如同不断上演的光影艺术剧，绚丽多姿，多彩纷呈。白子们通过火焰的传递，传承苍洱间祖祖辈辈生活的土地。又如同一首苍老的山歌，遒劲有力，发自肺腑，全出于本性，没有丝毫扭捏造作。火焰的力量从火把的根部直顶头部，穿云裂石。舞动时，划过黑暗。这就是为何火把节象征着生育的根本吧。</p>
 <p>欢迎各位来西南地区体会独特的风土人情。</p>
-]]></content>
-      <categories>
-        <category>其他</category>
-      </categories>
-      <tags>
-        <tag>旅游</tag>
-        <tag>摄影</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2022/07/14/%E5%85%B6%E4%BB%96/%E7%94%98%E5%8D%97%E6%B8%B8%E8%AE%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="备冬草">备冬草</h2>
-<p>于是乎直接沿着最快的线路，沿着京昆高速和兰海高速直抵舟曲县。随后沿着一条小路经过腊子口到达岷县。在路上遇到了牧民准备冬草。把收割的草晒在路沿上，然后在收起来打捆屯在冬天。准备冬草规模浩大，十分忙碌，大概就是农忙？草原气候，夏季多雨，草肥物盛，冬季雪灾，大雪也会覆盖在草场上，牛羊没有新鲜牧草可以吃，所以趁着牧草枯草前割掉一些，晒干后作为牛羊冬天的食物。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142030421.jpg" alt="储备冬草" /><figcaption aria-hidden="true">储备冬草</figcaption>
-</figure>
-<h2 id="铁尺梁">铁尺梁</h2>
-<p>​ 然后顺着蜿蜒的山路盘旋而上，到达险关腊子口，红军在此激战，突破了国民党军队的防线。可以沿着栈道顺着腊子河谷看到留下的碉堡。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142031021.jpg" alt="腊子口纪念碑" /><figcaption aria-hidden="true">腊子口纪念碑</figcaption>
-</figure>
-<h2 id="铁尺梁-1">铁尺梁</h2>
-<p>​ 铁尺梁因如直立的铁尺而得名，众山之巅，诸神之上。无色经幡飘扬。可以俯瞰蜿蜒的盘山公路，散落在低谷的人家。平视可以看到叠锋隐约，错落有致，有个山峰形状酷似。据说毛泽东在此写下七律长征。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142034408.jpg" alt="酷似熊的山峰" /><figcaption aria-hidden="true">酷似熊的山峰</figcaption>
-</figure>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142036607.jpg" alt="月亮与经幡" /><figcaption aria-hidden="true">月亮与经幡</figcaption>
-</figure>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142038251.jpg" alt="成群的牛羊" /><figcaption aria-hidden="true">成群的牛羊</figcaption>
-</figure>
-<h2 id="达尔宗圣湖">达尔宗圣湖</h2>
-<p>​</p>
-<p>​</p>
 ]]></content>
       <categories>
         <category>其他</category>
@@ -477,6 +474,42 @@ Test accuracy: 0.9911999702453613</code></pre>
       </categories>
       <tags>
         <tag>书法理论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2022/07/14/%E5%85%B6%E4%BB%96/%E7%94%98%E5%8D%97%E6%B8%B8%E8%AE%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="备冬草">备冬草</h2>
+<p>于是乎直接沿着最快的线路，沿着京昆高速和兰海高速直抵舟曲县。随后沿着一条小路经过腊子口到达岷县。在路上遇到了牧民准备冬草。把收割的草晒在路沿上，然后在收起来打捆屯在冬天。准备冬草规模浩大，十分忙碌，大概就是农忙？草原气候，夏季多雨，草肥物盛，冬季雪灾，大雪也会覆盖在草场上，牛羊没有新鲜牧草可以吃，所以趁着牧草枯草前割掉一些，晒干后作为牛羊冬天的食物。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142030421.jpg" alt="储备冬草" /><figcaption aria-hidden="true">储备冬草</figcaption>
+</figure>
+<h2 id="铁尺梁">铁尺梁</h2>
+<p>​ 然后顺着蜿蜒的山路盘旋而上，到达险关腊子口，红军在此激战，突破了国民党军队的防线。可以沿着栈道顺着腊子河谷看到留下的碉堡。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142031021.jpg" alt="腊子口纪念碑" /><figcaption aria-hidden="true">腊子口纪念碑</figcaption>
+</figure>
+<h2 id="铁尺梁-1">铁尺梁</h2>
+<p>​ 铁尺梁因如直立的铁尺而得名，众山之巅，诸神之上。无色经幡飘扬。可以俯瞰蜿蜒的盘山公路，散落在低谷的人家。平视可以看到叠锋隐约，错落有致，有个山峰形状酷似。据说毛泽东在此写下七律长征。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142034408.jpg" alt="酷似熊的山峰" /><figcaption aria-hidden="true">酷似熊的山峰</figcaption>
+</figure>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142036607.jpg" alt="月亮与经幡" /><figcaption aria-hidden="true">月亮与经幡</figcaption>
+</figure>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142038251.jpg" alt="成群的牛羊" /><figcaption aria-hidden="true">成群的牛羊</figcaption>
+</figure>
+<h2 id="达尔宗圣湖">达尔宗圣湖</h2>
+<p>​</p>
+<p>​</p>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>旅游</tag>
+        <tag>摄影</tag>
       </tags>
   </entry>
   <entry>
@@ -650,77 +683,6 @@ cot \frac{C}{2} = -\frac{\cot \frac{A}{2}+\cot \frac{B}{2}}{1-\cot \frac{A}{2}\,
       </tags>
   </entry>
   <entry>
-    <title>将数量场转为向量场的例题</title>
-    <url>/2022/06/28/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98/%E5%B0%86%E6%95%B0%E9%87%8F%E5%9C%BA%E8%BD%AC%E4%B8%BA%E5%90%91%E9%87%8F%E5%9C%BA/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="题面">题面</h3>
-<p>​ 设 <span class="math inline">\(\Sigma(t)\)</span> 是平面 <span class="math inline">\(x+y+z=t\)</span> 被球面 <span class="math inline">\(x^2+y^2+z^2=1\)</span> 截下的部分，设 <span class="math display">\[
-F(x,y,z)=1-(x^2+y^2+z^2),
-\]</span> ​ 求证，对于 <span class="math inline">\(\left| t \right| \leq \sqrt 3\)</span> 时，有 <span class="math display">\[
-\int _{\Sigma(t)} F(x,y,z)\,d\sigma = \frac{\pi}{18} (3-t^2)^2
-\]</span></p>
-<span id="more"></span>
-<h3 id="方法一">方法一</h3>
-<p>​ 将原坐标系 <span class="math inline">\(X Y Z\)</span> 进行变换，新坐标系的 <span class="math inline">\(X&#39;OY&#39;\)</span> 平面为原坐标系的平面 <span class="math inline">\(x+y+z=0\)</span> ，坐标 <span class="math inline">\(z&#39;\)</span> 为点在原坐标系下距离 <span class="math inline">\(\Sigma(0)\)</span> 的距离，<span class="math inline">\(z&#39; = \frac {t}{\sqrt3}\)</span> ， 为了渐变就沿用 <span class="math inline">\(xyz\)</span> 命名好了。接下来就是很普通的在 <span class="math inline">\(z=\frac{t}{\sqrt 3}\)</span> 上将 <span class="math inline">\(xy\)</span> 化为极坐标的积分了。 <span class="math display">\[
-\begin{gather}
-\begin{aligned}
-\iint _{z=\frac{t}{\sqrt 3}} 1-z^2\,d\sigma &amp;= \int_0^{2\pi}d\theta \int_0^{\sqrt {1-\frac{t^2}{3}}}(1-\frac{t^2}{3}-r^2) r\,dr\\
- &amp;=\frac{\pi}{18} (3-t^2)^2
- \end{aligned}
-\end{gather}
-\]</span></p>
-<h3 id="方法二">方法二</h3>
-<p>​ 这个方法比较绕，是利用 <span class="math inline">\(Gauss\)</span> 定理 + 补面的方式。但是 F 是个数量场，怎么把它变成向量场呢? <span class="math display">\[
-\begin{equation}
-\iint_S F dS  =\iint_S \boldsymbol{v}\, \vec{n} \,dS
-\end{equation}
-\]</span> 所以现在就是需要去确定一种 <span class="math inline">\(\vec{v}\)</span> 和 <span class="math inline">\(\vec{n}\)</span> 使其点乘为 <span class="math inline">\(F\)</span> ， 为了简便 <span class="math inline">\(\vec{v} = (1-z^2) \,\vec{k}\)</span> ，<span class="math inline">\(\vec{n}=\vec{k}\)</span>， 在进行补面就能使用高斯公式了，设 <span class="math inline">\(V\)</span> 为 <span class="math inline">\(S_1:z=\frac{t}{\sqrt3}\)</span> 和球面 <span class="math inline">\(S_2:x^2+y^2+z^2=1\)</span> 围成的面积。 <span class="math display">\[
-\begin{gather}
-\begin{aligned}
-\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS &amp; = \iiint_V \Delta\,\vec{v} \, d\vec{S}\\
-&amp;=\iiint_V2z \,  dxdydz
-\end{aligned}
-\end{gather}
-\]</span> 注意因为高斯定理要求向量场指向平面的外侧，上面公式的 <span class="math inline">\(\vec{v}\)</span> 的方向与的我们构造的<span class="math inline">\(\vec{v}\)</span> 之间方向相反。</p>
-<p>再将<span class="math inline">\(xyz\)</span> 换为极坐标 (注意这里和 <span class="math inline">\(t\)</span> 没什么关系，<span class="math inline">\(t\)</span> 只是个常数) <span class="math display">\[
-\begin{cases}
-x= (1-z^2)\,r\,cos\theta\\
-y= (1-z^2)\,r\,sin\theta\\
-z=z\\
-\end{cases}
-\]</span> 然后三重积分 <span class="math display">\[
-\begin{gather}
-\begin{aligned}
-\iiint_V2z \,  dxdydz &amp;= 2\pi\int_{\frac{t}{\sqrt3}}^1z\,dz\int_0^{\sqrt{1-z^2}}r\,dr\\
-&amp; = -\frac{\pi}{18}(3-t^2)^2
-\end{aligned}
-\end{gather}
-\]</span> 而另一方面 <span class="math display">\[
-\because 1-z^2 = 0 \,\text{in} \,S_2\\
-\therefore
-\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS = 0\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{gathered}
-\begin{aligned}
-\iint_{S_1} \boldsymbol{v}\, \vec{n} \,dS &amp;=\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS-\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS \\
-&amp;=\frac{\pi}{18}(3-t^2)^2
-\end{aligned}
-\end{gathered}
-\]</span></p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>数学分析</category>
-        <category>习题</category>
-      </categories>
-      <tags>
-        <tag>数学分析</tag>
-        <tag>高等数学</tag>
-        <tag>高斯公式</tag>
-        <tag>曲面积分</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Introduction to Inequality</title>
     <url>/2022/07/05/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/ISP_equiality/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="oscillation">Oscillation</h2>
@@ -789,6 +751,77 @@ F_N(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}
       <tags>
         <tag>不等式</tag>
         <tag>Fourier</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>将数量场转为向量场的例题</title>
+    <url>/2022/06/28/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98/%E5%B0%86%E6%95%B0%E9%87%8F%E5%9C%BA%E8%BD%AC%E4%B8%BA%E5%90%91%E9%87%8F%E5%9C%BA/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="题面">题面</h3>
+<p>​ 设 <span class="math inline">\(\Sigma(t)\)</span> 是平面 <span class="math inline">\(x+y+z=t\)</span> 被球面 <span class="math inline">\(x^2+y^2+z^2=1\)</span> 截下的部分，设 <span class="math display">\[
+F(x,y,z)=1-(x^2+y^2+z^2),
+\]</span> ​ 求证，对于 <span class="math inline">\(\left| t \right| \leq \sqrt 3\)</span> 时，有 <span class="math display">\[
+\int _{\Sigma(t)} F(x,y,z)\,d\sigma = \frac{\pi}{18} (3-t^2)^2
+\]</span></p>
+<span id="more"></span>
+<h3 id="方法一">方法一</h3>
+<p>​ 将原坐标系 <span class="math inline">\(X Y Z\)</span> 进行变换，新坐标系的 <span class="math inline">\(X&#39;OY&#39;\)</span> 平面为原坐标系的平面 <span class="math inline">\(x+y+z=0\)</span> ，坐标 <span class="math inline">\(z&#39;\)</span> 为点在原坐标系下距离 <span class="math inline">\(\Sigma(0)\)</span> 的距离，<span class="math inline">\(z&#39; = \frac {t}{\sqrt3}\)</span> ， 为了渐变就沿用 <span class="math inline">\(xyz\)</span> 命名好了。接下来就是很普通的在 <span class="math inline">\(z=\frac{t}{\sqrt 3}\)</span> 上将 <span class="math inline">\(xy\)</span> 化为极坐标的积分了。 <span class="math display">\[
+\begin{gather}
+\begin{aligned}
+\iint _{z=\frac{t}{\sqrt 3}} 1-z^2\,d\sigma &amp;= \int_0^{2\pi}d\theta \int_0^{\sqrt {1-\frac{t^2}{3}}}(1-\frac{t^2}{3}-r^2) r\,dr\\
+ &amp;=\frac{\pi}{18} (3-t^2)^2
+ \end{aligned}
+\end{gather}
+\]</span></p>
+<h3 id="方法二">方法二</h3>
+<p>​ 这个方法比较绕，是利用 <span class="math inline">\(Gauss\)</span> 定理 + 补面的方式。但是 F 是个数量场，怎么把它变成向量场呢? <span class="math display">\[
+\begin{equation}
+\iint_S F dS  =\iint_S \boldsymbol{v}\, \vec{n} \,dS
+\end{equation}
+\]</span> 所以现在就是需要去确定一种 <span class="math inline">\(\vec{v}\)</span> 和 <span class="math inline">\(\vec{n}\)</span> 使其点乘为 <span class="math inline">\(F\)</span> ， 为了简便 <span class="math inline">\(\vec{v} = (1-z^2) \,\vec{k}\)</span> ，<span class="math inline">\(\vec{n}=\vec{k}\)</span>， 在进行补面就能使用高斯公式了，设 <span class="math inline">\(V\)</span> 为 <span class="math inline">\(S_1:z=\frac{t}{\sqrt3}\)</span> 和球面 <span class="math inline">\(S_2:x^2+y^2+z^2=1\)</span> 围成的面积。 <span class="math display">\[
+\begin{gather}
+\begin{aligned}
+\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS &amp; = \iiint_V \Delta\,\vec{v} \, d\vec{S}\\
+&amp;=\iiint_V2z \,  dxdydz
+\end{aligned}
+\end{gather}
+\]</span> 注意因为高斯定理要求向量场指向平面的外侧，上面公式的 <span class="math inline">\(\vec{v}\)</span> 的方向与的我们构造的<span class="math inline">\(\vec{v}\)</span> 之间方向相反。</p>
+<p>再将<span class="math inline">\(xyz\)</span> 换为极坐标 (注意这里和 <span class="math inline">\(t\)</span> 没什么关系，<span class="math inline">\(t\)</span> 只是个常数) <span class="math display">\[
+\begin{cases}
+x= (1-z^2)\,r\,cos\theta\\
+y= (1-z^2)\,r\,sin\theta\\
+z=z\\
+\end{cases}
+\]</span> 然后三重积分 <span class="math display">\[
+\begin{gather}
+\begin{aligned}
+\iiint_V2z \,  dxdydz &amp;= 2\pi\int_{\frac{t}{\sqrt3}}^1z\,dz\int_0^{\sqrt{1-z^2}}r\,dr\\
+&amp; = -\frac{\pi}{18}(3-t^2)^2
+\end{aligned}
+\end{gather}
+\]</span> 而另一方面 <span class="math display">\[
+\because 1-z^2 = 0 \,\text{in} \,S_2\\
+\therefore
+\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS = 0\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{gathered}
+\begin{aligned}
+\iint_{S_1} \boldsymbol{v}\, \vec{n} \,dS &amp;=\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS-\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS \\
+&amp;=\frac{\pi}{18}(3-t^2)^2
+\end{aligned}
+\end{gathered}
+\]</span></p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>数学分析</category>
+        <category>习题</category>
+      </categories>
+      <tags>
+        <tag>数学分析</tag>
+        <tag>高等数学</tag>
+        <tag>高斯公式</tag>
+        <tag>曲面积分</tag>
       </tags>
   </entry>
 </search>
