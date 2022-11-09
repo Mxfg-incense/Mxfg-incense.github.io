@@ -14,6 +14,31 @@
       </categories>
   </entry>
   <entry>
+    <title>NeRF细节整理</title>
+    <url>/2022/10/14/%E5%85%B6%E4%BB%96/NeRF%E7%B2%BE%E8%AF%BB/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="download-from-google-driver">Download from Google driver</h1>
+<p>Use the Wget command:</p>
+<p>小文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget --no-check-certificate <span class="string">&quot;https://drive.google.com/uc?export=download&amp;id=<span class="variable">$&#123;Fileid&#125;</span>&quot;</span> -O <span class="string">&quot;<span class="variable">$&#123;Filename&#125;</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<p>大文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget --load-cookies /tmp/cookies.txt <span class="string">&quot;https://drive.google.com/uc?export=download&amp;confirm=<span class="subst">$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate &#x27;https://drive.google.com/uc?export=download&amp;id=$&#123;fileid&#125;&#x27; -O- | sed -rn &#x27;s/.confirm=([0-9A-Za-z_]+)</span>./\1\n/p&#x27;)&amp;id=<span class="variable">$&#123;fileid&#125;</span>&quot;</span> -O <span class="variable">$&#123;filename&#125;</span> &amp;&amp; <span class="built_in">rm</span> -rf /tmp/cookies.txt</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>解压</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">unzip <span class="variable">$&#123;filename&#125;</span></span><br></pre></td></tr></table></figure>
+<h1 id="ndc-ray-space-derivation">NDC ray space derivation</h1>
+<p>论文中的内参矩阵里的 <span class="math inline">\(n,f\)</span> ：the near and far clipping planes and <span class="math inline">\(r,t\)</span> are the right and top bounds scene at the near clipping plane. 所以 <span class="math inline">\(\frac{r}{t}=\)</span> Aspect ratio (屏幕高宽比)</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202210140206585.png" alt="A perspective camera" /><figcaption aria-hidden="true">A perspective camera</figcaption>
+</figure>
+<h2 id="ndc">NDC</h2>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202210140217293.png" alt="归一化" /><figcaption aria-hidden="true">归一化</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Anaconda 安装 Tensorflow-gpu 2.4.0</title>
     <url>/2022/08/14/%E5%85%B6%E4%BB%96/Tensorflow-gpu2.4.0%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="前言">前言</h1>
@@ -42,6 +67,58 @@
       </categories>
   </entry>
   <entry>
+    <title></title>
+    <url>/2022/10/19/%E5%85%B6%E4%BB%96/instant-ngp%E5%A4%8D%E7%8E%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="数据集准备">数据集准备</h1>
+<p>数据结构如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-fox</span><br><span class="line">  -images</span><br><span class="line">  -transform.json</span><br></pre></td></tr></table></figure>
+<p>通过 <code>scripts/colmap2nerf.py</code> 处理视频或者一序列的图像，图像应避免动态模糊和虚焦。对于大型场景可能训练几分钟来增加锐度</p>
+<blockquote>
+<p>锐度，即图像边缘对比度，在边缘部分增加白色和黑色边缘增加对比度</p>
+</blockquote>
+<p>经过 COLMAP 稀疏重建后在 <code>sphare/0</code> 下生成三个 <code>.txt</code> 文件。</p>
+<h4 id="camera.txt">camera.txt</h4>
+<p>包含相机内参</p>
+<p>以下为实例</p>
+<figure class="highlight txt"><table><tr><td class="code"><pre><span class="line"># Camera list with one line of data per camera:</span><br><span class="line">#   CAMERA_ID, MODEL, WIDTH, HEIGHT, PARAMS[]</span><br><span class="line"># Number of cameras: 159</span><br><span class="line">1 SIMPLE_RADIAL 1920 1080 1496.1000558533603 960 540 -0.022162590119422163</span><br><span class="line">2 SIMPLE_RADIAL 1920 1080 1487.0032035424961 960 540 0.020998321685288947</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>CAMERA_ID ：对应每张图片的序号</p></li>
+<li><p>MODEL ： 相机的模型选择具体参考详见<span class="exturl" data-url="aHR0cHM6Ly9jb2xtYXAuZ2l0aHViLmlvL2NhbWVyYXMuaHRtbA==">官方文档<i class="fa fa-external-link-alt"></i></span></p>
+<p>主要给出了几种建议, 无畸变时采用 simple model.</p>
+<ol type="1">
+<li><code>SIMPLE_PINHOLE</code> , <code>PINHOLE</code>: 小孔相机模型，在图像未畸变时使用，在此情况下，也可以通过更复杂的相机模型改进参数</li>
+<li><code>SIMPLE_RADIAL</code> ：对于在内参都不知道的情况下，每张图像有不同的相机校准。e.g internet photos??(从网络获取的图片？)</li>
+<li><code>OPENCV</code> : 已知校准参数的情况下</li>
+</ol>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NvbG1hcC9jb2xtYXAvYmxvYi9tYXN0ZXIvc3JjL2Jhc2UvY2FtZXJhX21vZGVscy5o">具体的每个模型的参数<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">// Simple Pinhole camera model.</span><br><span class="line">//   f, cx, cy</span><br><span class="line">CAMERA_MODEL_DEFINITIONS(<span class="number">0</span>, <span class="string">&quot;SIMPLE_PINHOLE&quot;</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">// Pinhole camera model.</span><br><span class="line">//    fx, fy, cx, cy</span><br><span class="line">CAMERA_MODEL_DEFINITIONS(<span class="number">1</span>, <span class="string">&quot;PINHOLE&quot;</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">// Simple camera model <span class="keyword">with</span> one focal length <span class="keyword">and</span> one radial distortion</span><br><span class="line">// parameter.</span><br><span class="line">//    f, cx, cy, k</span><br><span class="line">CAMERA_MODEL_DEFINITIONS(<span class="number">2</span>, <span class="string">&quot;SIMPLE_RADIAL&quot;</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">// Simple camera model <span class="keyword">with</span> one focal length <span class="keyword">and</span> two radial distortion</span><br><span class="line">// parameters.</span><br><span class="line">//    f, cx, cy, k1, k2</span><br><span class="line">CAMERA_MODEL_DEFINITIONS(<span class="number">3</span>, <span class="string">&quot;RADIAL&quot;</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">// OpenCV camera model.</span><br><span class="line">//    fx, fy, cx, cy, k1, k2, p1, p2</span><br><span class="line">CAMERA_MODEL_DEFINITIONS(<span class="number">4</span>, <span class="string">&quot;OPENCV&quot;</span>, <span class="number">8</span>)</span><br><span class="line"></span><br><span class="line">// OpenCV fish-eye camera model.</span><br><span class="line">//    fx, fy, cx, cy, k1, k2, k3, k4</span><br><span class="line">CAMERA_MODEL_DEFINITIONS(<span class="number">5</span>, <span class="string">&quot;OPENCV_FISHEYE&quot;</span>, <span class="number">8</span>)</span><br><span class="line"></span><br><span class="line">// Full OpenCV camera model.</span><br><span class="line">//    fx, fy, cx, cy, k1, k2, p1, p2, k3, k4, k5, k6</span><br><span class="line">CAMERA_MODEL_DEFINITIONS(<span class="number">6</span>, <span class="string">&quot;FULL_OPENCV&quot;</span>, <span class="number">12</span>)</span><br><span class="line"></span><br><span class="line">// FOV camera model.</span><br><span class="line">//    fx, fy, cx, cy, omega</span><br><span class="line">CAMERA_MODEL_DEFINITIONS(<span class="number">7</span>, <span class="string">&quot;FOV&quot;</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">// Simple camera model <span class="keyword">with</span> one focal length <span class="keyword">and</span> one radial distortion</span><br><span class="line">// parameter, suitable <span class="keyword">for</span> fish-eye cameras.</span><br><span class="line">//    f, cx, cy, k</span><br><span class="line">CAMERA_MODEL_DEFINITIONS(<span class="number">8</span>, <span class="string">&quot;SIMPLE_RADIAL_FISHEYE&quot;</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">// Simple camera model <span class="keyword">with</span> one focal length <span class="keyword">and</span> two radial distortion</span><br><span class="line">// parameters, suitable <span class="keyword">for</span> fish-eye cameras.</span><br><span class="line">//    f, cx, cy, k1, k2</span><br><span class="line">CAMERA_MODEL_DEFINITIONS(<span class="number">9</span>, <span class="string">&quot;RADIAL_FISHEYE&quot;</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">// Camera model <span class="keyword">with</span> radial <span class="keyword">and</span> tangential distortion coefficients <span class="keyword">and</span></span><br><span class="line">// additional coefficients accounting <span class="keyword">for</span> thin-prism distortion.</span><br><span class="line">//    fx, fy, cx, cy, k1, k2, p1, p2, k3, k4, sx1, sy1</span><br><span class="line">CAMERA_MODEL_DEFINITIONS(<span class="number">10</span>, <span class="string">&quot;THIN_PRISM_FISHEYE&quot;</span>, <span class="number">12</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="images.txt">images.txt</h4>
+<p><code>images.txt</code> 示例：</p></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Image list with two lines of data per image:</span></span><br><span class="line"><span class="comment">#  IMAGE_ID, QW, QX, QY, QZ, TX, TY, TZ, CAMERA_ID, NAME</span></span><br><span class="line"><span class="comment">#  POINTS2D[] as (X, Y, POINT3D_ID)</span></span><br><span class="line"><span class="comment"># Number of images: 2, mean observations per image: 2</span></span><br><span class="line"><span class="number">1</span> <span class="number">0.851773</span> <span class="number">0.0165051</span> <span class="number">0.503764</span> -<span class="number">0.142941</span> -<span class="number">0.737434</span> <span class="number">1.02973</span> <span class="number">3.74354</span> <span class="number">1</span> P1180141.JPG</span><br><span class="line"><span class="number">2362.39</span> <span class="number">248.498</span> <span class="number">58396</span> <span class="number">1784.7</span> <span class="number">268.254</span> <span class="number">59027</span> <span class="number">1784.7</span> <span class="number">268.254</span> -<span class="number">1</span></span><br><span class="line"><span class="number">2</span> <span class="number">0.851773</span> <span class="number">0.0165051</span> <span class="number">0.503764</span> -<span class="number">0.142941</span> -<span class="number">0.737434</span> <span class="number">1.02973</span> <span class="number">3.74354</span> <span class="number">1</span> P1180142.JPG</span><br><span class="line"><span class="number">1190.83</span> <span class="number">663.957</span> <span class="number">23056</span> <span class="number">1258.77</span> <span class="number">640.354</span> <span class="number">59070</span></span><br></pre></td></tr></table></figure>
+<p>​ <code>Q</code> 表示的旋转的四个参数？与 <code>Eigen::Quaterniond</code>格式相同 <code>T</code> 表示平移参数。第二行表示一个特征点在图像中的二维坐标。</p>
+<h4 id="points3d.txt">points3D.txt</h4>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 3D point list with one line of data per point:</span></span><br><span class="line"><span class="comment">#  POINT3D_ID, X, Y, Z, R, G, B, ERROR, TRACK[] as (IMAGE_ID, POINT2D_IDX)</span></span><br><span class="line"><span class="comment"># Number of points: 3, mean track length: 3.3334</span></span><br><span class="line"><span class="number">63390</span> <span class="number">1.67241</span> <span class="number">0.292931</span> <span class="number">0.609726</span> <span class="number">115</span> <span class="number">121</span> <span class="number">122</span> <span class="number">1.33927</span> <span class="number">16</span> <span class="number">6542</span> <span class="number">15</span> <span class="number">7345</span> <span class="number">6</span> <span class="number">6714</span> <span class="number">14</span> <span class="number">7227</span></span><br><span class="line"><span class="number">63376</span> <span class="number">2.01848</span> <span class="number">0.108877</span> -<span class="number">0.0260841</span> <span class="number">102</span> <span class="number">209</span> <span class="number">250</span> <span class="number">1.73449</span> <span class="number">16</span> <span class="number">6519</span> <span class="number">15</span> <span class="number">7322</span> <span class="number">14</span> <span class="number">7212</span> <span class="number">8</span> <span class="number">3991</span></span><br><span class="line"><span class="number">63371</span> <span class="number">1.71102</span> <span class="number">0.28566</span> <span class="number">0.53475</span> <span class="number">245</span> <span class="number">251</span> <span class="number">249</span> <span class="number">0.612829</span> <span class="number">118</span> <span class="number">4140</span> <span class="number">117</span> <span class="number">4473</span></span><br></pre></td></tr></table></figure>
+<p>如果需要进一步 rectify, 可以把参数输入到 OpenCV 的 <strong>stereoRectify()</strong> 函数中，之后 <strong>initUndistortRectifyMap()</strong> , 最后使用 <strong>remap()</strong> 函数进行重映射 从而得到矫正的结果。</p>
+<h2 id="transform.json">transform.json</h2>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;camera_angle_x&quot;</span><span class="punctuation">:</span> <span class="number">1.2433395001651382</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;camera_angle_y&quot;</span><span class="punctuation">:</span> <span class="number">0.7661685246315253</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;fl_x&quot;</span><span class="punctuation">:</span> <span class="number">1339.9721836141384</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;fl_y&quot;</span><span class="punctuation">:</span> <span class="number">1339.9721836141384</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;k1&quot;</span><span class="punctuation">:</span> <span class="number">-0.021131598158465558</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;k2&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;p1&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;p2&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;cx&quot;</span><span class="punctuation">:</span> <span class="number">960.0</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;cy&quot;</span><span class="punctuation">:</span> <span class="number">540.0</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;w&quot;</span><span class="punctuation">:</span> <span class="number">1920.0</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;h&quot;</span><span class="punctuation">:</span> <span class="number">1080.0</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;aabb_scale&quot;</span><span class="punctuation">:</span> <span class="number">16</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+<p><code>camera_angle_x</code> 是 <code>angle_y = math.atan(h / (fl_y * 2)) * 2</code>，即光心到边缘的最大角度。</p>
+<p><code>fl_x</code> 是相机的焦距大小，看了代码之后发现取的是最后一个图像得到的焦距，实际上在·<code>1300-1496</code>之间进行浮动，据通过手机厂商的数据发现是 <code>26.8mm</code> 等效焦距，实际焦距 <code>5.4mm</code> ??</p>
+<h2 id="现有数据集">现有数据集</h2>
+<p>Nerf: 将near plane 和 far plane 的空间转化成 NDC [-1,1]，渲染时光线只截用该空间中的。</p>
+<p>ngp: 没有采用NDC， unit cube ? 似乎没什么影响， <code>aabb_scale</code> 的作用就是为了限制渲染范围。</p>
+<h2 id="实验">实验</h2>
+<ol type="1">
+<li>对云雾的消除。推测原因：上方缺乏光线穿过，因此需要增加相机的视角。上中下 和 上。 如果我们增加相机上方视角更多的图片呢：预测应该不会有很大改善。</li>
+<li>增加桌面的特征值</li>
+<li>勾选 <code>train extrinces、</code> 等</li>
+</ol>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Lightroom 缓存</title>
     <url>/2022/07/13/%E5%85%B6%E4%BB%96/lightroomcahce/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="目录缓存-catalog">目录缓存 (Catalog)</h2>
@@ -64,6 +141,147 @@
       <tags>
         <tag>Lightroom</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>ngp背景重建</title>
+    <url>/2022/10/23/%E5%85%B6%E4%BB%96/ngp%E8%83%8C%E6%99%AF%E9%87%8D%E5%BB%BA/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="目的">目的</h1>
+<p>探究影响背景重建的因素。</p>
+<h1 id="推测因素">推测因素</h1>
+<figure>
+<img src="E:\instant-ngp\data\nerf\fs\fs.gif" alt="原始重建结果" /><figcaption aria-hidden="true">原始重建结果</figcaption>
+</figure>
+<ol type="1">
+<li><strong>视角</strong> 在拍摄时由于俯拍绕物体一周，导致场景上方缺乏光线透过，于是在场景顶部产生云雾。</li>
+<li><strong>距离</strong> 拍摄时绕物体一周的过程中，对于场景中的一个点，缺乏同一 <span class="math inline">\((\theta,\phi)\)</span> 的数据，导致体密度训练较差。</li>
+<li><strong>背景特征</strong> 背景特征多，增加网络的复杂程度，是否导致网络更难学习。</li>
+<li>训练 <strong>外参 曝光 畸变</strong></li>
+</ol>
+<h1 id="实验一">实验一</h1>
+<h2 id="实验目的">实验目的</h2>
+<p>探究相机拍摄视角对背景重建的影响</p>
+<h2 id="实验条件">实验条件</h2>
+<ol type="1">
+<li><strong>同一场景</strong>，光照相同，背景相同</li>
+<li><strong>相机参数</strong> ：同一相机 (Sony A6000), 镜头焦距 50mm，采用 A 挡拍摄 (F = 2.8) , 曝光补偿 +0.7，ISO: auto.</li>
+<li><strong>数据量相同</strong>：每组实验的照片数量一致</li>
+<li><strong>COLMAP 模型</strong>： <code>SIMPLE_RADIAL</code> 且 每张图像内参一致</li>
+<li>未勾选 训练外参，曝光和畸变。</li>
+</ol>
+<h2 id="实验步骤">实验步骤</h2>
+<ol type="1">
+<li><p><strong>数据收集</strong>：绕物体分别在 上、中、下拍摄一圈。</p></li>
+<li><p><strong>第一组</strong> ：对于从上方拍摄的视角提取 215 张图像。</p>
+<p><strong>第二组</strong> ：上、中、下分别使用 60、60 、110张图像 并且筛掉一些模糊和虚焦的照片</p></li>
+<li><p><strong>数据处理</strong>：使用COLMAP稀疏重建， <strong>每一组</strong>都总共有215张图像用于稀疏重建</p>
+<p>第一组得到的相机内参：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Camera list with one line of data per camera:</span></span><br><span class="line"><span class="comment">#   CAMERA_ID, MODEL, WIDTH, HEIGHT, PARAMS[]</span></span><br><span class="line"><span class="comment"># Number of cameras: 1</span></span><br><span class="line"><span class="number">1</span> SIMPLE_RADIAL <span class="number">1920</span> <span class="number">1080</span> <span class="number">4090.2916176564518</span> <span class="number">960</span> <span class="number">540</span> <span class="number">0.348649511020239</span></span><br></pre></td></tr></table></figure>
+<p>第二组得到的相机内参：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Camera list with one line of data per camera:</span></span><br><span class="line"><span class="comment">#   CAMERA_ID, MODEL, WIDTH, HEIGHT, PARAMS[]</span></span><br><span class="line"><span class="comment"># Number of cameras: 1</span></span><br><span class="line"><span class="number">1</span> SIMPLE_RADIAL <span class="number">1920</span> <span class="number">1080</span> <span class="number">4726.2638345804498</span> <span class="number">960</span> <span class="number">540</span> <span class="number">0.48132964624147656</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>NeRF 重建</strong> : <code>run.py</code> 两组实验相机沿着相同的轨迹 <code>base_cam.json</code>，导出渲染后的视频</p></li>
+</ol>
+<h2 id="实验结果">实验结果</h2>
+<h4 id="第一组"><strong>第一组</strong></h4>
+<p>背景渲染结果白色桌面为锥型</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202210241950980.png" alt="整体效果" /><figcaption aria-hidden="true">整体效果</figcaption>
+</figure>
+<video src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202210242027829.mp4" title="第一组">
+99
+</video>
+<p>物体周围有明显的云雾环绕</p>
+<h4 id="实验二">实验二</h4>
+<video src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202210242031040.mp4" title="实验二">
+99
+</video>
+<p>云雾分布有明显分层现象，上方云雾仍然为白色，中间云雾的一半视角出现绿色，而另一半云雾基本消除，下方圆桌形态较好重建，但桌面呈现透明。更多周围背景被重建（窗外绿树，栏杆，沙发等）</p>
+<h2 id="结论">结论</h2>
+<p>增加相机视角多样性明显减少物体周围的云雾</p>
+<h2 id="不足">不足</h2>
+<ol type="1">
+<li>拍摄过程中虚焦导致不同视角的数据量有差别</li>
+<li>不同视角拍摄时镜头与物体距离未保持一致</li>
+</ol>
+<h2 id="讨论">讨论</h2>
+<ol type="1">
+<li>网络倾向于在相机面前贴云雾，导致通常沿着相机轨迹产生云雾</li>
+<li>室内一面造成的云雾少于窗外绿树形成的云雾。推测，室外场景不同变化小.</li>
+<li>上方的云雾？</li>
+</ol>
+<h1 id="实验二-1">实验二</h1>
+<h3 id="实验目的-1">实验目的</h3>
+<p>背景纹理的复杂程度如何影响背景重建效果</p>
+<h3 id="实验条件-1">实验条件</h3>
+<ol type="1">
+<li><strong>同一场景</strong>，光照相同，背景相同</li>
+<li><strong>相机</strong>：同一实际拍摄</li>
+<li><strong>数据量相同</strong>：每组实验的照片数量基本一致</li>
+<li><strong>COLMAP 模型</strong>： <code>SIMPLE_RADIAL</code> 且选择内参 <code>share_for all images</code></li>
+<li>未勾选 训练外参，曝光和畸变。</li>
+</ol>
+<h3 id="实验步骤-1">实验步骤</h3>
+<ol type="1">
+<li><p><strong>数据收集</strong>：绕物体在相似的角度分别在有格子纹理和空白桌面进行拍摄</p></li>
+<li><p>各提取60张图像</p></li>
+<li><p><strong>数据处理</strong>：使用COLMAP稀疏重建</p>
+<p>空白桌面得到的相机内参：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Camera list with one line of data per camera:</span></span><br><span class="line"><span class="comment">#   CAMERA_ID, MODEL, WIDTH, HEIGHT, PARAMS[]</span></span><br><span class="line"><span class="comment"># Number of cameras: 1</span></span><br><span class="line"><span class="number">1</span> SIMPLE_RADIAL <span class="number">3840</span> <span class="number">2160</span> <span class="number">2928.591596486669</span> <span class="number">1920</span> <span class="number">1080</span> <span class="number">0.035193673608008569</span></span><br></pre></td></tr></table></figure>
+<p>有纹理得到的相机内参：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Camera list with one line of data per camera:</span></span><br><span class="line"><span class="comment">#   CAMERA_ID, MODEL, WIDTH, HEIGHT, PARAMS[]</span></span><br><span class="line"><span class="comment"># Number of cameras: 1</span></span><br><span class="line"><span class="number">1</span> SIMPLE_RADIAL <span class="number">3840</span> <span class="number">2160</span> <span class="number">2929.642972834683</span> <span class="number">1920</span> <span class="number">1080</span> <span class="number">0.027481430175291963</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>NeRF 重建</strong> : <code>run.py</code> 两组实验相机沿着相同的轨迹 <code>base_cam.json</code>，导出渲染后的视频</p></li>
+</ol>
+<h3 id="实验结果-1">实验结果</h3>
+<h4 id="有纹理组">有纹理组</h4>
+<p>桌上的纹理较好重建</p>
+<video src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202210261857883.mp4" title="第一组">
+99
+</video>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202210261912272.png" alt="image-20221026191200695" /><figcaption aria-hidden="true">image-20221026191200695</figcaption>
+</figure>
+<h4 id="空白桌面组">空白桌面组</h4>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202210261859279.png" alt="空白对照" /><figcaption aria-hidden="true">空白对照</figcaption>
+</figure>
+<p>空白组的桌面相比有纹理的会更加透明</p>
+<h3 id="实验结论">实验结论</h3>
+<ol type="1">
+<li><p>纹理更多 COLMAP 更好的进行特征提取</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202210261918587.png" alt="image-20221026191811412" /><figcaption aria-hidden="true">image-20221026191811412</figcaption>
+</figure></li>
+</ol>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202211052223653.png" alt="image-20221026191914388" /><figcaption aria-hidden="true">image-20221026191914388</figcaption>
+</figure>
+<h2 id="实验三">实验三</h2>
+<ol type="1">
+<li><p><strong>Train extrinsic</strong>: propagates gradients back onto the camera parameters in order to minimize the loss (in this case by treating the cameras as rigid bodies with momentum and the loss gradients as impulses acting on them). This can fix slight inaccuracies in the poses from <code>transform.json</code>. If you're using COLMAP, this option only yields a small benefit as COLMAP is already quite accurate -- I'd leave it off for most scenes.</p></li>
+<li><p><strong>Train distortion</strong>: learns a grid-based camera distortion model on top of the Open CV camera model parameterized in <code>transforms.json</code>. Again, COLMAP usually does a good enough job that you don't need this.</p></li>
+<li><p><strong>Train exposure</strong>: learns to compensate for varying exposure levels of the training images. If you generate your own data, you should not use this and instead set your camera to fixed exposure</p></li>
+<li><p><strong>extrinsic</strong>: 6190 steps ; 收敛时间 145s ; Loss: 0.000546(32.63dB)</p></li>
+<li><p><strong>exposure</strong>: 7032 steps; 收敛时间 110s ; Loss: 0.000577 (32.39dB)</p></li>
+<li><p><strong>disorder</strong>: 6374 steps ; 收敛时间：100s Loss 0.00606(32.17db)</p></li>
+<li><p><strong>origin</strong>: 6214 steps ; 收敛时间 100s ; Loss : 000614 (32.12DB)</p></li>
+</ol>
+<video src="E:\instant-ngp\data\nerf\ex2\blank\origin.mp4" title="origin">
+</video>
+<video src="E:\instant-ngp\data\nerf\ex2\blank\extrinsic.mp4">
+</video>
+<video src="E:\instant-ngp\data\nerf\ex2\blank\exposure.mp4">
+</video>
+<video src="E:\instant-ngp\data\nerf\ex2\blank\disorder.mp4">
+</video>
+<h2 id="结论-1">结论</h2>
+<ol type="1">
+<li>勾选<strong>extrinsic</strong> 结果会渲染结果产生模糊，并且训练速度变慢</li>
+<li>勾选 <strong>exposure</strong> 使头发上的云雾消失。</li>
+<li>勾选 <strong>disorder</strong> 使结果更加清晰。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
   </entry>
   <entry>
     <title>np.random.rand vs np.random.random</title>
@@ -98,54 +316,28 @@
       </categories>
   </entry>
   <entry>
-    <title>火把节记录</title>
-    <url>/2022/08/01/%E5%85%B6%E4%BB%96/%E7%81%AB%E6%8A%8A%E8%8A%82%E6%84%9F%E5%8F%97/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>大理白族的火把节在每年六月二十日，分为竖火把，点火，抢升斗，耍火把等环节，具有独特且浓郁的名族特色，也是白族最盛大的传统节日。</p>
-<h2 id="竖火把">竖火把</h2>
-<p>火把节的资金往往由村中的新生儿女的几户人家均摊。火把往往在本主庙院子里或者附近竖立，然后在竖立的挖坑以便插入。不同于彝族，白族火把节往往高竖火把，由松木制成。然后再旁边插上竹条和稻草等助燃。最后制作『升斗』，是由细木和彩纸糊成，旁边再插上旗子，共有三层，故曰『连升三级』，象征着婴儿的出世。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012330672.png" alt="连升三级" /><figcaption aria-hidden="true">连升三级</figcaption>
-</figure>
-<h2 id="点火">点火</h2>
-<p>火把节的操办具有地域性，每个村寨都有自己的本主庙，而所有村落按照本主庙划分为不同的「辖区」，每个区域都竖立自己单独的火把，火种必须从本主庙迎出来。</p>
-<video src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012337426.mp4" title="南潘溪村迎火">
-99
-</video>
-<p>然后将火把顶上的稻草引燃</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012350457.png" alt="南潘上登火把节" /><figcaption aria-hidden="true">南潘上登火把节</figcaption>
-</figure>
-<h2 id="抢升斗">抢升斗</h2>
-<p>抢升斗的人选必须是刚婚的男性，抢下『连升三级』，祝愿着得子。</p>
-<h2 id="耍火把">耍火把</h2>
-<p>这应该是火把节最高潮和有趣的部分了。每家人挤在迎来的火种前引燃自己手中的火把，将火焰传递的温暖送入自家门中。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012356921.png" alt="借火" /><figcaption aria-hidden="true">借火</figcaption>
-</figure>
-<p>纵然黑夜降临，但亲朋好友之间互相取火，将薪火不断传递，『万炬纵横，灿如星海』。正如同明代诗人杨慎笔下的『松炬荧荧宵作平』。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020001028.jpg" /></p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020107106.jpg" /></p>
-<p>撒一把松明子，烈焰迸发，火光四射。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020009767.jpg" /></p>
-<p>尽情挥舞手中的火把，让疾风为火焰注入生命力，让黑暗中染上绚丽炽红的轨迹。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020012250.jpg" /></p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020105980.jpg" /></p>
-<p>火把上的大火直冲云霄，点亮一片天空。火星四溅，松木崩裂，感受到火炬内部有股强劲的生命力在迸发。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020021338.jpg" /></p>
-<p>最终火把却被这股生命力反噬，仿佛英雄垂暮，摇摇欲坠，大厦将倾。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020024687.jpg" /></p>
-<p>最终轰然倒塌，仿佛火山爆发，岩浆滚滚流淌而下，又如浴火重生。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020026118.jpg" /></p>
-<p>火把节如同不断上演的光影艺术剧，绚丽多姿，多彩纷呈。白子们通过火焰的传递，传承苍洱间祖祖辈辈生活的土地。又如同一首苍老的山歌，遒劲有力，发自肺腑，全出于本性，没有丝毫扭捏造作。火焰的力量从火把的根部直顶头部，穿云裂石。舞动时，划过黑暗。这就是为何火把节象征着生育的根本吧。</p>
-<p>欢迎各位来西南地区体会独特的风土人情。</p>
+    <title>大理火把节来历</title>
+    <url>/2022/08/01/%E5%85%B6%E4%BB%96/%E5%A4%A7%E7%90%86%E7%81%AB%E6%8A%8A%E8%8A%82%E6%9D%A5%E5%8E%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>普遍流传火烧松明楼的故事缺乏证据。该说法大概在明清时期广泛为人接受。如清代学者</p>
+<p>师范曾在《滇系·杂载》中总结出以下几点：</p>
+<ol type="1">
+<li>火把节即星回节</li>
+<li>起源一：武侯征南，于是日擒孟获，侵夜入城，城中父老设庭燎以迎之</li>
+<li>起源二：纪念曼阿奴之妻阿南，焚夫衣后横刀自断。</li>
+<li><strong>起源三：火烧松明楼，纪念慈善夫人（也称柏洁夫人），此最为广传的一种。</strong></li>
+</ol>
+<p>但元明清常常流传着很多关于大理白族火把节的记载与南诏时期不符。比如南诏时期，《太平广记》中引南诏王诗文《星回节游避风台与清平官赋》:</p>
+<blockquote>
+<p>避风善阐台,极目见藤越,悲哉古与今,依然烟与月。自我居震旦,翊卫类夔契。伊昔颈皇运,艰难仰忠烈。不觉岁云暮,感极星回节。元昶同一心,子孙堪贻厥。</p>
+</blockquote>
+<p>从「岁云暮」应该看出星回节应该位于年末，而火把节位于六月二十五，二者应该是两个节日。但是在明清的记载中大多将二者混为一谈。</p>
+<p>因此，《火烧松明楼》作为白族火把节的起源这一说法，应该只是穿凿附会之说。</p>
+<p>尽管如此，纪念柏洁夫人已然作为节日庆祝的主要载体。比如海东镇的赛龙舟与“捞尸会”，染手花（虽然已经不多见）与白洁夫人手刨火烧残余至十指染血有关，大理北门村和西门村等多地更是将“白洁夫人”奉为本主。</p>
+<p>目前还有一种的说法是大理白族火把节其真正的象征源于男性的垄断生育。抢升斗的必须是新婚的男性，象征着得子。</p>
 ]]></content>
       <categories>
         <category>其他</category>
       </categories>
-      <tags>
-        <tag>旅游</tag>
-        <tag>摄影</tag>
-      </tags>
   </entry>
   <entry>
     <title>手写数字识别</title>
@@ -344,28 +536,75 @@ Test accuracy: 0.9911999702453613</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>大理火把节来历</title>
-    <url>/2022/08/01/%E5%85%B6%E4%BB%96/%E5%A4%A7%E7%90%86%E7%81%AB%E6%8A%8A%E8%8A%82%E6%9D%A5%E5%8E%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>普遍流传火烧松明楼的故事缺乏证据。该说法大概在明清时期广泛为人接受。如清代学者</p>
-<p>师范曾在《滇系·杂载》中总结出以下几点：</p>
-<ol type="1">
-<li>火把节即星回节</li>
-<li>起源一：武侯征南，于是日擒孟获，侵夜入城，城中父老设庭燎以迎之</li>
-<li>起源二：纪念曼阿奴之妻阿南，焚夫衣后横刀自断。</li>
-<li><strong>起源三：火烧松明楼，纪念慈善夫人（也称柏洁夫人），此最为广传的一种。</strong></li>
-</ol>
-<p>但元明清常常流传着很多关于大理白族火把节的记载与南诏时期不符。比如南诏时期，《太平广记》中引南诏王诗文《星回节游避风台与清平官赋》:</p>
-<blockquote>
-<p>避风善阐台,极目见藤越,悲哉古与今,依然烟与月。自我居震旦,翊卫类夔契。伊昔颈皇运,艰难仰忠烈。不觉岁云暮,感极星回节。元昶同一心,子孙堪贻厥。</p>
-</blockquote>
-<p>从「岁云暮」应该看出星回节应该位于年末，而火把节位于六月二十五，二者应该是两个节日。但是在明清的记载中大多将二者混为一谈。</p>
-<p>因此，《火烧松明楼》作为白族火把节的起源这一说法，应该只是穿凿附会之说。</p>
-<p>尽管如此，纪念柏洁夫人已然作为节日庆祝的主要载体。比如海东镇的赛龙舟与“捞尸会”，染手花（虽然已经不多见）与白洁夫人手刨火烧残余至十指染血有关，大理北门村和西门村等多地更是将“白洁夫人”奉为本主。</p>
-<p>目前还有一种的说法是大理白族火把节其真正的象征源于男性的垄断生育。抢升斗的必须是新婚的男性，象征着得子。</p>
+    <title>火把节记录</title>
+    <url>/2022/08/01/%E5%85%B6%E4%BB%96/%E7%81%AB%E6%8A%8A%E8%8A%82%E6%84%9F%E5%8F%97/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>大理白族的火把节在每年六月二十日，分为竖火把，点火，抢升斗，耍火把等环节，具有独特且浓郁的名族特色，也是白族最盛大的传统节日。</p>
+<h2 id="竖火把">竖火把</h2>
+<p>火把节的资金往往由村中的新生儿女的几户人家均摊。火把往往在本主庙院子里或者附近竖立，然后在竖立的挖坑以便插入。不同于彝族，白族火把节往往高竖火把，由松木制成。然后再旁边插上竹条和稻草等助燃。最后制作『升斗』，是由细木和彩纸糊成，旁边再插上旗子，共有三层，故曰『连升三级』，象征着婴儿的出世。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012330672.png" alt="连升三级" /><figcaption aria-hidden="true">连升三级</figcaption>
+</figure>
+<h2 id="点火">点火</h2>
+<p>火把节的操办具有地域性，每个村寨都有自己的本主庙，而所有村落按照本主庙划分为不同的「辖区」，每个区域都竖立自己单独的火把，火种必须从本主庙迎出来。</p>
+<video src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012337426.mp4" title="南潘溪村迎火">
+99
+</video>
+<p>然后将火把顶上的稻草引燃</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012350457.png" alt="南潘上登火把节" /><figcaption aria-hidden="true">南潘上登火把节</figcaption>
+</figure>
+<h2 id="抢升斗">抢升斗</h2>
+<p>抢升斗的人选必须是刚婚的男性，抢下『连升三级』，祝愿着得子。</p>
+<h2 id="耍火把">耍火把</h2>
+<p>这应该是火把节最高潮和有趣的部分了。每家人挤在迎来的火种前引燃自己手中的火把，将火焰传递的温暖送入自家门中。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012356921.png" alt="借火" /><figcaption aria-hidden="true">借火</figcaption>
+</figure>
+<p>纵然黑夜降临，但亲朋好友之间互相取火，将薪火不断传递，『万炬纵横，灿如星海』。正如同明代诗人杨慎笔下的『松炬荧荧宵作平』。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020001028.jpg" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020107106.jpg" /></p>
+<p>撒一把松明子，烈焰迸发，火光四射。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020009767.jpg" /></p>
+<p>尽情挥舞手中的火把，让疾风为火焰注入生命力，让黑暗中染上绚丽炽红的轨迹。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020012250.jpg" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020105980.jpg" /></p>
+<p>火把上的大火直冲云霄，点亮一片天空。火星四溅，松木崩裂，感受到火炬内部有股强劲的生命力在迸发。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020021338.jpg" /></p>
+<p>最终火把却被这股生命力反噬，仿佛英雄垂暮，摇摇欲坠，大厦将倾。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020024687.jpg" /></p>
+<p>最终轰然倒塌，仿佛火山爆发，岩浆滚滚流淌而下，又如浴火重生。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020026118.jpg" /></p>
+<p>火把节如同不断上演的光影艺术剧，绚丽多姿，多彩纷呈。白子们通过火焰的传递，传承苍洱间祖祖辈辈生活的土地。又如同一首苍老的山歌，遒劲有力，发自肺腑，全出于本性，没有丝毫扭捏造作。火焰的力量从火把的根部直顶头部，穿云裂石。舞动时，划过黑暗。这就是为何火把节象征着生育的根本吧。</p>
+<p>欢迎各位来西南地区体会独特的风土人情。</p>
 ]]></content>
       <categories>
         <category>其他</category>
       </categories>
+      <tags>
+        <tag>旅游</tag>
+        <tag>摄影</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>黔行山水间</title>
+    <url>/2022/09/22/%E5%85%B6%E4%BB%96/%E9%BB%94%E8%A1%8C%E5%B1%B1%E6%B0%B4%E9%97%B4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>​ 贵州，中国唯一没有平原支撑的省份，群山环绕，数千条河流将其塑造为喀斯特岩溶地貌的王国。大量的山林河谷让这片土地充斥着浓郁的神秘气息。我于是怀着敬畏和些许的恐惧抵达了贵阳。</p>
+<p>​ 贵阳的交通是立体的。坐车身在其中，各条道路在眼前不断地交织绕的人晕头转向，难辨东西。黔灵山公园的猕猴让人有些期待，在公园里跋涉许久才终于看到两只猕猴间互相厮杀，其中一只差点失足从屋檐下掉落，令人捏一把汗。又行了几步，终于发现一群猕猴，哦，不，应该是一群强盗吧。幸亏身上没带食物，否则肯定被哄抢的一干二净。在甲秀楼溜达完后，然后再附近找了家餐馆，叫“雷家圆子”，就是用豆腐做的油炸圆子，配上其特有的调料，口感外脆内嫩，味道鲜美，算是特色小吃吧。</p>
+<p>​ 饭后到高铁站后与社会实践团队会合，大家神态不一，有的社交达人如鱼得水和旁人侃侃而谈，也有的社恐面露羞涩，一言不发。我显然属于后者，所以高铁路上一直假装睡觉，害怕与旁边的组员交谈。我想，以后会有机会和大家熟悉的，也不必过多担心。</p>
+<p>​ 在六盘水经过一晚的修整，来到了本次调研的第一站：水城古镇。这里坐落着一个三线博物馆，纪念的是西南三线建设的历史。沿路的房屋墙壁上都有显赫的那个时代的标语。“人亲堪比阶级爱”，“好人好马上三线”，“为人民服务”等等。参观了博物馆后，知道三线建设是上世纪我国的重大军事战略计划，对西南地区的现代工业化起到了积极的推动作用。让人感到有趣的是一个手动的防空警报器，但是却被工人们用作闹钟，同学们开始疯狂转警报器，空厅传响，整个博物馆瞬间弥漫着一种紧张的备战氛围，霎时间回到那段峥嵘岁月。之后我们便开始在水城古镇进行街头访谈，收获颇丰。突然天空下起大雨，我于是坐在伞下和一个来自广东的游客聊了一下关于三线的问题，谈到当时韶关是广东的三线建设的重点，当时的备战气氛其实非常紧张，很多工业，和技术人员都从东部比如上海等地迁往西部。然后我们小组向一个小卖部的老板考察了水城古镇的历史。在这里未开发以前，这里基本都是住宅区，都用的自己的房子做点小生意，后来政府为了开发古镇景区拆迁了旧的房屋，但是没有给足相应的补贴，如今又向这里的摊位收取较为高昂的租金，这里百姓对此忿忿不平。听到这些话，我感到有些唏嘘。但是我们又采访了一位烙锅店的左氏老板，她对此的看法却又截然不同。她从小生活在水城，她母亲曾经是在路边做烙豆腐的。她对景区的开发持非常积极的态度，街道变得更加整洁了，社会环境和治安也有了很大改善，比如之前女孩子从来不敢走夜路，如今她也不会担心走夜路，游客更多使得生意更加兴隆。我想，之所以产生不同看法的原因是从不同的方面看待水城的变迁。政府在协调拆迁问题时确实存在着过失，百姓原本的生产经营方式突然改变，又缺乏补贴，引起了一部分原本生意蒸蒸日上的商家的忿怨。而后面采访的这位，较为年轻的老板更关注于变迁带来的好的环境改变。尽管如此，政府也应该更多的考虑和协调百姓的不满。然后晚上也品尝了水城的特色小吃—烙锅。用土砂锅烙烤食物，蘸一下辣椒面，香辣爽口，油而不腻。只是有点难以控制火候大小，容易热油飞溅，还是略微有些危险。</p>
+<p>​ 第二天从六盘水前往久负盛名的黄果树瀑布，作为最大的瀑布群。做观光车的一路上都能看到一些小型的瀑布。离大瀑布的远近不同，感受也不同。从远处看去，夹在两山之间，激起的云雾在山谷中升腾，是秀美。而逐渐走进后，一下多了一个感官维度--触觉。激荡的水珠在脸上胡乱地拍打，心中升起阵阵凉意，耳边隆隆，水风忽忽，闭上双眼依然能感到震撼。更神奇的事，瀑布的背后，隐藏着一条溶洞，如同西游记里地水帘洞，从背面这个角度观飞瀑实属新奇，飞落地水花出奇的白，仿佛瀑布化身成了雪崩。不得不再一次感叹大自然的鬼斧神工。除了壮阔的黄果树瀑布，还有秀美的银链坠潭瀑布。其落差不大，潭沿面凸起的石面，像一片片莲叶一般，静谧而柔美地流泻如同绸缎。不知这些水滴从高处坠落时是否感到害怕，分明刚刚还在水平如面镜的水流中缓缓流淌，下一刻便倏忽间从平滑的水面坠落倾泻而下，让我不免后怕坐在飞机上的失重感</p>
+<p>​ 第三天终于有实操环节了--摘刺梨。之前喝过名叫“刺柠吉”的饮料，印象中爽口。可是当亲眼看到刺梨时，浑身是刺的它似乎并不那么友好，令人不知从哪里下嘴，终于忍住牙床的刺痛艰难咬下一口时，一股酸涩令人倒吸一口气。看来刺梨的确不适合直接食用，难怪必须通过进一步加工才能除去它的酸涩味，以充分其清热爽口的优点。听完讲解后，我们便兴致勃勃地戴上手套下田采摘。这里的农田也是起伏不平，地面湿滑容易摔倒，下坡只能让旁边的玉米受苦了，一群人经过后，玉米全部都垂头丧气的倒了下来。刺梨一簇簇地挂在枝头，生熟让人难以判断，管他呢，权且当搞点小破坏。结果就发现用一层手套摘刺梨稍微一用力就能轻易地被戳穿，只得戴上两层手套，捏住刺梨之后使劲往一个方向转，就能轻易地摘下来了。大家都摘得热火朝天，尽管被刺的惨叫声此起彼伏，最后还是收获了半筐刺梨，半载而归。好心的村民想把刺梨送给我们，但是实在是苦于揣着兜里的麻烦，只得一再推却。</p>
+<p>​ 采摘刺梨的之后的一天，我们团队又调查了一家刺梨加工企业，参观了刺梨加工的生产线。了解到刺梨的营养价值很高，尤其是维C含量。又介绍了很多用刺梨作为原材料的产品，除了刺梨原浆，刺梨酒，还有用来解腻用的饮品，大家都仔细品尝了一番。并且与书亦烧仙草合作推出刺梨口味的奶茶。这是确凿的事实，后来从六盘水返回到贵阳的时候，我就在高铁站奶茶店喝到了这熟悉的味道，在喝到的第一口有些莫名感动。刺梨相貌本身不讨好，原本味道又有些苦涩，但是却能被人们坚持发掘价值，经过一系列加工与其他食材配合，最终能华丽蜕变为一种竞品在市场上销售，博得消费者的喜爱，实在是催人奋进。</p>
+<p>​ 还令人难以忘怀的就是乌蒙大草原。在海拔两千多米的高山间，竟然滋养出一片西南地区最大的天然草场。与平时所见一马平川的草原不同，乌蒙大草原不断给人遐想和未知期待。山丘起伏挡住了视线，让人一眼看不到全貌，越过眼前的小土坡也许就又能看见奔跑的羊群，抑或是听见阵阵牛羚，而稍微挪动脚步又能看到一只威风凛然的黄牛盘踞在下一个山头。长期在这样有趣的坡道行走，也丝毫不觉得疲惫，反倒妙趣横生。草原上还看到一群穿着布依族服饰的姑娘们围成一圈，随着音乐的节奏欢快的舞蹈，旁边的游客也逐渐加入这场草原盛会，其乐融融。我坐在草地上，和煦的风吹得我醉眼迷离，恍惚地看这片热闹的草地，人们与牛羊甚至骆驼结伴，风筝在白云间游走，山顶上徐徐旋转地大风车。这片深处群山腹地的草原就如同，尽管有些老套，但的确是贵州高原上的明珠。使生活在此的人们，能够在地无三尺平的贵州，在一片广阔的草地尽情撒欢，释放内心的烦闷，遥望连绵的草野。</p>
+<p>​ 另外，我在团队中负责视频后期，当然也承担了小部分的拍摄工作。我之前没有任何关于视频创作的经验，完全是从头学起。因为要和配合新闻稿做两个视频，时间非常紧迫。白天不仅坐车和拍摄非常辛苦，晚上还得紧张工作。为了呈现更好的效果，我一帧一帧的处理视频细节，一开始很不熟练，导致效率很低，还出现一堆问题，前几天不得不工作到凌晨2点。后面也感受到自己愈发熟练，效率也逐渐提高，过程虽然很辛苦，但是看到做出来的视频还是非常有成就感，并且学习了一项新的技能。与团队成员的协作共事，同甘共苦，让大家很快成为一个紧密的团体，不善言语的我也认识了很多新的好伙伴。</p>
+<p>​ 在这七天里，少不了车马困顿。“天下山峰何其多，唯有此处峰成林”。每个镇乡之间的都要绕行大量的山路。感觉贵州的建设实属不易。交通方面是一个难题，不过越来越多的高桥正在飞架，据统计，贵州桥梁数量达到20000多座，全世界排名100座桥梁当中，有80多座来自中国；这80多座大桥之中，就有一大半来自贵州。但是六盘水铁路线还是处于落后局面，基本靠六安一条线路，我认为如果毕节-六盘水能通铁路能加强黔西和四川的联系。大量山地加上云贵准静止锋带来长期阴雨的天气，制约了贵州的农业发展。除了少量优良的土地能种植猕猴桃等经济作物，而沿途看到的大部分作物还是玉米。尽管如此贵州有着丰富的旅游资源、多彩的民族文化，源远流长的酒文化。在我心中，贵州是一片神圣而又神秘的土地，不同于开阔、壮丽的西藏那样强烈宗教带来的神圣，恰恰相反，崎岖、起伏的峰林赋予贵州一股质朴、平易近人的灵气。在参观农民画时，无意听到苗族山歌，回声嘹亮，空灵婉转，仿佛一场与山灵的对话。我想以后我还会来到贵州，在此体味淡泊自得的生活态度，去追寻信奉神巫的山间传说，涤荡内心，直面自我。</p>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>旅游</tag>
+      </tags>
   </entry>
   <entry>
     <title></title>
@@ -471,27 +710,6 @@ Test accuracy: 0.9911999702453613</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>黔行山水间</title>
-    <url>/2022/09/22/%E5%85%B6%E4%BB%96/%E9%BB%94%E8%A1%8C%E5%B1%B1%E6%B0%B4%E9%97%B4/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>​ 贵州，中国唯一没有平原支撑的省份，群山环绕，数千条河流将其塑造为喀斯特岩溶地貌的王国。大量的山林河谷让这片土地充斥着浓郁的神秘气息。我于是怀着敬畏和些许的恐惧抵达了贵阳。</p>
-<p>​ 贵阳的交通是立体的。坐车身在其中，各条道路在眼前不断地交织绕的人晕头转向，难辨东西。黔灵山公园的猕猴让人有些期待，在公园里跋涉许久才终于看到两只猕猴间互相厮杀，其中一只差点失足从屋檐下掉落，令人捏一把汗。又行了几步，终于发现一群猕猴，哦，不，应该是一群强盗吧。幸亏身上没带食物，否则肯定被哄抢的一干二净。在甲秀楼溜达完后，然后再附近找了家餐馆，叫“雷家圆子”，就是用豆腐做的油炸圆子，配上其特有的调料，口感外脆内嫩，味道鲜美，算是特色小吃吧。</p>
-<p>​ 饭后到高铁站后与社会实践团队会合，大家神态不一，有的社交达人如鱼得水和旁人侃侃而谈，也有的社恐面露羞涩，一言不发。我显然属于后者，所以高铁路上一直假装睡觉，害怕与旁边的组员交谈。我想，以后会有机会和大家熟悉的，也不必过多担心。</p>
-<p>​ 在六盘水经过一晚的修整，来到了本次调研的第一站：水城古镇。这里坐落着一个三线博物馆，纪念的是西南三线建设的历史。沿路的房屋墙壁上都有显赫的那个时代的标语。“人亲堪比阶级爱”，“好人好马上三线”，“为人民服务”等等。参观了博物馆后，知道三线建设是上世纪我国的重大军事战略计划，对西南地区的现代工业化起到了积极的推动作用。让人感到有趣的是一个手动的防空警报器，但是却被工人们用作闹钟，同学们开始疯狂转警报器，空厅传响，整个博物馆瞬间弥漫着一种紧张的备战氛围，霎时间回到那段峥嵘岁月。之后我们便开始在水城古镇进行街头访谈，收获颇丰。突然天空下起大雨，我于是坐在伞下和一个来自广东的游客聊了一下关于三线的问题，谈到当时韶关是广东的三线建设的重点，当时的备战气氛其实非常紧张，很多工业，和技术人员都从东部比如上海等地迁往西部。然后我们小组向一个小卖部的老板考察了水城古镇的历史。在这里未开发以前，这里基本都是住宅区，都用的自己的房子做点小生意，后来政府为了开发古镇景区拆迁了旧的房屋，但是没有给足相应的补贴，如今又向这里的摊位收取较为高昂的租金，这里百姓对此忿忿不平。听到这些话，我感到有些唏嘘。但是我们又采访了一位烙锅店的左氏老板，她对此的看法却又截然不同。她从小生活在水城，她母亲曾经是在路边做烙豆腐的。她对景区的开发持非常积极的态度，街道变得更加整洁了，社会环境和治安也有了很大改善，比如之前女孩子从来不敢走夜路，如今她也不会担心走夜路，游客更多使得生意更加兴隆。我想，之所以产生不同看法的原因是从不同的方面看待水城的变迁。政府在协调拆迁问题时确实存在着过失，百姓原本的生产经营方式突然改变，又缺乏补贴，引起了一部分原本生意蒸蒸日上的商家的忿怨。而后面采访的这位，较为年轻的老板更关注于变迁带来的好的环境改变。尽管如此，政府也应该更多的考虑和协调百姓的不满。然后晚上也品尝了水城的特色小吃—烙锅。用土砂锅烙烤食物，蘸一下辣椒面，香辣爽口，油而不腻。只是有点难以控制火候大小，容易热油飞溅，还是略微有些危险。</p>
-<p>​ 第二天从六盘水前往久负盛名的黄果树瀑布，作为最大的瀑布群。做观光车的一路上都能看到一些小型的瀑布。离大瀑布的远近不同，感受也不同。从远处看去，夹在两山之间，激起的云雾在山谷中升腾，是秀美。而逐渐走进后，一下多了一个感官维度--触觉。激荡的水珠在脸上胡乱地拍打，心中升起阵阵凉意，耳边隆隆，水风忽忽，闭上双眼依然能感到震撼。更神奇的事，瀑布的背后，隐藏着一条溶洞，如同西游记里地水帘洞，从背面这个角度观飞瀑实属新奇，飞落地水花出奇的白，仿佛瀑布化身成了雪崩。不得不再一次感叹大自然的鬼斧神工。除了壮阔的黄果树瀑布，还有秀美的银链坠潭瀑布。其落差不大，潭沿面凸起的石面，像一片片莲叶一般，静谧而柔美地流泻如同绸缎。不知这些水滴从高处坠落时是否感到害怕，分明刚刚还在水平如面镜的水流中缓缓流淌，下一刻便倏忽间从平滑的水面坠落倾泻而下，让我不免后怕坐在飞机上的失重感</p>
-<p>​ 第三天终于有实操环节了--摘刺梨。之前喝过名叫“刺柠吉”的饮料，印象中爽口。可是当亲眼看到刺梨时，浑身是刺的它似乎并不那么友好，令人不知从哪里下嘴，终于忍住牙床的刺痛艰难咬下一口时，一股酸涩令人倒吸一口气。看来刺梨的确不适合直接食用，难怪必须通过进一步加工才能除去它的酸涩味，以充分其清热爽口的优点。听完讲解后，我们便兴致勃勃地戴上手套下田采摘。这里的农田也是起伏不平，地面湿滑容易摔倒，下坡只能让旁边的玉米受苦了，一群人经过后，玉米全部都垂头丧气的倒了下来。刺梨一簇簇地挂在枝头，生熟让人难以判断，管他呢，权且当搞点小破坏。结果就发现用一层手套摘刺梨稍微一用力就能轻易地被戳穿，只得戴上两层手套，捏住刺梨之后使劲往一个方向转，就能轻易地摘下来了。大家都摘得热火朝天，尽管被刺的惨叫声此起彼伏，最后还是收获了半筐刺梨，半载而归。好心的村民想把刺梨送给我们，但是实在是苦于揣着兜里的麻烦，只得一再推却。</p>
-<p>​ 采摘刺梨的之后的一天，我们团队又调查了一家刺梨加工企业，参观了刺梨加工的生产线。了解到刺梨的营养价值很高，尤其是维C含量。又介绍了很多用刺梨作为原材料的产品，除了刺梨原浆，刺梨酒，还有用来解腻用的饮品，大家都仔细品尝了一番。并且与书亦烧仙草合作推出刺梨口味的奶茶。这是确凿的事实，后来从六盘水返回到贵阳的时候，我就在高铁站奶茶店喝到了这熟悉的味道，在喝到的第一口有些莫名感动。刺梨相貌本身不讨好，原本味道又有些苦涩，但是却能被人们坚持发掘价值，经过一系列加工与其他食材配合，最终能华丽蜕变为一种竞品在市场上销售，博得消费者的喜爱，实在是催人奋进。</p>
-<p>​ 还令人难以忘怀的就是乌蒙大草原。在海拔两千多米的高山间，竟然滋养出一片西南地区最大的天然草场。与平时所见一马平川的草原不同，乌蒙大草原不断给人遐想和未知期待。山丘起伏挡住了视线，让人一眼看不到全貌，越过眼前的小土坡也许就又能看见奔跑的羊群，抑或是听见阵阵牛羚，而稍微挪动脚步又能看到一只威风凛然的黄牛盘踞在下一个山头。长期在这样有趣的坡道行走，也丝毫不觉得疲惫，反倒妙趣横生。草原上还看到一群穿着布依族服饰的姑娘们围成一圈，随着音乐的节奏欢快的舞蹈，旁边的游客也逐渐加入这场草原盛会，其乐融融。我坐在草地上，和煦的风吹得我醉眼迷离，恍惚地看这片热闹的草地，人们与牛羊甚至骆驼结伴，风筝在白云间游走，山顶上徐徐旋转地大风车。这片深处群山腹地的草原就如同，尽管有些老套，但的确是贵州高原上的明珠。使生活在此的人们，能够在地无三尺平的贵州，在一片广阔的草地尽情撒欢，释放内心的烦闷，遥望连绵的草野。</p>
-<p>​ 另外，我在团队中负责视频后期，当然也承担了小部分的拍摄工作。我之前没有任何关于视频创作的经验，完全是从头学起。因为要和配合新闻稿做两个视频，时间非常紧迫。白天不仅坐车和拍摄非常辛苦，晚上还得紧张工作。为了呈现更好的效果，我一帧一帧的处理视频细节，一开始很不熟练，导致效率很低，还出现一堆问题，前几天不得不工作到凌晨2点。后面也感受到自己愈发熟练，效率也逐渐提高，过程虽然很辛苦，但是看到做出来的视频还是非常有成就感，并且学习了一项新的技能。与团队成员的协作共事，同甘共苦，让大家很快成为一个紧密的团体，不善言语的我也认识了很多新的好伙伴。</p>
-<p>​ 在这七天里，少不了车马困顿。“天下山峰何其多，唯有此处峰成林”。每个镇乡之间的都要绕行大量的山路。感觉贵州的建设实属不易。交通方面是一个难题，不过越来越多的高桥正在飞架，据统计，贵州桥梁数量达到20000多座，全世界排名100座桥梁当中，有80多座来自中国；这80多座大桥之中，就有一大半来自贵州。但是六盘水铁路线还是处于落后局面，基本靠六安一条线路，我认为如果毕节-六盘水能通铁路能加强黔西和四川的联系。大量山地加上云贵准静止锋带来长期阴雨的天气，制约了贵州的农业发展。除了少量优良的土地能种植猕猴桃等经济作物，而沿途看到的大部分作物还是玉米。尽管如此贵州有着丰富的旅游资源、多彩的民族文化，源远流长的酒文化。在我心中，贵州是一片神圣而又神秘的土地，不同于开阔、壮丽的西藏那样强烈宗教带来的神圣，恰恰相反，崎岖、起伏的峰林赋予贵州一股质朴、平易近人的灵气。在参观农民画时，无意听到苗族山歌，回声嘹亮，空灵婉转，仿佛一场与山灵的对话。我想以后我还会来到贵州，在此体味淡泊自得的生活态度，去追寻信奉神巫的山间传说，涤荡内心，直面自我。</p>
-]]></content>
-      <categories>
-        <category>其他</category>
-      </categories>
-      <tags>
-        <tag>旅游</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>启功带你学书法-破除迷信</title>
     <url>/2022/07/05/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E5%90%AF%E5%8A%9F%E7%BB%99%E4%BD%A0%E8%AE%B2%E4%B9%A6%E6%B3%95/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>​ 启功先生以破除迷信的思想贯穿全书，很实在，不故弄玄虚。扫清各种神秘的古怪学说为初学者造成的困惑和恐吓。</p>
@@ -532,45 +750,102 @@ Test accuracy: 0.9911999702453613</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Hexo美化：为Next主题外接 Waline 评论系统</title>
-    <url>/2022/06/29/Blog%E6%90%AD%E5%BB%BA/Hexo/Hexo-Next%E4%B8%BB%E9%A2%98%E5%A4%96%E6%8E%A5%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="前言">前言</h3>
-<p>​ <strong>Waline</strong> 是一款基于 <strong>Valine</strong> 衍生的评论系统，首先在笔者目前使用的 NexT 8.12.1 下已经不再内置 Valine 系统，需要自己手动配置。 看了一圈其他的评论系统，貌似只有 Waline 支持数学公式，所以最终选择 Waline 评论系统</p>
-<span id="more"></span>
-<h3 id="配置数据库和服务端部署">配置数据库和服务端部署</h3>
-<p>​ 选择 <a href="%5BLeanCloud%5D(https://www.leancloud.cn/)">Leanclound</a> 作为评论数据库，在 Vercel 上部署服务端。接着就按照 <span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWwjbGVhbmNsb3VkLSVFOCVBRSVCRSVFNyVCRCVBRS0lRTYlOTUlQjAlRTYlOEQlQUUlRTUlQkElOTM=">Waline的官方文档<i class="fa fa-external-link-alt"></i></span> 进行操作即可。这里介绍几个注意的点：</p>
+    <title></title>
+    <url>/2022/11/03/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E9%95%80%E9%87%91%E6%97%B6%E4%BB%A3/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="第二次工业革命">第二次工业革命</h1>
+<h2 id="工业经济">工业经济</h2>
+<p>​ 从小农场的手工制造业转型为工业社会。“迅速彻底的革命”。五大湖，匹兹堡钢铁中心，原材料</p>
+<h2 id="铁路">铁路</h2>
 <ol type="1">
-<li><p>注册时推荐使用国际版，否则需要绑定备案的域名，比较麻烦。</p></li>
-<li><p>在 Vercel 上部署服务端时，注意环境变量名称 <code>LEAN_ID</code>, <code>LEAN_KEY</code> 和 <code>LEAN_MASTER_KEY</code>一定要一字不差。遇到访客评论系统在不登录账号时报错如下:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Invalid value type for field &#x27;link&#x27;,value &#x27;&quot;&quot;&#x27;,expect type is &#123;:type &quot;Object&quot;&#125;,but it is &#x27;&#123;:type &quot;String&quot;&#125;&#x27;. [400 POST https://ioksy7et.api.lncldglobal.com/1.1/classes/Comment]</span><br></pre></td></tr></table></figure></li>
+<li>同一轨距</li>
+<li>批量化生产，全国连锁店 全国性品牌</li>
 </ol>
-<p>​ 解决方法：重新在 Leanclound 上创建 <code>Comment</code> 类。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206301329339.png" alt="在数据储存中创建新的Comment类" /><figcaption aria-hidden="true">在<code>数据储存</code>中创建新的Comment类</figcaption>
-</figure>
-<h3 id="在-hexo-上使用-waline">在 Hexo 上使用 Waline</h3>
-<p>在 Hexo 根目录下执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install @waline/hexo-next</span><br></pre></td></tr></table></figure>
-<p>接着你可以在 Hexo 根目录下 <code>\node_modules\@waline</code> 中找到 <code>default.yaml</code> 文件，里面就是所有 Waline 的设置选项了。 为了方便将其中需要改变的选项手动写入到 <code>next</code> 主题下 的 <code>_config.yaml</code>中， 以下是部分参考，更多的选项设置在上述 <code>default.yaml</code> 中：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment">#是否开启</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">waline-server-ecru.vercel.app</span> <span class="comment"># Waline #服务端地址，我们这里就是上面部署的 Vercel 地址</span></span><br><span class="line">  <span class="attr">locale:</span></span><br><span class="line">    <span class="attr">placeholder:</span> <span class="string">疑义相与析，畅所欲言，不登录也没关系哒</span> <span class="comment"># #评论框的默认文字</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># 头像风格</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>,<span class="string">mail</span>] <span class="comment"># 自定义评论框上面的三个输入框的内容</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># 评论数量多少时显示分页</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># 语言, 可选值: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># 文章阅读统计</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示</span></span><br><span class="line">  <span class="attr">requiredFields:</span> [<span class="string">nick</span>] <span class="comment"># 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]</span></span><br><span class="line">  <span class="attr">libUrl:</span> <span class="string">https://unpkg.com/@waline/client@v2/dist/waline.js</span> <span class="comment"># Set custom library cdn url</span></span><br><span class="line">  <span class="attr">login:</span> <span class="string">enable</span></span><br></pre></td></tr></table></figure>
-<h3 id="登录服务端">登录服务端</h3>
-<p>接着部署后就能够看到登录按钮，进行登录，貌似第一个登录的账号就会有个 <strong>博主</strong> 的标识。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206292335984.png" alt="进入登录界面" /><figcaption aria-hidden="true">进入登录界面</figcaption>
-</figure>
-<p>但是访客不登陆也能评论。访客填写不同的邮箱会显示其对应账号的头像。</p>
-<p>最后效果可以参见<span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnLw==">官方文档<i class="fa fa-external-link-alt"></i></span> 。</p>
-<h3 id="参考">参考</h3>
-<p><span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWw=">官方文档<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9xaWFuZmFuZ3VvamluLnRvcC8yMDIyLzAxLzIwL0hleG8lRTUlOEQlOUElRTUlQUUlQTIlRTglQkYlOUIlRTklOTglQjYlRUYlQkMlOUElRTQlQjglQkEtTmV4dC0lRTQlQjglQkIlRTklQTIlOTglRTYlQjclQkIlRTUlOEElQTAtV2FsaW5lLSVFOCVBRiU4NCVFOCVBRSVCQSVFNyVCMyVCQiVFNyVCQiU5Ri8=">谢同学博客<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="发明创造">发明创造</h2>
+<ol type="1">
+<li>爱迪生</li>
+</ol>
+<h2 id="竞争与合并">竞争与合并</h2>
+<ol type="1">
+<li>防止恶性竞争咯昂段</li>
+</ol>
+<h2 id="thomas-a.-scott">Thomas A. Scott</h2>
+<ol type="1">
+<li>慈善</li>
+<li>集权方法，连轴转</li>
+<li></li>
+</ol>
+<h2 id="工人自由">工人自由</h2>
+<ol type="1">
+<li>利益分配不均</li>
+<li>少部分产业技术工人能经济独立：钢铁</li>
+<li>半技术工人：操作机器，死亡率高</li>
+<li>妇女恶劣的工作环境，“如同内战前一样”</li>
+</ol>
+<h2 id="阶级分化">阶级分化</h2>
+<ol type="1">
+<li>贫富差距</li>
+</ol>
+<h1 id="西部转型">西部转型</h1>
+<p>资本主义流入 自然条件 美国文化的特别素质实在西部形成的，西部是安全阀门，将东部对自己不满的人吸引，从而抵消社会动乱。</p>
+<h2 id="西进定居">西进定居</h2>
+<p>农场主：东部出生本土，重建后南部逃离的黑人</p>
+<h2 id="大型农场">大型农场</h2>
+<p>主要仍然是家庭弄工厂</p>
+<p>加州大型农场</p>
+<h2 id="牛仔">牛仔</h2>
+<p>牛群驱赶活动</p>
+<ol type="1">
+<li>西部城市人口比例高</li>
+<li>矿山铁路</li>
+</ol>
+<h2 id="印第安人">印第安人</h2>
+<ol type="1">
+<li>摧毁伊甸人的经济基础</li>
+<li>联邦军队与部落</li>
+<li>文化打击</li>
+<li><strong>道斯法</strong> ： 将印第安人土地分解，分配个家庭，剩余的出售</li>
+<li>1924年赋予所有印第安人</li>
+</ol>
+<h1 id="政治">政治</h1>
+<p>Mark Twain</p>
+<h2 id="政治腐败">政治腐败</h2>
+<p>大股份公司</p>
+<p><strong>腐败政治机器</strong></p>
+<p>共和党：控制工业化北部，中西部，西部</p>
+<p>政治僵局时代，</p>
+<h2 id="政府与经济">政府与经济</h2>
+<ol type="1">
+<li>联邦权力小</li>
+<li>政党被利益集团控制，共和当坚持高关税，保护美国工业</li>
+<li>金本控制</li>
+</ol>
+<h2 id="改革立法">改革立法</h2>
+<ol type="1">
+<li>文官改革法 竞争性考试</li>
+<li>ICC 保障为农场主所收费用合理</li>
+</ol>
+<h2 id="州政治冲突">州政治冲突</h2>
+<h1 id="镀金时代的自由">镀金时代的自由</h1>
+<ol type="1">
+<li>劳工关系</li>
+<li>达尔文 契约自由</li>
+</ol>
+<h1 id="劳工与共和国">劳工与共和国</h1>
+<ol type="1">
+<li>铁路大罢工<br />
+</li>
+<li>改革者堆小生产时代的的怀旧，</li>
+<li>劳工运动</li>
+</ol>
+<h2 id="贝拉米乌托邦">贝拉米乌托邦</h2>
+<ol type="1">
+<li>社会主义《合作社会》</li>
+</ol>
+<h2 id="劳工与政治">劳工与政治</h2>
 ]]></content>
       <categories>
-        <category>Blog搭建</category>
-        <category>Hexo</category>
+        <category>阅读笔记</category>
       </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
   </entry>
   <entry>
     <title>Item 03 - Use const whenever possible</title>
@@ -700,6 +975,57 @@ cot \frac{C}{2} = -\frac{\cot \frac{A}{2}+\cot \frac{B}{2}}{1-\cot \frac{A}{2}\,
       <tags>
         <tag>三角函数</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hexo美化：为Next主题外接 Waline 评论系统</title>
+    <url>/2022/06/29/Blog%E6%90%AD%E5%BB%BA/Hexo/Hexo-Next%E4%B8%BB%E9%A2%98%E5%A4%96%E6%8E%A5%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="前言">前言</h3>
+<p>​ <strong>Waline</strong> 是一款基于 <strong>Valine</strong> 衍生的评论系统，首先在笔者目前使用的 NexT 8.12.1 下已经不再内置 Valine 系统，需要自己手动配置。 看了一圈其他的评论系统，貌似只有 Waline 支持数学公式，所以最终选择 Waline 评论系统</p>
+<span id="more"></span>
+<h3 id="配置数据库和服务端部署">配置数据库和服务端部署</h3>
+<p>​ 选择 <a href="%5BLeanCloud%5D(https://www.leancloud.cn/)">Leanclound</a> 作为评论数据库，在 Vercel 上部署服务端。接着就按照 <span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWwjbGVhbmNsb3VkLSVFOCVBRSVCRSVFNyVCRCVBRS0lRTYlOTUlQjAlRTYlOEQlQUUlRTUlQkElOTM=">Waline的官方文档<i class="fa fa-external-link-alt"></i></span> 进行操作即可。这里介绍几个注意的点：</p>
+<ol type="1">
+<li><p>注册时推荐使用国际版，否则需要绑定备案的域名，比较麻烦。</p></li>
+<li><p>在 Vercel 上部署服务端时，注意环境变量名称 <code>LEAN_ID</code>, <code>LEAN_KEY</code> 和 <code>LEAN_MASTER_KEY</code>一定要一字不差。遇到访客评论系统在不登录账号时报错如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Invalid value type for field &#x27;link&#x27;,value &#x27;&quot;&quot;&#x27;,expect type is &#123;:type &quot;Object&quot;&#125;,but it is &#x27;&#123;:type &quot;String&quot;&#125;&#x27;. [400 POST https://ioksy7et.api.lncldglobal.com/1.1/classes/Comment]</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>​ 解决方法：重新在 Leanclound 上创建 <code>Comment</code> 类。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206301329339.png" alt="在数据储存中创建新的Comment类" /><figcaption aria-hidden="true">在<code>数据储存</code>中创建新的Comment类</figcaption>
+</figure>
+<h3 id="在-hexo-上使用-waline">在 Hexo 上使用 Waline</h3>
+<p>在 Hexo 根目录下执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install @waline/hexo-next</span><br></pre></td></tr></table></figure>
+<p>接着你可以在 Hexo 根目录下 <code>\node_modules\@waline</code> 中找到 <code>default.yaml</code> 文件，里面就是所有 Waline 的设置选项了。 为了方便将其中需要改变的选项手动写入到 <code>next</code> 主题下 的 <code>_config.yaml</code>中， 以下是部分参考，更多的选项设置在上述 <code>default.yaml</code> 中：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment">#是否开启</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">waline-server-ecru.vercel.app</span> <span class="comment"># Waline #服务端地址，我们这里就是上面部署的 Vercel 地址</span></span><br><span class="line">  <span class="attr">locale:</span></span><br><span class="line">    <span class="attr">placeholder:</span> <span class="string">疑义相与析，畅所欲言，不登录也没关系哒</span> <span class="comment"># #评论框的默认文字</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># 头像风格</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>,<span class="string">mail</span>] <span class="comment"># 自定义评论框上面的三个输入框的内容</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># 评论数量多少时显示分页</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># 语言, 可选值: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># 文章阅读统计</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示</span></span><br><span class="line">  <span class="attr">requiredFields:</span> [<span class="string">nick</span>] <span class="comment"># 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]</span></span><br><span class="line">  <span class="attr">libUrl:</span> <span class="string">https://unpkg.com/@waline/client@v2/dist/waline.js</span> <span class="comment"># Set custom library cdn url</span></span><br><span class="line">  <span class="attr">login:</span> <span class="string">enable</span></span><br></pre></td></tr></table></figure>
+<h3 id="登录服务端">登录服务端</h3>
+<p>接着部署后就能够看到登录按钮，进行登录，貌似第一个登录的账号就会有个 <strong>博主</strong> 的标识。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206292335984.png" alt="进入登录界面" /><figcaption aria-hidden="true">进入登录界面</figcaption>
+</figure>
+<p>但是访客不登陆也能评论。访客填写不同的邮箱会显示其对应账号的头像。</p>
+<p>最后效果可以参见<span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnLw==">官方文档<i class="fa fa-external-link-alt"></i></span> 。</p>
+<h3 id="参考">参考</h3>
+<p><span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWw=">官方文档<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9xaWFuZmFuZ3VvamluLnRvcC8yMDIyLzAxLzIwL0hleG8lRTUlOEQlOUElRTUlQUUlQTIlRTglQkYlOUIlRTklOTglQjYlRUYlQkMlOUElRTQlQjglQkEtTmV4dC0lRTQlQjglQkIlRTklQTIlOTglRTYlQjclQkIlRTUlOEElQTAtV2FsaW5lLSVFOCVBRiU4NCVFOCVBRSVCQSVFNyVCMyVCQiVFNyVCQiU5Ri8=">谢同学博客<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Blog搭建</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SI140 HW1</title>
+    <url>/2022/09/26/%E6%95%B0%E5%AD%A6/SI140/SI140%20HW1/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>SI140</category>
+      </categories>
   </entry>
   <entry>
     <title>将数量场转为向量场的例题</title>
@@ -842,5 +1168,14 @@ F_N(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}
         <tag>不等式</tag>
         <tag>Fourier</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2022/11/09/%E5%85%B6%E4%BB%96/ngp%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
   </entry>
 </search>
