@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title></title>
+    <url>/2022/11/23/%E5%85%B6%E4%BB%96/11.23/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="debug">debug</h1>
+<ol type="1">
+<li>step in 进入该函数</li>
+<li>step out 跳出当前栈 到 断点处</li>
+</ol>
+<h1 id="rendering">Rendering</h1>
+<ol type="1">
+<li><code>Ray_intersect</code>:</li>
+<li><code>pay_load</code></li>
+</ol>
+<h1 id="rgb">RGB</h1>
+<p>hitpoint ?</p>
+<p>payload.alive ?</p>
+<p>ubantu , debug</p>
+]]></content>
+  </entry>
+  <entry>
     <title>Anaconda问题</title>
     <url>/2022/07/22/%E5%85%B6%E4%BB%96/Ananconda%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>打开 <strong>Anaconda</strong> 时出现</p>
@@ -12,6 +31,23 @@
       <categories>
         <category>其他</category>
       </categories>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2022/11/09/%E5%85%B6%E4%BB%96/11.9/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="sfm">SFM</h1>
+<p>几何验证</p>
+<p>标准 RANSAC</p>
+<p>满足就是好的match</p>
+<h2 id="增量重建">增量重建</h2>
+<h3 id="initialization">Initialization</h3>
+<h3 id="立体视觉">立体视觉</h3>
+<p>同一个像素点</p>
+<p>同一个特征点在普通位置</p>
+<h3 id="单应矩阵">单应矩阵</h3>
+<p>colmap_matcher</p>
+<p>skip-early</p>
+]]></content>
   </entry>
   <entry>
     <title>NeRF细节整理</title>
@@ -119,6 +155,23 @@
       </categories>
   </entry>
   <entry>
+    <title>Variable Bitrate Neural Fields</title>
+    <url>/2022/12/14/%E5%85%B6%E4%BB%96/Variable_Bitrate/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="motivation">Motivation</h1>
+<ol type="1">
+<li>压缩3D信息用于更高效的数据传输，和直播</li>
+<li>传统Nerf 的问题：因为需要很大的网络对场景进行编码，很多光线，每个点都要过这个大网络，因此渲染慢。</li>
+<li>feature grids: 每个顶点包含一个 feature vector. 任意一个点用插值的到特征。网络只需要对所有顶点进行编码, 网络减小，速度增加。但是储存的feature grids 占用的空间却比之前一个网络的多。</li>
+<li>ngp: 每个顶点的坐标通过 hash 映射到一个 codebook 的 index 上。但是需要多层，每层的codebook也很大，最终的存储还是很大。</li>
+</ol>
+<h1 id="vq-feature-grids-with-learning">VQ feature grids with learning</h1>
+<ol type="1">
+<li>直接在顶点上储存 index 并学习</li>
+<li>为了解决不可微的问题，使用 softmax 的技巧。 储存一系列浮点数，取max。<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202212141921446.png" alt="Vector quantized feaature grids with learning" /></li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
     <title>Lightroom 缓存</title>
     <url>/2022/07/13/%E5%85%B6%E4%BB%96/lightroomcahce/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="目录缓存-catalog">目录缓存 (Catalog)</h2>
@@ -141,6 +194,64 @@
       <tags>
         <tag>Lightroom</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>ngp 代码阅读</title>
+    <url>/2022/11/09/%E5%85%B6%E4%BB%96/ngp%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="implement">Implement</h1>
+<p>具体的实现细节</p>
+<h2 id="performance-vs-quality">Performance vs quality</h2>
+<p>hash table 的大小<span class="math inline">\(T\)</span> 过大导致GPU内存不足。</p>
+<p>经过实验取得 <span class="math inline">\(F=2,L=16\)</span></p>
+<h2 id="implicit-hash-collision-resolution">Implicit hash collision resolution</h2>
+<ol type="1">
+<li>一对点不太可能同时在每一层都发生碰撞,而且 <span class="math inline">\(N_{min}\)</span> 保证不发生冲突</li>
+<li>一对点对梯度的贡献是不同的,表面的点的影响更大</li>
+<li>分辨率的分布是几何的, 分辨率越大的较少的选取</li>
+</ol>
+<h2 id="online-adaptivity">Online adaptivity</h2>
+<p>如果输入 <span class="math inline">\(x\)</span> 的分布集中在一个小的区域,那么精细网格会更少的发生哈希冲突,能学习的更精确.</p>
+<p><strong>Neural Radiance Caching</strong></p>
+<h2 id="model-architecture">Model Architecture</h2>
+<p>由两个 MLP 并联</p>
+<ol type="1">
+<li><p><strong>density MLP</strong>: maps encoded position <span class="math inline">\(enc(\bold{x},\theta)\)</span> to 16 outputs values ， <span class="math inline">\(\theta\)</span> is the encoding parameters</p></li>
+<li><p><strong>color MLP</strong>:</p>
+<p><strong>Input</strong></p>
+<p>the 16 output values of the density MLP, and the view direction projected onto the first 16 coefficients of the spherical harmonics basis. This is a natural frequency encoding over unit vectors</p>
+<p><strong>output:</strong></p>
+<p>RGB color triplet.</p>
+<p>sRGB: sigmoid activation</p>
+<p>HDR: exponential activation</p>
+<p>1-hidden-layer density MLP and a 2-hidden-layer color MLP, both 64 neurons wide.</p>
+<h2 id="accelerated-ray-marching">Accelerated ray marching</h2>
+<p>we concentrate samples near surfaces by maintaining an occupancy grid that coarsely marks empty vs. nonempty space.</p>
+<h3 id="ray-marching-step-size-and-stopping">Ray Marching Step Size and Stopping</h3>
+<ol type="1">
+<li><strong>synthetic NeRF scenes:</strong> step size $t= /1024 $ in the unit cube <span class="math inline">\([0,1]^3\)</span></li>
+<li><strong>Others</strong>: <span class="math inline">\(t\)</span>​ exponential growth, which means that the computation cost grows only logarithmically in scene diameter, with no perceivable loss of quality.</li>
+<li>Stop ray marching and set the remaining contribution to zero as soon as the transmittance of the ray drops below a threshold</li>
+</ol>
+<h2 id="occupancy-grids">Occupancy Grids</h2>
+<p>During ray marching, whenever a sample is to be placed according to the step size from the previous section, the sample is skipped if its grid cell’s bit is low. Which one of the 𝐾 grids is queried is determined by both the sample position x and the step size Δ𝑡: among the grids covering x, the finest one with cell side length larger than Δ𝑡 is queried.</p>
+<p><em>update the occupancy grids</em>. a second set of grids that store full-precision floating density. update every 16 training steps.</p>
+<h2 id="number-of-rays-versus-batch-size">Number of Rays Versus Batch size</h2>
+<p>​ batch size = Samples per ray * Rays per batch</p>
+<p><strong>Training from a larger number of rays, i.e. incorporating more viewpoint variation into the batch. </strong>Include as many rays as possible in batches of fixed size rather that building variable-size batches from a fixed ray count</p></li>
+</ol>
+<h1 id="input">Input</h1>
+<ol type="1">
+<li><p>load <code>config/base.json</code>: 包括 <code>loss</code>, <code>optimizer</code>, <code>encoding</code> 的超参等 <code>envmap</code>?</p></li>
+<li><p><code>train</code></p></li>
+<li><p><code>training_prep_nerf</code>: 每过16次迭代，更新occupancy grids.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (m_training_step &lt; <span class="number">256</span>) &#123;</span><br><span class="line">		<span class="built_in">update_density_grid_nerf</span>(alpha, <span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()*n_cascades, <span class="number">0</span>, stream);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="built_in">update_density_grid_nerf</span>(alpha, <span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()/<span class="number">4</span>*n_cascades, <span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()/<span class="number">4</span>*n_cascades, stream);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>train_nerf_step(uint32_t target_batch_size, Testbed::NerfCounters&amp; counters, cudaStream_t stream)</code>:</p></li>
+<li><p><code>generate_training_samples_nerf</code></p></li>
+</ol>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
   </entry>
   <entry>
     <title>ngp背景重建</title>
@@ -259,9 +370,9 @@
 <li><p><strong>Train extrinsic</strong>: propagates gradients back onto the camera parameters in order to minimize the loss (in this case by treating the cameras as rigid bodies with momentum and the loss gradients as impulses acting on them). This can fix slight inaccuracies in the poses from <code>transform.json</code>. If you're using COLMAP, this option only yields a small benefit as COLMAP is already quite accurate -- I'd leave it off for most scenes.</p></li>
 <li><p><strong>Train distortion</strong>: learns a grid-based camera distortion model on top of the Open CV camera model parameterized in <code>transforms.json</code>. Again, COLMAP usually does a good enough job that you don't need this.</p></li>
 <li><p><strong>Train exposure</strong>: learns to compensate for varying exposure levels of the training images. If you generate your own data, you should not use this and instead set your camera to fixed exposure</p></li>
-<li><p><strong>extrinsic</strong>: 6190 steps ; 收敛时间 145s ; Loss: 0.000546(32.63dB)</p></li>
+<li><p><strong>extrinsic</strong>: 14073 steps ; 收敛时间 235s ; Loss: 0.000482(33.17dB)</p></li>
 <li><p><strong>exposure</strong>: 7032 steps; 收敛时间 110s ; Loss: 0.000577 (32.39dB)</p></li>
-<li><p><strong>disorder</strong>: 6374 steps ; 收敛时间：100s Loss 0.00606(32.17db)</p></li>
+<li><p><strong>disorder</strong>: 6374 steps ; 收敛时间：100s Loss 0.000606(32.17db)</p></li>
 <li><p><strong>origin</strong>: 6214 steps ; 收敛时间 100s ; Loss : 000614 (32.12DB)</p></li>
 </ol>
 <video src="E:\instant-ngp\data\nerf\ex2\blank\origin.mp4" title="origin">
@@ -274,23 +385,10 @@
 </video>
 <h2 id="结论-1">结论</h2>
 <ol type="1">
-<li>勾选<strong>extrinsic</strong> 结果会渲染结果产生模糊，并且训练速度变慢</li>
+<li>勾选<strong>extrinsic</strong> 结果更加清晰，使头发上的云雾消失，并且训练速度变慢一倍左右。</li>
 <li>勾选 <strong>exposure</strong> 使头发上的云雾消失。</li>
 <li>勾选 <strong>disorder</strong> 使结果更加清晰。</li>
 </ol>
-]]></content>
-      <categories>
-        <category>其他</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>np.random.rand vs np.random.random</title>
-    <url>/2022/07/23/%E5%85%B6%E4%BB%96/np.random.rand%20vs%20np.random.random/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>二者都连续均匀地在 <span class="math inline">\([0,1]\)</span> 生成 (uniform distribution) 样本，但接受地参数不同. <code>np.random.rand</code> 接受分隔地参数，<code>np.random.random</code> 接受一个 tuple.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = np.random.rand(<span class="number">2</span>,<span class="number">7</span>)</span><br><span class="line">a = np.random.random((<span class="number">2.7</span>))</span><br></pre></td></tr></table></figure>
-<h3 id="推荐写法">推荐写法</h3>
-<p>自 Numpy 1.17 后， 提供新的 方法</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rng = np.random.default_rng()  <span class="comment"># Create a default Generator.</span></span><br><span class="line">rng.random(size=<span class="number">10</span>)  <span class="comment"># Generate 10 samples.</span></span><br><span class="line">array([<span class="number">0.00416913</span>, <span class="number">0.31533329</span>, <span class="number">0.19057857</span>, <span class="number">0.48732511</span>, <span class="number">0.40638395</span>,</span><br><span class="line">       <span class="number">0.32165646</span>, <span class="number">0.02597142</span>, <span class="number">0.19788567</span>, <span class="number">0.08142055</span>, <span class="number">0.15755424</span>])</span><br><span class="line">rng = np.random.uniform(<span class="number">0</span>,<span class="number">1</span>,size=(<span class="number">2</span>,<span class="number">3</span>)) <span class="comment">#specify bound </span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>其他</category>
@@ -311,6 +409,19 @@
   </div>
 </div>
 <script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>np.random.rand vs np.random.random</title>
+    <url>/2022/07/23/%E5%85%B6%E4%BB%96/np.random.rand%20vs%20np.random.random/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>二者都连续均匀地在 <span class="math inline">\([0,1]\)</span> 生成 (uniform distribution) 样本，但接受地参数不同. <code>np.random.rand</code> 接受分隔地参数，<code>np.random.random</code> 接受一个 tuple.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = np.random.rand(<span class="number">2</span>,<span class="number">7</span>)</span><br><span class="line">a = np.random.random((<span class="number">2.7</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="推荐写法">推荐写法</h3>
+<p>自 Numpy 1.17 后， 提供新的 方法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rng = np.random.default_rng()  <span class="comment"># Create a default Generator.</span></span><br><span class="line">rng.random(size=<span class="number">10</span>)  <span class="comment"># Generate 10 samples.</span></span><br><span class="line">array([<span class="number">0.00416913</span>, <span class="number">0.31533329</span>, <span class="number">0.19057857</span>, <span class="number">0.48732511</span>, <span class="number">0.40638395</span>,</span><br><span class="line">       <span class="number">0.32165646</span>, <span class="number">0.02597142</span>, <span class="number">0.19788567</span>, <span class="number">0.08142055</span>, <span class="number">0.15755424</span>])</span><br><span class="line">rng = np.random.uniform(<span class="number">0</span>,<span class="number">1</span>,size=(<span class="number">2</span>,<span class="number">3</span>)) <span class="comment">#specify bound </span></span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>其他</category>
       </categories>
@@ -643,73 +754,6 @@ Test accuracy: 0.9911999702453613</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>一文搞懂字符编码</title>
-    <url>/2022/06/27/%E7%BC%96%E7%A0%81/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="字符集和编码">字符集和编码</h1>
-<p>​ 字符集从字符到一个数字的映射。编码是一种规则，即如何将这个字符转变为二进制数。</p>
-<h2 id="ascll">ASCLL</h2>
-<p>​ 计算机处理字符总是需要将其变为一个个 bit 所以最开始的字符集是 <a href="https://www.ascii-code.com/"><strong>ASCLL</strong></a> 码，将不同的英文字母，数字，以及控制字符映射到 8-bits 中。一开始 ASCLL 码只用到了 0 - 127。后来新增加了扩展 ASCLL 码， 利用了 128 - 255 剩下的一半字符。当称为 ASCLL 集的时候作为一种字符集，ASCLL 码时，是一种编码规则。</p>
-<span id="more"></span>
-<h2 id="gb">GB</h2>
-<h3 id="gb-2312">GB 2312</h3>
-<p>GB2312 是一种中文的字符集，分区管理， 共计 94 个区， 每个区含 94 个位，共8836 码位。 码位按照按照区，行，列一次决定，比如「侃」字在 57 区 0 行 9 列， 码位就是 5709，十六进制为 <code>0x39 0x09</code> 分别加上 <code>0xA0</code> 得到 <code>0xD9</code> 和 <code>0xA9</code> ，得到最终的 GB2312 为 <code>0xD90xA9</code> 。 加 <code>0xA0</code> 的目的可能使得高位和低位的值都大于 127， 向下兼容 ASCLL 码。当机器遇到连续两位大于 127 的 byte 时就能以此区分究竟是 ASCLL 码还是 GB2312 码。 GB2312 是双字节编码，为了与 ASCII 码区分开，字节的第8位必须是1，所以GB2312是8位编码。所以至少要从 0x80 128, 1000 0000) 开始吧，但是根据上面的规定，0x80 - 0x9f 要留给控制块，所以只能从 0xA0 开始咯。那为什么 GB2312 编码不是从 0xA0 开始，而是 0xA1 开始呢？ 因为 0xA0 正好是图形块的空格，所以就从 0xA1 编码，这就是 0xA0 的由来</p>
-<h3 id="gbk">GBK</h3>
-<p>​ 拓展，不规定低位大于 127 ，新增近 20000 个汉字符号。对应的字符编码叫 GBK 码</p>
-<h3 id="gb18030">GB18030</h3>
-<p>​ 新增少数民族文字</p>
-<h2 id="unicode">Unicode</h2>
-<p>​ 是一个规则，包含字符集和对应的编码规则。把世界上所有的字符放在一起。</p>
-<h3 id="ucs-2-字符集">UCS-2 字符集</h3>
-<p>​ <code>0x0000 - 0xFFFF</code> ，可表示 65536 个字符。这里只是一个字符集，并不算真正意义上的编码。</p>
-<h3 id="ucs-4-字符集">UCS-4 字符集</h3>
-<p>​ <code>0x00000000 - 0xFFFFFFFF</code> ， 可表示 43 亿字符。</p>
-<h3 id="缺点">缺点</h3>
-<p>​ 储存空间过大</p>
-<h3 id="utf-8-编码">UTF-8 编码</h3>
-<p>​ 每次传送 8 位 数字，而且可变长，节省流量和内存空间，是目前最广泛使用的编码规则</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206272300871.png" alt="image-20220627230028146" /><figcaption aria-hidden="true">image-20220627230028146</figcaption>
-</figure>
-<h2 id="编码的应用举例">编码的应用举例</h2>
-<ul>
-<li>​ 在计算机内存中是使用 Unicode 字符集， 当进行文本编辑时保存之前时用的 Unicode 数据。但是当数据写入磁盘的时候就和操作系统有关了，Linux 下是 UTF-8，在 Windows 下使用 GBK 编码。 比如写入一个文本文件时， 使用 UTF-8 编码 ， 自然当打开文件时也应该默认使用 UTF-8 解码，在转为 Unicode 数据在内存里。 比如当使用 Python的 <em>open( )</em> 函数时，是内存中的进程与磁盘的交互，而这个交互过程中的编码格式则是使用操作系统的默认编码（ Linux 为 utf-8，Windows 为 gbk）</li>
-<li>而当编译器读取.py 文件时，需要将储存好的 Bytes 数据解码。Python 2 默认 ASCLL 码， 而Python 3 默认 UTF-8 编码。 所以当用 python 2 执行含有中文字符串的文件时会解码错误。于是在开头加行 <code>\#-*-coding:utf-8-*-</code></li>
-</ul>
-<h2 id="python-2">Python 2</h2>
-<p>​ 编码过程：写的代码通过 utf-8 写入，再通过解释器将其 Bytes 转换为另外编码形式的的 Bytes, utf-8 向下兼容 ASCLL。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280008191.png" alt="image-20220628000845318" /><figcaption aria-hidden="true">image-20220628000845318</figcaption>
-</figure>
-<p>以上的数据都是以 bytes 形式存储的，在Python 2 中成为 str 类型。通过 <code>print repr(a)</code> 来查看内存中储存的形式。如果在字符串前面加上 u <code>str = u'你好'</code>，则 u 后面的字符串通过 Unicode 加载进内存。 这种类型称为为 Unicode</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280018694.png" alt="image-20220628001647028" /><figcaption aria-hidden="true">image-20220628001647028</figcaption>
-</figure>
-<h3 id="unicode-和-str-类型的转换">Unicode 和 str 类型的转换</h3>
-<p>​ 其实 str 就是 Bytes ，就是将Unicode 进行编码后的到的结果。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280018560.png" alt="image-20220628001829089" /><figcaption aria-hidden="true">image-20220628001829089</figcaption>
-</figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># coding : utf-8</span></span><br><span class="line"><span class="built_in">str</span> = <span class="string">&quot;你好&quot;</span></span><br><span class="line"><span class="built_in">print</span> <span class="built_in">str</span>.decode(<span class="string">&#x27;ascll&#x27;</span>) <span class="comment">#错误，ascll支持中文</span></span><br><span class="line"><span class="built_in">print</span> <span class="built_in">str</span>.decode(<span class="string">&#x27;utf-8&#x27;</span>) <span class="comment">#结果 你好</span></span><br><span class="line"><span class="built_in">print</span> <span class="built_in">str</span>.decode(<span class="string">&#x27;gb2312&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="python-3">Python 3</h3>
-<p>默认以 Unicode 从硬盘中加载进内存。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280024379.png" alt="image-20220628002447002" /><figcaption aria-hidden="true">image-20220628002447002</figcaption>
-</figure>
-<p>表示 bytes 内容， <code>str = b'你好'</code></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = <span class="string">&quot;你好&quot;</span></span><br><span class="line"><span class="built_in">print</span> a.encode(<span class="string">&#x27;ascll&#x27;</span>) <span class="comment">#错误 无法将中文编码为 ascll 码</span></span><br><span class="line"><span class="built_in">print</span> a.encode (<span class="string">&#x27;utf-8&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>将 Bytes 解码为 Unicode</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = <span class="string">b&#x27;\xe4\xbd\xa0&#x27;</span></span><br><span class="line"><span class="built_in">print</span> a.decode(<span class="string">&#x27;utf-8&#x27;</span>) <span class="comment">#输出 你</span></span><br></pre></td></tr></table></figure>
-<h3 id="参考">参考</h3>
-<p>https://www.bilibili.com/video/BV1XK4y1t7D4?share_source=copy_web</p>
-]]></content>
-      <categories>
-        <category>编码</category>
-      </categories>
-      <tags>
-        <tag>编码</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>启功带你学书法-破除迷信</title>
     <url>/2022/07/05/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E5%90%AF%E5%8A%9F%E7%BB%99%E4%BD%A0%E8%AE%B2%E4%B9%A6%E6%B3%95/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>​ 启功先生以破除迷信的思想贯穿全书，很实在，不故弄玄虚。扫清各种神秘的古怪学说为初学者造成的困惑和恐吓。</p>
@@ -848,6 +892,90 @@ Test accuracy: 0.9911999702453613</code></pre>
       </categories>
   </entry>
   <entry>
+    <title>枪炮、病菌与钢铁</title>
+    <url>/2022/11/18/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%9E%AA%E7%82%AE%E7%97%85%E8%8F%8C%E4%B8%8E%E9%92%A2%E9%93%81/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="chapter-3">Chapter 3</h1>
+<p>来自动物的病菌</p>
+<p>欧洲对美洲的征</p>
+<p>农业社会的密集人口： 群聚疾病 <strong>原因</strong>：污水排放，贸易路线，在饲养的动物中间演化：牛瘟。</p>
+<p>人口数量少：慢性病</p>
+<h2 id="从感染动物到人类社群的四个阶段">从感染动物到人类社群的四个阶段</h2>
+<ol type="1">
+<li>直接传染</li>
+<li>在人类社群传播，成为流行病，之后消亡</li>
+<li>曾以动物为宿主，后转入人体的病原体。</li>
+<li></li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
+    <title>一文搞懂字符编码</title>
+    <url>/2022/06/27/%E7%BC%96%E7%A0%81/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="字符集和编码">字符集和编码</h1>
+<p>​ 字符集从字符到一个数字的映射。编码是一种规则，即如何将这个字符转变为二进制数。</p>
+<h2 id="ascll">ASCLL</h2>
+<p>​ 计算机处理字符总是需要将其变为一个个 bit 所以最开始的字符集是 <a href="https://www.ascii-code.com/"><strong>ASCLL</strong></a> 码，将不同的英文字母，数字，以及控制字符映射到 8-bits 中。一开始 ASCLL 码只用到了 0 - 127。后来新增加了扩展 ASCLL 码， 利用了 128 - 255 剩下的一半字符。当称为 ASCLL 集的时候作为一种字符集，ASCLL 码时，是一种编码规则。</p>
+<span id="more"></span>
+<h2 id="gb">GB</h2>
+<h3 id="gb-2312">GB 2312</h3>
+<p>GB2312 是一种中文的字符集，分区管理， 共计 94 个区， 每个区含 94 个位，共8836 码位。 码位按照按照区，行，列一次决定，比如「侃」字在 57 区 0 行 9 列， 码位就是 5709，十六进制为 <code>0x39 0x09</code> 分别加上 <code>0xA0</code> 得到 <code>0xD9</code> 和 <code>0xA9</code> ，得到最终的 GB2312 为 <code>0xD90xA9</code> 。 加 <code>0xA0</code> 的目的可能使得高位和低位的值都大于 127， 向下兼容 ASCLL 码。当机器遇到连续两位大于 127 的 byte 时就能以此区分究竟是 ASCLL 码还是 GB2312 码。 GB2312 是双字节编码，为了与 ASCII 码区分开，字节的第8位必须是1，所以GB2312是8位编码。所以至少要从 0x80 128, 1000 0000) 开始吧，但是根据上面的规定，0x80 - 0x9f 要留给控制块，所以只能从 0xA0 开始咯。那为什么 GB2312 编码不是从 0xA0 开始，而是 0xA1 开始呢？ 因为 0xA0 正好是图形块的空格，所以就从 0xA1 编码，这就是 0xA0 的由来</p>
+<h3 id="gbk">GBK</h3>
+<p>​ 拓展，不规定低位大于 127 ，新增近 20000 个汉字符号。对应的字符编码叫 GBK 码</p>
+<h3 id="gb18030">GB18030</h3>
+<p>​ 新增少数民族文字</p>
+<h2 id="unicode">Unicode</h2>
+<p>​ 是一个规则，包含字符集和对应的编码规则。把世界上所有的字符放在一起。</p>
+<h3 id="ucs-2-字符集">UCS-2 字符集</h3>
+<p>​ <code>0x0000 - 0xFFFF</code> ，可表示 65536 个字符。这里只是一个字符集，并不算真正意义上的编码。</p>
+<h3 id="ucs-4-字符集">UCS-4 字符集</h3>
+<p>​ <code>0x00000000 - 0xFFFFFFFF</code> ， 可表示 43 亿字符。</p>
+<h3 id="缺点">缺点</h3>
+<p>​ 储存空间过大</p>
+<h3 id="utf-8-编码">UTF-8 编码</h3>
+<p>​ 每次传送 8 位 数字，而且可变长，节省流量和内存空间，是目前最广泛使用的编码规则</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206272300871.png" alt="image-20220627230028146" /><figcaption aria-hidden="true">image-20220627230028146</figcaption>
+</figure>
+<h2 id="编码的应用举例">编码的应用举例</h2>
+<ul>
+<li>​ 在计算机内存中是使用 Unicode 字符集， 当进行文本编辑时保存之前时用的 Unicode 数据。但是当数据写入磁盘的时候就和操作系统有关了，Linux 下是 UTF-8，在 Windows 下使用 GBK 编码。 比如写入一个文本文件时， 使用 UTF-8 编码 ， 自然当打开文件时也应该默认使用 UTF-8 解码，在转为 Unicode 数据在内存里。 比如当使用 Python的 <em>open( )</em> 函数时，是内存中的进程与磁盘的交互，而这个交互过程中的编码格式则是使用操作系统的默认编码（ Linux 为 utf-8，Windows 为 gbk）</li>
+<li>而当编译器读取.py 文件时，需要将储存好的 Bytes 数据解码。Python 2 默认 ASCLL 码， 而Python 3 默认 UTF-8 编码。 所以当用 python 2 执行含有中文字符串的文件时会解码错误。于是在开头加行 <code>\#-*-coding:utf-8-*-</code></li>
+</ul>
+<h2 id="python-2">Python 2</h2>
+<p>​ 编码过程：写的代码通过 utf-8 写入，再通过解释器将其 Bytes 转换为另外编码形式的的 Bytes, utf-8 向下兼容 ASCLL。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280008191.png" alt="image-20220628000845318" /><figcaption aria-hidden="true">image-20220628000845318</figcaption>
+</figure>
+<p>以上的数据都是以 bytes 形式存储的，在Python 2 中成为 str 类型。通过 <code>print repr(a)</code> 来查看内存中储存的形式。如果在字符串前面加上 u <code>str = u'你好'</code>，则 u 后面的字符串通过 Unicode 加载进内存。 这种类型称为为 Unicode</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280018694.png" alt="image-20220628001647028" /><figcaption aria-hidden="true">image-20220628001647028</figcaption>
+</figure>
+<h3 id="unicode-和-str-类型的转换">Unicode 和 str 类型的转换</h3>
+<p>​ 其实 str 就是 Bytes ，就是将Unicode 进行编码后的到的结果。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280018560.png" alt="image-20220628001829089" /><figcaption aria-hidden="true">image-20220628001829089</figcaption>
+</figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># coding : utf-8</span></span><br><span class="line"><span class="built_in">str</span> = <span class="string">&quot;你好&quot;</span></span><br><span class="line"><span class="built_in">print</span> <span class="built_in">str</span>.decode(<span class="string">&#x27;ascll&#x27;</span>) <span class="comment">#错误，ascll支持中文</span></span><br><span class="line"><span class="built_in">print</span> <span class="built_in">str</span>.decode(<span class="string">&#x27;utf-8&#x27;</span>) <span class="comment">#结果 你好</span></span><br><span class="line"><span class="built_in">print</span> <span class="built_in">str</span>.decode(<span class="string">&#x27;gb2312&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="python-3">Python 3</h3>
+<p>默认以 Unicode 从硬盘中加载进内存。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280024379.png" alt="image-20220628002447002" /><figcaption aria-hidden="true">image-20220628002447002</figcaption>
+</figure>
+<p>表示 bytes 内容， <code>str = b'你好'</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = <span class="string">&quot;你好&quot;</span></span><br><span class="line"><span class="built_in">print</span> a.encode(<span class="string">&#x27;ascll&#x27;</span>) <span class="comment">#错误 无法将中文编码为 ascll 码</span></span><br><span class="line"><span class="built_in">print</span> a.encode (<span class="string">&#x27;utf-8&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>将 Bytes 解码为 Unicode</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = <span class="string">b&#x27;\xe4\xbd\xa0&#x27;</span></span><br><span class="line"><span class="built_in">print</span> a.decode(<span class="string">&#x27;utf-8&#x27;</span>) <span class="comment">#输出 你</span></span><br></pre></td></tr></table></figure>
+<h3 id="参考">参考</h3>
+<p>https://www.bilibili.com/video/BV1XK4y1t7D4?share_source=copy_web</p>
+]]></content>
+      <categories>
+        <category>编码</category>
+      </categories>
+      <tags>
+        <tag>编码</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Item 03 - Use const whenever possible</title>
     <url>/2022/06/30/C++/Effective_C++/Item03_const/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>只要明确值不被改变就应该声明为 <code>const</code> ，以此获得编译器的襄助，保证规则不被违反。</p>
@@ -917,6 +1045,47 @@ Test accuracy: 0.9911999702453613</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Hexo美化：为Next主题外接 Waline 评论系统</title>
+    <url>/2022/06/29/Blog%E6%90%AD%E5%BB%BA/Hexo/Hexo-Next%E4%B8%BB%E9%A2%98%E5%A4%96%E6%8E%A5%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="前言">前言</h3>
+<p>​ <strong>Waline</strong> 是一款基于 <strong>Valine</strong> 衍生的评论系统，首先在笔者目前使用的 NexT 8.12.1 下已经不再内置 Valine 系统，需要自己手动配置。 看了一圈其他的评论系统，貌似只有 Waline 支持数学公式，所以最终选择 Waline 评论系统</p>
+<span id="more"></span>
+<h3 id="配置数据库和服务端部署">配置数据库和服务端部署</h3>
+<p>​ 选择 <a href="%5BLeanCloud%5D(https://www.leancloud.cn/)">Leanclound</a> 作为评论数据库，在 Vercel 上部署服务端。接着就按照 <span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWwjbGVhbmNsb3VkLSVFOCVBRSVCRSVFNyVCRCVBRS0lRTYlOTUlQjAlRTYlOEQlQUUlRTUlQkElOTM=">Waline的官方文档<i class="fa fa-external-link-alt"></i></span> 进行操作即可。这里介绍几个注意的点：</p>
+<ol type="1">
+<li><p>注册时推荐使用国际版，否则需要绑定备案的域名，比较麻烦。</p></li>
+<li><p>在 Vercel 上部署服务端时，注意环境变量名称 <code>LEAN_ID</code>, <code>LEAN_KEY</code> 和 <code>LEAN_MASTER_KEY</code>一定要一字不差。遇到访客评论系统在不登录账号时报错如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Invalid value type for field &#x27;link&#x27;,value &#x27;&quot;&quot;&#x27;,expect type is &#123;:type &quot;Object&quot;&#125;,but it is &#x27;&#123;:type &quot;String&quot;&#125;&#x27;. [400 POST https://ioksy7et.api.lncldglobal.com/1.1/classes/Comment]</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>​ 解决方法：重新在 Leanclound 上创建 <code>Comment</code> 类。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206301329339.png" alt="在数据储存中创建新的Comment类" /><figcaption aria-hidden="true">在<code>数据储存</code>中创建新的Comment类</figcaption>
+</figure>
+<h3 id="在-hexo-上使用-waline">在 Hexo 上使用 Waline</h3>
+<p>在 Hexo 根目录下执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install @waline/hexo-next</span><br></pre></td></tr></table></figure>
+<p>接着你可以在 Hexo 根目录下 <code>\node_modules\@waline</code> 中找到 <code>default.yaml</code> 文件，里面就是所有 Waline 的设置选项了。 为了方便将其中需要改变的选项手动写入到 <code>next</code> 主题下 的 <code>_config.yaml</code>中， 以下是部分参考，更多的选项设置在上述 <code>default.yaml</code> 中：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment">#是否开启</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">waline-server-ecru.vercel.app</span> <span class="comment"># Waline #服务端地址，我们这里就是上面部署的 Vercel 地址</span></span><br><span class="line">  <span class="attr">locale:</span></span><br><span class="line">    <span class="attr">placeholder:</span> <span class="string">疑义相与析，畅所欲言，不登录也没关系哒</span> <span class="comment"># #评论框的默认文字</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># 头像风格</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>,<span class="string">mail</span>] <span class="comment"># 自定义评论框上面的三个输入框的内容</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># 评论数量多少时显示分页</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># 语言, 可选值: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># 文章阅读统计</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示</span></span><br><span class="line">  <span class="attr">requiredFields:</span> [<span class="string">nick</span>] <span class="comment"># 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]</span></span><br><span class="line">  <span class="attr">libUrl:</span> <span class="string">https://unpkg.com/@waline/client@v2/dist/waline.js</span> <span class="comment"># Set custom library cdn url</span></span><br><span class="line">  <span class="attr">login:</span> <span class="string">enable</span></span><br></pre></td></tr></table></figure>
+<h3 id="登录服务端">登录服务端</h3>
+<p>接着部署后就能够看到登录按钮，进行登录，貌似第一个登录的账号就会有个 <strong>博主</strong> 的标识。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206292335984.png" alt="进入登录界面" /><figcaption aria-hidden="true">进入登录界面</figcaption>
+</figure>
+<p>但是访客不登陆也能评论。访客填写不同的邮箱会显示其对应账号的头像。</p>
+<p>最后效果可以参见<span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnLw==">官方文档<i class="fa fa-external-link-alt"></i></span> 。</p>
+<h3 id="参考">参考</h3>
+<p><span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWw=">官方文档<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9xaWFuZmFuZ3VvamluLnRvcC8yMDIyLzAxLzIwL0hleG8lRTUlOEQlOUElRTUlQUUlQTIlRTglQkYlOUIlRTklOTglQjYlRUYlQkMlOUElRTQlQjglQkEtTmV4dC0lRTQlQjglQkIlRTklQTIlOTglRTYlQjclQkIlRTUlOEElQTAtV2FsaW5lLSVFOCVBRiU4NCVFOCVBRSVCQSVFNyVCMyVCQiVFNyVCQiU5Ri8=">谢同学博客<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Blog搭建</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>三角形中的几个恒等式</title>
     <url>/2022/07/01/%E6%95%B0%E5%AD%A6/%E5%85%B6%E4%BB%96/%E4%B8%89%E8%A7%92%E5%BD%A2%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%81%92%E7%AD%89%E5%BC%8F/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>在 <span class="math inline">\(\Delta ABC\)</span> 中，以下等式成立</p>
@@ -974,47 +1143,6 @@ cot \frac{C}{2} = -\frac{\cot \frac{A}{2}+\cot \frac{B}{2}}{1-\cot \frac{A}{2}\,
       </categories>
       <tags>
         <tag>三角函数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo美化：为Next主题外接 Waline 评论系统</title>
-    <url>/2022/06/29/Blog%E6%90%AD%E5%BB%BA/Hexo/Hexo-Next%E4%B8%BB%E9%A2%98%E5%A4%96%E6%8E%A5%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="前言">前言</h3>
-<p>​ <strong>Waline</strong> 是一款基于 <strong>Valine</strong> 衍生的评论系统，首先在笔者目前使用的 NexT 8.12.1 下已经不再内置 Valine 系统，需要自己手动配置。 看了一圈其他的评论系统，貌似只有 Waline 支持数学公式，所以最终选择 Waline 评论系统</p>
-<span id="more"></span>
-<h3 id="配置数据库和服务端部署">配置数据库和服务端部署</h3>
-<p>​ 选择 <a href="%5BLeanCloud%5D(https://www.leancloud.cn/)">Leanclound</a> 作为评论数据库，在 Vercel 上部署服务端。接着就按照 <span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWwjbGVhbmNsb3VkLSVFOCVBRSVCRSVFNyVCRCVBRS0lRTYlOTUlQjAlRTYlOEQlQUUlRTUlQkElOTM=">Waline的官方文档<i class="fa fa-external-link-alt"></i></span> 进行操作即可。这里介绍几个注意的点：</p>
-<ol type="1">
-<li><p>注册时推荐使用国际版，否则需要绑定备案的域名，比较麻烦。</p></li>
-<li><p>在 Vercel 上部署服务端时，注意环境变量名称 <code>LEAN_ID</code>, <code>LEAN_KEY</code> 和 <code>LEAN_MASTER_KEY</code>一定要一字不差。遇到访客评论系统在不登录账号时报错如下:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Invalid value type for field &#x27;link&#x27;,value &#x27;&quot;&quot;&#x27;,expect type is &#123;:type &quot;Object&quot;&#125;,but it is &#x27;&#123;:type &quot;String&quot;&#125;&#x27;. [400 POST https://ioksy7et.api.lncldglobal.com/1.1/classes/Comment]</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>​ 解决方法：重新在 Leanclound 上创建 <code>Comment</code> 类。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206301329339.png" alt="在数据储存中创建新的Comment类" /><figcaption aria-hidden="true">在<code>数据储存</code>中创建新的Comment类</figcaption>
-</figure>
-<h3 id="在-hexo-上使用-waline">在 Hexo 上使用 Waline</h3>
-<p>在 Hexo 根目录下执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install @waline/hexo-next</span><br></pre></td></tr></table></figure>
-<p>接着你可以在 Hexo 根目录下 <code>\node_modules\@waline</code> 中找到 <code>default.yaml</code> 文件，里面就是所有 Waline 的设置选项了。 为了方便将其中需要改变的选项手动写入到 <code>next</code> 主题下 的 <code>_config.yaml</code>中， 以下是部分参考，更多的选项设置在上述 <code>default.yaml</code> 中：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment">#是否开启</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">waline-server-ecru.vercel.app</span> <span class="comment"># Waline #服务端地址，我们这里就是上面部署的 Vercel 地址</span></span><br><span class="line">  <span class="attr">locale:</span></span><br><span class="line">    <span class="attr">placeholder:</span> <span class="string">疑义相与析，畅所欲言，不登录也没关系哒</span> <span class="comment"># #评论框的默认文字</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># 头像风格</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>,<span class="string">mail</span>] <span class="comment"># 自定义评论框上面的三个输入框的内容</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># 评论数量多少时显示分页</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># 语言, 可选值: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># 文章阅读统计</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示</span></span><br><span class="line">  <span class="attr">requiredFields:</span> [<span class="string">nick</span>] <span class="comment"># 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]</span></span><br><span class="line">  <span class="attr">libUrl:</span> <span class="string">https://unpkg.com/@waline/client@v2/dist/waline.js</span> <span class="comment"># Set custom library cdn url</span></span><br><span class="line">  <span class="attr">login:</span> <span class="string">enable</span></span><br></pre></td></tr></table></figure>
-<h3 id="登录服务端">登录服务端</h3>
-<p>接着部署后就能够看到登录按钮，进行登录，貌似第一个登录的账号就会有个 <strong>博主</strong> 的标识。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206292335984.png" alt="进入登录界面" /><figcaption aria-hidden="true">进入登录界面</figcaption>
-</figure>
-<p>但是访客不登陆也能评论。访客填写不同的邮箱会显示其对应账号的头像。</p>
-<p>最后效果可以参见<span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnLw==">官方文档<i class="fa fa-external-link-alt"></i></span> 。</p>
-<h3 id="参考">参考</h3>
-<p><span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWw=">官方文档<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9xaWFuZmFuZ3VvamluLnRvcC8yMDIyLzAxLzIwL0hleG8lRTUlOEQlOUElRTUlQUUlQTIlRTglQkYlOUIlRTklOTglQjYlRUYlQkMlOUElRTQlQjglQkEtTmV4dC0lRTQlQjglQkIlRTklQTIlOTglRTYlQjclQkIlRTUlOEElQTAtV2FsaW5lLSVFOCVBRiU4NCVFOCVBRSVCQSVFNyVCMyVCQiVFNyVCQiU5Ri8=">谢同学博客<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Blog搭建</category>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1168,14 +1296,5 @@ F_N(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}
         <tag>不等式</tag>
         <tag>Fourier</tag>
       </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2022/11/09/%E5%85%B6%E4%BB%96/ngp%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>
-]]></content>
-      <categories>
-        <category>其他</category>
-      </categories>
   </entry>
 </search>

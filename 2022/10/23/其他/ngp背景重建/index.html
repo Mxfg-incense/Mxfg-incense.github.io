@@ -179,7 +179,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -457,9 +457,9 @@
 <li><p><strong>Train extrinsic</strong>: propagates gradients back onto the camera parameters in order to minimize the loss (in this case by treating the cameras as rigid bodies with momentum and the loss gradients as impulses acting on them). This can fix slight inaccuracies in the poses from <code>transform.json</code>. If you're using COLMAP, this option only yields a small benefit as COLMAP is already quite accurate -- I'd leave it off for most scenes.</p></li>
 <li><p><strong>Train distortion</strong>: learns a grid-based camera distortion model on top of the Open CV camera model parameterized in <code>transforms.json</code>. Again, COLMAP usually does a good enough job that you don't need this.</p></li>
 <li><p><strong>Train exposure</strong>: learns to compensate for varying exposure levels of the training images. If you generate your own data, you should not use this and instead set your camera to fixed exposure</p></li>
-<li><p><strong>extrinsic</strong>: 6190 steps ; 收敛时间 145s ; Loss: 0.000546(32.63dB)</p></li>
+<li><p><strong>extrinsic</strong>: 14073 steps ; 收敛时间 235s ; Loss: 0.000482(33.17dB)</p></li>
 <li><p><strong>exposure</strong>: 7032 steps; 收敛时间 110s ; Loss: 0.000577 (32.39dB)</p></li>
-<li><p><strong>disorder</strong>: 6374 steps ; 收敛时间：100s Loss 0.00606(32.17db)</p></li>
+<li><p><strong>disorder</strong>: 6374 steps ; 收敛时间：100s Loss 0.000606(32.17db)</p></li>
 <li><p><strong>origin</strong>: 6214 steps ; 收敛时间 100s ; Loss : 000614 (32.12DB)</p></li>
 </ol>
 <video src="E:\instant-ngp\data\nerf\ex2\blank\origin.mp4" title="origin">
@@ -472,7 +472,7 @@
 </video>
 <h2 id="结论-1">结论</h2>
 <ol type="1">
-<li>勾选<strong>extrinsic</strong> 结果会渲染结果产生模糊，并且训练速度变慢</li>
+<li>勾选<strong>extrinsic</strong> 结果更加清晰，使头发上的云雾消失，并且训练速度变慢一倍左右。</li>
 <li>勾选 <strong>exposure</strong> 使头发上的云雾消失。</li>
 <li>勾选 <strong>disorder</strong> 使结果更加清晰。</li>
 </ol>
@@ -554,14 +554,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">41k</span>
+    <span title="站点总字数">44k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">37 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

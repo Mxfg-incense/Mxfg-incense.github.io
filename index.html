@@ -169,7 +169,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -245,6 +245,440 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.pthm/2022/12/14/%E5%85%B6%E4%BB%96/Variable_Bitrate/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206271209189.jpg">
+      <meta itemprop="name" content="Mxfg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mxfg's Blog">
+      <meta itemprop="description" content="Win or die">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mxfg's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/12/14/%E5%85%B6%E4%BB%96/Variable_Bitrate/" class="post-title-link" itemprop="url">Variable Bitrate Neural Fields</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-12-14 18:59:18" itemprop="dateCreated datePublished" datetime="2022-12-14T18:59:18+08:00">2022-12-14</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/12/14/%E5%85%B6%E4%BB%96/Variable_Bitrate/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/12/14/%E5%85%B6%E4%BB%96/Variable_Bitrate/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>336</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="motivation">Motivation</h1>
+<ol type="1">
+<li>压缩3D信息用于更高效的数据传输，和直播</li>
+<li>传统Nerf 的问题：因为需要很大的网络对场景进行编码，很多光线，每个点都要过这个大网络，因此渲染慢。</li>
+<li>feature grids: 每个顶点包含一个 feature vector. 任意一个点用插值的到特征。网络只需要对所有顶点进行编码, 网络减小，速度增加。但是储存的feature grids 占用的空间却比之前一个网络的多。</li>
+<li>ngp: 每个顶点的坐标通过 hash 映射到一个 codebook 的 index 上。但是需要多层，每层的codebook也很大，最终的存储还是很大。</li>
+</ol>
+<h1 id="vq-feature-grids-with-learning">VQ feature grids with learning</h1>
+<ol type="1">
+<li>直接在顶点上储存 index 并学习</li>
+<li>为了解决不可微的问题，使用 softmax 的技巧。 储存一系列浮点数，取max。<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202212141921446.png" alt="Vector quantized feaature grids with learning" /></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.pthm/2022/11/23/%E5%85%B6%E4%BB%96/11.23/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206271209189.jpg">
+      <meta itemprop="name" content="Mxfg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mxfg's Blog">
+      <meta itemprop="description" content="Win or die">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mxfg's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/11/23/%E5%85%B6%E4%BB%96/11.23/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-23 20:59:22" itemprop="dateCreated datePublished" datetime="2022-11-23T20:59:22+08:00">2022-11-23</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/11/23/%E5%85%B6%E4%BB%96/11.23/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/11/23/%E5%85%B6%E4%BB%96/11.23/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>101</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="debug">debug</h1>
+<ol type="1">
+<li>step in 进入该函数</li>
+<li>step out 跳出当前栈 到 断点处</li>
+</ol>
+<h1 id="rendering">Rendering</h1>
+<ol type="1">
+<li><code>Ray_intersect</code>:</li>
+<li><code>pay_load</code></li>
+</ol>
+<h1 id="rgb">RGB</h1>
+<p>hitpoint ?</p>
+<p>payload.alive ?</p>
+<p>ubantu , debug</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.pthm/2022/11/18/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%9E%AA%E7%82%AE%E7%97%85%E8%8F%8C%E4%B8%8E%E9%92%A2%E9%93%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206271209189.jpg">
+      <meta itemprop="name" content="Mxfg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mxfg's Blog">
+      <meta itemprop="description" content="Win or die">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mxfg's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/11/18/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%9E%AA%E7%82%AE%E7%97%85%E8%8F%8C%E4%B8%8E%E9%92%A2%E9%93%81/" class="post-title-link" itemprop="url">枪炮、病菌与钢铁</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-18 19:34:07" itemprop="dateCreated datePublished" datetime="2022-11-18T19:34:07+08:00">2022-11-18</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/11/18/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%9E%AA%E7%82%AE%E7%97%85%E8%8F%8C%E4%B8%8E%E9%92%A2%E9%93%81/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/11/18/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%9E%AA%E7%82%AE%E7%97%85%E8%8F%8C%E4%B8%8E%E9%92%A2%E9%93%81/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>127</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>读书笔记</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/11/18/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%9E%AA%E7%82%AE%E7%97%85%E8%8F%8C%E4%B8%8E%E9%92%A2%E9%93%81/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.pthm/2022/11/09/%E5%85%B6%E4%BB%96/11.9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206271209189.jpg">
+      <meta itemprop="name" content="Mxfg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mxfg's Blog">
+      <meta itemprop="description" content="Win or die">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mxfg's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/11/09/%E5%85%B6%E4%BB%96/11.9/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-09 19:08:04" itemprop="dateCreated datePublished" datetime="2022-11-09T19:08:04+08:00">2022-11-09</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/11/09/%E5%85%B6%E4%BB%96/11.9/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/11/09/%E5%85%B6%E4%BB%96/11.9/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>93</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="sfm">SFM</h1>
+<p>几何验证</p>
+<p>标准 RANSAC</p>
+<p>满足就是好的match</p>
+<h2 id="增量重建">增量重建</h2>
+<h3 id="initialization">Initialization</h3>
+<h3 id="立体视觉">立体视觉</h3>
+<p>同一个像素点</p>
+<p>同一个特征点在普通位置</p>
+<h3 id="单应矩阵">单应矩阵</h3>
+<p>colmap_matcher</p>
+<p>skip-early</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.pthm/2022/11/09/%E5%85%B6%E4%BB%96/ngp%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -263,7 +697,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/11/09/%E5%85%B6%E4%BB%96/ngp%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/" class="post-title-link" itemprop="url">未命名</a>
+          <a href="/2022/11/09/%E5%85%B6%E4%BB%96/ngp%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/" class="post-title-link" itemprop="url">ngp 代码阅读</a>
         </h2>
 
         <div class="post-meta-container">
@@ -307,14 +741,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
+      <span>2.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -325,7 +759,56 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <h1 id="implement">Implement</h1>
+<p>具体的实现细节</p>
+<h2 id="performance-vs-quality">Performance vs quality</h2>
+<p>hash table 的大小<span class="math inline">\(T\)</span> 过大导致GPU内存不足。</p>
+<p>经过实验取得 <span class="math inline">\(F=2,L=16\)</span></p>
+<h2 id="implicit-hash-collision-resolution">Implicit hash collision resolution</h2>
+<ol type="1">
+<li>一对点不太可能同时在每一层都发生碰撞,而且 <span class="math inline">\(N_{min}\)</span> 保证不发生冲突</li>
+<li>一对点对梯度的贡献是不同的,表面的点的影响更大</li>
+<li>分辨率的分布是几何的, 分辨率越大的较少的选取</li>
+</ol>
+<h2 id="online-adaptivity">Online adaptivity</h2>
+<p>如果输入 <span class="math inline">\(x\)</span> 的分布集中在一个小的区域,那么精细网格会更少的发生哈希冲突,能学习的更精确.</p>
+<p><strong>Neural Radiance Caching</strong></p>
+<h2 id="model-architecture">Model Architecture</h2>
+<p>由两个 MLP 并联</p>
+<ol type="1">
+<li><p><strong>density MLP</strong>: maps encoded position <span class="math inline">\(enc(\bold{x},\theta)\)</span> to 16 outputs values ， <span class="math inline">\(\theta\)</span> is the encoding parameters</p></li>
+<li><p><strong>color MLP</strong>:</p>
+<p><strong>Input</strong></p>
+<p>the 16 output values of the density MLP, and the view direction projected onto the first 16 coefficients of the spherical harmonics basis. This is a natural frequency encoding over unit vectors</p>
+<p><strong>output:</strong></p>
+<p>RGB color triplet.</p>
+<p>sRGB: sigmoid activation</p>
+<p>HDR: exponential activation</p>
+<p>1-hidden-layer density MLP and a 2-hidden-layer color MLP, both 64 neurons wide.</p>
+<h2 id="accelerated-ray-marching">Accelerated ray marching</h2>
+<p>we concentrate samples near surfaces by maintaining an occupancy grid that coarsely marks empty vs. nonempty space.</p>
+<h3 id="ray-marching-step-size-and-stopping">Ray Marching Step Size and Stopping</h3>
+<ol type="1">
+<li><strong>synthetic NeRF scenes:</strong> step size $t= /1024 $ in the unit cube <span class="math inline">\([0,1]^3\)</span></li>
+<li><strong>Others</strong>: <span class="math inline">\(t\)</span>​ exponential growth, which means that the computation cost grows only logarithmically in scene diameter, with no perceivable loss of quality.</li>
+<li>Stop ray marching and set the remaining contribution to zero as soon as the transmittance of the ray drops below a threshold</li>
+</ol>
+<h2 id="occupancy-grids">Occupancy Grids</h2>
+<p>During ray marching, whenever a sample is to be placed according to the step size from the previous section, the sample is skipped if its grid cell’s bit is low. Which one of the 𝐾 grids is queried is determined by both the sample position x and the step size Δ𝑡: among the grids covering x, the finest one with cell side length larger than Δ𝑡 is queried.</p>
+<p><em>update the occupancy grids</em>. a second set of grids that store full-precision floating density. update every 16 training steps.</p>
+<h2 id="number-of-rays-versus-batch-size">Number of Rays Versus Batch size</h2>
+<p>​ batch size = Samples per ray * Rays per batch</p>
+<p><strong>Training from a larger number of rays, i.e. incorporating more viewpoint variation into the batch. </strong>Include as many rays as possible in batches of fixed size rather that building variable-size batches from a fixed ray count</p></li>
+</ol>
+<h1 id="input">Input</h1>
+<ol type="1">
+<li><p>load <code>config/base.json</code>: 包括 <code>loss</code>, <code>optimizer</code>, <code>encoding</code> 的超参等 <code>envmap</code>?</p></li>
+<li><p><code>train</code></p></li>
+<li><p><code>training_prep_nerf</code>: 每过16次迭代，更新occupancy grids.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (m_training_step &lt; <span class="number">256</span>) &#123;</span><br><span class="line">		<span class="built_in">update_density_grid_nerf</span>(alpha, <span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()*n_cascades, <span class="number">0</span>, stream);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="built_in">update_density_grid_nerf</span>(alpha, <span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()/<span class="number">4</span>*n_cascades, <span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()/<span class="number">4</span>*n_cascades, stream);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>train_nerf_step(uint32_t target_batch_size, Testbed::NerfCounters&amp; counters, cudaStream_t stream)</code>:</p></li>
+<li><p><code>generate_training_samples_nerf</code></p></li>
+</ol>
 
       
     </div>
@@ -742,9 +1225,9 @@
 <li><p><strong>Train extrinsic</strong>: propagates gradients back onto the camera parameters in order to minimize the loss (in this case by treating the cameras as rigid bodies with momentum and the loss gradients as impulses acting on them). This can fix slight inaccuracies in the poses from <code>transform.json</code>. If you're using COLMAP, this option only yields a small benefit as COLMAP is already quite accurate -- I'd leave it off for most scenes.</p></li>
 <li><p><strong>Train distortion</strong>: learns a grid-based camera distortion model on top of the Open CV camera model parameterized in <code>transforms.json</code>. Again, COLMAP usually does a good enough job that you don't need this.</p></li>
 <li><p><strong>Train exposure</strong>: learns to compensate for varying exposure levels of the training images. If you generate your own data, you should not use this and instead set your camera to fixed exposure</p></li>
-<li><p><strong>extrinsic</strong>: 6190 steps ; 收敛时间 145s ; Loss: 0.000546(32.63dB)</p></li>
+<li><p><strong>extrinsic</strong>: 14073 steps ; 收敛时间 235s ; Loss: 0.000482(33.17dB)</p></li>
 <li><p><strong>exposure</strong>: 7032 steps; 收敛时间 110s ; Loss: 0.000577 (32.39dB)</p></li>
-<li><p><strong>disorder</strong>: 6374 steps ; 收敛时间：100s Loss 0.00606(32.17db)</p></li>
+<li><p><strong>disorder</strong>: 6374 steps ; 收敛时间：100s Loss 0.000606(32.17db)</p></li>
 <li><p><strong>origin</strong>: 6214 steps ; 收敛时间 100s ; Loss : 000614 (32.12DB)</p></li>
 </ol>
 <video src="E:\instant-ngp\data\nerf\ex2\blank\origin.mp4" title="origin">
@@ -757,7 +1240,7 @@
 </video>
 <h2 id="结论-1">结论</h2>
 <ol type="1">
-<li>勾选<strong>extrinsic</strong> 结果会渲染结果产生模糊，并且训练速度变慢</li>
+<li>勾选<strong>extrinsic</strong> 结果更加清晰，使头发上的云雾消失，并且训练速度变慢一倍左右。</li>
 <li>勾选 <strong>exposure</strong> 使头发上的云雾消失。</li>
 <li>勾选 <strong>disorder</strong> 使结果更加清晰。</li>
 </ol>
@@ -1154,462 +1637,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.pthm/2022/09/22/%E5%85%B6%E4%BB%96/%E9%BB%94%E8%A1%8C%E5%B1%B1%E6%B0%B4%E9%97%B4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206271209189.jpg">
-      <meta itemprop="name" content="Mxfg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mxfg's Blog">
-      <meta itemprop="description" content="Win or die">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mxfg's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/22/%E5%85%B6%E4%BB%96/%E9%BB%94%E8%A1%8C%E5%B1%B1%E6%B0%B4%E9%97%B4/" class="post-title-link" itemprop="url">黔行山水间</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-09-22 13:40:29" itemprop="dateCreated datePublished" datetime="2022-09-22T13:40:29+08:00">2022-09-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/2022/09/22/%E5%85%B6%E4%BB%96/%E9%BB%94%E8%A1%8C%E5%B1%B1%E6%B0%B4%E9%97%B4/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/09/22/%E5%85%B6%E4%BB%96/%E9%BB%94%E8%A1%8C%E5%B1%B1%E6%B0%B4%E9%97%B4/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>3.5k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>社会实践报告</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/09/22/%E5%85%B6%E4%BB%96/%E9%BB%94%E8%A1%8C%E5%B1%B1%E6%B0%B4%E9%97%B4/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.pthm/2022/08/14/%E5%85%B6%E4%BB%96/Tensorflow-gpu2.4.0%E5%AE%89%E8%A3%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206271209189.jpg">
-      <meta itemprop="name" content="Mxfg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mxfg's Blog">
-      <meta itemprop="description" content="Win or die">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mxfg's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/14/%E5%85%B6%E4%BB%96/Tensorflow-gpu2.4.0%E5%AE%89%E8%A3%85/" class="post-title-link" itemprop="url">Anaconda 安装 Tensorflow-gpu 2.4.0</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-08-14 18:25:30" itemprop="dateCreated datePublished" datetime="2022-08-14T18:25:30+08:00">2022-08-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/2022/08/14/%E5%85%B6%E4%BB%96/Tensorflow-gpu2.4.0%E5%AE%89%E8%A3%85/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/08/14/%E5%85%B6%E4%BB%96/Tensorflow-gpu2.4.0%E5%AE%89%E8%A3%85/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>664</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>浅浅做一个踩坑记录</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/08/14/%E5%85%B6%E4%BB%96/Tensorflow-gpu2.4.0%E5%AE%89%E8%A3%85/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.pthm/2022/08/14/%E5%85%B6%E4%BB%96/%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206271209189.jpg">
-      <meta itemprop="name" content="Mxfg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mxfg's Blog">
-      <meta itemprop="description" content="Win or die">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mxfg's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/14/%E5%85%B6%E4%BB%96/%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/" class="post-title-link" itemprop="url">手写数字识别</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-08-14 00:00:00" itemprop="dateCreated datePublished" datetime="2022-08-14T00:00:00+08:00">2022-08-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/2022/08/14/%E5%85%B6%E4%BB%96/%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/08/14/%E5%85%B6%E4%BB%96/%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>10k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>9 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>重新用神经网络做一下之前的 project</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/08/14/%E5%85%B6%E4%BB%96/%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.pthm/2022/08/01/%E5%85%B6%E4%BB%96/%E7%81%AB%E6%8A%8A%E8%8A%82%E6%84%9F%E5%8F%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206271209189.jpg">
-      <meta itemprop="name" content="Mxfg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mxfg's Blog">
-      <meta itemprop="description" content="Win or die">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mxfg's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/01/%E5%85%B6%E4%BB%96/%E7%81%AB%E6%8A%8A%E8%8A%82%E6%84%9F%E5%8F%97/" class="post-title-link" itemprop="url">火把节记录</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-08-01 23:00:41" itemprop="dateCreated datePublished" datetime="2022-08-01T23:00:41+08:00">2022-08-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/2022/08/01/%E5%85%B6%E4%BB%96/%E7%81%AB%E6%8A%8A%E8%8A%82%E6%84%9F%E5%8F%97/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/08/01/%E5%85%B6%E4%BB%96/%E7%81%AB%E6%8A%8A%E8%8A%82%E6%84%9F%E5%8F%97/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>780</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>大理白族的火把节在每年六月二十日，分为竖火把，点火，抢升斗，耍火把等环节，具有独特且浓郁的名族特色，也是白族最盛大的传统节日。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/08/01/%E5%85%B6%E4%BB%96/%E7%81%AB%E6%8A%8A%E8%8A%82%E6%84%9F%E5%8F%97/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -1635,14 +1662,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">41k</span>
+    <span title="站点总字数">44k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">37 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

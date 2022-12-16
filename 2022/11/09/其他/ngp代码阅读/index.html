@@ -26,10 +26,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.pthm","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.1","exturl":true,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#75664d","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="article">
-<meta property="og:title" content="Mxfg&#39;s Blog">
+    <meta name="description" content="Implement 具体的实现细节 Performance vs quality hash table 的大小\(T\) 过大导致GPU内存不足。 经过实验取得 \(F&#x3D;2,L&#x3D;16\) Implicit hash collision resolution  一对点不太可能同时在每一层都发生碰撞,而且 \(N_{min}\) 保证不发生冲突 一对点对梯度的贡献是不同的,表面的点的影">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ngp 代码阅读">
 <meta property="og:url" content="http://example.pthm/2022/11/09/%E5%85%B6%E4%BB%96/ngp%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/index.html">
 <meta property="og:site_name" content="Mxfg&#39;s Blog">
+<meta property="og:description" content="Implement 具体的实现细节 Performance vs quality hash table 的大小\(T\) 过大导致GPU内存不足。 经过实验取得 \(F&#x3D;2,L&#x3D;16\) Implicit hash collision resolution  一对点不太可能同时在每一层都发生碰撞,而且 \(N_{min}\) 保证不发生冲突 一对点对梯度的贡献是不同的,表面的点的影">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-09T10:10:58.870Z">
 <meta property="article:modified_time" content="2022-11-09T10:10:58.870Z">
@@ -41,10 +43,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.pthm/2022/11/09/%E5%85%B6%E4%BB%96/ngp%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/","path":"2022/11/09/其他/ngp代码阅读/","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.pthm/2022/11/09/%E5%85%B6%E4%BB%96/ngp%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/","path":"2022/11/09/其他/ngp代码阅读/","title":"ngp 代码阅读"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title> | Mxfg's Blog</title>
+<title>ngp 代码阅读 | Mxfg's Blog</title>
   
 
 
@@ -142,7 +144,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -155,6 +157,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#implement"><span class="nav-number">1.</span> <span class="nav-text">Implement</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#performance-vs-quality"><span class="nav-number">1.1.</span> <span class="nav-text">Performance vs quality</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#implicit-hash-collision-resolution"><span class="nav-number">1.2.</span> <span class="nav-text">Implicit hash collision resolution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#online-adaptivity"><span class="nav-number">1.3.</span> <span class="nav-text">Online adaptivity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#model-architecture"><span class="nav-number">1.4.</span> <span class="nav-text">Model Architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#accelerated-ray-marching"><span class="nav-number">1.5.</span> <span class="nav-text">Accelerated ray marching</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ray-marching-step-size-and-stopping"><span class="nav-number">1.5.1.</span> <span class="nav-text">Ray Marching Step Size and Stopping</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#occupancy-grids"><span class="nav-number">1.6.</span> <span class="nav-text">Occupancy Grids</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#number-of-rays-versus-batch-size"><span class="nav-number">1.7.</span> <span class="nav-text">Number of Rays Versus Batch size</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#input"><span class="nav-number">2.</span> <span class="nav-text">Input</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -169,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -259,12 +262,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | Mxfg's Blog">
+      <meta itemprop="name" content="ngp 代码阅读 | Mxfg's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          ngp 代码阅读
         </h1>
 
         <div class="post-meta-container">
@@ -315,14 +318,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
+      <span>2.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -333,7 +336,56 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        
+        <h1 id="implement">Implement</h1>
+<p>具体的实现细节</p>
+<h2 id="performance-vs-quality">Performance vs quality</h2>
+<p>hash table 的大小<span class="math inline">\(T\)</span> 过大导致GPU内存不足。</p>
+<p>经过实验取得 <span class="math inline">\(F=2,L=16\)</span></p>
+<h2 id="implicit-hash-collision-resolution">Implicit hash collision resolution</h2>
+<ol type="1">
+<li>一对点不太可能同时在每一层都发生碰撞,而且 <span class="math inline">\(N_{min}\)</span> 保证不发生冲突</li>
+<li>一对点对梯度的贡献是不同的,表面的点的影响更大</li>
+<li>分辨率的分布是几何的, 分辨率越大的较少的选取</li>
+</ol>
+<h2 id="online-adaptivity">Online adaptivity</h2>
+<p>如果输入 <span class="math inline">\(x\)</span> 的分布集中在一个小的区域,那么精细网格会更少的发生哈希冲突,能学习的更精确.</p>
+<p><strong>Neural Radiance Caching</strong></p>
+<h2 id="model-architecture">Model Architecture</h2>
+<p>由两个 MLP 并联</p>
+<ol type="1">
+<li><p><strong>density MLP</strong>: maps encoded position <span class="math inline">\(enc(\bold{x},\theta)\)</span> to 16 outputs values ， <span class="math inline">\(\theta\)</span> is the encoding parameters</p></li>
+<li><p><strong>color MLP</strong>:</p>
+<p><strong>Input</strong></p>
+<p>the 16 output values of the density MLP, and the view direction projected onto the first 16 coefficients of the spherical harmonics basis. This is a natural frequency encoding over unit vectors</p>
+<p><strong>output:</strong></p>
+<p>RGB color triplet.</p>
+<p>sRGB: sigmoid activation</p>
+<p>HDR: exponential activation</p>
+<p>1-hidden-layer density MLP and a 2-hidden-layer color MLP, both 64 neurons wide.</p>
+<h2 id="accelerated-ray-marching">Accelerated ray marching</h2>
+<p>we concentrate samples near surfaces by maintaining an occupancy grid that coarsely marks empty vs. nonempty space.</p>
+<h3 id="ray-marching-step-size-and-stopping">Ray Marching Step Size and Stopping</h3>
+<ol type="1">
+<li><strong>synthetic NeRF scenes:</strong> step size $t= /1024 $ in the unit cube <span class="math inline">\([0,1]^3\)</span></li>
+<li><strong>Others</strong>: <span class="math inline">\(t\)</span>​ exponential growth, which means that the computation cost grows only logarithmically in scene diameter, with no perceivable loss of quality.</li>
+<li>Stop ray marching and set the remaining contribution to zero as soon as the transmittance of the ray drops below a threshold</li>
+</ol>
+<h2 id="occupancy-grids">Occupancy Grids</h2>
+<p>During ray marching, whenever a sample is to be placed according to the step size from the previous section, the sample is skipped if its grid cell’s bit is low. Which one of the 𝐾 grids is queried is determined by both the sample position x and the step size Δ𝑡: among the grids covering x, the finest one with cell side length larger than Δ𝑡 is queried.</p>
+<p><em>update the occupancy grids</em>. a second set of grids that store full-precision floating density. update every 16 training steps.</p>
+<h2 id="number-of-rays-versus-batch-size">Number of Rays Versus Batch size</h2>
+<p>​ batch size = Samples per ray * Rays per batch</p>
+<p><strong>Training from a larger number of rays, i.e. incorporating more viewpoint variation into the batch. </strong>Include as many rays as possible in batches of fixed size rather that building variable-size batches from a fixed ray count</p></li>
+</ol>
+<h1 id="input">Input</h1>
+<ol type="1">
+<li><p>load <code>config/base.json</code>: 包括 <code>loss</code>, <code>optimizer</code>, <code>encoding</code> 的超参等 <code>envmap</code>?</p></li>
+<li><p><code>train</code></p></li>
+<li><p><code>training_prep_nerf</code>: 每过16次迭代，更新occupancy grids.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (m_training_step &lt; <span class="number">256</span>) &#123;</span><br><span class="line">		<span class="built_in">update_density_grid_nerf</span>(alpha, <span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()*n_cascades, <span class="number">0</span>, stream);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="built_in">update_density_grid_nerf</span>(alpha, <span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()/<span class="number">4</span>*n_cascades, <span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()/<span class="number">4</span>*n_cascades, stream);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>train_nerf_step(uint32_t target_batch_size, Testbed::NerfCounters&amp; counters, cudaStream_t stream)</code>:</p></li>
+<li><p><code>generate_training_samples_nerf</code></p></li>
+</ol>
 
     </div>
 
@@ -371,6 +423,9 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2022/11/09/%E5%85%B6%E4%BB%96/11.9/" rel="prev" title="">
+                  <i class="fa fa-chevron-left"></i> 
+                </a>
             </div>
             <div class="post-nav-item">
                 <a href="/2022/11/03/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E9%95%80%E9%87%91%E6%97%B6%E4%BB%A3/" rel="next" title="">
@@ -409,14 +464,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">41k</span>
+    <span title="站点总字数">44k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">37 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
