@@ -18,6 +18,9 @@
 <p>payload.alive ?</p>
 <p>ubantu , debug</p>
 ]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
   </entry>
   <entry>
     <title>Anaconda问题</title>
@@ -47,6 +50,23 @@
 <h3 id="单应矩阵">单应矩阵</h3>
 <p>colmap_matcher</p>
 <p>skip-early</p>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Break tie randomly</title>
+    <url>/2022/12/19/%E5%85%B6%E4%BB%96/Break_tie_randomly/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p><code>np.argmax()</code>返回 arr 中第一个最大元素的下标，但是有时候需要在最大元素中随机选择一个.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">np.random.choice(np.flatnonzero(b == b.<span class="built_in">max</span>()))</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>b==b.max()</code> will return an array of booleans, with values of <code>true</code> where items are max and values of <code>false</code> for other items.</p></li>
+<li><p><code>flatnonzero()</code> will do two things: ignore the <code>false</code> values (nonzero part) then return indices of <code>true</code> values. In other words, you get an array with indices of items matching the max value.</p></li>
+<li><p>Finally, you pick a random index from the array.</p></li>
+</ul>
+<p>发现还是很慢，不如手写版本</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">random_argmax</span>(<span class="params">value_list</span>):</span><br><span class="line">  <span class="string">&quot;&quot;&quot; a random tie-breaking argmax &quot;&quot;&quot;</span></span><br><span class="line">  values = np.asarray(value_list)</span><br><span class="line">  <span class="keyword">return</span> np.argmax(np.random.random(values.shape) * (values==values.<span class="built_in">max</span>()))</span><br></pre></td></tr></table></figure>
 ]]></content>
   </entry>
   <entry>
@@ -103,6 +123,26 @@
       </categories>
   </entry>
   <entry>
+    <title>Variable Bitrate Neural Fields</title>
+    <url>/2022/12/14/%E5%85%B6%E4%BB%96/Variable_Bitrate/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="motivation">Motivation</h1>
+<ol type="1">
+<li>压缩3D信息用于更高效的数据传输，和直播</li>
+<li>传统Nerf 的问题：因为需要很大的网络对场景进行编码，很多光线，每个点都要过这个大网络，因此渲染慢。</li>
+<li>feature grids: 每个顶点包含一个 feature vector. 任意一个点用插值的到特征。网络只需要对所有顶点进行编码, 网络减小，速度增加。但是储存的feature grids 占用的空间却比之前一个网络的多。</li>
+<li>ngp: 每个顶点的坐标通过 hash 映射到一个 codebook 的 index 上。但是需要多层，每层的codebook也很大，最终的存储还是很大。</li>
+</ol>
+<h1 id="vq-feature-grids-with-learning">VQ feature grids with learning</h1>
+<ol type="1">
+<li>直接在顶点上储存 index 并学习</li>
+<li>为了解决不可微的问题，使用 softmax 的技巧。 储存一系列浮点数，取max。<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202212141921446.png" alt="Vector quantized feaature grids with learning" /></li>
+</ol>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+  </entry>
+  <entry>
     <title></title>
     <url>/2022/10/19/%E5%85%B6%E4%BB%96/instant-ngp%E5%A4%8D%E7%8E%B0/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="数据集准备">数据集准备</h1>
@@ -153,23 +193,6 @@
       <categories>
         <category>其他</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Variable Bitrate Neural Fields</title>
-    <url>/2022/12/14/%E5%85%B6%E4%BB%96/Variable_Bitrate/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="motivation">Motivation</h1>
-<ol type="1">
-<li>压缩3D信息用于更高效的数据传输，和直播</li>
-<li>传统Nerf 的问题：因为需要很大的网络对场景进行编码，很多光线，每个点都要过这个大网络，因此渲染慢。</li>
-<li>feature grids: 每个顶点包含一个 feature vector. 任意一个点用插值的到特征。网络只需要对所有顶点进行编码, 网络减小，速度增加。但是储存的feature grids 占用的空间却比之前一个网络的多。</li>
-<li>ngp: 每个顶点的坐标通过 hash 映射到一个 codebook 的 index 上。但是需要多层，每层的codebook也很大，最终的存储还是很大。</li>
-</ol>
-<h1 id="vq-feature-grids-with-learning">VQ feature grids with learning</h1>
-<ol type="1">
-<li>直接在顶点上储存 index 并学习</li>
-<li>为了解决不可微的问题，使用 softmax 的技巧。 储存一系列浮点数，取max。<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202212141921446.png" alt="Vector quantized feaature grids with learning" /></li>
-</ol>
-]]></content>
   </entry>
   <entry>
     <title>Lightroom 缓存</title>
@@ -395,6 +418,19 @@
       </categories>
   </entry>
   <entry>
+    <title>np.random.rand vs np.random.random</title>
+    <url>/2022/07/23/%E5%85%B6%E4%BB%96/np.random.rand%20vs%20np.random.random/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>二者都连续均匀地在 <span class="math inline">\([0,1]\)</span> 生成 (uniform distribution) 样本，但接受地参数不同. <code>np.random.rand</code> 接受分隔地参数，<code>np.random.random</code> 接受一个 tuple.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = np.random.rand(<span class="number">2</span>,<span class="number">7</span>)</span><br><span class="line">a = np.random.random((<span class="number">2.7</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="推荐写法">推荐写法</h3>
+<p>自 Numpy 1.17 后， 提供新的 方法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rng = np.random.default_rng()  <span class="comment"># Create a default Generator.</span></span><br><span class="line">rng.random(size=<span class="number">10</span>)  <span class="comment"># Generate 10 samples.</span></span><br><span class="line">array([<span class="number">0.00416913</span>, <span class="number">0.31533329</span>, <span class="number">0.19057857</span>, <span class="number">0.48732511</span>, <span class="number">0.40638395</span>,</span><br><span class="line">       <span class="number">0.32165646</span>, <span class="number">0.02597142</span>, <span class="number">0.19788567</span>, <span class="number">0.08142055</span>, <span class="number">0.15755424</span>])</span><br><span class="line">rng = np.random.uniform(<span class="number">0</span>,<span class="number">1</span>,size=(<span class="number">2</span>,<span class="number">3</span>)) <span class="comment">#specify bound </span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+  </entry>
+  <entry>
     <title>加密</title>
     <url>/2022/06/30/%E5%85%B6%E4%BB%96/test/</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
@@ -414,17 +450,67 @@
       </categories>
   </entry>
   <entry>
-    <title>np.random.rand vs np.random.random</title>
-    <url>/2022/07/23/%E5%85%B6%E4%BB%96/np.random.rand%20vs%20np.random.random/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>二者都连续均匀地在 <span class="math inline">\([0,1]\)</span> 生成 (uniform distribution) 样本，但接受地参数不同. <code>np.random.rand</code> 接受分隔地参数，<code>np.random.random</code> 接受一个 tuple.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = np.random.rand(<span class="number">2</span>,<span class="number">7</span>)</span><br><span class="line">a = np.random.random((<span class="number">2.7</span>))</span><br></pre></td></tr></table></figure>
-<h3 id="推荐写法">推荐写法</h3>
-<p>自 Numpy 1.17 后， 提供新的 方法</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rng = np.random.default_rng()  <span class="comment"># Create a default Generator.</span></span><br><span class="line">rng.random(size=<span class="number">10</span>)  <span class="comment"># Generate 10 samples.</span></span><br><span class="line">array([<span class="number">0.00416913</span>, <span class="number">0.31533329</span>, <span class="number">0.19057857</span>, <span class="number">0.48732511</span>, <span class="number">0.40638395</span>,</span><br><span class="line">       <span class="number">0.32165646</span>, <span class="number">0.02597142</span>, <span class="number">0.19788567</span>, <span class="number">0.08142055</span>, <span class="number">0.15755424</span>])</span><br><span class="line">rng = np.random.uniform(<span class="number">0</span>,<span class="number">1</span>,size=(<span class="number">2</span>,<span class="number">3</span>)) <span class="comment">#specify bound </span></span><br></pre></td></tr></table></figure>
+    <title>vscode 配置 git</title>
+    <url>/2022/12/18/%E5%85%B6%E4%BB%96/vscode_git/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="git">Git</h1>
+<ol type="1">
+<li><p><code>clone</code> : 所有版本有一个远程仓库，把它复制到本地工作区称为<code>clone</code>。</p></li>
+<li><p><code>add</code>: 增加的内容载入暂存区。</p></li>
+<li><p><code>commit</code>: 为添加的到副本的内容起一个名字，最终将添加的内容加入本地仓库。</p></li>
+<li><p><code>push</code>: 把本地仓库里新增的添加到正本里面</p></li>
+<li><p><code>pull</code>:其他成员把远程仓库同步更新到自己的工作区，注意会覆盖本地文件。</p></li>
+<li><p><code>fetch</code>: 将远程仓库更新的本地版本仓库。</p></li>
+<li><p><code>diff</code>: 对比区别，没问题在合并过来。</p></li>
+<li><p>文件的几个状态：</p>
+<ul>
+<li><strong>untracked</strong>: 新建的文件</li>
+<li><strong>upstage</strong>: 被 track 且被修改的文件</li>
+<li><strong>stage</strong>: 已经被 track</li>
+</ul></li>
+</ol>
+<h1 id="实操">实操</h1>
+<ol type="1">
+<li><code>git init</code> 初始化。</li>
+<li><code>git status</code> 查看当前文件的状态。</li>
+<li><code>git add</code> 将修改暂存到缓存区。</li>
+<li><code>git commit -m</code> 输入提交信息。</li>
+<li><code>git status</code> nothing to commit，也就是把所有文件都提交到本地版本库了</li>
+<li><code>git log</code> 查看记录，谁提交的</li>
+<li><code>touch .gitignore</code> 在 <code>.gitignore</code> 增加忽略的文件名即可。</li>
+<li><code>git commit -am 信息</code> 将 add 和 commit 合并在一起写。</li>
+</ol>
+<h2 id="分支">分支</h2>
+<p>不确定当前修改是否需要，可以创建新的分支，在新分支里修改，准备好后可合并到主分支中。</p>
+<ol type="1">
+<li><code>git branch</code> 查看分支，+ 分支名 创建分支。</li>
+<li><code>git checkout + 分支名</code> 切换分支</li>
+<li><strong>注意</strong>： 如果在分支里删除.ignore 文件， 在主分支里也会被删除</li>
+<li><code>git branch -d</code> ： 删除分支</li>
+<li><code>git checkout -b</code> 创建并切换到新分支。</li>
+<li><code>git merge + 分支名</code> 把其他分支合并到所在分支。注意冲突</li>
+</ol>
+<h1 id="上手-github">上手 Github</h1>
+<ol type="1">
+<li><code>git-clone + http 连接</code> github上一开始创建时的主支名字是 main 而本地用git 则是 master.</li>
+<li><code>git remote -v</code> 查看本地仓库和哪些远程仓库有联系。默认用 origin 代表远程仓库的名字。</li>
+<li><code>git remote add</code> 自己选名字 <url>/<code>git remote remove</code> 添加远程仓库连接。</li>
+<li>生成 token</li>
+<li><code>git fetch</code> 可以指定远程仓库和分支名的。</li>
+<li><code>git diff 远程仓库名/分支名</code> 看到区别。</li>
+</ol>
+<h1 id="问题汇总">问题汇总</h1>
+<h3 id="在git中走代理">在git中走代理</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设置</span></span><br><span class="line">git config --global http.proxy <span class="string">&#x27;socks5://127.0.0.1:7890&#x27;</span> </span><br><span class="line">git config --global https.proxy <span class="string">&#x27;socks5://127.0.0.1:7890&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 恢复</span></span><br><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure>
+<p>用 <code>curl -v https://www.google.com</code> 查看是否成功</p>
+<p>很多网络的原理都不清楚，打算以后来补。</p>
+<h3 id="git-upstream-branch"><strong>Git Upstream Branch</strong></h3>
+<p>"Upstream Branch" is the remote branch hosted on Github. It’s the branch you fetch/pull from whenever you issue a plain git fetch/git pull basically without arguments.</p>
+<p><code>git push --set-upstream origin &lt;branch name&gt;</code> 来设置.</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuZ2Vla3Nmb3JnZWVrcy5vcmcvaG93LXRvLXNldC11cHN0cmVhbS1icmFuY2gtb24tZ2l0Lw==">How to set up Upstream Branch on Git<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="refusing-to-merge-unrelated-histories">refusing to merge unrelated histories</h3>
+<p>一般出现在创建新仓库的时候新建<code>readme.md</code>文件，然后在pull 的时候，所以最后的流程最好是先在远程仓库建好，然后 clone. 解决方法强制合并</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull origin branchname --allow-unrelated-histories</span><br></pre></td></tr></table></figure>
 ]]></content>
-      <categories>
-        <category>其他</category>
-      </categories>
   </entry>
   <entry>
     <title>大理火把节来历</title>
@@ -697,27 +783,6 @@ Test accuracy: 0.9911999702453613</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>黔行山水间</title>
-    <url>/2022/09/22/%E5%85%B6%E4%BB%96/%E9%BB%94%E8%A1%8C%E5%B1%B1%E6%B0%B4%E9%97%B4/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>​ 贵州，中国唯一没有平原支撑的省份，群山环绕，数千条河流将其塑造为喀斯特岩溶地貌的王国。大量的山林河谷让这片土地充斥着浓郁的神秘气息。我于是怀着敬畏和些许的恐惧抵达了贵阳。</p>
-<p>​ 贵阳的交通是立体的。坐车身在其中，各条道路在眼前不断地交织绕的人晕头转向，难辨东西。黔灵山公园的猕猴让人有些期待，在公园里跋涉许久才终于看到两只猕猴间互相厮杀，其中一只差点失足从屋檐下掉落，令人捏一把汗。又行了几步，终于发现一群猕猴，哦，不，应该是一群强盗吧。幸亏身上没带食物，否则肯定被哄抢的一干二净。在甲秀楼溜达完后，然后再附近找了家餐馆，叫“雷家圆子”，就是用豆腐做的油炸圆子，配上其特有的调料，口感外脆内嫩，味道鲜美，算是特色小吃吧。</p>
-<p>​ 饭后到高铁站后与社会实践团队会合，大家神态不一，有的社交达人如鱼得水和旁人侃侃而谈，也有的社恐面露羞涩，一言不发。我显然属于后者，所以高铁路上一直假装睡觉，害怕与旁边的组员交谈。我想，以后会有机会和大家熟悉的，也不必过多担心。</p>
-<p>​ 在六盘水经过一晚的修整，来到了本次调研的第一站：水城古镇。这里坐落着一个三线博物馆，纪念的是西南三线建设的历史。沿路的房屋墙壁上都有显赫的那个时代的标语。“人亲堪比阶级爱”，“好人好马上三线”，“为人民服务”等等。参观了博物馆后，知道三线建设是上世纪我国的重大军事战略计划，对西南地区的现代工业化起到了积极的推动作用。让人感到有趣的是一个手动的防空警报器，但是却被工人们用作闹钟，同学们开始疯狂转警报器，空厅传响，整个博物馆瞬间弥漫着一种紧张的备战氛围，霎时间回到那段峥嵘岁月。之后我们便开始在水城古镇进行街头访谈，收获颇丰。突然天空下起大雨，我于是坐在伞下和一个来自广东的游客聊了一下关于三线的问题，谈到当时韶关是广东的三线建设的重点，当时的备战气氛其实非常紧张，很多工业，和技术人员都从东部比如上海等地迁往西部。然后我们小组向一个小卖部的老板考察了水城古镇的历史。在这里未开发以前，这里基本都是住宅区，都用的自己的房子做点小生意，后来政府为了开发古镇景区拆迁了旧的房屋，但是没有给足相应的补贴，如今又向这里的摊位收取较为高昂的租金，这里百姓对此忿忿不平。听到这些话，我感到有些唏嘘。但是我们又采访了一位烙锅店的左氏老板，她对此的看法却又截然不同。她从小生活在水城，她母亲曾经是在路边做烙豆腐的。她对景区的开发持非常积极的态度，街道变得更加整洁了，社会环境和治安也有了很大改善，比如之前女孩子从来不敢走夜路，如今她也不会担心走夜路，游客更多使得生意更加兴隆。我想，之所以产生不同看法的原因是从不同的方面看待水城的变迁。政府在协调拆迁问题时确实存在着过失，百姓原本的生产经营方式突然改变，又缺乏补贴，引起了一部分原本生意蒸蒸日上的商家的忿怨。而后面采访的这位，较为年轻的老板更关注于变迁带来的好的环境改变。尽管如此，政府也应该更多的考虑和协调百姓的不满。然后晚上也品尝了水城的特色小吃—烙锅。用土砂锅烙烤食物，蘸一下辣椒面，香辣爽口，油而不腻。只是有点难以控制火候大小，容易热油飞溅，还是略微有些危险。</p>
-<p>​ 第二天从六盘水前往久负盛名的黄果树瀑布，作为最大的瀑布群。做观光车的一路上都能看到一些小型的瀑布。离大瀑布的远近不同，感受也不同。从远处看去，夹在两山之间，激起的云雾在山谷中升腾，是秀美。而逐渐走进后，一下多了一个感官维度--触觉。激荡的水珠在脸上胡乱地拍打，心中升起阵阵凉意，耳边隆隆，水风忽忽，闭上双眼依然能感到震撼。更神奇的事，瀑布的背后，隐藏着一条溶洞，如同西游记里地水帘洞，从背面这个角度观飞瀑实属新奇，飞落地水花出奇的白，仿佛瀑布化身成了雪崩。不得不再一次感叹大自然的鬼斧神工。除了壮阔的黄果树瀑布，还有秀美的银链坠潭瀑布。其落差不大，潭沿面凸起的石面，像一片片莲叶一般，静谧而柔美地流泻如同绸缎。不知这些水滴从高处坠落时是否感到害怕，分明刚刚还在水平如面镜的水流中缓缓流淌，下一刻便倏忽间从平滑的水面坠落倾泻而下，让我不免后怕坐在飞机上的失重感</p>
-<p>​ 第三天终于有实操环节了--摘刺梨。之前喝过名叫“刺柠吉”的饮料，印象中爽口。可是当亲眼看到刺梨时，浑身是刺的它似乎并不那么友好，令人不知从哪里下嘴，终于忍住牙床的刺痛艰难咬下一口时，一股酸涩令人倒吸一口气。看来刺梨的确不适合直接食用，难怪必须通过进一步加工才能除去它的酸涩味，以充分其清热爽口的优点。听完讲解后，我们便兴致勃勃地戴上手套下田采摘。这里的农田也是起伏不平，地面湿滑容易摔倒，下坡只能让旁边的玉米受苦了，一群人经过后，玉米全部都垂头丧气的倒了下来。刺梨一簇簇地挂在枝头，生熟让人难以判断，管他呢，权且当搞点小破坏。结果就发现用一层手套摘刺梨稍微一用力就能轻易地被戳穿，只得戴上两层手套，捏住刺梨之后使劲往一个方向转，就能轻易地摘下来了。大家都摘得热火朝天，尽管被刺的惨叫声此起彼伏，最后还是收获了半筐刺梨，半载而归。好心的村民想把刺梨送给我们，但是实在是苦于揣着兜里的麻烦，只得一再推却。</p>
-<p>​ 采摘刺梨的之后的一天，我们团队又调查了一家刺梨加工企业，参观了刺梨加工的生产线。了解到刺梨的营养价值很高，尤其是维C含量。又介绍了很多用刺梨作为原材料的产品，除了刺梨原浆，刺梨酒，还有用来解腻用的饮品，大家都仔细品尝了一番。并且与书亦烧仙草合作推出刺梨口味的奶茶。这是确凿的事实，后来从六盘水返回到贵阳的时候，我就在高铁站奶茶店喝到了这熟悉的味道，在喝到的第一口有些莫名感动。刺梨相貌本身不讨好，原本味道又有些苦涩，但是却能被人们坚持发掘价值，经过一系列加工与其他食材配合，最终能华丽蜕变为一种竞品在市场上销售，博得消费者的喜爱，实在是催人奋进。</p>
-<p>​ 还令人难以忘怀的就是乌蒙大草原。在海拔两千多米的高山间，竟然滋养出一片西南地区最大的天然草场。与平时所见一马平川的草原不同，乌蒙大草原不断给人遐想和未知期待。山丘起伏挡住了视线，让人一眼看不到全貌，越过眼前的小土坡也许就又能看见奔跑的羊群，抑或是听见阵阵牛羚，而稍微挪动脚步又能看到一只威风凛然的黄牛盘踞在下一个山头。长期在这样有趣的坡道行走，也丝毫不觉得疲惫，反倒妙趣横生。草原上还看到一群穿着布依族服饰的姑娘们围成一圈，随着音乐的节奏欢快的舞蹈，旁边的游客也逐渐加入这场草原盛会，其乐融融。我坐在草地上，和煦的风吹得我醉眼迷离，恍惚地看这片热闹的草地，人们与牛羊甚至骆驼结伴，风筝在白云间游走，山顶上徐徐旋转地大风车。这片深处群山腹地的草原就如同，尽管有些老套，但的确是贵州高原上的明珠。使生活在此的人们，能够在地无三尺平的贵州，在一片广阔的草地尽情撒欢，释放内心的烦闷，遥望连绵的草野。</p>
-<p>​ 另外，我在团队中负责视频后期，当然也承担了小部分的拍摄工作。我之前没有任何关于视频创作的经验，完全是从头学起。因为要和配合新闻稿做两个视频，时间非常紧迫。白天不仅坐车和拍摄非常辛苦，晚上还得紧张工作。为了呈现更好的效果，我一帧一帧的处理视频细节，一开始很不熟练，导致效率很低，还出现一堆问题，前几天不得不工作到凌晨2点。后面也感受到自己愈发熟练，效率也逐渐提高，过程虽然很辛苦，但是看到做出来的视频还是非常有成就感，并且学习了一项新的技能。与团队成员的协作共事，同甘共苦，让大家很快成为一个紧密的团体，不善言语的我也认识了很多新的好伙伴。</p>
-<p>​ 在这七天里，少不了车马困顿。“天下山峰何其多，唯有此处峰成林”。每个镇乡之间的都要绕行大量的山路。感觉贵州的建设实属不易。交通方面是一个难题，不过越来越多的高桥正在飞架，据统计，贵州桥梁数量达到20000多座，全世界排名100座桥梁当中，有80多座来自中国；这80多座大桥之中，就有一大半来自贵州。但是六盘水铁路线还是处于落后局面，基本靠六安一条线路，我认为如果毕节-六盘水能通铁路能加强黔西和四川的联系。大量山地加上云贵准静止锋带来长期阴雨的天气，制约了贵州的农业发展。除了少量优良的土地能种植猕猴桃等经济作物，而沿途看到的大部分作物还是玉米。尽管如此贵州有着丰富的旅游资源、多彩的民族文化，源远流长的酒文化。在我心中，贵州是一片神圣而又神秘的土地，不同于开阔、壮丽的西藏那样强烈宗教带来的神圣，恰恰相反，崎岖、起伏的峰林赋予贵州一股质朴、平易近人的灵气。在参观农民画时，无意听到苗族山歌，回声嘹亮，空灵婉转，仿佛一场与山灵的对话。我想以后我还会来到贵州，在此体味淡泊自得的生活态度，去追寻信奉神巫的山间传说，涤荡内心，直面自我。</p>
-]]></content>
-      <categories>
-        <category>其他</category>
-      </categories>
-      <tags>
-        <tag>旅游</tag>
-      </tags>
-  </entry>
-  <entry>
     <title></title>
     <url>/2022/07/14/%E5%85%B6%E4%BB%96/%E7%94%98%E5%8D%97%E6%B8%B8%E8%AE%B0/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="备冬草">备冬草</h2>
@@ -752,6 +817,60 @@ Test accuracy: 0.9911999702453613</code></pre>
         <tag>旅游</tag>
         <tag>摄影</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>黔行山水间</title>
+    <url>/2022/09/22/%E5%85%B6%E4%BB%96/%E9%BB%94%E8%A1%8C%E5%B1%B1%E6%B0%B4%E9%97%B4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>​ 贵州，中国唯一没有平原支撑的省份，群山环绕，数千条河流将其塑造为喀斯特岩溶地貌的王国。大量的山林河谷让这片土地充斥着浓郁的神秘气息。我于是怀着敬畏和些许的恐惧抵达了贵阳。</p>
+<p>​ 贵阳的交通是立体的。坐车身在其中，各条道路在眼前不断地交织绕的人晕头转向，难辨东西。黔灵山公园的猕猴让人有些期待，在公园里跋涉许久才终于看到两只猕猴间互相厮杀，其中一只差点失足从屋檐下掉落，令人捏一把汗。又行了几步，终于发现一群猕猴，哦，不，应该是一群强盗吧。幸亏身上没带食物，否则肯定被哄抢的一干二净。在甲秀楼溜达完后，然后再附近找了家餐馆，叫“雷家圆子”，就是用豆腐做的油炸圆子，配上其特有的调料，口感外脆内嫩，味道鲜美，算是特色小吃吧。</p>
+<p>​ 饭后到高铁站后与社会实践团队会合，大家神态不一，有的社交达人如鱼得水和旁人侃侃而谈，也有的社恐面露羞涩，一言不发。我显然属于后者，所以高铁路上一直假装睡觉，害怕与旁边的组员交谈。我想，以后会有机会和大家熟悉的，也不必过多担心。</p>
+<p>​ 在六盘水经过一晚的修整，来到了本次调研的第一站：水城古镇。这里坐落着一个三线博物馆，纪念的是西南三线建设的历史。沿路的房屋墙壁上都有显赫的那个时代的标语。“人亲堪比阶级爱”，“好人好马上三线”，“为人民服务”等等。参观了博物馆后，知道三线建设是上世纪我国的重大军事战略计划，对西南地区的现代工业化起到了积极的推动作用。让人感到有趣的是一个手动的防空警报器，但是却被工人们用作闹钟，同学们开始疯狂转警报器，空厅传响，整个博物馆瞬间弥漫着一种紧张的备战氛围，霎时间回到那段峥嵘岁月。之后我们便开始在水城古镇进行街头访谈，收获颇丰。突然天空下起大雨，我于是坐在伞下和一个来自广东的游客聊了一下关于三线的问题，谈到当时韶关是广东的三线建设的重点，当时的备战气氛其实非常紧张，很多工业，和技术人员都从东部比如上海等地迁往西部。然后我们小组向一个小卖部的老板考察了水城古镇的历史。在这里未开发以前，这里基本都是住宅区，都用的自己的房子做点小生意，后来政府为了开发古镇景区拆迁了旧的房屋，但是没有给足相应的补贴，如今又向这里的摊位收取较为高昂的租金，这里百姓对此忿忿不平。听到这些话，我感到有些唏嘘。但是我们又采访了一位烙锅店的左氏老板，她对此的看法却又截然不同。她从小生活在水城，她母亲曾经是在路边做烙豆腐的。她对景区的开发持非常积极的态度，街道变得更加整洁了，社会环境和治安也有了很大改善，比如之前女孩子从来不敢走夜路，如今她也不会担心走夜路，游客更多使得生意更加兴隆。我想，之所以产生不同看法的原因是从不同的方面看待水城的变迁。政府在协调拆迁问题时确实存在着过失，百姓原本的生产经营方式突然改变，又缺乏补贴，引起了一部分原本生意蒸蒸日上的商家的忿怨。而后面采访的这位，较为年轻的老板更关注于变迁带来的好的环境改变。尽管如此，政府也应该更多的考虑和协调百姓的不满。然后晚上也品尝了水城的特色小吃—烙锅。用土砂锅烙烤食物，蘸一下辣椒面，香辣爽口，油而不腻。只是有点难以控制火候大小，容易热油飞溅，还是略微有些危险。</p>
+<p>​ 第二天从六盘水前往久负盛名的黄果树瀑布，作为最大的瀑布群。做观光车的一路上都能看到一些小型的瀑布。离大瀑布的远近不同，感受也不同。从远处看去，夹在两山之间，激起的云雾在山谷中升腾，是秀美。而逐渐走进后，一下多了一个感官维度--触觉。激荡的水珠在脸上胡乱地拍打，心中升起阵阵凉意，耳边隆隆，水风忽忽，闭上双眼依然能感到震撼。更神奇的事，瀑布的背后，隐藏着一条溶洞，如同西游记里地水帘洞，从背面这个角度观飞瀑实属新奇，飞落地水花出奇的白，仿佛瀑布化身成了雪崩。不得不再一次感叹大自然的鬼斧神工。除了壮阔的黄果树瀑布，还有秀美的银链坠潭瀑布。其落差不大，潭沿面凸起的石面，像一片片莲叶一般，静谧而柔美地流泻如同绸缎。不知这些水滴从高处坠落时是否感到害怕，分明刚刚还在水平如面镜的水流中缓缓流淌，下一刻便倏忽间从平滑的水面坠落倾泻而下，让我不免后怕坐在飞机上的失重感</p>
+<p>​ 第三天终于有实操环节了--摘刺梨。之前喝过名叫“刺柠吉”的饮料，印象中爽口。可是当亲眼看到刺梨时，浑身是刺的它似乎并不那么友好，令人不知从哪里下嘴，终于忍住牙床的刺痛艰难咬下一口时，一股酸涩令人倒吸一口气。看来刺梨的确不适合直接食用，难怪必须通过进一步加工才能除去它的酸涩味，以充分其清热爽口的优点。听完讲解后，我们便兴致勃勃地戴上手套下田采摘。这里的农田也是起伏不平，地面湿滑容易摔倒，下坡只能让旁边的玉米受苦了，一群人经过后，玉米全部都垂头丧气的倒了下来。刺梨一簇簇地挂在枝头，生熟让人难以判断，管他呢，权且当搞点小破坏。结果就发现用一层手套摘刺梨稍微一用力就能轻易地被戳穿，只得戴上两层手套，捏住刺梨之后使劲往一个方向转，就能轻易地摘下来了。大家都摘得热火朝天，尽管被刺的惨叫声此起彼伏，最后还是收获了半筐刺梨，半载而归。好心的村民想把刺梨送给我们，但是实在是苦于揣着兜里的麻烦，只得一再推却。</p>
+<p>​ 采摘刺梨的之后的一天，我们团队又调查了一家刺梨加工企业，参观了刺梨加工的生产线。了解到刺梨的营养价值很高，尤其是维C含量。又介绍了很多用刺梨作为原材料的产品，除了刺梨原浆，刺梨酒，还有用来解腻用的饮品，大家都仔细品尝了一番。并且与书亦烧仙草合作推出刺梨口味的奶茶。这是确凿的事实，后来从六盘水返回到贵阳的时候，我就在高铁站奶茶店喝到了这熟悉的味道，在喝到的第一口有些莫名感动。刺梨相貌本身不讨好，原本味道又有些苦涩，但是却能被人们坚持发掘价值，经过一系列加工与其他食材配合，最终能华丽蜕变为一种竞品在市场上销售，博得消费者的喜爱，实在是催人奋进。</p>
+<p>​ 还令人难以忘怀的就是乌蒙大草原。在海拔两千多米的高山间，竟然滋养出一片西南地区最大的天然草场。与平时所见一马平川的草原不同，乌蒙大草原不断给人遐想和未知期待。山丘起伏挡住了视线，让人一眼看不到全貌，越过眼前的小土坡也许就又能看见奔跑的羊群，抑或是听见阵阵牛羚，而稍微挪动脚步又能看到一只威风凛然的黄牛盘踞在下一个山头。长期在这样有趣的坡道行走，也丝毫不觉得疲惫，反倒妙趣横生。草原上还看到一群穿着布依族服饰的姑娘们围成一圈，随着音乐的节奏欢快的舞蹈，旁边的游客也逐渐加入这场草原盛会，其乐融融。我坐在草地上，和煦的风吹得我醉眼迷离，恍惚地看这片热闹的草地，人们与牛羊甚至骆驼结伴，风筝在白云间游走，山顶上徐徐旋转地大风车。这片深处群山腹地的草原就如同，尽管有些老套，但的确是贵州高原上的明珠。使生活在此的人们，能够在地无三尺平的贵州，在一片广阔的草地尽情撒欢，释放内心的烦闷，遥望连绵的草野。</p>
+<p>​ 另外，我在团队中负责视频后期，当然也承担了小部分的拍摄工作。我之前没有任何关于视频创作的经验，完全是从头学起。因为要和配合新闻稿做两个视频，时间非常紧迫。白天不仅坐车和拍摄非常辛苦，晚上还得紧张工作。为了呈现更好的效果，我一帧一帧的处理视频细节，一开始很不熟练，导致效率很低，还出现一堆问题，前几天不得不工作到凌晨2点。后面也感受到自己愈发熟练，效率也逐渐提高，过程虽然很辛苦，但是看到做出来的视频还是非常有成就感，并且学习了一项新的技能。与团队成员的协作共事，同甘共苦，让大家很快成为一个紧密的团体，不善言语的我也认识了很多新的好伙伴。</p>
+<p>​ 在这七天里，少不了车马困顿。“天下山峰何其多，唯有此处峰成林”。每个镇乡之间的都要绕行大量的山路。感觉贵州的建设实属不易。交通方面是一个难题，不过越来越多的高桥正在飞架，据统计，贵州桥梁数量达到20000多座，全世界排名100座桥梁当中，有80多座来自中国；这80多座大桥之中，就有一大半来自贵州。但是六盘水铁路线还是处于落后局面，基本靠六安一条线路，我认为如果毕节-六盘水能通铁路能加强黔西和四川的联系。大量山地加上云贵准静止锋带来长期阴雨的天气，制约了贵州的农业发展。除了少量优良的土地能种植猕猴桃等经济作物，而沿途看到的大部分作物还是玉米。尽管如此贵州有着丰富的旅游资源、多彩的民族文化，源远流长的酒文化。在我心中，贵州是一片神圣而又神秘的土地，不同于开阔、壮丽的西藏那样强烈宗教带来的神圣，恰恰相反，崎岖、起伏的峰林赋予贵州一股质朴、平易近人的灵气。在参观农民画时，无意听到苗族山歌，回声嘹亮，空灵婉转，仿佛一场与山灵的对话。我想以后我还会来到贵州，在此体味淡泊自得的生活态度，去追寻信奉神巫的山间传说，涤荡内心，直面自我。</p>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>旅游</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>枪炮、病菌与钢铁</title>
+    <url>/2022/11/18/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%9E%AA%E7%82%AE%E7%97%85%E8%8F%8C%E4%B8%8E%E9%92%A2%E9%93%81/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="chapter-3">Chapter 3</h1>
+<p>来自动物的病菌</p>
+<p>欧洲对美洲的征</p>
+<p>农业社会的密集人口： 群聚疾病 <strong>原因</strong>：污水排放，贸易路线，在饲养的动物中间演化：牛瘟。</p>
+<p>人口数量少：慢性病</p>
+<h2 id="从感染动物到人类社群的四个阶段">从感染动物到人类社群的四个阶段</h2>
+<ol type="1">
+<li>直接传染</li>
+<li>在人类社群传播，成为流行病，之后消亡</li>
+<li>曾以动物为宿主，后转入人体的病原体。</li>
+<li></li>
+</ol>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>隔离日记</title>
+    <url>/2022/12/23/%E5%85%B6%E4%BB%96/%E9%9A%94%E7%A6%BB%E6%97%A5%E8%AE%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="day0-day1">Day0 &amp; Day1</h1>
+<p>21日开始发低烧，感觉自己可能要阳了，但是抗原测出来的结果都没有明显的T线。自己可能终究要为自己的自负付出代价了吧。为了让自己可能的阳性对大家来讲没有那么突然，于是开始跟猫和室友不断说我铁定阳了，我想这样提前预告也许能缓和自己内心的害怕和别人的冷眼吧，但内心总是怀着没阳的侥幸。就如同考试后无论好坏总会跟别人大肆宣扬自己考的多么多么差，但内心却依旧不相信，只是通过这种方式能缓解出分时的失望。然后又把刚拿的体温计摔了，就变得十分暴躁，然后zll又让我填那个信息，让我现在去1号楼，我也是神志不清，别人叫我去我就去了。但是当时感觉挺委屈的，大晚上都没什么准备就让我离开寝室，另一方面又害怕自己万一真阳了也对室友不太好。路上突然发现自己也拿捏不准一号楼的位置，只能凭着感觉走。到了一号楼下，望着上面灯光，我环顾了一下其他楼，好像亮的灯都差不多，估计里面应该是人满为患了吧。门口坐着一个穿防护服的人，我便确信的向着门走去，报了一下名字，拿上睡袋和水瓶就上楼了。到了1311门口，敲门许久，终于有人开门了。我走了进去，进去的一瞬间，我有点绝望，好像突然才意识到，我已经出不去了，无论是否感染与否，都会阳。但是进来之后发现寝室十分宽敞和亮堂，况且室友也是非常好，性格也很开朗，也很爱干净。我突然对住在这里感到有一丝兴奋，舒适的环境，新的室友。跟心中所想也有反差，原来，充满病毒的地方并不可怕，人还是可以在这里很好的生活，反倒是外面所谓安全之处，充满着被感染和感染的担忧，不知道自己阳没阳的不确定性，带着薄薄的口罩假装防护。我摘下口罩畅快地大口呼吸，一天焦躁地神经也松弛下来，心情也变得轻快起来。第一天晚上睡得睡袋感觉也非常的新奇，虽然有点小，而且头不怎么好放，最好就在头下面垫裤子，感觉好多了。</p>
+<p>第二天发现突然没有烧了，很高兴，觉得自己是新冠免疫者。还就受到猫咪的物资和被子，很感动，很后悔晚上对她发气，呜呜，其实这件事就是我的自负罢了。虽然没有发烧但是起来之后一直流鼻涕，脑子有点糊涂，就这么磨磨蹭蹭的改了一天的论文。下午三点做了核酸之后还在很盼望自己能阴性，心里居然还有这样的侥幸心理。晚上猫咪胃疼，本来应该好好照顾她的，不能陪在身边就应该，多说点话，但是我就是不知道说什么东西。反倒是猫讲了个小兔子的故事，小兔子一开始怎么也卖不出柠檬汁，于是他把自己最喜欢的毛绒玩具拿出来说谁买柠檬汁，谁就能玩毛绒玩具，然后有个小狮子走过来买走了柠檬汁，rua了小兔子一把。然后大家发现小兔子是可以rua的，于是大家就都来买柠檬汁然后rua小兔子。最后小兔子被老奶奶买走了。</p>
+<h1 id="day2">Day2</h1>
+<p>今天起床和昨天也差不多，也没什么很重的症状。因为室友要早上模拟考，于是早上多躺了一会儿，《天黑以后》看了一半，感觉第二遍读还是没怎么看懂，那个白领程序员那副体面的样子还是挺典型的。下午和晚上又改了一下美国史论文，Brett 一直强调 topic 是美国最重要的时期但是大部分时代之间根本就不是同一个主题，演进的方向也有区别，很难去直接比较谁更重要，彼此之间都是有依赖关系的，那怎么说最重要的难道不得追溯到地球诞生起？ 所以这个 topic 就有问题。然后还老是让我多引用 primary source, 但是教材里那么一大段话放进去字数不就轻松就超过了，我还写什么。 然后晚上有点头晕，但是洗个澡之后瞬间就好了，估计是长期久坐导致血液循环不畅。多起来活动一下。</p>
+<p>​ 睡前故事：从前有一只漂亮小鸭子，大家都觉得他是一只天鹅，于是小鸭子也觉得自己是一只天鹅，于是他从小就跟一群小天鹅一起学习和生活，前几年他依然没大家公认是最棒的小鸭子，都对他寄予厚望，小鸭子也很对此很骄傲，甚至有些傲慢，瞧不起身边其他的小天鹅。然后想不出来了</p>
+<h1 id="day3">Day3</h1>
+<p>今天棋来神清气爽。本以为晚上可能严重但是没有，鼻涕也没有了，也不怎么咳嗽。完全回到两天前的状态，应该是完全好了。看了会儿小马，下午物理一开始有点看不进去，好几天没学了，然后热学那一堆公式也没怎么理清楚，没理解到主线是什么。晚上玩了一下 goose goose duck 游戏，不适合我这种社恐人，但还是可以作为机会锻炼一下。这个隔离日记本来想着是记录一下得了新冠之后的心路历程和症状的，结果出乎意料的好的很快，感觉可以结帖了。</p>
+]]></content>
   </entry>
   <entry>
     <title>启功带你学书法-破除迷信</title>
@@ -792,121 +911,6 @@ Test accuracy: 0.9911999702453613</code></pre>
       <tags>
         <tag>书法理论</tag>
       </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2022/11/03/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E9%95%80%E9%87%91%E6%97%B6%E4%BB%A3/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="第二次工业革命">第二次工业革命</h1>
-<h2 id="工业经济">工业经济</h2>
-<p>​ 从小农场的手工制造业转型为工业社会。“迅速彻底的革命”。五大湖，匹兹堡钢铁中心，原材料</p>
-<h2 id="铁路">铁路</h2>
-<ol type="1">
-<li>同一轨距</li>
-<li>批量化生产，全国连锁店 全国性品牌</li>
-</ol>
-<h2 id="发明创造">发明创造</h2>
-<ol type="1">
-<li>爱迪生</li>
-</ol>
-<h2 id="竞争与合并">竞争与合并</h2>
-<ol type="1">
-<li>防止恶性竞争咯昂段</li>
-</ol>
-<h2 id="thomas-a.-scott">Thomas A. Scott</h2>
-<ol type="1">
-<li>慈善</li>
-<li>集权方法，连轴转</li>
-<li></li>
-</ol>
-<h2 id="工人自由">工人自由</h2>
-<ol type="1">
-<li>利益分配不均</li>
-<li>少部分产业技术工人能经济独立：钢铁</li>
-<li>半技术工人：操作机器，死亡率高</li>
-<li>妇女恶劣的工作环境，“如同内战前一样”</li>
-</ol>
-<h2 id="阶级分化">阶级分化</h2>
-<ol type="1">
-<li>贫富差距</li>
-</ol>
-<h1 id="西部转型">西部转型</h1>
-<p>资本主义流入 自然条件 美国文化的特别素质实在西部形成的，西部是安全阀门，将东部对自己不满的人吸引，从而抵消社会动乱。</p>
-<h2 id="西进定居">西进定居</h2>
-<p>农场主：东部出生本土，重建后南部逃离的黑人</p>
-<h2 id="大型农场">大型农场</h2>
-<p>主要仍然是家庭弄工厂</p>
-<p>加州大型农场</p>
-<h2 id="牛仔">牛仔</h2>
-<p>牛群驱赶活动</p>
-<ol type="1">
-<li>西部城市人口比例高</li>
-<li>矿山铁路</li>
-</ol>
-<h2 id="印第安人">印第安人</h2>
-<ol type="1">
-<li>摧毁伊甸人的经济基础</li>
-<li>联邦军队与部落</li>
-<li>文化打击</li>
-<li><strong>道斯法</strong> ： 将印第安人土地分解，分配个家庭，剩余的出售</li>
-<li>1924年赋予所有印第安人</li>
-</ol>
-<h1 id="政治">政治</h1>
-<p>Mark Twain</p>
-<h2 id="政治腐败">政治腐败</h2>
-<p>大股份公司</p>
-<p><strong>腐败政治机器</strong></p>
-<p>共和党：控制工业化北部，中西部，西部</p>
-<p>政治僵局时代，</p>
-<h2 id="政府与经济">政府与经济</h2>
-<ol type="1">
-<li>联邦权力小</li>
-<li>政党被利益集团控制，共和当坚持高关税，保护美国工业</li>
-<li>金本控制</li>
-</ol>
-<h2 id="改革立法">改革立法</h2>
-<ol type="1">
-<li>文官改革法 竞争性考试</li>
-<li>ICC 保障为农场主所收费用合理</li>
-</ol>
-<h2 id="州政治冲突">州政治冲突</h2>
-<h1 id="镀金时代的自由">镀金时代的自由</h1>
-<ol type="1">
-<li>劳工关系</li>
-<li>达尔文 契约自由</li>
-</ol>
-<h1 id="劳工与共和国">劳工与共和国</h1>
-<ol type="1">
-<li>铁路大罢工<br />
-</li>
-<li>改革者堆小生产时代的的怀旧，</li>
-<li>劳工运动</li>
-</ol>
-<h2 id="贝拉米乌托邦">贝拉米乌托邦</h2>
-<ol type="1">
-<li>社会主义《合作社会》</li>
-</ol>
-<h2 id="劳工与政治">劳工与政治</h2>
-]]></content>
-      <categories>
-        <category>阅读笔记</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>枪炮、病菌与钢铁</title>
-    <url>/2022/11/18/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%9E%AA%E7%82%AE%E7%97%85%E8%8F%8C%E4%B8%8E%E9%92%A2%E9%93%81/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="chapter-3">Chapter 3</h1>
-<p>来自动物的病菌</p>
-<p>欧洲对美洲的征</p>
-<p>农业社会的密集人口： 群聚疾病 <strong>原因</strong>：污水排放，贸易路线，在饲养的动物中间演化：牛瘟。</p>
-<p>人口数量少：慢性病</p>
-<h2 id="从感染动物到人类社群的四个阶段">从感染动物到人类社群的四个阶段</h2>
-<ol type="1">
-<li>直接传染</li>
-<li>在人类社群传播，成为流行病，之后消亡</li>
-<li>曾以动物为宿主，后转入人体的病原体。</li>
-<li></li>
-</ol>
-]]></content>
   </entry>
   <entry>
     <title>一文搞懂字符编码</title>
@@ -1084,6 +1088,104 @@ Test accuracy: 0.9911999702453613</code></pre>
       <tags>
         <tag>Hexo</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2022/11/03/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E9%95%80%E9%87%91%E6%97%B6%E4%BB%A3/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="第二次工业革命">第二次工业革命</h1>
+<h2 id="工业经济">工业经济</h2>
+<p>​ 从小农场的手工制造业转型为工业社会。“迅速彻底的革命”。五大湖，匹兹堡钢铁中心，原材料</p>
+<h2 id="铁路">铁路</h2>
+<ol type="1">
+<li>同一轨距</li>
+<li>批量化生产，全国连锁店 全国性品牌</li>
+</ol>
+<h2 id="发明创造">发明创造</h2>
+<ol type="1">
+<li>爱迪生</li>
+</ol>
+<h2 id="竞争与合并">竞争与合并</h2>
+<ol type="1">
+<li>防止恶性竞争咯昂段</li>
+</ol>
+<h2 id="thomas-a.-scott">Thomas A. Scott</h2>
+<ol type="1">
+<li>慈善</li>
+<li>集权方法，连轴转</li>
+<li></li>
+</ol>
+<h2 id="工人自由">工人自由</h2>
+<ol type="1">
+<li>利益分配不均</li>
+<li>少部分产业技术工人能经济独立：钢铁</li>
+<li>半技术工人：操作机器，死亡率高</li>
+<li>妇女恶劣的工作环境，“如同内战前一样”</li>
+</ol>
+<h2 id="阶级分化">阶级分化</h2>
+<ol type="1">
+<li>贫富差距</li>
+</ol>
+<h1 id="西部转型">西部转型</h1>
+<p>资本主义流入 自然条件 美国文化的特别素质实在西部形成的，西部是安全阀门，将东部对自己不满的人吸引，从而抵消社会动乱。</p>
+<h2 id="西进定居">西进定居</h2>
+<p>农场主：东部出生本土，重建后南部逃离的黑人</p>
+<h2 id="大型农场">大型农场</h2>
+<p>主要仍然是家庭弄工厂</p>
+<p>加州大型农场</p>
+<h2 id="牛仔">牛仔</h2>
+<p>牛群驱赶活动</p>
+<ol type="1">
+<li>西部城市人口比例高</li>
+<li>矿山铁路</li>
+</ol>
+<h2 id="印第安人">印第安人</h2>
+<ol type="1">
+<li>摧毁伊甸人的经济基础</li>
+<li>联邦军队与部落</li>
+<li>文化打击</li>
+<li><strong>道斯法</strong> ： 将印第安人土地分解，分配个家庭，剩余的出售</li>
+<li>1924年赋予所有印第安人</li>
+</ol>
+<h1 id="政治">政治</h1>
+<p>Mark Twain</p>
+<h2 id="政治腐败">政治腐败</h2>
+<p>大股份公司</p>
+<p><strong>腐败政治机器</strong></p>
+<p>共和党：控制工业化北部，中西部，西部</p>
+<p>政治僵局时代，</p>
+<h2 id="政府与经济">政府与经济</h2>
+<ol type="1">
+<li>联邦权力小</li>
+<li>政党被利益集团控制，共和当坚持高关税，保护美国工业</li>
+<li>金本控制</li>
+</ol>
+<h2 id="改革立法">改革立法</h2>
+<ol type="1">
+<li>文官改革法 竞争性考试</li>
+<li>ICC 保障为农场主所收费用合理</li>
+</ol>
+<h2 id="州政治冲突">州政治冲突</h2>
+<h1 id="镀金时代的自由">镀金时代的自由</h1>
+<ol type="1">
+<li>劳工关系</li>
+<li>达尔文 契约自由</li>
+</ol>
+<h1 id="劳工与共和国">劳工与共和国</h1>
+<ol type="1">
+<li>铁路大罢工<br />
+</li>
+<li>改革者堆小生产时代的的怀旧，</li>
+<li>劳工运动</li>
+</ol>
+<h2 id="贝拉米乌托邦">贝拉米乌托邦</h2>
+<ol type="1">
+<li>社会主义《合作社会》</li>
+</ol>
+<h2 id="劳工与政治">劳工与政治</h2>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
   </entry>
   <entry>
     <title>三角形中的几个恒等式</title>

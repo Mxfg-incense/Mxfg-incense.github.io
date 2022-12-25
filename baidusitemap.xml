@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://example.pthm/2022/12/23/%E5%85%B6%E4%BB%96/%E9%9A%94%E7%A6%BB%E6%97%A5%E8%AE%B0/</loc>
+    <lastmod>2022-12-22</lastmod>
+  </url>
+  <url>
+    <loc>http://example.pthm/2022/12/19/%E5%85%B6%E4%BB%96/Break_tie_randomly/</loc>
+    <lastmod>2022-12-19</lastmod>
+  </url>
+  <url>
+    <loc>http://example.pthm/2022/12/18/%E5%85%B6%E4%BB%96/vscode_git/</loc>
+    <lastmod>2022-12-18</lastmod>
+  </url>
+  <url>
     <loc>http://example.pthm/2022/12/14/%E5%85%B6%E4%BB%96/Variable_Bitrate/</loc>
     <lastmod>2022-12-14</lastmod>
   </url>
