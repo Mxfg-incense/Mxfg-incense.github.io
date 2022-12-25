@@ -169,7 +169,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -236,6 +236,245 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.pthm/2022/10/23/%E5%85%B6%E4%BB%96/ngp%E8%83%8C%E6%99%AF%E9%87%8D%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206271209189.jpg">
+      <meta itemprop="name" content="Mxfg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mxfg's Blog">
+      <meta itemprop="description" content="Win or die">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mxfg's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/23/%E5%85%B6%E4%BB%96/ngp%E8%83%8C%E6%99%AF%E9%87%8D%E5%BB%BA/" class="post-title-link" itemprop="url">ngp背景重建</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-23 10:21:59" itemprop="dateCreated datePublished" datetime="2022-10-23T10:21:59+08:00">2022-10-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/10/23/%E5%85%B6%E4%BB%96/ngp%E8%83%8C%E6%99%AF%E9%87%8D%E5%BB%BA/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/10/23/%E5%85%B6%E4%BB%96/ngp%E8%83%8C%E6%99%AF%E9%87%8D%E5%BB%BA/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="目的">目的</h1>
+<p>探究影响背景重建的因素。</p>
+<h1 id="推测因素">推测因素</h1>
+<figure>
+<img src="E:\instant-ngp\data\nerf\fs\fs.gif" alt="原始重建结果" /><figcaption aria-hidden="true">原始重建结果</figcaption>
+</figure>
+<ol type="1">
+<li><strong>视角</strong> 在拍摄时由于俯拍绕物体一周，导致场景上方缺乏光线透过，于是在场景顶部产生云雾。</li>
+<li><strong>距离</strong> 拍摄时绕物体一周的过程中，对于场景中的一个点，缺乏同一 <span class="math inline">\((\theta,\phi)\)</span> 的数据，导致体密度训练较差。</li>
+<li><strong>背景特征</strong> 背景特征多，增加网络的复杂程度，是否导致网络更难学习。</li>
+<li>训练 <strong>外参 曝光 畸变</strong></li>
+</ol>
+<h1 id="实验一">实验一</h1>
+<h2 id="实验目的">实验目的</h2>
+<p>探究相机拍摄视角对背景重建的影响</p>
+<h2 id="实验条件">实验条件</h2>
+<ol type="1">
+<li><strong>同一场景</strong>，光照相同，背景相同</li>
+<li><strong>相机参数</strong> ：同一相机 (Sony A6000), 镜头焦距 50mm，采用 A 挡拍摄 (F = 2.8) , 曝光补偿 +0.7，ISO: auto.</li>
+<li><strong>数据量相同</strong>：每组实验的照片数量一致</li>
+<li><strong>COLMAP 模型</strong>： <code>SIMPLE_RADIAL</code> 且 每张图像内参一致</li>
+<li>未勾选 训练外参，曝光和畸变。</li>
+</ol>
+<h2 id="实验步骤">实验步骤</h2>
+<ol type="1">
+<li><p><strong>数据收集</strong>：绕物体分别在 上、中、下拍摄一圈。</p></li>
+<li><p><strong>第一组</strong> ：对于从上方拍摄的视角提取 215 张图像。</p>
+<p><strong>第二组</strong> ：上、中、下分别使用 60、60 、110张图像 并且筛掉一些模糊和虚焦的照片</p></li>
+<li><p><strong>数据处理</strong>：使用COLMAP稀疏重建， <strong>每一组</strong>都总共有215张图像用于稀疏重建</p>
+<p>第一组得到的相机内参：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Camera list with one line of data per camera:</span></span><br><span class="line"><span class="comment">#   CAMERA_ID, MODEL, WIDTH, HEIGHT, PARAMS[]</span></span><br><span class="line"><span class="comment"># Number of cameras: 1</span></span><br><span class="line"><span class="number">1</span> SIMPLE_RADIAL <span class="number">1920</span> <span class="number">1080</span> <span class="number">4090.2916176564518</span> <span class="number">960</span> <span class="number">540</span> <span class="number">0.348649511020239</span></span><br></pre></td></tr></table></figure>
+<p>第二组得到的相机内参：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Camera list with one line of data per camera:</span></span><br><span class="line"><span class="comment">#   CAMERA_ID, MODEL, WIDTH, HEIGHT, PARAMS[]</span></span><br><span class="line"><span class="comment"># Number of cameras: 1</span></span><br><span class="line"><span class="number">1</span> SIMPLE_RADIAL <span class="number">1920</span> <span class="number">1080</span> <span class="number">4726.2638345804498</span> <span class="number">960</span> <span class="number">540</span> <span class="number">0.48132964624147656</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>NeRF 重建</strong> : <code>run.py</code> 两组实验相机沿着相同的轨迹 <code>base_cam.json</code>，导出渲染后的视频</p></li>
+</ol>
+<h2 id="实验结果">实验结果</h2>
+<h4 id="第一组"><strong>第一组</strong></h4>
+<p>背景渲染结果白色桌面为锥型</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202210241950980.png" alt="整体效果" /><figcaption aria-hidden="true">整体效果</figcaption>
+</figure>
+<video src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202210242027829.mp4" title="第一组">
+99
+</video>
+<p>物体周围有明显的云雾环绕</p>
+<h4 id="实验二">实验二</h4>
+<video src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202210242031040.mp4" title="实验二">
+99
+</video>
+<p>云雾分布有明显分层现象，上方云雾仍然为白色，中间云雾的一半视角出现绿色，而另一半云雾基本消除，下方圆桌形态较好重建，但桌面呈现透明。更多周围背景被重建（窗外绿树，栏杆，沙发等）</p>
+<h2 id="结论">结论</h2>
+<p>增加相机视角多样性明显减少物体周围的云雾</p>
+<h2 id="不足">不足</h2>
+<ol type="1">
+<li>拍摄过程中虚焦导致不同视角的数据量有差别</li>
+<li>不同视角拍摄时镜头与物体距离未保持一致</li>
+</ol>
+<h2 id="讨论">讨论</h2>
+<ol type="1">
+<li>网络倾向于在相机面前贴云雾，导致通常沿着相机轨迹产生云雾</li>
+<li>室内一面造成的云雾少于窗外绿树形成的云雾。推测，室外场景不同变化小.</li>
+<li>上方的云雾？</li>
+</ol>
+<h1 id="实验二-1">实验二</h1>
+<h3 id="实验目的-1">实验目的</h3>
+<p>背景纹理的复杂程度如何影响背景重建效果</p>
+<h3 id="实验条件-1">实验条件</h3>
+<ol type="1">
+<li><strong>同一场景</strong>，光照相同，背景相同</li>
+<li><strong>相机</strong>：同一实际拍摄</li>
+<li><strong>数据量相同</strong>：每组实验的照片数量基本一致</li>
+<li><strong>COLMAP 模型</strong>： <code>SIMPLE_RADIAL</code> 且选择内参 <code>share_for all images</code></li>
+<li>未勾选 训练外参，曝光和畸变。</li>
+</ol>
+<h3 id="实验步骤-1">实验步骤</h3>
+<ol type="1">
+<li><p><strong>数据收集</strong>：绕物体在相似的角度分别在有格子纹理和空白桌面进行拍摄</p></li>
+<li><p>各提取60张图像</p></li>
+<li><p><strong>数据处理</strong>：使用COLMAP稀疏重建</p>
+<p>空白桌面得到的相机内参：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Camera list with one line of data per camera:</span></span><br><span class="line"><span class="comment">#   CAMERA_ID, MODEL, WIDTH, HEIGHT, PARAMS[]</span></span><br><span class="line"><span class="comment"># Number of cameras: 1</span></span><br><span class="line"><span class="number">1</span> SIMPLE_RADIAL <span class="number">3840</span> <span class="number">2160</span> <span class="number">2928.591596486669</span> <span class="number">1920</span> <span class="number">1080</span> <span class="number">0.035193673608008569</span></span><br></pre></td></tr></table></figure>
+<p>有纹理得到的相机内参：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Camera list with one line of data per camera:</span></span><br><span class="line"><span class="comment">#   CAMERA_ID, MODEL, WIDTH, HEIGHT, PARAMS[]</span></span><br><span class="line"><span class="comment"># Number of cameras: 1</span></span><br><span class="line"><span class="number">1</span> SIMPLE_RADIAL <span class="number">3840</span> <span class="number">2160</span> <span class="number">2929.642972834683</span> <span class="number">1920</span> <span class="number">1080</span> <span class="number">0.027481430175291963</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>NeRF 重建</strong> : <code>run.py</code> 两组实验相机沿着相同的轨迹 <code>base_cam.json</code>，导出渲染后的视频</p></li>
+</ol>
+<h3 id="实验结果-1">实验结果</h3>
+<h4 id="有纹理组">有纹理组</h4>
+<p>桌上的纹理较好重建</p>
+<video src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202210261857883.mp4" title="第一组">
+99
+</video>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202210261912272.png" alt="image-20221026191200695" /><figcaption aria-hidden="true">image-20221026191200695</figcaption>
+</figure>
+<h4 id="空白桌面组">空白桌面组</h4>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202210261859279.png" alt="空白对照" /><figcaption aria-hidden="true">空白对照</figcaption>
+</figure>
+<p>空白组的桌面相比有纹理的会更加透明</p>
+<h3 id="实验结论">实验结论</h3>
+<ol type="1">
+<li><p>纹理更多 COLMAP 更好的进行特征提取</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202210261918587.png" alt="image-20221026191811412" /><figcaption aria-hidden="true">image-20221026191811412</figcaption>
+</figure></li>
+</ol>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202211052223653.png" alt="image-20221026191914388" /><figcaption aria-hidden="true">image-20221026191914388</figcaption>
+</figure>
+<h2 id="实验三">实验三</h2>
+<ol type="1">
+<li><p><strong>Train extrinsic</strong>: propagates gradients back onto the camera parameters in order to minimize the loss (in this case by treating the cameras as rigid bodies with momentum and the loss gradients as impulses acting on them). This can fix slight inaccuracies in the poses from <code>transform.json</code>. If you're using COLMAP, this option only yields a small benefit as COLMAP is already quite accurate -- I'd leave it off for most scenes.</p></li>
+<li><p><strong>Train distortion</strong>: learns a grid-based camera distortion model on top of the Open CV camera model parameterized in <code>transforms.json</code>. Again, COLMAP usually does a good enough job that you don't need this.</p></li>
+<li><p><strong>Train exposure</strong>: learns to compensate for varying exposure levels of the training images. If you generate your own data, you should not use this and instead set your camera to fixed exposure</p></li>
+<li><p><strong>extrinsic</strong>: 14073 steps ; 收敛时间 235s ; Loss: 0.000482(33.17dB)</p></li>
+<li><p><strong>exposure</strong>: 7032 steps; 收敛时间 110s ; Loss: 0.000577 (32.39dB)</p></li>
+<li><p><strong>disorder</strong>: 6374 steps ; 收敛时间：100s Loss 0.000606(32.17db)</p></li>
+<li><p><strong>origin</strong>: 6214 steps ; 收敛时间 100s ; Loss : 000614 (32.12DB)</p></li>
+</ol>
+<video src="E:\instant-ngp\data\nerf\ex2\blank\origin.mp4" title="origin">
+</video>
+<video src="E:\instant-ngp\data\nerf\ex2\blank\extrinsic.mp4">
+</video>
+<video src="E:\instant-ngp\data\nerf\ex2\blank\exposure.mp4">
+</video>
+<video src="E:\instant-ngp\data\nerf\ex2\blank\disorder.mp4">
+</video>
+<h2 id="结论-1">结论</h2>
+<ol type="1">
+<li>勾选<strong>extrinsic</strong> 结果更加清晰，使头发上的云雾消失，并且训练速度变慢一倍左右。</li>
+<li>勾选 <strong>exposure</strong> 使头发上的云雾消失。</li>
+<li>勾选 <strong>disorder</strong> 使结果更加清晰。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1293,122 +1532,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.pthm/2022/07/22/%E5%85%B6%E4%BB%96/Ananconda%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206271209189.jpg">
-      <meta itemprop="name" content="Mxfg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mxfg's Blog">
-      <meta itemprop="description" content="Win or die">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mxfg's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/22/%E5%85%B6%E4%BB%96/Ananconda%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">Anaconda问题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-22 18:19:00" itemprop="dateCreated datePublished" datetime="2022-07-22T18:19:00+08:00">2022-07-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/2022/07/22/%E5%85%B6%E4%BB%96/Ananconda%E9%97%AE%E9%A2%98/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/07/22/%E5%85%B6%E4%BB%96/Ananconda%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>21</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>取消代理</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/22/%E5%85%B6%E4%BB%96/Ananconda%E9%97%AE%E9%A2%98/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>
@@ -1439,7 +1564,7 @@
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">43 分钟</span>
+    <span title="站点阅读时长">44 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

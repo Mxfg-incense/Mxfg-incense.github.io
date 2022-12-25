@@ -29,6 +29,15 @@
   </url>
   
   <url>
+    <loc>http://example.pthm/2022/12/17/%E5%85%B6%E4%BB%96/CS101%20PA3/</loc>
+    
+    <lastmod>2022-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://example.pthm/2022/12/14/%E5%85%B6%E4%BB%96/Variable_Bitrate/</loc>
     
     <lastmod>2022-12-14</lastmod>

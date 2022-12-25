@@ -68,6 +68,9 @@
 <p>发现还是很慢，不如手写版本</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">random_argmax</span>(<span class="params">value_list</span>):</span><br><span class="line">  <span class="string">&quot;&quot;&quot; a random tie-breaking argmax &quot;&quot;&quot;</span></span><br><span class="line">  values = np.asarray(value_list)</span><br><span class="line">  <span class="keyword">return</span> np.argmax(np.random.random(values.shape) * (values==values.<span class="built_in">max</span>()))</span><br></pre></td></tr></table></figure>
 ]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
   </entry>
   <entry>
     <title>NeRF细节整理</title>
@@ -511,6 +514,9 @@
 <p>一般出现在创建新仓库的时候新建<code>readme.md</code>文件，然后在pull 的时候，所以最后的流程最好是先在远程仓库建好，然后 clone. 解决方法强制合并</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull origin branchname --allow-unrelated-histories</span><br></pre></td></tr></table></figure>
 ]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
   </entry>
   <entry>
     <title>大理火把节来历</title>
@@ -871,6 +877,9 @@ Test accuracy: 0.9911999702453613</code></pre>
 <h1 id="day3">Day3</h1>
 <p>今天棋来神清气爽。本以为晚上可能严重但是没有，鼻涕也没有了，也不怎么咳嗽。完全回到两天前的状态，应该是完全好了。看了会儿小马，下午物理一开始有点看不进去，好几天没学了，然后热学那一堆公式也没怎么理清楚，没理解到主线是什么。晚上玩了一下 goose goose duck 游戏，不适合我这种社恐人，但还是可以作为机会锻炼一下。这个隔离日记本来想着是记录一下得了新冠之后的心路历程和症状的，结果出乎意料的好的很快，感觉可以结帖了。</p>
 ]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
   </entry>
   <entry>
     <title>启功带你学书法-破除迷信</title>
@@ -1398,5 +1407,27 @@ F_N(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}
         <tag>不等式</tag>
         <tag>Fourier</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2022/12/17/%E5%85%B6%E4%BB%96/CS101%20PA3/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><table>
+<tbody>
+<tr class="odd">
+<td>title:CS 101 PA3</td>
+</tr>
+<tr class="even">
+<td>description:最小生成树，贪心，最短路</td>
+</tr>
+</tbody>
+</table>
+<h1 id="t2">T2</h1>
+<p>考虑贪心，对每一个容器，就是在能够容纳的信息里面选择一个能最大化利用容器的。将信息和容器都按照 a 为关键字排序。然后外层循环容器，对于第 i个容器，如果第 j 个信息的 <span class="math inline">\(a_j\leq A_i\)</span> ，把第 j 个信息放入待选的信息，然后 j++，直到不能放为止。然后从待选的信息的挑选一个最优的信息 ，即满足 <span class="math inline">\(d \leq D_i\)</span> 的信息中 <span class="math inline">\(d_k\)</span> 最大的一个信息，然后 ans++，从待选信息中删除该信息。由于满足了 a 从小到大排序，对于待选的信息, <span class="math inline">\(a_j \leq A_i \leq A_{i+1}\)</span> ，所以后面的每一个容器都是可以从待选信息中选择的。维护待选信息可使用 <span class="math inline">\(BST\)</span> ，也可以用 <code>multiset</code>, 在 <span class="math inline">\(\log n\)</span> 时间内查询。总的时间复杂度是 <span class="math inline">\(O(n\log n)\)</span>.</p>
+<h1 id="t3">T3</h1>
+<ol type="1">
+<li><span class="math inline">\(A\geq D\)</span>: 也就是说我们需要尽量快的到达 n 点，直接BFS，每个点的遍历顺序一定是保证最快到达的，如果到达该点发现打不过，那么这个点相当于“死了”，不用考虑路过该点了。</li>
+<li><span class="math inline">\(A&lt;D\)</span>: 首先是如何判断能否到达 n 点。 这个时候我们只需要尽可能多地从占领的区域的相邻的点中，挑选一个<code>s[y]</code> 最小的一个点，如果能打过，那么 <code>attack</code> 增加，有利于我打更强的，如果连最小的都打不过，那么说明已经无法从占领区域中扩展了，就这样不断扩大占领区域，用优先队列维护相邻的点，直到能扩展到 n 点就说明可以到达（注：不用扩展到全部点）。 <strong>假设</strong>我们能够到达 n 点，那么和之前类似，如果到达该点发现打不过，那么我们可以加上一个等待时间 <code>wait</code> 直到能击败该节点为止 <code>dis[pre]+1+wait &lt; dis[y]</code> 那么更新 y 点，但是这个时候需要用<code>dijkstra</code> 来确保始终从距离最小的点更新。之前判断能不能的时候，我们其实已经达到过n，也就是对所有点，wait最多可以是最终的最优解dis[n]，因为最多可以打dis[n]个小怪来补充攻击力，打败当前点<code>wait&gt;=dis[n]</code>的话，也没关系，因为最后松弛操作会把这种情况滤掉</li>
+</ol>
+]]></content>
   </entry>
 </search>
