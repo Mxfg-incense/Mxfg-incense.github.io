@@ -56,6 +56,31 @@
       </categories>
   </entry>
   <entry>
+    <title></title>
+    <url>/2022/12/17/%E5%85%B6%E4%BB%96/CS101%20PA3/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><table>
+<tbody>
+<tr class="odd">
+<td>title:CS 101 PA3</td>
+</tr>
+<tr class="even">
+<td>description:最小生成树，贪心，最短路</td>
+</tr>
+</tbody>
+</table>
+<h1 id="t2">T2</h1>
+<p>考虑贪心，对每一个容器，就是在能够容纳的信息里面选择一个能最大化利用容器的。将信息和容器都按照 a 为关键字排序。然后外层循环容器，对于第 i个容器，如果第 j 个信息的 <span class="math inline">\(a_j\leq A_i\)</span> ，把第 j 个信息放入待选的信息，然后 j++，直到不能放为止。然后从待选的信息的挑选一个最优的信息 ，即满足 <span class="math inline">\(d \leq D_i\)</span> 的信息中 <span class="math inline">\(d_k\)</span> 最大的一个信息，然后 ans++，从待选信息中删除该信息。由于满足了 a 从小到大排序，对于待选的信息, <span class="math inline">\(a_j \leq A_i \leq A_{i+1}\)</span> ，所以后面的每一个容器都是可以从待选信息中选择的。维护待选信息可使用 <span class="math inline">\(BST\)</span> ，也可以用 <code>multiset</code>, 在 <span class="math inline">\(\log n\)</span> 时间内查询。总的时间复杂度是 <span class="math inline">\(O(n\log n)\)</span>.</p>
+<h1 id="t3">T3</h1>
+<ol type="1">
+<li><span class="math inline">\(A\geq D\)</span>: 也就是说我们需要尽量快的到达 n 点，直接BFS，每个点的遍历顺序一定是保证最快到达的，如果到达该点发现打不过，那么这个点相当于“死了”，不用考虑路过该点了。</li>
+<li><span class="math inline">\(A&lt;D\)</span>: 首先是如何判断能否到达 n 点。 这个时候我们只需要尽可能多地从占领的区域的相邻的点中，挑选一个<code>s[y]</code> 最小的一个点，如果能打过，那么 <code>attack</code> 增加，有利于我打更强的，如果连最小的都打不过，那么说明已经无法从占领区域中扩展了，就这样不断扩大占领区域，用优先队列维护相邻的点，直到能扩展到 n 点就说明可以到达（注：不用扩展到全部点）。 <strong>假设</strong>我们能够到达 n 点，那么和之前类似，如果到达该点发现打不过，那么我们可以加上一个等待时间 <code>wait</code> 直到能击败该节点为止 <code>dis[pre]+1+wait &lt; dis[y]</code> 那么更新 y 点，但是这个时候需要用<code>dijkstra</code> 来确保始终从距离最小的点更新。之前判断能不能的时候，我们其实已经达到过n，也就是对所有点，wait最多可以是最终的最优解dis[n]，因为最多可以打dis[n]个小怪来补充攻击力，打败当前点<code>wait&gt;=dis[n]</code>的话，也没关系，因为最后松弛操作会把这种情况滤掉</li>
+</ol>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Break tie randomly</title>
     <url>/2022/12/19/%E5%85%B6%E4%BB%96/Break_tie_randomly/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p><code>np.argmax()</code>返回 arr 中第一个最大元素的下标，但是有时候需要在最大元素中随机选择一个.</p>
@@ -196,6 +221,12 @@
       <categories>
         <category>其他</category>
       </categories>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/01/17/%E5%85%B6%E4%BB%96/The%20missing%20semester/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>
+]]></content>
   </entry>
   <entry>
     <title>Lightroom 缓存</title>
@@ -434,25 +465,6 @@
       </categories>
   </entry>
   <entry>
-    <title>加密</title>
-    <url>/2022/06/30/%E5%85%B6%E4%BB%96/test/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="34d306308e78602647ee2af0e1ba120e81fb02111f2ccf6c53f776b9a3b4401d">4630436162ade97ba2718b7d0c4b3b630ef8b034c35893a7afa4c54a5752d90eba191a593f89497fdfca691efaf72d5caa0c664d8e7a85bd833fac72ade59ddbf66b4bdec75a2ed1e83f57bcb279b78c8202c7ce8d3eb34051070935a62ccbf9be563b576fcb19a6e4c095e03496f05d0fec5de7a8af18b78d977beffb6874da4670293f572d11dfa81b48ce6cd0448f0a018d399d177f54eb76d77c6c17f9c36f9f255c3de0f225f9e9c6b4f23d83fc3307cf9be8ef0d2bb8d0474ceec45d7300894f4b8f11650b44ad991ba7d432283e64e8468c79d445b4aef43276f04ffecdc0b540f5d74022a21d6c663658536777acea65da1c70d7ceedf635d566051a343742697d7f69fae8d58a663affc9c692b5e6979adbae0ddec5d44de1e87c283ee769f49dc2014a109295dad07c418b</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>其他</category>
-      </categories>
-  </entry>
-  <entry>
     <title>vscode 配置 git</title>
     <url>/2022/12/18/%E5%85%B6%E4%BB%96/vscode_git/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="git">Git</h1>
@@ -514,6 +526,25 @@
 <p>一般出现在创建新仓库的时候新建<code>readme.md</code>文件，然后在pull 的时候，所以最后的流程最好是先在远程仓库建好，然后 clone. 解决方法强制合并</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull origin branchname --allow-unrelated-histories</span><br></pre></td></tr></table></figure>
 ]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>加密</title>
+    <url>/2022/06/30/%E5%85%B6%E4%BB%96/test/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="34d306308e78602647ee2af0e1ba120e81fb02111f2ccf6c53f776b9a3b4401d">4630436162ade97ba2718b7d0c4b3b630ef8b034c35893a7afa4c54a5752d90eba191a593f89497fdfca691efaf72d5caa0c664d8e7a85bd833fac72ade59ddbf66b4bdec75a2ed1e83f57bcb279b78c8202c7ce8d3eb34051070935a62ccbf9be563b576fcb19a6e4c095e03496f05d0fec5de7a8af18b78d977beffb6874da4670293f572d11dfa81b48ce6cd0448f0a018d399d177f54eb76d77c6c17f9c36f9f255c3de0f225f9e9c6b4f23d83fc3307cf9be8ef0d2bb8d0474ceec45d7300894f4b8f11650b44ad991ba7d432283e64e8468c79d445b4aef43276f04ffecdc0b540f5d74022a21d6c663658536777acea65da1c70d7ceedf635d566051a343742697d7f69fae8d58a663affc9c692b5e6979adbae0ddec5d44de1e87c283ee769f49dc2014a109295dad07c418b</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
         <category>其他</category>
       </categories>
@@ -739,6 +770,42 @@ Test accuracy: 0.9911999702453613</code></pre>
       </tags>
   </entry>
   <entry>
+    <title></title>
+    <url>/2022/07/14/%E5%85%B6%E4%BB%96/%E7%94%98%E5%8D%97%E6%B8%B8%E8%AE%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="备冬草">备冬草</h2>
+<p>于是乎直接沿着最快的线路，沿着京昆高速和兰海高速直抵舟曲县。随后沿着一条小路经过腊子口到达岷县。在路上遇到了牧民准备冬草。把收割的草晒在路沿上，然后在收起来打捆屯在冬天。准备冬草规模浩大，十分忙碌，大概就是农忙？草原气候，夏季多雨，草肥物盛，冬季雪灾，大雪也会覆盖在草场上，牛羊没有新鲜牧草可以吃，所以趁着牧草枯草前割掉一些，晒干后作为牛羊冬天的食物。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142030421.jpg" alt="储备冬草" /><figcaption aria-hidden="true">储备冬草</figcaption>
+</figure>
+<h2 id="铁尺梁">铁尺梁</h2>
+<p>​ 然后顺着蜿蜒的山路盘旋而上，到达险关腊子口，红军在此激战，突破了国民党军队的防线。可以沿着栈道顺着腊子河谷看到留下的碉堡。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142031021.jpg" alt="腊子口纪念碑" /><figcaption aria-hidden="true">腊子口纪念碑</figcaption>
+</figure>
+<h2 id="铁尺梁-1">铁尺梁</h2>
+<p>​ 铁尺梁因如直立的铁尺而得名，众山之巅，诸神之上。无色经幡飘扬。可以俯瞰蜿蜒的盘山公路，散落在低谷的人家。平视可以看到叠锋隐约，错落有致，有个山峰形状酷似。据说毛泽东在此写下七律长征。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142034408.jpg" alt="酷似熊的山峰" /><figcaption aria-hidden="true">酷似熊的山峰</figcaption>
+</figure>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142036607.jpg" alt="月亮与经幡" /><figcaption aria-hidden="true">月亮与经幡</figcaption>
+</figure>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142038251.jpg" alt="成群的牛羊" /><figcaption aria-hidden="true">成群的牛羊</figcaption>
+</figure>
+<h2 id="达尔宗圣湖">达尔宗圣湖</h2>
+<p>​</p>
+<p>​</p>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>摄影</tag>
+        <tag>旅游</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>火把节记录</title>
     <url>/2022/08/01/%E5%85%B6%E4%BB%96/%E7%81%AB%E6%8A%8A%E8%8A%82%E6%84%9F%E5%8F%97/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>大理白族的火把节在每年六月二十日，分为竖火把，点火，抢升斗，耍火把等环节，具有独特且浓郁的名族特色，也是白族最盛大的传统节日。</p>
@@ -784,44 +851,8 @@ Test accuracy: 0.9911999702453613</code></pre>
         <category>其他</category>
       </categories>
       <tags>
-        <tag>旅游</tag>
         <tag>摄影</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2022/07/14/%E5%85%B6%E4%BB%96/%E7%94%98%E5%8D%97%E6%B8%B8%E8%AE%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="备冬草">备冬草</h2>
-<p>于是乎直接沿着最快的线路，沿着京昆高速和兰海高速直抵舟曲县。随后沿着一条小路经过腊子口到达岷县。在路上遇到了牧民准备冬草。把收割的草晒在路沿上，然后在收起来打捆屯在冬天。准备冬草规模浩大，十分忙碌，大概就是农忙？草原气候，夏季多雨，草肥物盛，冬季雪灾，大雪也会覆盖在草场上，牛羊没有新鲜牧草可以吃，所以趁着牧草枯草前割掉一些，晒干后作为牛羊冬天的食物。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142030421.jpg" alt="储备冬草" /><figcaption aria-hidden="true">储备冬草</figcaption>
-</figure>
-<h2 id="铁尺梁">铁尺梁</h2>
-<p>​ 然后顺着蜿蜒的山路盘旋而上，到达险关腊子口，红军在此激战，突破了国民党军队的防线。可以沿着栈道顺着腊子河谷看到留下的碉堡。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142031021.jpg" alt="腊子口纪念碑" /><figcaption aria-hidden="true">腊子口纪念碑</figcaption>
-</figure>
-<h2 id="铁尺梁-1">铁尺梁</h2>
-<p>​ 铁尺梁因如直立的铁尺而得名，众山之巅，诸神之上。无色经幡飘扬。可以俯瞰蜿蜒的盘山公路，散落在低谷的人家。平视可以看到叠锋隐约，错落有致，有个山峰形状酷似。据说毛泽东在此写下七律长征。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142034408.jpg" alt="酷似熊的山峰" /><figcaption aria-hidden="true">酷似熊的山峰</figcaption>
-</figure>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142036607.jpg" alt="月亮与经幡" /><figcaption aria-hidden="true">月亮与经幡</figcaption>
-</figure>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142038251.jpg" alt="成群的牛羊" /><figcaption aria-hidden="true">成群的牛羊</figcaption>
-</figure>
-<h2 id="达尔宗圣湖">达尔宗圣湖</h2>
-<p>​</p>
-<p>​</p>
-]]></content>
-      <categories>
-        <category>其他</category>
-      </categories>
-      <tags>
         <tag>旅游</tag>
-        <tag>摄影</tag>
       </tags>
   </entry>
   <entry>
@@ -846,26 +877,6 @@ Test accuracy: 0.9911999702453613</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>枪炮、病菌与钢铁</title>
-    <url>/2022/11/18/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%9E%AA%E7%82%AE%E7%97%85%E8%8F%8C%E4%B8%8E%E9%92%A2%E9%93%81/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="chapter-3">Chapter 3</h1>
-<p>来自动物的病菌</p>
-<p>欧洲对美洲的征</p>
-<p>农业社会的密集人口： 群聚疾病 <strong>原因</strong>：污水排放，贸易路线，在饲养的动物中间演化：牛瘟。</p>
-<p>人口数量少：慢性病</p>
-<h2 id="从感染动物到人类社群的四个阶段">从感染动物到人类社群的四个阶段</h2>
-<ol type="1">
-<li>直接传染</li>
-<li>在人类社群传播，成为流行病，之后消亡</li>
-<li>曾以动物为宿主，后转入人体的病原体。</li>
-<li></li>
-</ol>
-]]></content>
-      <categories>
-        <category>阅读笔记</category>
-      </categories>
-  </entry>
-  <entry>
     <title>隔离日记</title>
     <url>/2022/12/23/%E5%85%B6%E4%BB%96/%E9%9A%94%E7%A6%BB%E6%97%A5%E8%AE%B0/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="day0-day1">Day0 &amp; Day1</h1>
@@ -876,6 +887,10 @@ Test accuracy: 0.9911999702453613</code></pre>
 <p>​ 睡前故事：从前有一只漂亮小鸭子，大家都觉得他是一只天鹅，于是小鸭子也觉得自己是一只天鹅，于是他从小就跟一群小天鹅一起学习和生活，前几年他依然没大家公认是最棒的小鸭子，都对他寄予厚望，小鸭子也很对此很骄傲，甚至有些傲慢，瞧不起身边其他的小天鹅。然后想不出来了</p>
 <h1 id="day3">Day3</h1>
 <p>今天棋来神清气爽。本以为晚上可能严重但是没有，鼻涕也没有了，也不怎么咳嗽。完全回到两天前的状态，应该是完全好了。看了会儿小马，下午物理一开始有点看不进去，好几天没学了，然后热学那一堆公式也没怎么理清楚，没理解到主线是什么。晚上玩了一下 goose goose duck 游戏，不适合我这种社恐人，但还是可以作为机会锻炼一下。这个隔离日记本来想着是记录一下得了新冠之后的心路历程和症状的，结果出乎意料的好的很快，感觉可以结帖了。</p>
+<h1 id="day4">Day4</h1>
+<p>今天还是状态挺好，很高兴的是我的23号的核酸居然阴性！那天我晚上我还感觉有点发烧，简直是奇迹。也就是说，我21号晚上住进去，22号核酸阳性，然后23号就阴了。走了一个室友，要是在做一次核酸是阴性就可以出去了，我实在没料到好的这么快，而且没什么痛苦，感觉可以吹一辈子。今天上午还有抗原还是有一点点T线，于是下午漱了口再去做的核酸，然后她桶的有点认真，感觉有点悬。然后猫大老远从图书观出来看我，好久没看猫了，恍如隔世。感觉我自己还是有点危险，然后就匆匆回去了。</p>
+<h1 id="day5">Day5</h1>
+<p>今天猫和室友都有点发烧，我感觉有点不妙。但是好消息是我的核酸居然有阴了，成功出狱。结果那个比我早来几天的室友的又复阳了，感觉自己还是很幸运的。结帖！！！</p>
 ]]></content>
       <categories>
         <category>其他</category>
@@ -920,6 +935,26 @@ Test accuracy: 0.9911999702453613</code></pre>
       <tags>
         <tag>书法理论</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>枪炮、病菌与钢铁</title>
+    <url>/2022/11/18/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%9E%AA%E7%82%AE%E7%97%85%E8%8F%8C%E4%B8%8E%E9%92%A2%E9%93%81/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="chapter-3">Chapter 3</h1>
+<p>来自动物的病菌</p>
+<p>欧洲对美洲的征</p>
+<p>农业社会的密集人口： 群聚疾病 <strong>原因</strong>：污水排放，贸易路线，在饲养的动物中间演化：牛瘟。</p>
+<p>人口数量少：慢性病</p>
+<h2 id="从感染动物到人类社群的四个阶段">从感染动物到人类社群的四个阶段</h2>
+<ol type="1">
+<li>直接传染</li>
+<li>在人类社群传播，成为流行病，之后消亡</li>
+<li>曾以动物为宿主，后转入人体的病原体。</li>
+<li></li>
+</ol>
+]]></content>
+      <categories>
+        <category>阅读笔记</category>
+      </categories>
   </entry>
   <entry>
     <title>一文搞懂字符编码</title>
@@ -987,6 +1022,19 @@ Test accuracy: 0.9911999702453613</code></pre>
       <tags>
         <tag>编码</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>蛤蟆先生去看心理医生</title>
+    <url>/2023/01/19/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%9B%A4%E8%9F%86%E5%85%88%E7%94%9F%E5%8E%BB%E7%9C%8B%E5%BF%83%E7%90%86%E5%8C%BB%E7%94%9F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>​ 讲述了一只抑郁的蛤蟆通过心理咨询，最终成长的故事。</p>
+<p>​ 一开始蛤蟆内心深处并非自己意愿。苍鹭告诉他只有当蛤蟆真正担起想要改变的责任的时候才能真正开始。心理咨询更像是一场“<strong>合作</strong>”来访者和咨询者的都需要同主动参与。</p>
+<p>​ 随后在谈话之中逐渐引入一些概念。虽然感觉没什么很特别的，但是当把这些概念联系到自身经历，又让人醍醐灌顶。以下是人面对事物的三种状态。</p>
+<p>​ 第一个是『 儿童自我状态』。人与生俱来的情感包括：开心、悲伤、愤怒、恐惧。 但是在成长过程中受到影响之后，这些基本的情感就会混合成各式各样的别的情绪和行为。这些影响又主要来源于父母。儿童无法离开父母，于是衍生不得不各种各样的行为是为了适应在家庭环境，顺从和取悦父母，<strong>并不意味真正理解父母输出的价值观</strong>。比如愤怒的方式，我也一度感觉自己不怎么生气。发现只是愤怒发泄的方式不同，我和蛤蟆一样往往就会怄气，会变得异常安静，从而减少攻击性。通常是在父母的权威之下做出的适应。</p>
+<p>​ 第二个是『 父母自我状态』。我们会表现地如同自己地父母，包括价值观和道德观，以此来审判某个人。但是每个人地运作方式又有不同。有的人审判别人，而我和蛤蟆会选择审判自己，谴责自己有罪。我常常在想：为什么我明明知道自己做的不对，就是不做出行动去改呢？我推测我的矛盾源自是父母自我状态和儿童自我状态的对抗。比如我明明知道我房间很乱，又不想去整理，然后开始责怪自己，责怪的声音源自于父母，此时我儿童的状态又出现了，作为儿童的天性，又很抵触听从父母的话，如此往复，所谓的 <strong>知道</strong> 只是一种来自父母状态的假象，内心深处还是产生对不明所以的强迫的抵触情绪。</p>
+<p>​ 第三个是『 成人自我状态』。在这个状态下，我们能理性的合理行事，而不再被脑子里父母过去的声音所驱使，也不会被童年的情绪所围困。说实话，没看懂这个状态的来龙去脉。我把成人自我状态看作是自己真正通过知识和道理来掌控自己的状态，这些知识是自我真正理解和接受的。所以在小时候，父母去强迫施加的那些道理，比如生活上的一些琐事就难以进入状态中。因为从小时候起，这些道理就在自己儿童状态和父母状态中产生着矛盾，很难一下子化解。而像一些我从学校学习的新知识，我更自由地使用和应用它们，父母的声音不会在解数学题时响起。“不愤不启，不悱不发”，合理的引导，积极地思考获得的认知，使用时才会感到更自由和畅快。</p>
+<p>​ 最后是『 自证预言』。按照自己童年的观点，构建出一个世界。我们会控制事件的发生，来反复确认自己的信念，让世界和自己预想的一样。仿佛自己在上演一出剧本。具有不同人生坐标的人会有玩着不一样的游戏，如果和自己预想的一样，那么就取得胜利。比如 认为自己和差劲，别人都比他好的人，会玩让自己变成受害者的游戏，来印证自己是生活的受害者的认知。比如，有意的招惹别人，看别人能对自己宽容到什么程度，接着说：”我早说过你会这样对我，证明我是真的很差劲。“ 想起来真的很后怕，尊敬你和爱你的人都会备受伤害，甚至离你远去，最终孤苦伶仃，一个人。没错，达成了游戏的目的，赢了游戏，却输了人生。</p>
+<p>​ 读罢此书，蛤蟆怎么好起来的我还是不是不清楚，毕竟咨询的时间线是很长的，我顶多明白自己或者他人行为背后的一部分原因，但是怎么去改变还是一头雾水。</p>
+]]></content>
   </entry>
   <entry>
     <title>Item 03 - Use const whenever possible</title>
@@ -1099,6 +1147,218 @@ Test accuracy: 0.9911999702453613</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>三角形中的几个恒等式</title>
+    <url>/2022/07/01/%E6%95%B0%E5%AD%A6/%E5%85%B6%E4%BB%96/%E4%B8%89%E8%A7%92%E5%BD%A2%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%81%92%E7%AD%89%E5%BC%8F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>在 <span class="math inline">\(\Delta ABC\)</span> 中，以下等式成立</p>
+<h3 id="正余弦平方和">正余弦平方和</h3>
+<p><span class="math display">\[
+\sin A+\sin B+\sin C=4\cos  \frac{A}{2}\cos  \frac{B}{2}\cos  \frac{C}{2}\ \tag{1}
+\]</span> 证： <span class="math display">\[
+\begin{aligned} LHS &amp;= 2\,\sin \frac{A+B}{2}\,\cos \frac{A-B}{2} +\sin C  \\ &amp;= 2 \,\cos  \frac{C}{2}\,\cos \frac{A-B}{2}+2\,\sin \frac{C}{2}\,\cos \frac{C}{2}\\ &amp;=2\,\cos  \frac{C}{2}\,(\cos \frac{A-B}{2}+\cos \frac{A+B}{2})\\ &amp;=4\,\cos \frac{A}{2}\,\cos \frac{B}{2}\,\cos \frac{C}{2} \\ \end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+ \cos A+\cos B+\cos C=1+4\sin  \frac{A}{2}\sin  \frac{B}{2}\sin  \frac{C}{2}\\ \tag{2}
+\]</span> 证： <span class="math display">\[
+\begin{aligned} LHS &amp;= 2\,\cos \frac{A+B}{2}\,\cos \frac{A-B}{2} + 1-2\,\sin ^2\frac{C}{2}  \\  &amp;= 1-2\,\sin \frac{C}{2}\,(\sin \frac{C}{2}-\cos \frac{A-B}{2})  \\ &amp;=1-2\,\sin \frac{C}{2}\,(\cos \frac{A+B}{2}-\cos \frac{A-B}{2})   \\ &amp;=1-2\,\sin \frac{C}{2}\,(-2\,\sin \frac{A}{2}\,\sin \frac{B}{2})\\ &amp;=1+4\sin  \frac{A}{2}\sin  \frac{B}{2}\sin  \frac{C}{2} \end{aligned} 
+\]</span></p>
+<h3 id="正余半角平方和">正余半角平方和</h3>
+<p><span class="math display">\[
+\sin ^2\frac{A}{2}+\sin ^2\frac{B}{2}+\sin ^2\frac{C}{2}= 1-2\,\sin \frac{A}{2}\sin \frac{B}{2}\sin \frac{C}{2}\tag{3}
+\]</span></p>
+<p>证： <span class="math display">\[
+\begin{aligned} RHS &amp;= 1+\sin \frac{C}{2}\,(\cos \frac{A+B}{2}-\cos \frac{A-B}{2}) \\ &amp;=  1+\sin ^2\frac{C}{2}- \cos \frac{A+B}{2}\cos \frac{A-B}{2}\\ &amp;=  1+\sin ^2\frac{C}{2}-\frac{\cos A+\cos B}{2} \\ &amp;= 1+\sin ^2\frac{C}{2}-\frac{2-2\sin ^2\frac{A}{2}-2\sin ^2\frac{B}{2}}{2}   \\ &amp;=  \sin ^2\frac{A}{2}+\sin ^2\frac{B}{2}+\sin ^2\frac{C}{2} \end{aligned}
+\]</span></p>
+<p>同理易得： <span class="math display">\[
+\cos ^2\frac{A}{2}+\cos ^2\frac{B}{2}+\cos ^2\frac{C}{2}= 2+2\,\sin \frac{A}{2}\sin \frac{B}{2}\sin \frac{C}{2}\tag{4}
+\]</span></p>
+<h3 id="正割余割和">正割余割和</h3>
+<p><span class="math display">\[
+\tan A+\tan B+\tan C=\tan A\;\tan B\;\tan C \tag{5}
+\]</span> 证： <span class="math display">\[
+\begin{gather*} \text{和角公式：}\tan C = -\frac{\tan A+\tan B}{1-\tan A\;\tan B}\\ \tan C-\tan A\;\tan B\;\tan C = -(\tan A+\tan B)\\ \text{移项后得到结论} \end{gather*} 
+\]</span></p>
+<p>推论： <span class="math display">\[
+\cot A\,\cot B+\cot A\,\cot C+\cot B\,\cot C =1\tag{6} 
+\]</span></p>
+<p>证： <span class="math display">\[
+\begin{aligned} \text{由 (5)得到: }\frac{1}{\tan A\,\tan B}&amp;=\frac{\tan C}{\tan A+\tan B+\tan C}\\ \frac{1}{\tan A\,\tan C}&amp;=\frac{\tan B}{\tan A+\tan B+\tan C}\\ \frac{1}{\tan B\,\tan C}&amp;=\frac{\tan A}{\tan A+\tan B+\tan C}\\ \end{aligned}
+\]</span> 三个式子相加即可</p>
+<h3 id="正余割半角">正余割半角</h3>
+<p><span class="math display">\[
+\cot \frac{A}{2}\cot \frac{B}{2}\cot \frac{C}{2} = \cot \frac{A}{2}\,\cot \frac{B}{2}\,\cot \frac{C}{2} \tag{7}
+\]</span></p>
+<p>证： 受到 (5) 启发，只需证明 <span class="math display">\[
+cot \frac{C}{2} = -\frac{\cot \frac{A}{2}+\cot \frac{B}{2}}{1-\cot \frac{A}{2}\,\cot \frac{B}{2}}
+\]</span></p>
+<p>即证： <span class="math display">\[
+\begin{gather*} \tan\frac{C}{2} =\frac{\cot \frac{A}{2}\,\cot \frac{B}{2}-1}{\cot \frac{A}{2}+\cot \frac{B}{2}}\\ \Leftarrow \tan\frac{C}{2} = \frac{1-\tan\frac{A}{2}\tan\frac{B}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}} \end{gather*}
+\]</span> 推论： <span class="math display">\[
+\tan\frac{A}{2}\tan\frac{B}{2}+\tan\frac{B}{2}\tan\frac{C}{2}+\tan\frac{A}{2}\tan\frac{C}{2} = 1 \tag{8}
+\]</span> 由 (7) 移项得到 <span class="math display">\[
+\begin{gather*} \tan\frac{A}{2}\tan\frac{B}{2}=\frac{\tan\frac{A}{2}\,\tan\frac{B}{2}\,\tan\frac{B}{2}\,\cot\frac{C}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}+\tan\frac{C}{2}}\\ \tan\frac{A}{2}\tan\frac{C}{2}=\frac{\tan\frac{A}{2}\,\tan\frac{B}{2}\,\tan\frac{B}{2}\,\cot\frac{B}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}+\tan\frac{C}{2}}\\ \tan\frac{B}{2}\tan\frac{C}{2}=\frac{\tan\frac{A}{2}\,\tan\frac{B}{2}\,\tan\frac{B}{2}\,\cot\frac{A}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}+\tan\frac{C}{2}}\\ \end{gather*} \\
+\]</span> 三个式子相加即可</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>三角函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SI140 HW1</title>
+    <url>/2022/09/26/%E6%95%B0%E5%AD%A6/SI140/SI140%20HW1/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>SI140</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Introduction to Inequality</title>
+    <url>/2022/07/05/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/ISP_equiality/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="oscillation">Oscillation</h2>
+<p>Example: <span class="math display">\[
+\begin{gather}
+b_n=c_n \, a_n=(-1)^{n+1}a_n \text, \, a_n \geq 0\\
+\sum_{n=1}^{N} b_n \leq \sum_{n=1}^{N}\left| b_n \right| = \sum_{n=1}^N a_n
+\end{gather}
+\]</span> Use <em>Euler's formula</em> to rewrite <span class="math display">\[
+(-1)^n=e^{2\pi in\frac{1}{2}}=\cos(2\pi n\frac{1}{2})+i\sin(2\pi n\frac{1}{2})
+\]</span> Periodicity is 2. Moreover , Take periodicity k <span class="math display">\[
+(e^{2\pi i\frac{1}{k}})^{n+k}= (e^{2\pi i\frac{1}{k}})^{n}\\
+\]</span></p>
+<h3 id="fourier-series">Fourier series</h3>
+<p>More generally, for $ x$, consider <span class="math inline">\(e^{-i\omega n}\)</span>: Periodicity <span class="math inline">\(\frac{1}{x}\)</span>, and <span class="math inline">\(\omega = \frac{2\pi}{x}\)</span> <span class="math display">\[
+F(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}\text{     ,              }
+F_N(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}    
+\]</span> Generate a new function on <span class="math inline">\(\left[-1,1\right]\)</span> , known as Fourier analysis.</p>
+<p>Since <span class="math inline">\(|e^{i\theta}|\leq 1\)</span>, therefore</p>
+<h3 id="introduction-a-norm">introduction a norm</h3>
+<p>For a sequence <span class="math inline">\((a_n)_{n\in\mathbb{Z}}\in\mathbb{R}\)</span>, Let <span class="math display">\[
+\left\|a_n \right\|_{\boldsymbol l^2}:= (\sum _{n=-\infty}^\infty |a_n|^p )^\frac{1}{p} \text{  for } p\in [1,\infty]
+\]</span> and <span class="math display">\[
+\|a_n\| = \mathop{sup}\limits_{n\in\mathbb{Z}}|a_n|
+\]</span> We can measure the distance between two sequences e.g. for <span class="math inline">\(c_n=(-1)^{n+1}\)</span> and <span class="math inline">\(d_n=(-1)^{n+1}(1+\frac{1}{n})\)</span>. <span class="math display">\[
+\|c_n-d_n\|=(\sum_{n=-\infty}^{\infty}\frac{1}{n^2})^\frac{1}{2}=\frac{\pi}{\sqrt6}\leq2
+\]</span></p>
+<h3 id="l2-estimate-crude"><span class="math inline">\(L^2\)</span>-estimate: Crude</h3>
+<p>Recall the crude estimate :<span class="math inline">\(|F_N(x)| \leq \sum_{n=-N}^{n=N} a_n\)</span> ：no oscillation</p>
+<p>This yields <span class="math display">\[
+\begin{aligned}
+\|F_N\|_{L^2}&amp;=(\int_{-1}^1(F_N(x))^2d\,x)^\frac{1}{2}\\
+&amp;\leq(\int_{-1}^1a_n^2d\,x)^\frac{1}{2})\\
+&amp;=2^{\frac{1}{2}}\sum_{n=-N}^{N} a_n
+\end{aligned}
+\]</span> In particular, if <span class="math inline">\(a_n=1\)</span> for all <span class="math inline">\(|n|\leq N\)</span> then <span class="math display">\[
+\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| \leq 2^\frac{3}{2}N
+\]</span> <span class="math inline">\(L^2\)</span> -size of <span class="math inline">\(F_N(x)\)</span> is bounded by <span class="math inline">\(O(N)\)</span></p>
+<h3 id="theorem-3-parsevals-identity">Theorem 3 (Parseval's identity)</h3>
+<p><span class="math display">\[
+\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| \leq 2N^\frac{3}{2}\ll2^\frac{3}{2}N
+\]</span></p>
+<p>Multiplying out the square: <span class="math display">\[
+\begin{aligned}
+\|\sum_{n=-N}^N e^{-i\omega n}\| &amp;=(\int_{-1}^1(\sum_{n=-N}^N e^{-i\omega n}) ^2d\,x)^\frac{1}{2}\\
+&amp;=\int_{-1}^1 \sum_{n=-N}^N e^{-i\omega n}\sum_{m=-N}^N e^{-i\omega n}d\,x\\
+&amp;= \sum_{n=-N}^N\sum_{m=-N}^N \int_{-1}^1  e^{-i\omega (n-m)}d\,x
+\end{aligned}
+\]</span> For the diagonal case (m=n) <span class="math display">\[
+\int_{-1}^1  e^{-i\omega (n-m)}d\,x =2
+\]</span> For the non-diagonal case (<span class="math inline">\(n\neq m\)</span>) <span class="math display">\[
+\int_{-1}^1  e^{-i\omega (n-m)}d\,x =-\frac{1}{2\pi i (n-m)}(e^{-2\pi i (n-m)}-e^{2\pi i (n-m)})=0
+\]</span></p>
+<p>Same argument shows more generally <span class="math display">\[
+\begin{gather}
+\text{For any }a_n \;s.t.\|a_n\|_{l^2}=(\sum_{n=-\infty}^\infty |a_n|^2)^{\frac{1}{2}}&lt;\infty.\\
+\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| _{l^2}=2^{\frac{1}{2}}\|a_n\|_{l^2}
+\end{gather}
+\]</span></p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>数学分析</category>
+        <category>课堂笔记</category>
+      </categories>
+      <tags>
+        <tag>不等式</tag>
+        <tag>Fourier</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>将数量场转为向量场的例题</title>
+    <url>/2022/06/28/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98/%E5%B0%86%E6%95%B0%E9%87%8F%E5%9C%BA%E8%BD%AC%E4%B8%BA%E5%90%91%E9%87%8F%E5%9C%BA/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="题面">题面</h3>
+<p>​ 设 <span class="math inline">\(\Sigma(t)\)</span> 是平面 <span class="math inline">\(x+y+z=t\)</span> 被球面 <span class="math inline">\(x^2+y^2+z^2=1\)</span> 截下的部分，设 <span class="math display">\[
+F(x,y,z)=1-(x^2+y^2+z^2),
+\]</span> ​ 求证，对于 <span class="math inline">\(\left| t \right| \leq \sqrt 3\)</span> 时，有 <span class="math display">\[
+\int _{\Sigma(t)} F(x,y,z)\,d\sigma = \frac{\pi}{18} (3-t^2)^2
+\]</span></p>
+<span id="more"></span>
+<h3 id="方法一">方法一</h3>
+<p>​ 将原坐标系 <span class="math inline">\(X Y Z\)</span> 进行变换，新坐标系的 <span class="math inline">\(X&#39;OY&#39;\)</span> 平面为原坐标系的平面 <span class="math inline">\(x+y+z=0\)</span> ，坐标 <span class="math inline">\(z&#39;\)</span> 为点在原坐标系下距离 <span class="math inline">\(\Sigma(0)\)</span> 的距离，<span class="math inline">\(z&#39; = \frac {t}{\sqrt3}\)</span> ， 为了渐变就沿用 <span class="math inline">\(xyz\)</span> 命名好了。接下来就是很普通的在 <span class="math inline">\(z=\frac{t}{\sqrt 3}\)</span> 上将 <span class="math inline">\(xy\)</span> 化为极坐标的积分了。 <span class="math display">\[
+\begin{gather}
+\begin{aligned}
+\iint _{z=\frac{t}{\sqrt 3}} 1-z^2\,d\sigma &amp;= \int_0^{2\pi}d\theta \int_0^{\sqrt {1-\frac{t^2}{3}}}(1-\frac{t^2}{3}-r^2) r\,dr\\
+ &amp;=\frac{\pi}{18} (3-t^2)^2
+ \end{aligned}
+\end{gather}
+\]</span></p>
+<h3 id="方法二">方法二</h3>
+<p>​ 这个方法比较绕，是利用 <span class="math inline">\(Gauss\)</span> 定理 + 补面的方式。但是 F 是个数量场，怎么把它变成向量场呢? <span class="math display">\[
+\begin{equation}
+\iint_S F dS  =\iint_S \boldsymbol{v}\, \vec{n} \,dS
+\end{equation}
+\]</span> 所以现在就是需要去确定一种 <span class="math inline">\(\vec{v}\)</span> 和 <span class="math inline">\(\vec{n}\)</span> 使其点乘为 <span class="math inline">\(F\)</span> ， 为了简便 <span class="math inline">\(\vec{v} = (1-z^2) \,\vec{k}\)</span> ，<span class="math inline">\(\vec{n}=\vec{k}\)</span>， 在进行补面就能使用高斯公式了，设 <span class="math inline">\(V\)</span> 为 <span class="math inline">\(S_1:z=\frac{t}{\sqrt3}\)</span> 和球面 <span class="math inline">\(S_2:x^2+y^2+z^2=1\)</span> 围成的面积。 <span class="math display">\[
+\begin{gather}
+\begin{aligned}
+\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS &amp; = \iiint_V \Delta\,\vec{v} \, d\vec{S}\\
+&amp;=\iiint_V2z \,  dxdydz
+\end{aligned}
+\end{gather}
+\]</span> 注意因为高斯定理要求向量场指向平面的外侧，上面公式的 <span class="math inline">\(\vec{v}\)</span> 的方向与的我们构造的<span class="math inline">\(\vec{v}\)</span> 之间方向相反。</p>
+<p>再将<span class="math inline">\(xyz\)</span> 换为极坐标 (注意这里和 <span class="math inline">\(t\)</span> 没什么关系，<span class="math inline">\(t\)</span> 只是个常数) <span class="math display">\[
+\begin{cases}
+x= (1-z^2)\,r\,cos\theta\\
+y= (1-z^2)\,r\,sin\theta\\
+z=z\\
+\end{cases}
+\]</span> 然后三重积分 <span class="math display">\[
+\begin{gather}
+\begin{aligned}
+\iiint_V2z \,  dxdydz &amp;= 2\pi\int_{\frac{t}{\sqrt3}}^1z\,dz\int_0^{\sqrt{1-z^2}}r\,dr\\
+&amp; = -\frac{\pi}{18}(3-t^2)^2
+\end{aligned}
+\end{gather}
+\]</span> 而另一方面 <span class="math display">\[
+\because 1-z^2 = 0 \,\text{in} \,S_2\\
+\therefore
+\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS = 0\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{gathered}
+\begin{aligned}
+\iint_{S_1} \boldsymbol{v}\, \vec{n} \,dS &amp;=\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS-\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS \\
+&amp;=\frac{\pi}{18}(3-t^2)^2
+\end{aligned}
+\end{gathered}
+\]</span></p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>数学分析</category>
+        <category>习题</category>
+      </categories>
+      <tags>
+        <tag>数学分析</tag>
+        <tag>高等数学</tag>
+        <tag>高斯公式</tag>
+        <tag>曲面积分</tag>
+      </tags>
+  </entry>
+  <entry>
     <title></title>
     <url>/2022/11/03/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E9%95%80%E9%87%91%E6%97%B6%E4%BB%A3/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="第二次工业革命">第二次工业革命</h1>
@@ -1195,239 +1455,5 @@ Test accuracy: 0.9911999702453613</code></pre>
       <categories>
         <category>阅读笔记</category>
       </categories>
-  </entry>
-  <entry>
-    <title>三角形中的几个恒等式</title>
-    <url>/2022/07/01/%E6%95%B0%E5%AD%A6/%E5%85%B6%E4%BB%96/%E4%B8%89%E8%A7%92%E5%BD%A2%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%81%92%E7%AD%89%E5%BC%8F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>在 <span class="math inline">\(\Delta ABC\)</span> 中，以下等式成立</p>
-<h3 id="正余弦平方和">正余弦平方和</h3>
-<p><span class="math display">\[
-\sin A+\sin B+\sin C=4\cos  \frac{A}{2}\cos  \frac{B}{2}\cos  \frac{C}{2}\ \tag{1}
-\]</span> 证： <span class="math display">\[
-\begin{aligned} LHS &amp;= 2\,\sin \frac{A+B}{2}\,\cos \frac{A-B}{2} +\sin C  \\ &amp;= 2 \,\cos  \frac{C}{2}\,\cos \frac{A-B}{2}+2\,\sin \frac{C}{2}\,\cos \frac{C}{2}\\ &amp;=2\,\cos  \frac{C}{2}\,(\cos \frac{A-B}{2}+\cos \frac{A+B}{2})\\ &amp;=4\,\cos \frac{A}{2}\,\cos \frac{B}{2}\,\cos \frac{C}{2} \\ \end{aligned}
-\]</span></p>
-<p><span class="math display">\[
- \cos A+\cos B+\cos C=1+4\sin  \frac{A}{2}\sin  \frac{B}{2}\sin  \frac{C}{2}\\ \tag{2}
-\]</span> 证： <span class="math display">\[
-\begin{aligned} LHS &amp;= 2\,\cos \frac{A+B}{2}\,\cos \frac{A-B}{2} + 1-2\,\sin ^2\frac{C}{2}  \\  &amp;= 1-2\,\sin \frac{C}{2}\,(\sin \frac{C}{2}-\cos \frac{A-B}{2})  \\ &amp;=1-2\,\sin \frac{C}{2}\,(\cos \frac{A+B}{2}-\cos \frac{A-B}{2})   \\ &amp;=1-2\,\sin \frac{C}{2}\,(-2\,\sin \frac{A}{2}\,\sin \frac{B}{2})\\ &amp;=1+4\sin  \frac{A}{2}\sin  \frac{B}{2}\sin  \frac{C}{2} \end{aligned} 
-\]</span></p>
-<h3 id="正余半角平方和">正余半角平方和</h3>
-<p><span class="math display">\[
-\sin ^2\frac{A}{2}+\sin ^2\frac{B}{2}+\sin ^2\frac{C}{2}= 1-2\,\sin \frac{A}{2}\sin \frac{B}{2}\sin \frac{C}{2}\tag{3}
-\]</span></p>
-<p>证： <span class="math display">\[
-\begin{aligned} RHS &amp;= 1+\sin \frac{C}{2}\,(\cos \frac{A+B}{2}-\cos \frac{A-B}{2}) \\ &amp;=  1+\sin ^2\frac{C}{2}- \cos \frac{A+B}{2}\cos \frac{A-B}{2}\\ &amp;=  1+\sin ^2\frac{C}{2}-\frac{\cos A+\cos B}{2} \\ &amp;= 1+\sin ^2\frac{C}{2}-\frac{2-2\sin ^2\frac{A}{2}-2\sin ^2\frac{B}{2}}{2}   \\ &amp;=  \sin ^2\frac{A}{2}+\sin ^2\frac{B}{2}+\sin ^2\frac{C}{2} \end{aligned}
-\]</span></p>
-<p>同理易得： <span class="math display">\[
-\cos ^2\frac{A}{2}+\cos ^2\frac{B}{2}+\cos ^2\frac{C}{2}= 2+2\,\sin \frac{A}{2}\sin \frac{B}{2}\sin \frac{C}{2}\tag{4}
-\]</span></p>
-<h3 id="正割余割和">正割余割和</h3>
-<p><span class="math display">\[
-\tan A+\tan B+\tan C=\tan A\;\tan B\;\tan C \tag{5}
-\]</span> 证： <span class="math display">\[
-\begin{gather*} \text{和角公式：}\tan C = -\frac{\tan A+\tan B}{1-\tan A\;\tan B}\\ \tan C-\tan A\;\tan B\;\tan C = -(\tan A+\tan B)\\ \text{移项后得到结论} \end{gather*} 
-\]</span></p>
-<p>推论： <span class="math display">\[
-\cot A\,\cot B+\cot A\,\cot C+\cot B\,\cot C =1\tag{6} 
-\]</span></p>
-<p>证： <span class="math display">\[
-\begin{aligned} \text{由 (5)得到: }\frac{1}{\tan A\,\tan B}&amp;=\frac{\tan C}{\tan A+\tan B+\tan C}\\ \frac{1}{\tan A\,\tan C}&amp;=\frac{\tan B}{\tan A+\tan B+\tan C}\\ \frac{1}{\tan B\,\tan C}&amp;=\frac{\tan A}{\tan A+\tan B+\tan C}\\ \end{aligned}
-\]</span> 三个式子相加即可</p>
-<h3 id="正余割半角">正余割半角</h3>
-<p><span class="math display">\[
-\cot \frac{A}{2}\cot \frac{B}{2}\cot \frac{C}{2} = \cot \frac{A}{2}\,\cot \frac{B}{2}\,\cot \frac{C}{2} \tag{7}
-\]</span></p>
-<p>证： 受到 (5) 启发，只需证明 <span class="math display">\[
-cot \frac{C}{2} = -\frac{\cot \frac{A}{2}+\cot \frac{B}{2}}{1-\cot \frac{A}{2}\,\cot \frac{B}{2}}
-\]</span></p>
-<p>即证： <span class="math display">\[
-\begin{gather*} \tan\frac{C}{2} =\frac{\cot \frac{A}{2}\,\cot \frac{B}{2}-1}{\cot \frac{A}{2}+\cot \frac{B}{2}}\\ \Leftarrow \tan\frac{C}{2} = \frac{1-\tan\frac{A}{2}\tan\frac{B}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}} \end{gather*}
-\]</span> 推论： <span class="math display">\[
-\tan\frac{A}{2}\tan\frac{B}{2}+\tan\frac{B}{2}\tan\frac{C}{2}+\tan\frac{A}{2}\tan\frac{C}{2} = 1 \tag{8}
-\]</span> 由 (7) 移项得到 <span class="math display">\[
-\begin{gather*} \tan\frac{A}{2}\tan\frac{B}{2}=\frac{\tan\frac{A}{2}\,\tan\frac{B}{2}\,\tan\frac{B}{2}\,\cot\frac{C}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}+\tan\frac{C}{2}}\\ \tan\frac{A}{2}\tan\frac{C}{2}=\frac{\tan\frac{A}{2}\,\tan\frac{B}{2}\,\tan\frac{B}{2}\,\cot\frac{B}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}+\tan\frac{C}{2}}\\ \tan\frac{B}{2}\tan\frac{C}{2}=\frac{\tan\frac{A}{2}\,\tan\frac{B}{2}\,\tan\frac{B}{2}\,\cot\frac{A}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}+\tan\frac{C}{2}}\\ \end{gather*} \\
-\]</span> 三个式子相加即可</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>其他</category>
-      </categories>
-      <tags>
-        <tag>三角函数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SI140 HW1</title>
-    <url>/2022/09/26/%E6%95%B0%E5%AD%A6/SI140/SI140%20HW1/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>SI140</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>将数量场转为向量场的例题</title>
-    <url>/2022/06/28/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E4%B9%A0%E9%A2%98/%E5%B0%86%E6%95%B0%E9%87%8F%E5%9C%BA%E8%BD%AC%E4%B8%BA%E5%90%91%E9%87%8F%E5%9C%BA/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="题面">题面</h3>
-<p>​ 设 <span class="math inline">\(\Sigma(t)\)</span> 是平面 <span class="math inline">\(x+y+z=t\)</span> 被球面 <span class="math inline">\(x^2+y^2+z^2=1\)</span> 截下的部分，设 <span class="math display">\[
-F(x,y,z)=1-(x^2+y^2+z^2),
-\]</span> ​ 求证，对于 <span class="math inline">\(\left| t \right| \leq \sqrt 3\)</span> 时，有 <span class="math display">\[
-\int _{\Sigma(t)} F(x,y,z)\,d\sigma = \frac{\pi}{18} (3-t^2)^2
-\]</span></p>
-<span id="more"></span>
-<h3 id="方法一">方法一</h3>
-<p>​ 将原坐标系 <span class="math inline">\(X Y Z\)</span> 进行变换，新坐标系的 <span class="math inline">\(X&#39;OY&#39;\)</span> 平面为原坐标系的平面 <span class="math inline">\(x+y+z=0\)</span> ，坐标 <span class="math inline">\(z&#39;\)</span> 为点在原坐标系下距离 <span class="math inline">\(\Sigma(0)\)</span> 的距离，<span class="math inline">\(z&#39; = \frac {t}{\sqrt3}\)</span> ， 为了渐变就沿用 <span class="math inline">\(xyz\)</span> 命名好了。接下来就是很普通的在 <span class="math inline">\(z=\frac{t}{\sqrt 3}\)</span> 上将 <span class="math inline">\(xy\)</span> 化为极坐标的积分了。 <span class="math display">\[
-\begin{gather}
-\begin{aligned}
-\iint _{z=\frac{t}{\sqrt 3}} 1-z^2\,d\sigma &amp;= \int_0^{2\pi}d\theta \int_0^{\sqrt {1-\frac{t^2}{3}}}(1-\frac{t^2}{3}-r^2) r\,dr\\
- &amp;=\frac{\pi}{18} (3-t^2)^2
- \end{aligned}
-\end{gather}
-\]</span></p>
-<h3 id="方法二">方法二</h3>
-<p>​ 这个方法比较绕，是利用 <span class="math inline">\(Gauss\)</span> 定理 + 补面的方式。但是 F 是个数量场，怎么把它变成向量场呢? <span class="math display">\[
-\begin{equation}
-\iint_S F dS  =\iint_S \boldsymbol{v}\, \vec{n} \,dS
-\end{equation}
-\]</span> 所以现在就是需要去确定一种 <span class="math inline">\(\vec{v}\)</span> 和 <span class="math inline">\(\vec{n}\)</span> 使其点乘为 <span class="math inline">\(F\)</span> ， 为了简便 <span class="math inline">\(\vec{v} = (1-z^2) \,\vec{k}\)</span> ，<span class="math inline">\(\vec{n}=\vec{k}\)</span>， 在进行补面就能使用高斯公式了，设 <span class="math inline">\(V\)</span> 为 <span class="math inline">\(S_1:z=\frac{t}{\sqrt3}\)</span> 和球面 <span class="math inline">\(S_2:x^2+y^2+z^2=1\)</span> 围成的面积。 <span class="math display">\[
-\begin{gather}
-\begin{aligned}
-\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS &amp; = \iiint_V \Delta\,\vec{v} \, d\vec{S}\\
-&amp;=\iiint_V2z \,  dxdydz
-\end{aligned}
-\end{gather}
-\]</span> 注意因为高斯定理要求向量场指向平面的外侧，上面公式的 <span class="math inline">\(\vec{v}\)</span> 的方向与的我们构造的<span class="math inline">\(\vec{v}\)</span> 之间方向相反。</p>
-<p>再将<span class="math inline">\(xyz\)</span> 换为极坐标 (注意这里和 <span class="math inline">\(t\)</span> 没什么关系，<span class="math inline">\(t\)</span> 只是个常数) <span class="math display">\[
-\begin{cases}
-x= (1-z^2)\,r\,cos\theta\\
-y= (1-z^2)\,r\,sin\theta\\
-z=z\\
-\end{cases}
-\]</span> 然后三重积分 <span class="math display">\[
-\begin{gather}
-\begin{aligned}
-\iiint_V2z \,  dxdydz &amp;= 2\pi\int_{\frac{t}{\sqrt3}}^1z\,dz\int_0^{\sqrt{1-z^2}}r\,dr\\
-&amp; = -\frac{\pi}{18}(3-t^2)^2
-\end{aligned}
-\end{gather}
-\]</span> 而另一方面 <span class="math display">\[
-\because 1-z^2 = 0 \,\text{in} \,S_2\\
-\therefore
-\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS = 0\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{gathered}
-\begin{aligned}
-\iint_{S_1} \boldsymbol{v}\, \vec{n} \,dS &amp;=\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS-\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS \\
-&amp;=\frac{\pi}{18}(3-t^2)^2
-\end{aligned}
-\end{gathered}
-\]</span></p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>数学分析</category>
-        <category>习题</category>
-      </categories>
-      <tags>
-        <tag>数学分析</tag>
-        <tag>高等数学</tag>
-        <tag>高斯公式</tag>
-        <tag>曲面积分</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Introduction to Inequality</title>
-    <url>/2022/07/05/%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/ISP_equiality/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="oscillation">Oscillation</h2>
-<p>Example: <span class="math display">\[
-\begin{gather}
-b_n=c_n \, a_n=(-1)^{n+1}a_n \text, \, a_n \geq 0\\
-\sum_{n=1}^{N} b_n \leq \sum_{n=1}^{N}\left| b_n \right| = \sum_{n=1}^N a_n
-\end{gather}
-\]</span> Use <em>Euler's formula</em> to rewrite <span class="math display">\[
-(-1)^n=e^{2\pi in\frac{1}{2}}=\cos(2\pi n\frac{1}{2})+i\sin(2\pi n\frac{1}{2})
-\]</span> Periodicity is 2. Moreover , Take periodicity k <span class="math display">\[
-(e^{2\pi i\frac{1}{k}})^{n+k}= (e^{2\pi i\frac{1}{k}})^{n}\\
-\]</span></p>
-<h3 id="fourier-series">Fourier series</h3>
-<p>More generally, for $ x$, consider <span class="math inline">\(e^{-i\omega n}\)</span>: Periodicity <span class="math inline">\(\frac{1}{x}\)</span>, and <span class="math inline">\(\omega = \frac{2\pi}{x}\)</span> <span class="math display">\[
-F(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}\text{     ,              }
-F_N(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}    
-\]</span> Generate a new function on <span class="math inline">\(\left[-1,1\right]\)</span> , known as Fourier analysis.</p>
-<p>Since <span class="math inline">\(|e^{i\theta}|\leq 1\)</span>, therefore</p>
-<h3 id="introduction-a-norm">introduction a norm</h3>
-<p>For a sequence <span class="math inline">\((a_n)_{n\in\mathbb{Z}}\in\mathbb{R}\)</span>, Let <span class="math display">\[
-\left\|a_n \right\|_{\boldsymbol l^2}:= (\sum _{n=-\infty}^\infty |a_n|^p )^\frac{1}{p} \text{  for } p\in [1,\infty]
-\]</span> and <span class="math display">\[
-\|a_n\| = \mathop{sup}\limits_{n\in\mathbb{Z}}|a_n|
-\]</span> We can measure the distance between two sequences e.g. for <span class="math inline">\(c_n=(-1)^{n+1}\)</span> and <span class="math inline">\(d_n=(-1)^{n+1}(1+\frac{1}{n})\)</span>. <span class="math display">\[
-\|c_n-d_n\|=(\sum_{n=-\infty}^{\infty}\frac{1}{n^2})^\frac{1}{2}=\frac{\pi}{\sqrt6}\leq2
-\]</span></p>
-<h3 id="l2-estimate-crude"><span class="math inline">\(L^2\)</span>-estimate: Crude</h3>
-<p>Recall the crude estimate :<span class="math inline">\(|F_N(x)| \leq \sum_{n=-N}^{n=N} a_n\)</span> ：no oscillation</p>
-<p>This yields <span class="math display">\[
-\begin{aligned}
-\|F_N\|_{L^2}&amp;=(\int_{-1}^1(F_N(x))^2d\,x)^\frac{1}{2}\\
-&amp;\leq(\int_{-1}^1a_n^2d\,x)^\frac{1}{2})\\
-&amp;=2^{\frac{1}{2}}\sum_{n=-N}^{N} a_n
-\end{aligned}
-\]</span> In particular, if <span class="math inline">\(a_n=1\)</span> for all <span class="math inline">\(|n|\leq N\)</span> then <span class="math display">\[
-\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| \leq 2^\frac{3}{2}N
-\]</span> <span class="math inline">\(L^2\)</span> -size of <span class="math inline">\(F_N(x)\)</span> is bounded by <span class="math inline">\(O(N)\)</span></p>
-<h3 id="theorem-3-parsevals-identity">Theorem 3 (Parseval's identity)</h3>
-<p><span class="math display">\[
-\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| \leq 2N^\frac{3}{2}\ll2^\frac{3}{2}N
-\]</span></p>
-<p>Multiplying out the square: <span class="math display">\[
-\begin{aligned}
-\|\sum_{n=-N}^N e^{-i\omega n}\| &amp;=(\int_{-1}^1(\sum_{n=-N}^N e^{-i\omega n}) ^2d\,x)^\frac{1}{2}\\
-&amp;=\int_{-1}^1 \sum_{n=-N}^N e^{-i\omega n}\sum_{m=-N}^N e^{-i\omega n}d\,x\\
-&amp;= \sum_{n=-N}^N\sum_{m=-N}^N \int_{-1}^1  e^{-i\omega (n-m)}d\,x
-\end{aligned}
-\]</span> For the diagonal case (m=n) <span class="math display">\[
-\int_{-1}^1  e^{-i\omega (n-m)}d\,x =2
-\]</span> For the non-diagonal case (<span class="math inline">\(n\neq m\)</span>) <span class="math display">\[
-\int_{-1}^1  e^{-i\omega (n-m)}d\,x =-\frac{1}{2\pi i (n-m)}(e^{-2\pi i (n-m)}-e^{2\pi i (n-m)})=0
-\]</span></p>
-<p>Same argument shows more generally <span class="math display">\[
-\begin{gather}
-\text{For any }a_n \;s.t.\|a_n\|_{l^2}=(\sum_{n=-\infty}^\infty |a_n|^2)^{\frac{1}{2}}&lt;\infty.\\
-\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| _{l^2}=2^{\frac{1}{2}}\|a_n\|_{l^2}
-\end{gather}
-\]</span></p>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>数学分析</category>
-        <category>课堂笔记</category>
-      </categories>
-      <tags>
-        <tag>不等式</tag>
-        <tag>Fourier</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2022/12/17/%E5%85%B6%E4%BB%96/CS101%20PA3/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><table>
-<tbody>
-<tr class="odd">
-<td>title:CS 101 PA3</td>
-</tr>
-<tr class="even">
-<td>description:最小生成树，贪心，最短路</td>
-</tr>
-</tbody>
-</table>
-<h1 id="t2">T2</h1>
-<p>考虑贪心，对每一个容器，就是在能够容纳的信息里面选择一个能最大化利用容器的。将信息和容器都按照 a 为关键字排序。然后外层循环容器，对于第 i个容器，如果第 j 个信息的 <span class="math inline">\(a_j\leq A_i\)</span> ，把第 j 个信息放入待选的信息，然后 j++，直到不能放为止。然后从待选的信息的挑选一个最优的信息 ，即满足 <span class="math inline">\(d \leq D_i\)</span> 的信息中 <span class="math inline">\(d_k\)</span> 最大的一个信息，然后 ans++，从待选信息中删除该信息。由于满足了 a 从小到大排序，对于待选的信息, <span class="math inline">\(a_j \leq A_i \leq A_{i+1}\)</span> ，所以后面的每一个容器都是可以从待选信息中选择的。维护待选信息可使用 <span class="math inline">\(BST\)</span> ，也可以用 <code>multiset</code>, 在 <span class="math inline">\(\log n\)</span> 时间内查询。总的时间复杂度是 <span class="math inline">\(O(n\log n)\)</span>.</p>
-<h1 id="t3">T3</h1>
-<ol type="1">
-<li><span class="math inline">\(A\geq D\)</span>: 也就是说我们需要尽量快的到达 n 点，直接BFS，每个点的遍历顺序一定是保证最快到达的，如果到达该点发现打不过，那么这个点相当于“死了”，不用考虑路过该点了。</li>
-<li><span class="math inline">\(A&lt;D\)</span>: 首先是如何判断能否到达 n 点。 这个时候我们只需要尽可能多地从占领的区域的相邻的点中，挑选一个<code>s[y]</code> 最小的一个点，如果能打过，那么 <code>attack</code> 增加，有利于我打更强的，如果连最小的都打不过，那么说明已经无法从占领区域中扩展了，就这样不断扩大占领区域，用优先队列维护相邻的点，直到能扩展到 n 点就说明可以到达（注：不用扩展到全部点）。 <strong>假设</strong>我们能够到达 n 点，那么和之前类似，如果到达该点发现打不过，那么我们可以加上一个等待时间 <code>wait</code> 直到能击败该节点为止 <code>dis[pre]+1+wait &lt; dis[y]</code> 那么更新 y 点，但是这个时候需要用<code>dijkstra</code> 来确保始终从距离最小的点更新。之前判断能不能的时候，我们其实已经达到过n，也就是对所有点，wait最多可以是最终的最优解dis[n]，因为最多可以打dis[n]个小怪来补充攻击力，打败当前点<code>wait&gt;=dis[n]</code>的话，也没关系，因为最后松弛操作会把这种情况滤掉</li>
-</ol>
-]]></content>
   </entry>
 </search>
