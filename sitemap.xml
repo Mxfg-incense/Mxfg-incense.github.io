@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://example.pthm/2023/09/03/%E6%9D%82%E8%B0%88/20230903-2023%E5%B9%B4%E6%88%90%E9%83%BD%E5%8F%8C%E5%B9%B4%E5%B1%95%EF%BC%9A%E6%97%B6%E9%97%B4%E5%BC%95%E5%8A%9B/</loc>
+    
+    <lastmod>2023-09-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.pthm/2023/08/14/%E6%8A%80%E6%9C%AF/20230814-MRTK2/</loc>
+    
+    <lastmod>2023-08-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://example.pthm/2023/07/31/%E6%8A%80%E6%9C%AF/20230731-Git%20%E4%BD%BF%E7%94%A8%20%E4%BB%A3%E7%90%86/</loc>
     
     <lastmod>2023-07-31</lastmod>
@@ -391,7 +409,7 @@
 
   <url>
     <loc>http://example.pthm/</loc>
-    <lastmod>2023-07-31</lastmod>
+    <lastmod>2023-09-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -399,21 +417,21 @@
   
   <url>
     <loc>http://example.pthm/tags/HTML/</loc>
-    <lastmod>2023-07-31</lastmod>
+    <lastmod>2023-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.pthm/tags/Hexo/</loc>
-    <lastmod>2023-07-31</lastmod>
+    <lastmod>2023-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.pthm/tags/NeRF/</loc>
-    <lastmod>2023-07-31</lastmod>
+    <lastmod>2023-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -422,35 +440,35 @@
   
   <url>
     <loc>http://example.pthm/categories/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2023-07-31</lastmod>
+    <lastmod>2023-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.pthm/categories/%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2023-07-31</lastmod>
+    <lastmod>2023-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.pthm/categories/%E6%95%B0%E5%AD%A6/</loc>
-    <lastmod>2023-07-31</lastmod>
+    <lastmod>2023-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.pthm/categories/%E6%9D%82%E8%B0%88/</loc>
-    <lastmod>2023-07-31</lastmod>
+    <lastmod>2023-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.pthm/categories/%E7%A7%91%E5%AD%A6/</loc>
-    <lastmod>2023-07-31</lastmod>
+    <lastmod>2023-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
