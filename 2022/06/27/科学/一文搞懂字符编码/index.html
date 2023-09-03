@@ -26,12 +26,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.pthm","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.1","exturl":true,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#75664d","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="字符集和编码 字符集从字符到一个数字的映射。编码是一种规则，即如何将这个字符转变为二进制数。 ASCLL 计算机处理字符总是需要将其变为一个个 bit 所以最开始的字符集是[**ASCLL**](https:&#x2F;&#x2F;www.ascii-code.com&#x2F;) 码，将不同的英文字母，数字，以及控制字符映射到 8-bits 中。一开始 ASCLL 码只用到了 0 - 127。后来新增加了扩展 ASCL">
+    <meta name="description" content="字符集和编码 字符集从字符到一个数字的映射。编码是一种规则，即如何将这个字符转变为二进制数。 ASCLL 计算机处理字符总是需要将其变为一个个 bit 所以最开始的字符集是ASCLL 码，将不同的英文字母，数字，以及控制字符映射到 8-bits 中。一开始 ASCLL 码只用到了 0 - 127。后来新增加了扩展 ASCLL 码， 利用了 128 - 255 剩下的一半字符。当称为 ASCL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一文搞懂字符编码">
 <meta property="og:url" content="http://example.pthm/2022/06/27/%E7%A7%91%E5%AD%A6/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/index.html">
 <meta property="og:site_name" content="Mxfg&#39;s Blog">
-<meta property="og:description" content="字符集和编码 字符集从字符到一个数字的映射。编码是一种规则，即如何将这个字符转变为二进制数。 ASCLL 计算机处理字符总是需要将其变为一个个 bit 所以最开始的字符集是[**ASCLL**](https:&#x2F;&#x2F;www.ascii-code.com&#x2F;) 码，将不同的英文字母，数字，以及控制字符映射到 8-bits 中。一开始 ASCLL 码只用到了 0 - 127。后来新增加了扩展 ASCL">
+<meta property="og:description" content="字符集和编码 字符集从字符到一个数字的映射。编码是一种规则，即如何将这个字符转变为二进制数。 ASCLL 计算机处理字符总是需要将其变为一个个 bit 所以最开始的字符集是ASCLL 码，将不同的英文字母，数字，以及控制字符映射到 8-bits 中。一开始 ASCLL 码只用到了 0 - 127。后来新增加了扩展 ASCLL 码， 利用了 128 - 255 剩下的一半字符。当称为 ASCL">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206272300871.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280008191.png">
@@ -344,27 +344,27 @@
     
     <div class="post-body" itemprop="articleBody">
         <h1 id="字符集和编码">字符集和编码</h1>
-<pre><code>字符集从字符到一个数字的映射。编码是一种规则，即如何将这个字符转变为二进制数。</code></pre>
+<p>字符集从字符到一个数字的映射。编码是一种规则，即如何将这个字符转变为二进制数。</p>
 <h2 id="ascll">ASCLL</h2>
-<pre><code>计算机处理字符总是需要将其变为一个个 bit 所以最开始的字符集是[**ASCLL**](https://www.ascii-code.com/) 码，将不同的英文字母，数字，以及控制字符映射到 8-bits 中。一开始 ASCLL 码只用到了 0 - 127。后来新增加了扩展 ASCLL 码， 利用了 128 - 255 剩下的一半字符。当称为 ASCLL 集的时候作为一种字符集，ASCLL 码时，是一种编码规则。</code></pre>
+<p>计算机处理字符总是需要将其变为一个个 bit 所以最开始的字符集是<a target="_blank" rel="noopener" href="https://www.ascii-code.com/"><strong>ASCLL</strong></a> 码，将不同的英文字母，数字，以及控制字符映射到 8-bits 中。一开始 ASCLL 码只用到了 0 - 127。后来新增加了扩展 ASCLL 码， 利用了 128 - 255 剩下的一半字符。当称为 ASCLL 集的时候作为一种字符集，ASCLL 码时，是一种编码规则。</p>
 <span id="more"></span>
 <h2 id="gb">GB</h2>
 <h3 id="gb-2312">GB 2312</h3>
 <p>GB2312 是一种中文的字符集，分区管理， 共计 94 个区， 每个区含 94 个位，共8836 码位。 码位按照按照区，行，列一次决定，比如「侃」字在 57 区 0 行 9 列， 码位就是 5709，十六进制为 <code>0x39 0x09</code> 分别加上 <code>0xA0</code> 得到 <code>0xD9</code> 和 <code>0xA9</code> ，得到最终的 GB2312 为 <code>0xD90xA9</code> 。 加 <code>0xA0</code> 的目的可能使得高位和低位的值都大于 127， 向下兼容 ASCLL 码。当机器遇到连续两位大于 127 的 byte 时就能以此区分究竟是 ASCLL 码还是 GB2312 码。 GB2312 是双字节编码，为了与 ASCII 码区分开，字节的第8位必须是1，所以GB2312是8位编码。所以至少要从 0x80 128, 1000 0000) 开始吧，但是根据上面的规定，0x80 - 0x9f 要留给控制块，所以只能从 0xA0 开始咯。那为什么 GB2312 编码不是从 0xA0 开始，而是 0xA1 开始呢？ 因为 0xA0 正好是图形块的空格，所以就从 0xA1 编码，这就是 0xA0 的由来</p>
 <h3 id="gbk">GBK</h3>
-<pre><code>拓展，不规定低位大于 127 ，新增近 20000 个汉字符号。对应的字符编码叫 GBK 码</code></pre>
+<p>拓展，不规定低位大于 127 ，新增近 20000 个汉字符号。对应的字符编码叫 GBK 码</p>
 <h3 id="gb18030">GB18030</h3>
-<pre><code>新增少数民族文字</code></pre>
+<p>新增少数民族文字</p>
 <h2 id="unicode">Unicode</h2>
-<pre><code>是一个规则，包含字符集和对应的编码规则。把世界上所有的字符放在一起。</code></pre>
+<p>是一个规则，包含字符集和对应的编码规则。把世界上所有的字符放在一起。</p>
 <h3 id="ucs-2-字符集">UCS-2 字符集</h3>
-<pre><code>`0x0000 - 0xFFFF` ，可表示 65536 个字符。这里只是一个字符集，并不算真正意义上的编码。</code></pre>
+<p><code>0x0000 - 0xFFFF</code> ，可表示 65536 个字符。这里只是一个字符集，并不算真正意义上的编码。</p>
 <h3 id="ucs-4-字符集">UCS-4 字符集</h3>
-<pre><code>`0x00000000 - 0xFFFFFFFF` ， 可表示 43 亿字符。</code></pre>
+<p><code>0x00000000 - 0xFFFFFFFF</code> ， 可表示 43 亿字符。</p>
 <h3 id="缺点">缺点</h3>
-<pre><code>储存空间过大</code></pre>
+<p>储存空间过大</p>
 <h3 id="utf-8-编码">UTF-8 编码</h3>
-<pre><code>每次传送 8 位 数字，而且可变长，节省流量和内存空间，是目前最广泛使用的编码规则</code></pre>
+<p>每次传送 8 位 数字，而且可变长，节省流量和内存空间，是目前最广泛使用的编码规则</p>
 <figure>
 <img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206272300871.png" alt="image-20220627230028146" /><figcaption aria-hidden="true">image-20220627230028146</figcaption>
 </figure>
@@ -374,7 +374,7 @@
 <li>而当编译器读取.py 文件时，需要将储存好的 Bytes 数据解码。Python 2 默认 ASCLL 码， 而Python 3 默认 UTF-8 编码。 所以当用 python 2 执行含有中文字符串的文件时会解码错误。于是在开头加行 <code>\#-*-coding:utf-8-*-</code></li>
 </ul>
 <h2 id="python-2">Python 2</h2>
-<pre><code>编码过程：写的代码通过 utf-8 写入，再通过解释器将其 Bytes 转换为另外编码形式的的 Bytes, utf-8 向下兼容 ASCLL。</code></pre>
+<p>编码过程：写的代码通过 utf-8 写入，再通过解释器将其 Bytes 转换为另外编码形式的的 Bytes, utf-8 向下兼容 ASCLL。</p>
 <figure>
 <img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280008191.png" alt="image-20220628000845318" /><figcaption aria-hidden="true">image-20220628000845318</figcaption>
 </figure>
@@ -383,7 +383,7 @@
 <img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280018694.png" alt="image-20220628001647028" /><figcaption aria-hidden="true">image-20220628001647028</figcaption>
 </figure>
 <h3 id="unicode-和-str-类型的转换">Unicode 和 str 类型的转换</h3>
-<pre><code>其实 str 就是 Bytes ，就是将Unicode 进行编码后的到的结果。</code></pre>
+<p>其实 str 就是 Bytes ，就是将Unicode 进行编码后的到的结果。</p>
 <figure>
 <img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206280018560.png" alt="image-20220628001829089" /><figcaption aria-hidden="true">image-20220628001829089</figcaption>
 </figure>
@@ -481,7 +481,7 @@
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">56 分钟</span>
+    <span title="站点阅读时长">55 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
