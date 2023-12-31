@@ -36,8 +36,10 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261755910.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261804177.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261809614.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261819723.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261819916.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261848805.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261849307.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261854401.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261815655.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261900999.png">
@@ -186,7 +188,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -225,7 +227,7 @@
           <h3 class="widget-title">标签云</h3>
           <div id="myCanvasContainer" class="widget tagcloud">
               <canvas width="250" height="250" id="resCanvas" style="width=100%">
-                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NeRF/" rel="tag">NeRF</a><span class="tag-list-count">6</span></li></ul>
+                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NeRF/" rel="tag">NeRF</a><span class="tag-list-count">8</span></li></ul>
               </canvas>
           </div>
       </div>
@@ -332,14 +334,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.8k</span>
+      <span>1.5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
+      <span>1 分钟</span>
     </span>
 </div>
 
@@ -370,17 +372,17 @@
 <p>weight function <span class="math inline">\(w(t)\)</span></p>
 <h3 id="requirements-on-weight-function">Requirements on weight function</h3>
 <ol type="1">
-<li><p><strong>Unbiased</strong> . Given a camera ray $p(t), w(t) $attains a locally maximal value at a surface intersection point $ p(t)$, <em>i.e.</em> with <span class="math inline">\(f(p(t)) = 0,\)</span> that is, the point $ p(t) $ is on the zero-level set of the <span class="math inline">\(SDF (x).\)</span></p>
+<li><p><strong>Unbiased</strong> . Given a camera ray <span class="math inline">\(p(t), w(t)\)</span> attains a locally maximal value at a surface intersection point $ p(t)$, <em>i.e.</em> with <span class="math inline">\(f(p(t)) = 0,\)</span> that is, the point $ p(t) $ is on the zero-level set of the <span class="math inline">\(SDF (x)\)</span>.</p>
 <p>保证与SDF为０的采样点，贡献最大</p></li>
-<li><p><strong>Occlusion-aware</strong>.(遮挡的识别和处理) Given any two depth values $t0 $ and $t1 $ satisfying <span class="math inline">\(f(t0) = f(t1), w(t0) &gt; 0, w(t1) &gt; 0\)</span>, and, $ t0 &lt; t1$, there is $ w(t0) &gt; w(t1)$. That is, when two points have the same SDF value (thus the same SDF-induced S-density value), the point nearer to the view point should have a larger contribution to the final output color than does the other point.</p>
+<li><p><strong>Occlusion-aware</strong>.(遮挡的识别和处理) Given any two depth values $t0 $ and $t1 $ satisfying <span class="math inline">\(f(t0) = f(t1), w(t0) &gt; 0, w(t1) &gt; 0\)</span>, and, $ t0 &lt; t1$, there is $ w(t_0) &gt; w(t_1)$. That is, when two points have the same SDF value (thus the same SDF-induced S-density value), the point nearer to the view point should have a larger contribution to the final output color than does the other point.</p>
 <p>距离相机越近的采样点贡献越大　（SDF相同的情况下）</p>
 <h4 id="naive-solution">Naive solution</h4>
-<p><code>&lt;img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261819723.png" alt="image-20230526181920993" style="zoom:67%;" /&gt;</code></p></li>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261819723.png" alt="image-20230526181920993" style="zoom:67%;" /></p></li>
 </ol>
 <p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261819916.png" alt="image-20230526181947212" style="zoom:67%;" /></p>
 <p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261848805.png" alt="image-20230526184750903" style="zoom: 67%;" /></p>
 <h4 id="our-solution">Our solution</h4>
-<pre><code>`&lt;img src=&quot;https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261849307.png&quot; alt=&quot;image-20230526184949149&quot; style=&quot;zoom:67%;&quot; /&gt;`</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261849307.png" alt="image-20230526184949149" style="zoom:67%;" /></p>
 <p>Unbiased but not occulusion-aware. 当光线穿过两个平面时, SDF函数 <span class="math inline">\(f\)</span> 有两个零点,导致 <span class="math inline">\(w(t)\)</span> 有两个相同峰值.</p>
 <p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261854401.png" alt="image-20230526185439894" style="zoom:67%;" /></p>
 <p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261815655.png" alt="image-20230526181525877" style="zoom:67%;" /></p>
@@ -484,14 +486,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">63k</span>
+    <span title="站点总字数">77k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">57 分钟</span>
+    <span title="站点阅读时长">1:10</span>
   </span>
 </div>
 <div class="busuanzi-count">

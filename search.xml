@@ -1,6 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CS101 PA3</title>
+    <url>/2022/12/17/%E6%95%B0%E5%AD%A6/CS101%20PA3/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="t2">T2</h1>
+<p>考虑贪心，对每一个容器，就是在能够容纳的信息里面选择一个能最大化利用容器的。将信息和容器都按照 a 为关键字排序。然后外层循环容器，对于第 i个容器，如果第 j 个信息的 <span class="math inline">\(a_j\leq A_i\)</span> ，把第 j 个信息放入待选的信息，然后 j++，直到不能放为止。然后从待选的信息的挑选一个最优的信息 ，即满足 <span class="math inline">\(d \leq D_i\)</span> 的信息中 <span class="math inline">\(d_k\)</span> 最大的一个信息，然后 ans++，从待选信息中删除该信息。由于满足了 a 从小到大排序，对于待选的信息, <span class="math inline">\(a_j \leq A_i \leq A_{i+1}\)</span> ，所以后面的每一个容器都是可以从待选信息中选择的。维护待选信息可使用 <span class="math inline">\(BST\)</span> ，也可以用 <code>multiset</code>, 在 <span class="math inline">\(\log n\)</span> 时间内查询。总的时间复杂度是 <span class="math inline">\(O(n\log n)\)</span>.</p>
+<h1 id="t3">T3</h1>
+<ol type="1">
+<li><span class="math inline">\(A\geq D\)</span>: 也就是说我们需要尽量快的到达 n 点，直接BFS，每个点的遍历顺序一定是保证最快到达的，如果到达该点发现打不过，那么这个点相当于“死了”，不用考虑路过该点了。</li>
+<li><span class="math inline">\(A&lt;D\)</span>: 首先是如何判断能否到达 n 点。 这个时候我们只需要尽可能多地从占领的区域的相邻的点中，挑选一个 <code>s[y]</code> 最小的一个点，如果能打过，那么 <code>attack</code> 增加，有利于我打更强的，如果连最小的都打不过，那么说明已经无法从占领区域中扩展了，就这样不断扩大占领区域，用优先队列维护相邻的点，直到能扩展到 n 点就说明可以到达（注：不用扩展到全部点）。 <strong>假设</strong>我们能够到达 n 点，那么和之前类似，如果到达该点发现打不过，那么我们可以加上一个等待时间 <code>wait</code> 直到能击败该节点为止 <code>dis[pre]+1+wait &lt; dis[y]</code> 那么更新 y 点，但是这个时候需要用 <code>dijkstra</code> 来确保始终从距离最小的点更新。之前判断能不能的时候，我们其实已经达到过n，也就是对所有点，wait最多可以是最终的最优解dis[n]，因为最多可以打dis[n]个小怪来补充攻击力，打败当前点 <code>wait&gt;=dis[n]</code>的话，也没关系，因为最后松弛操作会把这种情况滤掉</li>
+</ol>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>PintOS安装</title>
+    <url>/2023/10/05/%E5%B7%A5%E5%85%B7/20231005-PintOS%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="about">About</h1>
+<p>Pintos is a simple operating system. we will run Pintos projects in a system simulator （QEMU or Bochs, a program that simulates an 80x86 CPU and its peripheral devices accurately enough that unmodified operating systems and software can run under it.</p>
+<h1 id="pintos-prerequisites">Pintos Prerequisites</h1>
+<ul>
+<li>GCC. Version 4.0 or later</li>
+<li>GNU bintiles:</li>
+<li>Perl. Version 5.8.0 or later is preferred.Version 5.6.1 or later should work -GNU make, veersion 3.80 or later -QEMU: version 0.11.0 or later <code>qemu-system-x86_64 --version</code> -GDB.</li>
+</ul>
+<h1 id="building">Building</h1>
+<p>Pintos consists several modules or subtasks like <code>threads/</code>,<code>userprog/</code> and <code>vm/</code>. And we need to complete them one by one.</p>
+<p>To build Pintos from source codes after finishing the subtask, for example <code>threads/</code>. Run command <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> src/threads/</span><br><span class="line">make </span><br></pre></td></tr></table></figure> After that, <code>builds/</code> was created under <code>threads/</code>, kernel, loader, test and other dependencies are created under <code>builds/</code> at the same time.</p>
+<h1 id="testing">Testing</h1>
+<p>After build Pintos, in directory <code>threads/</code>, Run command <code>make check</code>. Test results will be created under <code>threads/build/</code>, which tells the results of testing.</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Hexo-Next主题外接评论系统</title>
+    <url>/2022/06/29/%E5%B7%A5%E5%85%B7/Hexo-Next%E4%B8%BB%E9%A2%98%E5%A4%96%E6%8E%A5%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="前言">前言</h3>
+<pre><code>**Waline** 是一款基于 **Valine** 衍生的评论系统，首先在笔者目前使用的 NexT 8.12.1 下已经不再内置 Valine 系统，需要自己手动配置。 看了一圈其他的评论系统，貌似只有 Waline 支持数学公式，所以最终选择 Waline 评论系统</code></pre>
+<span id="more"></span>
+<h3 id="配置数据库和服务端部署">配置数据库和服务端部署</h3>
+<pre><code>选择[Leanclound]([LeanCloud](https://www.leancloud.cn/)) 作为评论数据库，在 Vercel 上部署服务端。接着就按照 [Waline的官方文档](https://waline.js.org/guide/get-started.html#leancloud-%E8%AE%BE%E7%BD%AE-%E6%95%B0%E6%8D%AE%E5%BA%93) 进行操作即可。这里介绍几个注意的点：</code></pre>
+<ol type="1">
+<li><p>注册时推荐使用国际版，否则需要绑定备案的域名，比较麻烦。</p></li>
+<li><p>在 Vercel 上部署服务端时，注意环境变量名称 <code>LEAN_ID</code>, <code>LEAN_KEY</code> 和 <code>LEAN_MASTER_KEY</code>一定要一字不差。遇到访客评论系统在不登录账号时报错如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Invalid value type for field &#x27;link&#x27;,value &#x27;&quot;&quot;&#x27;,expect type is &#123;:type &quot;Object&quot;&#125;,but it is &#x27;&#123;:type &quot;String&quot;&#125;&#x27;. [400 POST https://ioksy7et.api.lncldglobal.com/1.1/classes/Comment]</span><br></pre></td></tr></table></figure>
+<p>解决方法：重新在 Leanclound 上创建<code>Comment</code> 类。</p></li>
+</ol>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206301329339.png" alt="在 数据储存中创建新的Comment类" /><figcaption aria-hidden="true">在 数据储存</code>中创建新的Comment类</figcaption>
+</figure>
+<h3 id="在-hexo-上使用-waline">在 Hexo 上使用 Waline</h3>
+<p>在 Hexo 根目录下执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install @waline/hexo-next</span><br></pre></td></tr></table></figure>
+<p>接着你可以在 Hexo 根目录下 <code>\node_modules\@waline</code> 中找到 <code>default.yaml</code> 文件，里面就是所有 Waline 的设置选项了。 为了方便将其中需要改变的选项手动写入到 <code>next</code> 主题下 的 <code>_config.yaml</code>中， 以下是部分参考，更多的选项设置在上述 <code>default.yaml</code> 中：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment">#是否开启</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">waline-server-ecru.vercel.app</span> <span class="comment"># Waline #服务端地址，我们这里就是上面部署的 Vercel 地址</span></span><br><span class="line">  <span class="attr">locale:</span></span><br><span class="line">    <span class="attr">placeholder:</span> <span class="string">疑义相与析，畅所欲言，不登录也没关系哒</span> <span class="comment"># #评论框的默认文字</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># 头像风格</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>,<span class="string">mail</span>] <span class="comment"># 自定义评论框上面的三个输入框的内容</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># 评论数量多少时显示分页</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># 语言, 可选值: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># 文章阅读统计</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示</span></span><br><span class="line">  <span class="attr">requiredFields:</span> [<span class="string">nick</span>] <span class="comment"># 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]</span></span><br><span class="line">  <span class="attr">libUrl:</span> <span class="string">https://unpkg.com/@waline/client@v2/dist/waline.js</span> <span class="comment"># Set custom library cdn url</span></span><br><span class="line">  <span class="attr">login:</span> <span class="string">enable</span></span><br></pre></td></tr></table></figure>
+<h3 id="登录服务端">登录服务端</h3>
+<p>接着部署后就能够看到登录按钮，进行登录，貌似第一个登录的账号就会有个 <strong>博主</strong> 的标识。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206292335984.png" alt="进入登录界面" /><figcaption aria-hidden="true">进入登录界面</figcaption>
+</figure>
+<p>但是访客不登陆也能评论。访客填写不同的邮箱会显示其对应账号的头像。</p>
+<p>最后效果可以参见<span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnLw==">官方文档<i class="fa fa-external-link-alt"></i></span> 。</p>
+<h3 id="参考">参考</h3>
+<p><span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWw=">官方文档<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9xaWFuZmFuZ3VvamluLnRvcC8yMDIyLzAxLzIwL0hleG8lRTUlOEQlOUElRTUlQUUlQTIlRTglQkYlOUIlRTklOTglQjYlRUYlQkMlOUElRTQlQjglQkEtTmV4dC0lRTQlQjglQkIlRTklQTIlOTglRTYlQjclQkIlRTUlOEElQTAtV2FsaW5lLSVFOCVBRiU4NCVFOCVBRSVCQSVFNyVCMyVCQiVFNyVCQiU5Ri8=">谢同学博客<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>HTML</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>三角形中的几个恒等式</title>
+    <url>/2022/07/01/%E6%95%B0%E5%AD%A6/%E4%B8%89%E8%A7%92%E5%BD%A2%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%81%92%E7%AD%89%E5%BC%8F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>在 <span class="math inline">\(\Delta ABC\)</span> 中，以下等式成立</p>
+<h3 id="正余弦平方和">正余弦平方和</h3>
+<p><span class="math display">\[
+\sin A+\sin B+\sin C=4\cos  \frac{A}{2}\cos  \frac{B}{2}\cos  \frac{C}{2}\ \tag{1}
+\]</span></p>
+<p>证：</p>
+<p><span class="math display">\[
+\begin{aligned} LHS &amp;= 2\,\sin \frac{A+B}{2}\,\cos \frac{A-B}{2} +\sin C  \\ &amp;= 2 \,\cos  \frac{C}{2}\,\cos \frac{A-B}{2}+2\,\sin \frac{C}{2}\,\cos \frac{C}{2}\\ &amp;=2\,\cos  \frac{C}{2}\,(\cos \frac{A-B}{2}+\cos \frac{A+B}{2})\\ &amp;=4\,\cos \frac{A}{2}\,\cos \frac{B}{2}\,\cos \frac{C}{2} \\ \end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\cos A+\cos B+\cos C=1+4\sin  \frac{A}{2}\sin  \frac{B}{2}\sin  \frac{C}{2}\\ \tag{2}
+\]</span></p>
+<p>证：</p>
+<p><span class="math display">\[
+\begin{aligned} LHS &amp;= 2\,\cos \frac{A+B}{2}\,\cos \frac{A-B}{2} + 1-2\,\sin ^2\frac{C}{2}  \\  &amp;= 1-2\,\sin \frac{C}{2}\,(\sin \frac{C}{2}-\cos \frac{A-B}{2})  \\ &amp;=1-2\,\sin \frac{C}{2}\,(\cos \frac{A+B}{2}-\cos \frac{A-B}{2})   \\ &amp;=1-2\,\sin \frac{C}{2}\,(-2\,\sin \frac{A}{2}\,\sin \frac{B}{2})\\ &amp;=1+4\sin  \frac{A}{2}\sin  \frac{B}{2}\sin  \frac{C}{2} \end{aligned}
+\]</span></p>
+<h3 id="正余半角平方和">正余半角平方和</h3>
+<p><span class="math display">\[
+\sin ^2\frac{A}{2}+\sin ^2\frac{B}{2}+\sin ^2\frac{C}{2}= 1-2\,\sin \frac{A}{2}\sin \frac{B}{2}\sin \frac{C}{2}\tag{3}
+\]</span></p>
+<p>证：</p>
+<p><span class="math display">\[
+\begin{aligned} RHS &amp;= 1+\sin \frac{C}{2}\,(\cos \frac{A+B}{2}-\cos \frac{A-B}{2}) \\ &amp;=  1+\sin ^2\frac{C}{2}- \cos \frac{A+B}{2}\cos \frac{A-B}{2}\\ &amp;=  1+\sin ^2\frac{C}{2}-\frac{\cos A+\cos B}{2} \\ &amp;= 1+\sin ^2\frac{C}{2}-\frac{2-2\sin ^2\frac{A}{2}-2\sin ^2\frac{B}{2}}{2}   \\ &amp;=  \sin ^2\frac{A}{2}+\sin ^2\frac{B}{2}+\sin ^2\frac{C}{2} \end{aligned}
+\]</span></p>
+<p>同理易得：</p>
+<p><span class="math display">\[
+\cos ^2\frac{A}{2}+\cos ^2\frac{B}{2}+\cos ^2\frac{C}{2}= 2+2\,\sin \frac{A}{2}\sin \frac{B}{2}\sin \frac{C}{2}\tag{4}
+\]</span></p>
+<h3 id="正割余割和">正割余割和</h3>
+<p><span class="math display">\[
+\tan A+\tan B+\tan C=\tan A\;\tan B\;\tan C \tag{5}
+\]</span></p>
+<p>证：</p>
+<p><span class="math display">\[
+\begin{gather*} \text{和角公式：}\tan C = -\frac{\tan A+\tan B}{1-\tan A\;\tan B}\\ \tan C-\tan A\;\tan B\;\tan C = -(\tan A+\tan B)\\ \text{移项后得到结论} \end{gather*}
+\]</span></p>
+<p>推论：</p>
+<p><span class="math display">\[
+\cot A\,\cot B+\cot A\,\cot C+\cot B\,\cot C =1\tag{6}
+\]</span></p>
+<p>证：</p>
+<p><span class="math display">\[
+\begin{aligned} \text{由 (5)得到: }\frac{1}{\tan A\,\tan B}&amp;=\frac{\tan C}{\tan A+\tan B+\tan C}\\ \frac{1}{\tan A\,\tan C}&amp;=\frac{\tan B}{\tan A+\tan B+\tan C}\\ \frac{1}{\tan B\,\tan C}&amp;=\frac{\tan A}{\tan A+\tan B+\tan C}\\ \end{aligned}
+\]</span></p>
+<p>三个式子相加即可</p>
+<h3 id="正余割半角">正余割半角</h3>
+<p><span class="math display">\[
+\cot \frac{A}{2}\cot \frac{B}{2}\cot \frac{C}{2} = \cot \frac{A}{2}\,\cot \frac{B}{2}\,\cot \frac{C}{2} \tag{7}
+\]</span></p>
+<p>证： 受到 (5) 启发，只需证明</p>
+<p><span class="math display">\[
+cot \frac{C}{2} = -\frac{\cot \frac{A}{2}+\cot \frac{B}{2}}{1-\cot \frac{A}{2}\,\cot \frac{B}{2}}
+\]</span></p>
+<p>即证：</p>
+<p><span class="math display">\[
+\begin{gather*} \tan\frac{C}{2} =\frac{\cot \frac{A}{2}\,\cot \frac{B}{2}-1}{\cot \frac{A}{2}+\cot \frac{B}{2}}\\ \Leftarrow \tan\frac{C}{2} = \frac{1-\tan\frac{A}{2}\tan\frac{B}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}} \end{gather*}
+\]</span></p>
+<p>推论：</p>
+<p><span class="math display">\[
+\tan\frac{A}{2}\tan\frac{B}{2}+\tan\frac{B}{2}\tan\frac{C}{2}+\tan\frac{A}{2}\tan\frac{C}{2} = 1 \tag{8}
+\]</span></p>
+<p>由 (7) 移项得到</p>
+<p><span class="math display">\[
+\begin{gather*} \tan\frac{A}{2}\tan\frac{B}{2}=\frac{\tan\frac{A}{2}\,\tan\frac{B}{2}\,\tan\frac{B}{2}\,\cot\frac{C}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}+\tan\frac{C}{2}}\\ \tan\frac{A}{2}\tan\frac{C}{2}=\frac{\tan\frac{A}{2}\,\tan\frac{B}{2}\,\tan\frac{B}{2}\,\cot\frac{B}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}+\tan\frac{C}{2}}\\ \tan\frac{B}{2}\tan\frac{C}{2}=\frac{\tan\frac{A}{2}\,\tan\frac{B}{2}\,\tan\frac{B}{2}\,\cot\frac{A}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}+\tan\frac{C}{2}}\\ \end{gather*} \\
+\]</span></p>
+<p>三个式子相加即可</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+  </entry>
+  <entry>
     <title>lightroomcahce</title>
     <url>/2022/07/13/%E5%B7%A5%E5%85%B7/lightroomcahce/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="目录缓存-catalog">目录缓存 (Catalog)</h2>
@@ -19,6 +170,93 @@
 ]]></content>
       <categories>
         <category>工具</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>不等式</title>
+    <url>/2022/07/05/%E6%95%B0%E5%AD%A6/%E4%B8%8D%E7%AD%89%E5%BC%8F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="oscillation">Oscillation</h2>
+<p>Example:</p>
+<p><span class="math display">\[
+\begin{gather}
+b_n=c_n \, a_n=(-1)^{n+1}a_n \text, \, a_n \geq 0\\
+\sum_{n=1}^{N} b_n \leq \sum_{n=1}^{N}\left| b_n \right| = \sum_{n=1}^N a_n
+\end{gather}
+\]</span></p>
+<p>Use <em>Euler's formula</em> to rewrite</p>
+<p><span class="math display">\[
+(-1)^n=e^{2\pi in\frac{1}{2}}=\cos(2\pi n\frac{1}{2})+i\sin(2\pi n\frac{1}{2})
+\]</span></p>
+<p>Periodicity is 2. Moreover , Take periodicity k</p>
+<p><span class="math display">\[
+(e^{2\pi i\frac{1}{k}})^{n+k}= (e^{2\pi i\frac{1}{k}})^{n}\\
+\]</span></p>
+<h3 id="fourier-series">Fourier series</h3>
+<p>More generally, for $ x$, consider <span class="math inline">\(e^{-i\omega n}\)</span>: Periodicity <span class="math inline">\(\frac{1}{x}\)</span>, and <span class="math inline">\(\omega = \frac{2\pi}{x}\)</span></p>
+<p><span class="math display">\[
+F(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}\text{     ,              }
+F_N(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}
+\]</span></p>
+<p>Generate a new function on <span class="math inline">\(\left[-1,1\right]\)</span> , known as Fourier analysis.</p>
+<p>Since <span class="math inline">\(|e^{i\theta}|\leq 1\)</span>, therefore</p>
+<h3 id="introduction-a-norm">introduction a norm</h3>
+<p>For a sequence <span class="math inline">\((a_n)_{n\in\mathbb{Z}}\in\mathbb{R}\)</span>, Let</p>
+<p><span class="math display">\[
+\left\|a_n \right\|_{\boldsymbol l^2}:= (\sum _{n=-\infty}^\infty |a_n|^p )^\frac{1}{p} \text{  for } p\in [1,\infty]
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\|a_n\| = \mathop{sup}\limits_{n\in\mathbb{Z}}|a_n|
+\]</span></p>
+<p>We can measure the distance between two sequences e.g. for <span class="math inline">\(c_n=(-1)^{n+1}\)</span> and <span class="math inline">\(d_n=(-1)^{n+1}(1+\frac{1}{n})\)</span>.</p>
+<p><span class="math display">\[
+\|c_n-d_n\|=(\sum_{n=-\infty}^{\infty}\frac{1}{n^2})^\frac{1}{2}=\frac{\pi}{\sqrt6}\leq2
+\]</span></p>
+<h3 id="l2-estimate-crude"><span class="math inline">\(L^2\)</span>-estimate: Crude</h3>
+<p>Recall the crude estimate :<span class="math inline">\(|F_N(x)| \leq \sum_{n=-N}^{n=N} a_n\)</span> ：no oscillation</p>
+<p>This yields</p>
+<p><span class="math display">\[
+\begin{aligned}
+\|F_N\|_{L^2}&amp;=(\int_{-1}^1(F_N(x))^2d\,x)^\frac{1}{2}\\
+&amp;\leq(\int_{-1}^1a_n^2d\,x)^\frac{1}{2})\\
+&amp;=2^{\frac{1}{2}}\sum_{n=-N}^{N} a_n
+\end{aligned}
+\]</span></p>
+<p>In particular, if <span class="math inline">\(a_n=1\)</span> for all <span class="math inline">\(|n|\leq N\)</span> then</p>
+<p><span class="math display">\[
+\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| \leq 2^\frac{3}{2}N
+\]</span></p>
+<p><span class="math inline">\(L^2\)</span> -size of <span class="math inline">\(F_N(x)\)</span> is bounded by <span class="math inline">\(O(N)\)</span></p>
+<h3 id="theorem-3-parsevals-identity">Theorem 3 (Parseval's identity)</h3>
+<p><span class="math display">\[
+\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| \leq 2N^\frac{3}{2}\ll2^\frac{3}{2}N
+\]</span></p>
+<p>Multiplying out the square:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\|\sum_{n=-N}^N e^{-i\omega n}\| &amp;=(\int_{-1}^1(\sum_{n=-N}^N e^{-i\omega n}) ^2d\,x)^\frac{1}{2}\\
+&amp;=\int_{-1}^1 \sum_{n=-N}^N e^{-i\omega n}\sum_{m=-N}^N e^{-i\omega n}d\,x\\
+&amp;= \sum_{n=-N}^N\sum_{m=-N}^N \int_{-1}^1  e^{-i\omega (n-m)}d\,x
+\end{aligned}
+\]</span></p>
+<p>For the diagonal case (m=n)</p>
+<p><span class="math display">\[
+\int_{-1}^1  e^{-i\omega (n-m)}d\,x =2
+\]</span></p>
+<p>For the non-diagonal case (<span class="math inline">\(n\neq m\)</span>)</p>
+<p><span class="math display">\[
+\int_{-1}^1  e^{-i\omega (n-m)}d\,x =-\frac{1}{2\pi i (n-m)}(e^{-2\pi i (n-m)}-e^{2\pi i (n-m)})=0
+\]</span></p>
+<p>Same argument shows more generally</p>
+<p><span class="math display">\[
+\begin{gather}
+\text{For any }a_n \;s.t.\|a_n\|_{l^2}=(\sum_{n=-\infty}^\infty |a_n|^2)^{\frac{1}{2}}&lt;\infty.\\
+\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| _{l^2}=2^{\frac{1}{2}}\|a_n\|_{l^2}
+\end{gather}
+\]</span></p>
+]]></content>
+      <categories>
+        <category>数学</category>
       </categories>
   </entry>
   <entry>
@@ -70,45 +308,346 @@
       </categories>
   </entry>
   <entry>
-    <title>Hexo-Next主题外接评论系统</title>
-    <url>/2022/06/29/%E5%B7%A5%E5%85%B7/Hexo-Next%E4%B8%BB%E9%A2%98%E5%A4%96%E6%8E%A5%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="前言">前言</h3>
-<pre><code>**Waline** 是一款基于 **Valine** 衍生的评论系统，首先在笔者目前使用的 NexT 8.12.1 下已经不再内置 Valine 系统，需要自己手动配置。 看了一圈其他的评论系统，貌似只有 Waline 支持数学公式，所以最终选择 Waline 评论系统</code></pre>
+    <title>将数量场转为向量场</title>
+    <url>/2022/06/28/%E6%95%B0%E5%AD%A6/%E5%B0%86%E6%95%B0%E9%87%8F%E5%9C%BA%E8%BD%AC%E4%B8%BA%E5%90%91%E9%87%8F%E5%9C%BA/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="题面">题面</h3>
+<pre><code>设$\Sigma(t)$ 是平面 $x+y+z=t$ 被球面 $x^2+y^2+z^2=1$ 截下的部分，设</code></pre>
+<p><span class="math display">\[
+F(x,y,z)=1-(x^2+y^2+z^2),
+\]</span></p>
+<pre><code>求证，对于$\left| t \right| \leq \sqrt 3$ 时，有</code></pre>
+<p><span class="math display">\[
+\int _{\Sigma(t)} F(x,y,z)\,d\sigma = \frac{\pi}{18} (3-t^2)^2
+\]</span></p>
 <span id="more"></span>
-<h3 id="配置数据库和服务端部署">配置数据库和服务端部署</h3>
-<pre><code>选择[Leanclound]([LeanCloud](https://www.leancloud.cn/)) 作为评论数据库，在 Vercel 上部署服务端。接着就按照 [Waline的官方文档](https://waline.js.org/guide/get-started.html#leancloud-%E8%AE%BE%E7%BD%AE-%E6%95%B0%E6%8D%AE%E5%BA%93) 进行操作即可。这里介绍几个注意的点：</code></pre>
-<ol type="1">
-<li><p>注册时推荐使用国际版，否则需要绑定备案的域名，比较麻烦。</p></li>
-<li><p>在 Vercel 上部署服务端时，注意环境变量名称 <code>LEAN_ID</code>, <code>LEAN_KEY</code> 和 <code>LEAN_MASTER_KEY</code>一定要一字不差。遇到访客评论系统在不登录账号时报错如下:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Invalid value type for field &#x27;link&#x27;,value &#x27;&quot;&quot;&#x27;,expect type is &#123;:type &quot;Object&quot;&#125;,but it is &#x27;&#123;:type &quot;String&quot;&#125;&#x27;. [400 POST https://ioksy7et.api.lncldglobal.com/1.1/classes/Comment]</span><br></pre></td></tr></table></figure>
-<p>解决方法：重新在 Leanclound 上创建<code>Comment</code> 类。</p></li>
-</ol>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206301329339.png" alt="在 数据储存中创建新的Comment类" /><figcaption aria-hidden="true">在 数据储存</code>中创建新的Comment类</figcaption>
-</figure>
-<h3 id="在-hexo-上使用-waline">在 Hexo 上使用 Waline</h3>
-<p>在 Hexo 根目录下执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install @waline/hexo-next</span><br></pre></td></tr></table></figure>
-<p>接着你可以在 Hexo 根目录下 <code>\node_modules\@waline</code> 中找到 <code>default.yaml</code> 文件，里面就是所有 Waline 的设置选项了。 为了方便将其中需要改变的选项手动写入到 <code>next</code> 主题下 的 <code>_config.yaml</code>中， 以下是部分参考，更多的选项设置在上述 <code>default.yaml</code> 中：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment">#是否开启</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">waline-server-ecru.vercel.app</span> <span class="comment"># Waline #服务端地址，我们这里就是上面部署的 Vercel 地址</span></span><br><span class="line">  <span class="attr">locale:</span></span><br><span class="line">    <span class="attr">placeholder:</span> <span class="string">疑义相与析，畅所欲言，不登录也没关系哒</span> <span class="comment"># #评论框的默认文字</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># 头像风格</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>,<span class="string">mail</span>] <span class="comment"># 自定义评论框上面的三个输入框的内容</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># 评论数量多少时显示分页</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># 语言, 可选值: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># 文章阅读统计</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示</span></span><br><span class="line">  <span class="attr">requiredFields:</span> [<span class="string">nick</span>] <span class="comment"># 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]</span></span><br><span class="line">  <span class="attr">libUrl:</span> <span class="string">https://unpkg.com/@waline/client@v2/dist/waline.js</span> <span class="comment"># Set custom library cdn url</span></span><br><span class="line">  <span class="attr">login:</span> <span class="string">enable</span></span><br></pre></td></tr></table></figure>
-<h3 id="登录服务端">登录服务端</h3>
-<p>接着部署后就能够看到登录按钮，进行登录，貌似第一个登录的账号就会有个 <strong>博主</strong> 的标识。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202206292335984.png" alt="进入登录界面" /><figcaption aria-hidden="true">进入登录界面</figcaption>
-</figure>
-<p>但是访客不登陆也能评论。访客填写不同的邮箱会显示其对应账号的头像。</p>
-<p>最后效果可以参见<span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnLw==">官方文档<i class="fa fa-external-link-alt"></i></span> 。</p>
-<h3 id="参考">参考</h3>
-<p><span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWw=">官方文档<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9xaWFuZmFuZ3VvamluLnRvcC8yMDIyLzAxLzIwL0hleG8lRTUlOEQlOUElRTUlQUUlQTIlRTglQkYlOUIlRTklOTglQjYlRUYlQkMlOUElRTQlQjglQkEtTmV4dC0lRTQlQjglQkIlRTklQTIlOTglRTYlQjclQkIlRTUlOEElQTAtV2FsaW5lLSVFOCVBRiU4NCVFOCVBRSVCQSVFNyVCMyVCQiVFNyVCQiU5Ri8=">谢同学博客<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="方法一">方法一</h3>
+<pre><code>将原坐标系$X Y Z$ 进行变换，新坐标系的 $X&#39;OY&#39;$ 平面为原坐标系的平面 $x+y+z=0$ ，坐标 $z&#39;$ 为点在原坐标系下距离 $\Sigma(0)$ 的距离，$z&#39; = \frac &#123;t&#125;&#123;\sqrt3&#125;$ ， 为了渐变就沿用 $xyz$ 命名好了。接下来就是很普通的在 $z=\frac&#123;t&#125;&#123;\sqrt 3&#125;$ 上将 $xy$ 化为极坐标的积分了。</code></pre>
+<p><span class="math display">\[
+\begin{gather}
+\begin{aligned}
+\iint _{z=\frac{t}{\sqrt 3}} 1-z^2\,d\sigma &amp;= \int_0^{2\pi}d\theta \int_0^{\sqrt {1-\frac{t^2}{3}}}(1-\frac{t^2}{3}-r^2) r\,dr\\
+ &amp;=\frac{\pi}{18} (3-t^2)^2
+ \end{aligned}
+\end{gather}
+\]</span></p>
+<h3 id="方法二">方法二</h3>
+<pre><code>这个方法比较绕，是利用$Gauss$ 定理 + 补面的方式。但是 F 是个数量场，怎么把它变成向量场呢?</code></pre>
+<p><span class="math display">\[
+\begin{equation}
+\iint_S F dS  =\iint_S \boldsymbol{v}\, \vec{n} \,dS
+\end{equation}
+\]</span></p>
+<p>所以现在就是需要去确定一种 <span class="math inline">\(\vec{v}\)</span> 和 <span class="math inline">\(\vec{n}\)</span> 使其点乘为 <span class="math inline">\(F\)</span> ， 为了简便 <span class="math inline">\(\vec{v} = (1-z^2) \,\vec{k}\)</span> ，<span class="math inline">\(\vec{n}=\vec{k}\)</span>， 在进行补面就能使用高斯公式了，设 <span class="math inline">\(V\)</span> 为 <span class="math inline">\(S_1:z=\frac{t}{\sqrt3}\)</span> 和球面 <span class="math inline">\(S_2:x^2+y^2+z^2=1\)</span> 围成的面积。</p>
+<p><span class="math display">\[
+\begin{gather}
+\begin{aligned}
+\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS &amp; = \iiint_V \Delta\,\vec{v} \, d\vec{S}\\
+&amp;=\iiint_V2z \,  dxdydz
+\end{aligned}
+\end{gather}
+\]</span></p>
+<p>注意因为高斯定理要求向量场指向平面的外侧，上面公式的 <span class="math inline">\(\vec{v}\)</span> 的方向与的我们构造的<span class="math inline">\(\vec{v}\)</span> 之间方向相反。</p>
+<p>再将<span class="math inline">\(xyz\)</span> 换为极坐标 (注意这里和 <span class="math inline">\(t\)</span> 没什么关系，<span class="math inline">\(t\)</span> 只是个常数)</p>
+<p><span class="math display">\[
+\begin{cases}
+x= (1-z^2)\,r\,cos\theta\\
+y= (1-z^2)\,r\,sin\theta\\
+z=z\\
+\end{cases}
+\]</span></p>
+<p>然后三重积分</p>
+<p><span class="math display">\[
+\begin{gather}
+\begin{aligned}
+\iiint_V2z \,  dxdydz &amp;= 2\pi\int_{\frac{t}{\sqrt3}}^1z\,dz\int_0^{\sqrt{1-z^2}}r\,dr\\
+&amp; = -\frac{\pi}{18}(3-t^2)^2
+\end{aligned}
+\end{gather}
+\]</span></p>
+<p>而另一方面</p>
+<p><span class="math display">\[
+\because 1-z^2 = 0 \,\text{in} \,S_2\\
+\therefore
+\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS = 0\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{gathered}
+\begin{aligned}
+\iint_{S_1} \boldsymbol{v}\, \vec{n} \,dS &amp;=\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS-\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS \\
+&amp;=\frac{\pi}{18}(3-t^2)^2
+\end{aligned}
+\end{gathered}
+\]</span></p>
 ]]></content>
       <categories>
-        <category>工具</category>
+        <category>数学</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>MRTK2</title>
+    <url>/2023/08/14/%E6%8A%80%E6%9C%AF/20230814-MRTK2/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="简介">简介</h1>
+<p>为加快 MR 应用开发的一套组件和特性。</p>
+<h2 id="the-main-configuration-profile">The Main configuration profile</h2>
+<p>绑定在 <em>MixedRealityToolkit</em> 对象上，为 Toolkit 提供入点</p>
+<h1 id="配置文件">配置文件</h1>
+<ul>
+<li>Expeience settings : 默认的 MR 环境尺度</li>
+<li>Camera:</li>
+<li>Input system settings:</li>
+</ul>
+<h1 id="特性分类">特性分类</h1>
+<h2 id="输入系统">输入系统</h2>
+<ul>
+<li>Interactable: 根据输入时间进行相应的 UX 组件 （interactable.cs)</li>
+<li>Cursor</li>
+<li>Focus</li>
+<li>Pointer：分为远近，Near Pointer 包括 Grab 和 Poke.</li>
+<li>Controller</li>
+<li>Device Manager : Input Data Providers, 用于检测创建和管理 Contrller 的生命周期</li>
+</ul>
+<p>由下至上构建输入系统，Device Manager 需要提过一个 InputSystemProfile 来进行配置。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Unity 烘焙光照贴图</title>
+    <url>/2023/09/27/%E6%8A%80%E6%9C%AF/20230927-Unity%20%E7%83%98%E7%84%99%E5%85%89%E7%85%A7%E8%B4%B4%E5%9B%BE/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>如何创建一个纯无光的环境呢，除了删除 Light 组件以外，还需在菜单Lighting 选项中，删除 Skybox Naterial 并且将 Ambient Color (环境光) 置为纯黑。</p>
+<p>OK. 下一步，在场景中添加一个平行光，阴影死黑，过度不自然</p>
+<h1 id="创建灯光烘焙">创建灯光烘焙</h1>
+<p>在需要进行光照烘焙的物体的 Inspector 面板 static 右侧小三角中选中 Contribute GI (全局光照)，将 Light 组件的 Mode 改为 Baked. 回到 Lighting 面板， 在 Baked Lighting maps 点击 Generate Lighting.</p>
+<p>将光线作用产生的 effect 转换为静态的贴图，因此删除 Light 后，光照并不会小适。</p>
+<p>作用：使更过度自然</p>
+<p>创建 Lighting Setting 以设置光照贴图设置。</p>
+<h1 id="mixed-和-baked">Mixed 和 Baked</h1>
+<p>Mixed ：烘焙间接光照，烘焙后不可删除改 Light</p>
+<p>Baked ：可删除 Light</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>关于Java</title>
+    <url>/2023/10/06/%E6%8A%80%E6%9C%AF/20231006-%E5%85%B3%E4%BA%8EJava/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="java-pipeline">Java Pipeline</h1>
+<p>Java 是一种语言，也是一个平台.</p>
+<p>关于 Java 语言： 1. 源代码以 <code>.java</code> 为扩展名。 2. 编译器(javac) 将源代码(.java) 编译为字节码 <code>.class</code> 文件。<code>.class</code> 是 Java 虚拟机的机器语言，与所属硬件无关，因此相同的 <code>.class</code> 文件能在不同操作系统中运行。 <img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231006-关于Java-2023-10-06-23-28-52.png" alt="20231006-关于Java-2023-10-06-23-28-52" /> 3. Java 虚拟机与硬件通信。</p>
+<p>关于 Java 平台 - Java Virtual Machine - <span class="exturl" data-url="aHR0cHM6Ly9kb2NzLm9yYWNsZS5jb20vamF2YXNlLzgvZG9jcy9pbmRleC5odG1s">API<i class="fa fa-external-link-alt"></i></span> : 提供基本的库函数</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231006-关于Java-2023-10-06-23-30-26.png" alt="API 和 Java 虚拟机将程序与底层硬件隔离开来" /><figcaption aria-hidden="true">API 和 Java 虚拟机将程序与底层硬件隔离开来</figcaption>
+</figure>
+<h1 id="packages">Packages</h1>
+<p>定义: package 是一组提供访问保护和名称空间管理的相关类型。包名称全部小写，以避免与类或接口的名称冲突</p>
+<h2 id="创建">创建</h2>
+<p>1.选择一个包名称，包名称全部小写，以避免与类或接口的名称冲突。</p>
+<p>2.将带有该名称的 package 语句放在 每一个源码文件 的顶部，源文件包含要包含在包中的类型(类，接口，枚举和注解类型) &gt;注意: 如果在单个源文件中放置多个类型，则只能有一个为 public，并且它必须与源文件具有相同的名称。例如，你可以在文件 Circle.java 中定义 public class Circle，在文件 Draggable.java 中定义 public interface Draggable ，在文件 Day.java 中定义 public enum Day等等。</p>
+<h2 id="导入">导入</h2>
+<p>要从包外部使用 public 包成员，你必须执行以下操作之一：</p>
+<ul>
+<li>通过其完全限定名称引用该成员</li>
+<li>导入包成员</li>
+<li>导入成员的整个包: 要导入特定包中包含的所有类型，请使用带有星号 (*) 通配符的 import 语句。 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> graphics.*;</span><br></pre></td></tr></table></figure> 为方便起见，Java 编译器会自动为每个源文件导入两个完整的包：(1) java.lang 包和 (2) 当前包(当前文件的包)。</li>
+</ul>
+<h1 id="jdk-和-jre">JDK 和 JRE</h1>
+<p>Oracle has two products that implement Java Platform Standard Edition (Java SE) 8: Java SE Development Kit (JDK) 8 and Java SE Runtime Environment (JRE) 8. 前者面向 developers.</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231006-关于Java-2023-10-06-23-33-28.png" alt="JDK" /><figcaption aria-hidden="true">JDK</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>技术</category>
       </categories>
       <tags>
         <tag>HTML</tag>
-        <tag>Hexo</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>UEFI和Legacy</title>
+    <url>/2023/10/29/%E6%8A%80%E6%9C%AF/20231029-UEFI%E5%92%8CLegacy/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="boot-up-process">Boot-up process</h1>
+<p>ROM 加载进内存 MBR， 智能和 GPT 分区</p>
+<p>在计算机启动时，内存中没有加载指令。所以 CPU 将切换到系统固件(firmware), 以执行 boot 过程</p>
+<p>Firmware 的代码由主板厂商提供，第一步执行 Power On Self Test 和 启动连接的外围设备。接着主板将执行 bootloader 的指令。常见的 bootloader 有 LILO 和 GRUB.Fimeware 通常被称为 BIOS.</p>
+<h1 id="legacy-boot">Legacy Boot</h1>
+<p>全称 <em>the boot process used by the BIOS firmware to initialize hardware devices</em>. 检查 说有连接设备的 (MBR), 通常是硬盘的第一个扇区。</p>
+<p>当在当前设备没有找到 bootloader 时，Legacy 将切换到下一个设备指导找到 bootloader.</p>
+<h1 id="uefi">UEFI</h1>
+<p>全称 <em>modern way of handling the boot process</em>. 将 boot 数据储存到 .efi 文件 而非固件中。</p>
+<h1 id="段指针">段指针</h1>
+<p>segment offset</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Ananconda问题</title>
+    <url>/2022/07/22/%E6%8A%80%E6%9C%AF/Ananconda%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>打开 <strong>Anaconda</strong> 时出现</p>
+<h3 id="解决方法">解决方法</h3>
+<p>取消代理</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207221821701.png" /></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>鸟哥的Linux私房菜</title>
+    <url>/2023/12/23/%E6%8A%80%E6%9C%AF/20231223-%E9%B8%9F%E5%93%A5%E7%9A%84Linux%E7%A7%81%E6%88%BF%E8%8F%9C/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="第0章-计算机概论">第0章 计算机概论</h1>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231223232318.png" alt="20231223232318" /><figcaption aria-hidden="true">20231223232318</figcaption>
+</figure>
+<p>南桥（Southbridge）是计算机主板上一种重要的芯片组（Chipset）组件，它负责处理与主板上的外围设备和低速设备的通信。而目前北桥已被整合进了CPU内部。</p>
+<h2 id="cpu">CPU</h2>
+<ul>
+<li>外频： CPU 与外部组件之间的通信速度， 倍频： 内部加速</li>
+<li>频率速度： 外频 * 倍频</li>
+<li>前端总线速度 (Front Side Bus, FSB) = 内存频率 * 位宽</li>
+</ul>
+<h2 id="内存">内存</h2>
+<p>个人电脑的内存主要元件为动态随机存取内存（Dynamic Random Access Memory， DRAM. DRAM 技术有两代技术：SDRAM 与 DDR (Double Data Rate). DDR 在一次工作周期中进行多次次数据的传送，而核心频率从 DDR1 到 DDR3 变化不大.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231223233646.png" /></p>
+<p>而为了增加数据位宽， 采用多通道技术， 例如 DDR3-1600 有 2 个通道，如果每个通道有 64 位， 则总线宽度为 128 位， 传输速度为 1600 * 128 / 8 = 25600 MB/s.</p>
+<p>除了 DRAM, 还有静态随机存取内存（Static Random Access Memory， SRAM）, 速度比 DRAM 快， 但是价格也贵很多， 一般用于 CPU 的二级缓存.</p>
+<p>ROM 为只读存储器， 用于存储 BIOS 等固件， 一般不可写入， 但是也有可写入的 ROM， 例如 EEPROM, Flash 等.</p>
+<h2 id="显卡">显卡</h2>
+<p>显卡的插槽通常为 PCLe, 有 1x, 4x, 8x, 16x 等， 代表了通道的数量， 例如 16x 代表有 16 个通道. 一般家用 CPU 最大允许 16x. 如需扩展只能接在南桥上， 速度较慢.</p>
+<h2 id="硬盘">硬盘</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231223235310.png" alt="20231223235310" /> 如图所示，外圈具有更多的扇区，因此默认从外向内进行读取。扇区一般为 512Byte 或者 4kByte.</p>
+<h1 id="第一章-linux-历史">第一章 Linux 历史</h1>
+<p>1960年代初期，麻省理工学院（MIT）发展了： “相容分时系统（Compatible Time-Sharing System， CTSS）”， 它可以让大型主机通过提供数个终端机（terminal）以连线进入主机，来利用主机的资源进行运算工作。</p>
+<p>1969年，Thompson 实现了一个文件系统 Unics. 这个文件系统有两个重要的概念，分别是：</p>
+<ul>
+<li><p>所有的程序或系统设备都是文件</p></li>
+<li><p>不管建构编辑器还是附属文件，所写的程序只有一个目的，且要有效的完成目标</p></li>
+</ul>
+<p>1973年：Unix的正式诞生，Ritchie等人以C语言写出第一个正式Unix核心</p>
+<p>1977年, Bill Joy 开发了 Berkeley Software Distribution (BSD) Unix, 成为 Unix 的分支.</p>
+<p>1979年，AT&amp;T推出 System V 第七版 Unix 后，这个情况就有点改善了，支持x86架构的个人计算机系统，且将 Unix 版权收回</p>
+<p>1983年，Richard Stallman 开始 GNU 项目， 以 GPL 授权发布软件， 以保证软件的自由性. GNU 原本像实现一个完整的 Unix 系统， 但是缺少内核. 于是先实现了一些软件如， gcc, emacs, bash 等. 后由 Linus Torvalds 开发了 Linux 内核, 参考标准的POSIX规范，以实现所有软件都能在 linux 上运行.</p>
+<h2 id="linux-版本">Linux 版本</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">3.10.0-123.el7.x86_64</span><br><span class="line">主版本.次版本.释出版本-修改版本</span><br></pre></td></tr></table></figure>
+<p>在 2.6.x 版本以前，托瓦兹将核心的发展趋势分为两股，并根据这两股核心的发展分别给予不同的核心编号，那就是：</p>
+<ul>
+<li><p>主、次版本为奇数：发展中版本（development） 如2.5.xx</p></li>
+<li><p>主、次版本为偶数：稳定版本（stable） 如2.6.xx</p></li>
+</ul>
+<p>从 3.0 版开始，核心主要依据主线版本 （MainLine） 来开发，开发完毕后会往下一个主线版本进行。 例如 3.10 就是在 3.9 的架构下继续开发出来的新的主线版本。而旧的版本在新的主线版本出现之后，会有两种机制来处理，一种机制为结束开发 （End of Live， EOL），亦即该程序码已经结束，不会有继续维护的状态。 另外一种机制为保持该版本的持续维护，亦即为长期维护版本 （Longterm）</p>
+<h1 id="磁盘分区">磁盘分区</h1>
+<p>在Linux系统中，每个设备都被当成一个文件来对待, SATA接口的硬盘文件名为 <code>/dev/sd[a-d]</code>. 分区的最小单位为磁盘的一个柱面。 分区的作用： - 数据的安全性： 因为每个分区的数据是分开的 - 将数据集中在柱面的区段中，提高数据读写性能 ## MBR 分区 在第一个扇区存放两个数据： - 主要开机记录区（Master Boot Record， MBR）：可以安装开机管理程序的地方，有446 Bytes - 分区表（partition table）：记录整颗硬盘分区的状态，有64 Bytes. 记录区段的起始和结束的柱面号码，最多记录四个分区。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231226155350.png" alt="磁盘分区表的作用示意图" /><figcaption aria-hidden="true">磁盘分区表的作用示意图</figcaption>
+</figure>
+<h3 id="延伸extended分区"><span class="exturl" data-url="aHR0cDovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9FeHRlbmRlZF9ib290X3JlY29yZA==">延伸(Extended)分区<i class="fa fa-external-link-alt"></i></span></h3>
+<p>一个扇区的分区表只能记录四个分区，那么可以通过额外的扇区来记录更多的分区信息</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231226160142.png" alt="磁盘分区表的作用示意图" /><figcaption aria-hidden="true">磁盘分区表的作用示意图</figcaption>
+</figure>
+<p>P1为主要分区，而P2则为延伸分区.上图右下方那个区块有继续分区出五个分区， 这五个由延伸分区继续切出来的分区，就被称为逻辑分区（logical partition）</p>
+<p>MBR 分区表的限制： - 操作系统无法抓取到 2.2T 以上的磁盘容量！ - MBR 仅有一个区块，若被破坏后，经常无法或很难救援。 - MBR 内的存放开机管理程序的区块仅 446Bytes，无法容纳较多的程序码。</p>
+<h2 id="gpt-磁盘分区表">GPT 磁盘分区表</h2>
+<p>GPT 将磁盘所有区块以此 LBA(Logical Block Address), 默认为 512Bytes 来规划. <img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231226160637.png" alt="GPT 分区表的结构示意图" /></p>
+<ul>
+<li><p>LBA0（MBR 相容区块）</p>
+<p>与 MBR 模式相似的，这个相容区块也分为两个部份，一个就是跟之前 446 Bytes 的 bootloader. 而在原本的分区表的纪录区内，这个相容模式仅放入一个特殊标志的分区，用来表示此磁盘为 GPT 格式之意。 而不懂 GPT 分区表的磁盘管理程序， 就不会认识这颗磁盘.</p></li>
+<li><p>LBA1（GPT 表头纪录）</p>
+<p>纪录分区表本身的位置与大小，同时纪录了备份用的 GPT 分区放置的位置， 同时放置了分区表的检验机制码。 若有错误，还可以通过取得备份的 GPT（磁盘最后的那个备份区块）来恢复 GPT 的正常运行.</p></li>
+<li><p>LBA2-33（实际纪录分区信息处）</p>
+<p>从 LBA2 区块开始，每个 LBA 都可以纪录 4 笔分区纪录，总共可以有 4 * 32 = 128 笔分区纪录.因为每个 LBA 有 512Bytes，因此每笔纪录用到 128 Bytes 的空间，除了每笔纪录所需要的识别码与相关的纪录之外，GPT 在每笔纪录中分别提供了 64bits 来记载开始/结束的扇区号码，因此，GPT 分区表对于单一分区来说， 他的最大容量限制就会在 $2^{64} * 512 $ Bytes = $ 2<em>{63} </em> 1k $ Bytes = <span class="math inline">\(2^{33}\)</span> TB</p></li>
+</ul>
+<h2 id="bios">BIOS</h2>
+<p>BIOS则是一个写入到主板上的一个固件, 在开机时执行的第一个程序，此后此后 BIOS 读取硬盘上的第一个扇区的 MBR 位置。将 MBR 中 446 bytes 的 boot loader 载入内存。最终由 boot loader 将操作系统载入。</p>
+<p>如果使用 GPT 分区，要求 BIOS 必须能正确识别 GPT.</p>
+<p>Bootloader 的主要任务： - 提供菜单：使用者可以选择不同的开机项目，例如双系统 - 载入核心文件：直接指向可开机的程序区段来开始操作系统; - 转交其他loader：将开机管理功能转交给其他loader负责。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231226163045.png" alt="Boot Loader 工作示意图" /><figcaption aria-hidden="true">Boot Loader 工作示意图</figcaption>
+</figure>
+<p>MBR的开机管理程序提供两个菜单，菜单一（M1）可以直接载入Windows的核心文件来开机; 菜单二（M2）则是将开机管理工作交给第二个分区的开机扇区（boot sector）</p>
+<h2 id="bios-boot-分区">BIOS boot 分区</h2>
+<p>BIOS Boot分区的存在是为了解决传统BIOS在引导过程中无法直接访问大于2TB（2,048GB）的存储空间的限制。由于传统BIOS使用32位的寻址方式，最大可以寻址2<sup>32个扇区，每个扇区大小为512字节，因此最多支持到2TB的硬盘（2</sup>32 * 512字节 = 2TB）。</p>
+<p>为了克服这个限制，引入了BIOS Boot分区。它被用作一个辅助分区，存储用于引导的引导加载程序（bootloader）。引导加载程序将位于大于2TB的存储设备上的操作系统的加载过程分割为两个步骤：首先从BIOS Boot分区加载引导加载程序，然后由引导加载程序继续加载操作系统。</p>
+<h2 id="uefi">UEFI</h2>
+<p>由于 BIOS 不支持 GPT分区，UEFI 的出现取代了 BIOS.</p>
+<h2 id="挂载">挂载</h2>
+<p>在Linux系统中设计类似于Windows中的分区的概念时，可以使用挂载（mount）来将磁盘分区与目录树结构关联起来。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231226165252.png" alt="目录树与分区之间的相关性" /><figcaption aria-hidden="true">目录树与分区之间的相关性</figcaption>
+</figure>
+<p>partition 1是挂载到根目录，至于partition 2则是挂载到/home这个目录</p>
+<p>在Linux系统中，可以通过以下步骤来设计类似的分区结构：</p>
+<ol type="1">
+<li><p>分区磁盘：首先，在磁盘上创建需要的分区。可以使用工具如fdisk或parted来创建和管理分区。例如，可以创建一个根分区和一个数据分区。</p></li>
+<li><p>格式化分区：对于每个创建的分区，需要使用文件系统格式化它们。常用的文件系统包括ext4、XFS和Btrfs等。例如，可以对根分区使用ext4文件系统，对数据分区使用XFS文件系统。</p></li>
+<li><p>挂载分区：将已格式化的分区挂载到适当的目录中。可以使用mount命令来挂载分区，指定分区路径和相应的挂载点。例如，将根分区挂载到/（根目录），将数据分区挂载到/home。</p></li>
+<li><p>设置自动挂载：如果希望在系统启动时自动挂载分区，可以在/etc/fstab文件中添加相应的条目。这样，每次系统启动时，分区将自动挂载到指定的挂载点。</p></li>
+</ol>
+<h2 id="tty">TTY</h2>
+<p>TTY（Teletypewriter）是指计算机系统中的一个终端设备。 Linux 默认提供六个终端用户进行登录, 其中 1 号终端为图形用户界面模式。 - <code>Ctrl + Alt + F1-F6</code> 切换 TTY - <code>starx</code> 启动图形界面 - <code>exit</code> 注销</p>
+<h1 id="linux-文件权限">Linux 文件权限</h1>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231226183550.png" alt="文件属性的示意图" /><figcaption aria-hidden="true">文件属性的示意图</figcaption>
+</figure>
+<ul>
+<li>第一栏代表文件类型和权限： 一般文件（-）， 目录（d）， 符号链接（l）， 字符设备（c）， 块设备（b）. 接下来的9个字符为文件所有者的权限，文件所属群组的权限，其他人的权限.</li>
+</ul>
+<h2 id="修改文件属性和权限">修改文件属性和权限</h2>
+<ul>
+<li><code>chgrp</code> 修改文件所属群组</li>
+<li><code>chown</code> 修改文件所有者</li>
+<li><code>chmod</code> 修改文件权限 每种身份的各自三个权限累加, e.g [-rwxrwx---] <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">owner = <span class="number">4</span> + <span class="number">2</span> + <span class="number">1</span> = <span class="number">7</span> </span><br><span class="line">group = <span class="number">4</span> + <span class="number">2</span> + <span class="number">1</span> = <span class="number">7</span></span><br><span class="line">others = <span class="number">0</span> </span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="目录与文件之权限意义">目录与文件之权限意义</h2>
+<ul>
+<li>"r" 表示读取权限（read），表示用户能够读取文件的内容或查看目录中的文件列表。</li>
+<li>"w" 表示写入权限（write），表示用户能够修改文件内容或在目录中创建、删除、重命名文件。</li>
+<li>"x" 表示执行权限（execute），对于文件来说，表示用户能够执行文件（如果是可执行文件），对于目录来说，表示用户能够进入目录，即访问目录中的内容。</li>
+</ul>
+<h2 id="linux文件种类与扩展名">Linux文件种类与扩展名</h2>
+<ul>
+<li><p>正规文件（regular file ）： 第一个字符为 [ - ],依照文件的内容，又大略可以分为：</p>
+<ul>
+<li>纯文本文件（ASCII）：称为纯文本文件是因为内容为我们人类可以直接读到的数据，例如数字、字母等等。 几乎只要我们可以用来做为设置的文件都属于这一种文件类型。 举例来说，你可以下达“ cat ~/.bashrc ”就可以看到该文件的内容。 （cat 是将一个文件内容读出来的指令）</li>
+<li>Binary</li>
+<li>data. 通过 last 指令读出来</li>
+</ul></li>
+<li><p>目录</p></li>
+<li><p>链接文件（link）：soft link. 类似Windows系统下面的捷径</p></li>
+<li><p>设备与设备文件（device）： 与系统周边及储存等相关的一些文件， 通常都集中在/dev这个目录之下, 通常又分为两种:</p>
+<ul>
+<li><p>区块（block）设备文件 ：储存数据， 以提供系统随机存取的周边设备，例如硬盘与软盘等！ <code>/dev/sda</code></p></li>
+<li><p>字符设备（Character Device）是一种设备驱动程序，用于与字符流进行交互。 字符设备与块设备（Block Device）相对应，块设备以固定大小的数据块（通常是512字节或更大）进行访问，而字符设备则以字符为单位进行访问。一些常见的字符设备包括终端设备（如终端终端/tty）、串行端口设备（如COM端口）、键盘、鼠标等。</p></li>
+</ul></li>
+</ul>
+<h2 id="linux目录配置的依据--fhs">Linux目录配置的依据--<span class="exturl" data-url="aHR0cDovL3JlZnNwZWNzLmxpbnV4Zm91bmRhdGlvbi5vcmcvRkhTXzMuMC9maHMtMy4wLnBkZg==">FHS<i class="fa fa-external-link-alt"></i></span></h2>
+<p>Filesystem Hierarchy Standard （FHS）标准 的目的： 让用户可以了解到已安装软件通常放置于那个目录下， 也就是说，FHS的重点在于规范每个特定的目录下应该要放置什么样子的资料而已。</p>
+<p>而将目录定义成为四种交互作用的形态</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231228150215.png" alt="20231228150215" /><figcaption aria-hidden="true">20231228150215</figcaption>
+</figure>
+<ul>
+<li><p>可分享的：多个计算机之间可以共享访问可以分享给其他系统挂载使用的目录，所以包括执行文件与用户的邮件等资料， 是能够分享给网络上其他主机挂载用的目录;</p></li>
+<li><p>不可分享的：自己机器上面运作的装置档案或者是与程序有关的socket档案等， 由于仅与自身机器有关，所以当然就不适合分享给其他主机了。</p></li>
+<li><p>不变的：有些数据是不会经常变动的，跟随着distribution而不变动。 例如函式库、文档说明文件、系统管理员所管理的主机服务配置文件等等;</p></li>
+<li><p>可变动的：经常改变的资料，例如登录文件、一般用户可自行收受的新闻群组等。</p></li>
+</ul>
+<h3 id="根目录-的意义和内容">根目录（/） 的意义和内容</h3>
+<p>常见目录 - /bin： 放置系统执行文件，例如 ls, cp, mv 等等 - /boot： 放置开机会使用到的文件，例如开机管理程序与核心文件等等 - /dev： 放置装置文件，例如键盘、鼠标与各种装置 - /etc： 放置系统主要的配置文件，例如用户密码文件、各种服务的启动文件等等 - /home： 每个用户的家目录，也就是用户可以在这个目录下面放置自己的文件 - /lib： 放置系统调用的函式库与核心所需要的函式库 - /media： 放置可移除的装置，例如软盘、光盘等等 - /mnt： 放置暂时挂载的目录，例如光盘、NFS等等 - /opt： 放置第三方软件，例如 Oracle 软件就可以放置在这个目录下面 - /sbin： 开机过程中所需要的，里面包括了开机、修复、还原系统所需要的指令，例如 fdisk, fsck 等等 - /tmp: 这是让一般用户或者是正在执行的程序暂时放置档案的地方。 - /usr：第二层 FHS 设定 - /var： 第二层FHS设定，主要为放置变动性的资料</p>
+<h3 id="usr-目录">/usr 目录</h3>
+<p>/usr里面放置的资料属于可分享的与不可变动的（shareable， static）. usr是Unix Software Resource的缩写。 FHS建议所有软件开发者，应该将他们的数据合理的分别放置到这个目录下的次目录，而不要自行建立该软件自己独立的目录。</p>
+<p>因为是所有系统默认的软件（distribution发布者提供的软件）都会放置到/usr底下，因此这个目录有点类似Windows 系统的'C： （当中的一部份） + C：files'这两个目录的综合体，系统刚安装完毕时，这个目录会占用最多的硬盘容量。 /usr的次目录建议有底下这些：</p>
+<ul>
+<li>/usr/bin： 所有一般用户能够使用的指令都放在这里. 另外，FHS 要求在此目录下不应该有子目录</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
   </entry>
   <entry>
     <title>Break_tie_randomly</title>
@@ -122,6 +661,34 @@
 </ul>
 <p>发现还是很慢，不如手写版本</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">random_argmax</span>(<span class="params">value_list</span>):</span><br><span class="line">  <span class="string">&quot;&quot;&quot; a random tie-breaking argmax &quot;&quot;&quot;</span></span><br><span class="line">  values = np.asarray(value_list)</span><br><span class="line">  <span class="keyword">return</span> np.argmax(np.random.random(values.shape) * (values==values.<span class="built_in">max</span>()))</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Tensorflow-gpu2</title>
+    <url>/2022/08/14/%E6%8A%80%E6%9C%AF/Tensorflow-gpu2.4.0%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="前言">前言</h1>
+<p>装好 <code>Tensorflow 2.3.0</code> 之后，训练一个 MNIST 集花了7分钟左右，于是想安装 GPU 版本的. 于是就开始踩坑了</p>
+<h1 id="选定版本">选定版本</h1>
+<p>安装 <code>Tensorflow-gpu</code> 需要安装<a href="https://www.tensorflow.org/install/source"><strong>相应的</strong> CUDA 和 cuDNN 版本</a>。这里应该先看自己的显卡所支持的 CUDA 版本，再确定 Tensorflow 版本。通过 <code>NIVIDIA-系统信息-组件</code> 查看</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208141916549.png" alt="驱动支持的CUDA版本" /><figcaption aria-hidden="true">驱动支持的CUDA版本</figcaption>
+</figure>
+<p>我的显卡是 RTX 3060 版本比较高，之前安装的 2.3.0 版本不知道为什么就在编译模型，和构建模型的时候卡死。所以选择 <code>Tensorflow-gpu=2.4.0</code> 。</p>
+<h1 id="安装">安装</h1>
+<p>打开cmd, 激活虚拟环境</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda active ts</span><br></pre></td></tr></table></figure>
+<p>选择阿里云镜像源，默认源无该版本且速度慢</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install Tensorflow-gpu=2.4.0 -i https://mirrors.aliyun.com/pypi/simple/</span><br></pre></td></tr></table></figure>
+<p>听说这里应该会自动安装对应的 CUDA 和 cuDNN，然而我并没用，手动安装</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install cudnn==8.0 -i https://mirrors.aliyun.com/pypi/simple/</span><br></pre></td></tr></table></figure>
+<p>这里会自动安装 cudatookit ，接着安装 keras</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install keras==2.4.3</span><br></pre></td></tr></table></figure>
+<p>是否检测到GPU</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">tf.config.list_physical_devices(<span class="string">&#x27;GPU&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>输出 <code>[PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')]</code> 则成功。</p>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -193,12 +760,19 @@
       </categories>
   </entry>
   <entry>
-    <title>Ananconda问题</title>
-    <url>/2022/07/22/%E6%8A%80%E6%9C%AF/Ananconda%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>打开 <strong>Anaconda</strong> 时出现</p>
-<h3 id="解决方法">解决方法</h3>
-<p>取消代理</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207221821701.png" /></p>
+    <title>np</title>
+    <url>/2022/07/23/%E6%8A%80%E6%9C%AF/np.random.rand%20vs%20np.random.random/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><table>
+<tbody>
+<tr class="odd">
+<td>span</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = np.random.rand(<span class="number">2</span>,<span class="number">7</span>)</span><br><span class="line">a = np.random.random((<span class="number">2.7</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="推荐写法">推荐写法</h3>
+<p>自 Numpy 1.17 后， 提供新的 方法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rng = np.random.default_rng()  <span class="comment"># Create a default Generator.</span></span><br><span class="line">rng.random(size=<span class="number">10</span>)  <span class="comment"># Generate 10 samples.</span></span><br><span class="line">array([<span class="number">0.00416913</span>, <span class="number">0.31533329</span>, <span class="number">0.19057857</span>, <span class="number">0.48732511</span>, <span class="number">0.40638395</span>,</span><br><span class="line">       <span class="number">0.32165646</span>, <span class="number">0.02597142</span>, <span class="number">0.19788567</span>, <span class="number">0.08142055</span>, <span class="number">0.15755424</span>])</span><br><span class="line">rng = np.random.uniform(<span class="number">0</span>,<span class="number">1</span>,size=(<span class="number">2</span>,<span class="number">3</span>)) <span class="comment">#specify bound </span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -265,53 +839,6 @@
 <h3 id="refusing-to-merge-unrelated-histories">refusing to merge unrelated histories</h3>
 <p>一般出现在创建新仓库的时候新建 <code>readme.md</code>文件，然后在pull 的时候，所以最后的流程最好是先在远程仓库建好，然后 clone. 解决方法强制合并</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull origin branchname --allow-unrelated-histories</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>np</title>
-    <url>/2022/07/23/%E6%8A%80%E6%9C%AF/np.random.rand%20vs%20np.random.random/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><table>
-<tbody>
-<tr class="odd">
-<td>span</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = np.random.rand(<span class="number">2</span>,<span class="number">7</span>)</span><br><span class="line">a = np.random.random((<span class="number">2.7</span>))</span><br></pre></td></tr></table></figure>
-<h3 id="推荐写法">推荐写法</h3>
-<p>自 Numpy 1.17 后， 提供新的 方法</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rng = np.random.default_rng()  <span class="comment"># Create a default Generator.</span></span><br><span class="line">rng.random(size=<span class="number">10</span>)  <span class="comment"># Generate 10 samples.</span></span><br><span class="line">array([<span class="number">0.00416913</span>, <span class="number">0.31533329</span>, <span class="number">0.19057857</span>, <span class="number">0.48732511</span>, <span class="number">0.40638395</span>,</span><br><span class="line">       <span class="number">0.32165646</span>, <span class="number">0.02597142</span>, <span class="number">0.19788567</span>, <span class="number">0.08142055</span>, <span class="number">0.15755424</span>])</span><br><span class="line">rng = np.random.uniform(<span class="number">0</span>,<span class="number">1</span>,size=(<span class="number">2</span>,<span class="number">3</span>)) <span class="comment">#specify bound </span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Tensorflow-gpu2</title>
-    <url>/2022/08/14/%E6%8A%80%E6%9C%AF/Tensorflow-gpu2.4.0%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="前言">前言</h1>
-<p>装好 <code>Tensorflow 2.3.0</code> 之后，训练一个 MNIST 集花了7分钟左右，于是想安装 GPU 版本的. 于是就开始踩坑了</p>
-<h1 id="选定版本">选定版本</h1>
-<p>安装 <code>Tensorflow-gpu</code> 需要安装<a href="https://www.tensorflow.org/install/source"><strong>相应的</strong> CUDA 和 cuDNN 版本</a>。这里应该先看自己的显卡所支持的 CUDA 版本，再确定 Tensorflow 版本。通过 <code>NIVIDIA-系统信息-组件</code> 查看</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208141916549.png" alt="驱动支持的CUDA版本" /><figcaption aria-hidden="true">驱动支持的CUDA版本</figcaption>
-</figure>
-<p>我的显卡是 RTX 3060 版本比较高，之前安装的 2.3.0 版本不知道为什么就在编译模型，和构建模型的时候卡死。所以选择 <code>Tensorflow-gpu=2.4.0</code> 。</p>
-<h1 id="安装">安装</h1>
-<p>打开cmd, 激活虚拟环境</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda active ts</span><br></pre></td></tr></table></figure>
-<p>选择阿里云镜像源，默认源无该版本且速度慢</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install Tensorflow-gpu=2.4.0 -i https://mirrors.aliyun.com/pypi/simple/</span><br></pre></td></tr></table></figure>
-<p>听说这里应该会自动安装对应的 CUDA 和 cuDNN，然而我并没用，手动安装</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install cudnn==8.0 -i https://mirrors.aliyun.com/pypi/simple/</span><br></pre></td></tr></table></figure>
-<p>这里会自动安装 cudatookit ，接着安装 keras</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install keras==2.4.3</span><br></pre></td></tr></table></figure>
-<p>是否检测到GPU</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">tf.config.list_physical_devices(<span class="string">&#x27;GPU&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>输出 <code>[PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')]</code> 则成功。</p>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -508,580 +1035,404 @@ Test accuracy: 0.9911999702453613</code></pre>
       </categories>
   </entry>
   <entry>
-    <title>CS101 PA3</title>
-    <url>/2022/12/17/%E6%95%B0%E5%AD%A6/CS101%20PA3/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="t2">T2</h1>
-<p>考虑贪心，对每一个容器，就是在能够容纳的信息里面选择一个能最大化利用容器的。将信息和容器都按照 a 为关键字排序。然后外层循环容器，对于第 i个容器，如果第 j 个信息的 <span class="math inline">\(a_j\leq A_i\)</span> ，把第 j 个信息放入待选的信息，然后 j++，直到不能放为止。然后从待选的信息的挑选一个最优的信息 ，即满足 <span class="math inline">\(d \leq D_i\)</span> 的信息中 <span class="math inline">\(d_k\)</span> 最大的一个信息，然后 ans++，从待选信息中删除该信息。由于满足了 a 从小到大排序，对于待选的信息, <span class="math inline">\(a_j \leq A_i \leq A_{i+1}\)</span> ，所以后面的每一个容器都是可以从待选信息中选择的。维护待选信息可使用 <span class="math inline">\(BST\)</span> ，也可以用 <code>multiset</code>, 在 <span class="math inline">\(\log n\)</span> 时间内查询。总的时间复杂度是 <span class="math inline">\(O(n\log n)\)</span>.</p>
-<h1 id="t3">T3</h1>
+    <title>DMT</title>
+    <url>/2023/09/29/%E7%A7%91%E5%AD%A6/20230929-DMTest/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="deep-marching-tetrahedra">Deep Marching Tetrahedra:</h1>
+<p>A Hybrid Representation for High-Resolution 3D Shape Synthesis</p>
+<h1 id="background">Background</h1>
+<ul>
+<li><p>SDF and OF (occupancy) : implicit</p></li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvTWFyY2hpbmdfY3ViZXM=">Marching Cube<i class="fa fa-external-link-alt"></i></span>: extract mesh from implicit and expensive</p></li>
+</ul>
+<h1 id="motivation">Motivation</h1>
+<ul>
+<li>Supervise directly on the target surface</li>
+<li>Combine implicit and explicit</li>
+</ul>
+<h1 id="overview">Overview</h1>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20230929-DMTest-2023-10-09-10-56-02.png" /></p>
+<h1 id="overview-1">Overview</h1>
+<ul>
+<li>Input: Point Cloud <span class="math inline">\(x\)</span>, Grid Vertex <span class="math inline">\(v\)</span></li>
+<li>Initialization: Predict SDF for each vertex</li>
+<li>Training:
 <ol type="1">
-<li><span class="math inline">\(A\geq D\)</span>: 也就是说我们需要尽量快的到达 n 点，直接BFS，每个点的遍历顺序一定是保证最快到达的，如果到达该点发现打不过，那么这个点相当于“死了”，不用考虑路过该点了。</li>
-<li><span class="math inline">\(A&lt;D\)</span>: 首先是如何判断能否到达 n 点。 这个时候我们只需要尽可能多地从占领的区域的相邻的点中，挑选一个 <code>s[y]</code> 最小的一个点，如果能打过，那么 <code>attack</code> 增加，有利于我打更强的，如果连最小的都打不过，那么说明已经无法从占领区域中扩展了，就这样不断扩大占领区域，用优先队列维护相邻的点，直到能扩展到 n 点就说明可以到达（注：不用扩展到全部点）。 <strong>假设</strong>我们能够到达 n 点，那么和之前类似，如果到达该点发现打不过，那么我们可以加上一个等待时间 <code>wait</code> 直到能击败该节点为止 <code>dis[pre]+1+wait &lt; dis[y]</code> 那么更新 y 点，但是这个时候需要用 <code>dijkstra</code> 来确保始终从距离最小的点更新。之前判断能不能的时候，我们其实已经达到过n，也就是对所有点，wait最多可以是最终的最优解dis[n]，因为最多可以打dis[n]个小怪来补充攻击力，打败当前点 <code>wait&gt;=dis[n]</code>的话，也没关系，因为最后松弛操作会把这种情况滤掉</li>
-</ol>
+<li>Surface Refinement with Volume Subdivision</li>
+<li>Discriminator</li>
+</ol></li>
+</ul>
+<h1 id="volume-subdivision">Volume Subdivision</h1>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20230929-DMTest-2023-10-09-11-29-48.png" alt="20230929-DMTest-2023-10-09-11-29-48" /><figcaption aria-hidden="true">20230929-DMTest-2023-10-09-11-29-48</figcaption>
+</figure>
+<h1 id="marching-tetrahedra">Marching Tetrahedra</h1>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20230929-DMTest-2023-10-09-11-31-47.png" alt="20230929-DMTest-2023-10-09-11-31-47" /><figcaption aria-hidden="true">20230929-DMTest-2023-10-09-11-31-47</figcaption>
+</figure>
+<h1 id="d-discriminator">3D Discriminator</h1>
+<ul>
+<li>从目标网格中随机选择一个高曲率顶点 v，并在 v 周围的体素化区域计算真实 SDF <span class="math inline">\(S_{real}\)</span></li>
+<li>在预测网格同一位置得到周围的SDF <span class="math inline">\(S_{pred}\)</span></li>
+<li>将<span class="math inline">\(S_{real}\)</span> 和 <span class="math inline">\(S_{pred}\)</span> 输入到 MLP 中， 判断是真实网格的概率</li>
+</ul>
+<h1 id="loss">Loss</h1>
+<h2 id="surface-alignment-loss">Surface Alignment loss</h2>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20230929-DMTest-2023-10-09-15-09-03.png" alt="20230929-DMTest-2023-10-09-15-09-03" /><figcaption aria-hidden="true">20230929-DMTest-2023-10-09-15-09-03</figcaption>
+</figure>
+<h2 id="adversarial-loss">Adversarial Loss</h2>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20230929-DMTest-2023-10-09-15-09-44.png" alt="20230929-DMTest-2023-10-09-15-09-44" /><figcaption aria-hidden="true">20230929-DMTest-2023-10-09-15-09-44</figcaption>
+</figure>
+<h1 id="loss-1">Loss</h1>
+<h2 id="regularization">Regularization</h2>
+<p>Avoid flipping the SDF sign of all vertices, which may lead to disconnected conponents during training</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20230929-DMTest-2023-10-09-15-21-07.png" alt="20230929-DMTest-2023-10-09-15-21-07" /><figcaption aria-hidden="true">20230929-DMTest-2023-10-09-15-21-07</figcaption>
+</figure>
+<h1 id="my-discussion">My discussion</h1>
+<p>Mobile NeRF</p>
 ]]></content>
       <categories>
-        <category>数学</category>
+        <category>科学</category>
+      </categories>
+      <tags>
+        <tag>NeRF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NeuralUDF</title>
+    <url>/2023/10/09/%E7%A7%91%E5%AD%A6/20231009-NeuralUDF/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="neuraludf">NeuralUDF</h1>
+<p>Learning Unsigned Distance Fields for Multi-view Reconstruction of Surfaces with Arbitrary Topologies</p>
+<h1 id="background">Background</h1>
+<ul>
+<li><p>SDF and OF (occupancy) : implicit</p></li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvTWFyY2hpbmdfY3ViZXM=">Marching Cube<i class="fa fa-external-link-alt"></i></span>: extract mesh from implicit and expensive</p></li>
+</ul>
+<h1 id="motivation">Motivation</h1>
+<ul>
+<li>SDF 局限于 closed surfaces</li>
+</ul>
+<h1 id="overview">Overview</h1>
+<ul>
+<li>UDF and density function of the volume rendering</li>
+<li>Differentiable indicator function</li>
+<li>iso-surface regularizer</li>
+</ul>
+<h1 id="unbiased-volume-density-function">Unbiased volume density function</h1>
+<ul>
+<li>SDF <img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231009-NeuralUDF-2023-10-09-16-51-53.png" alt="20231009-NeuralUDF-2023-10-09-16-51-53" /></li>
+<li>UDF <img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231009-NeuralUDF-2023-10-09-16-53-59.png" alt="20231009-NeuralUDF-2023-10-09-16-53-59" /> <span class="math inline">\(\Phi(t)\)</span> is the indicator.</li>
+</ul>
+<h1 id="visibility-indicator-function">Visibility indicator function</h1>
+<p>Use soft probabilistic distribution instead of using hard <span class="math inline">\(\epsilon\)</span> bound</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231009-NeuralUDF-2023-10-09-17-03-21.png" alt="20231009-NeuralUDF-2023-10-09-17-03-21" /> <img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231009-NeuralUDF-2023-10-09-17-03-57.png" alt="20231009-NeuralUDF-2023-10-09-17-03-57" /></p>
+<h1 id="gradient-aware-indicator">Gradient-aware indicator</h1>
+<p>增加 UDF 梯度 Mask <img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231009-NeuralUDF-2023-10-09-17-08-13.png" alt="50%" /></p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231009-NeuralUDF-2023-10-09-17-17-20.png" alt="bg right 90%" /><figcaption aria-hidden="true">bg right 90%</figcaption>
+</figure>
+<h1 id="iso-surface-regularizer">Iso-surface regularizer</h1>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231009-NeuralUDF-2023-10-09-17-20-54.png" alt="20231009-NeuralUDF-2023-10-09-17-20-54" /> <span class="math inline">\(M\)</span> is the number of samples. 产生更清晰的等值面。</p>
+<h1 id="overall-loss-function">overall loss function</h1>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231009-NeuralUDF-2023-10-09-17-26-17.png" alt="20231009-NeuralUDF-2023-10-09-17-26-17" /><figcaption aria-hidden="true">20231009-NeuralUDF-2023-10-09-17-26-17</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>科学</category>
       </categories>
   </entry>
   <entry>
-    <title>三角形中的几个恒等式</title>
-    <url>/2022/07/01/%E6%95%B0%E5%AD%A6/%E4%B8%89%E8%A7%92%E5%BD%A2%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%81%92%E7%AD%89%E5%BC%8F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>在 <span class="math inline">\(\Delta ABC\)</span> 中，以下等式成立</p>
-<h3 id="正余弦平方和">正余弦平方和</h3>
-<p><span class="math display">\[
-\sin A+\sin B+\sin C=4\cos  \frac{A}{2}\cos  \frac{B}{2}\cos  \frac{C}{2}\ \tag{1}
-\]</span></p>
-<p>证：</p>
-<p><span class="math display">\[
-\begin{aligned} LHS &amp;= 2\,\sin \frac{A+B}{2}\,\cos \frac{A-B}{2} +\sin C  \\ &amp;= 2 \,\cos  \frac{C}{2}\,\cos \frac{A-B}{2}+2\,\sin \frac{C}{2}\,\cos \frac{C}{2}\\ &amp;=2\,\cos  \frac{C}{2}\,(\cos \frac{A-B}{2}+\cos \frac{A+B}{2})\\ &amp;=4\,\cos \frac{A}{2}\,\cos \frac{B}{2}\,\cos \frac{C}{2} \\ \end{aligned}
-\]</span></p>
-<p><span class="math display">\[
-\cos A+\cos B+\cos C=1+4\sin  \frac{A}{2}\sin  \frac{B}{2}\sin  \frac{C}{2}\\ \tag{2}
-\]</span></p>
-<p>证：</p>
-<p><span class="math display">\[
-\begin{aligned} LHS &amp;= 2\,\cos \frac{A+B}{2}\,\cos \frac{A-B}{2} + 1-2\,\sin ^2\frac{C}{2}  \\  &amp;= 1-2\,\sin \frac{C}{2}\,(\sin \frac{C}{2}-\cos \frac{A-B}{2})  \\ &amp;=1-2\,\sin \frac{C}{2}\,(\cos \frac{A+B}{2}-\cos \frac{A-B}{2})   \\ &amp;=1-2\,\sin \frac{C}{2}\,(-2\,\sin \frac{A}{2}\,\sin \frac{B}{2})\\ &amp;=1+4\sin  \frac{A}{2}\sin  \frac{B}{2}\sin  \frac{C}{2} \end{aligned}
-\]</span></p>
-<h3 id="正余半角平方和">正余半角平方和</h3>
-<p><span class="math display">\[
-\sin ^2\frac{A}{2}+\sin ^2\frac{B}{2}+\sin ^2\frac{C}{2}= 1-2\,\sin \frac{A}{2}\sin \frac{B}{2}\sin \frac{C}{2}\tag{3}
-\]</span></p>
-<p>证：</p>
-<p><span class="math display">\[
-\begin{aligned} RHS &amp;= 1+\sin \frac{C}{2}\,(\cos \frac{A+B}{2}-\cos \frac{A-B}{2}) \\ &amp;=  1+\sin ^2\frac{C}{2}- \cos \frac{A+B}{2}\cos \frac{A-B}{2}\\ &amp;=  1+\sin ^2\frac{C}{2}-\frac{\cos A+\cos B}{2} \\ &amp;= 1+\sin ^2\frac{C}{2}-\frac{2-2\sin ^2\frac{A}{2}-2\sin ^2\frac{B}{2}}{2}   \\ &amp;=  \sin ^2\frac{A}{2}+\sin ^2\frac{B}{2}+\sin ^2\frac{C}{2} \end{aligned}
-\]</span></p>
-<p>同理易得：</p>
-<p><span class="math display">\[
-\cos ^2\frac{A}{2}+\cos ^2\frac{B}{2}+\cos ^2\frac{C}{2}= 2+2\,\sin \frac{A}{2}\sin \frac{B}{2}\sin \frac{C}{2}\tag{4}
-\]</span></p>
-<h3 id="正割余割和">正割余割和</h3>
-<p><span class="math display">\[
-\tan A+\tan B+\tan C=\tan A\;\tan B\;\tan C \tag{5}
-\]</span></p>
-<p>证：</p>
-<p><span class="math display">\[
-\begin{gather*} \text{和角公式：}\tan C = -\frac{\tan A+\tan B}{1-\tan A\;\tan B}\\ \tan C-\tan A\;\tan B\;\tan C = -(\tan A+\tan B)\\ \text{移项后得到结论} \end{gather*}
-\]</span></p>
-<p>推论：</p>
-<p><span class="math display">\[
-\cot A\,\cot B+\cot A\,\cot C+\cot B\,\cot C =1\tag{6}
-\]</span></p>
-<p>证：</p>
-<p><span class="math display">\[
-\begin{aligned} \text{由 (5)得到: }\frac{1}{\tan A\,\tan B}&amp;=\frac{\tan C}{\tan A+\tan B+\tan C}\\ \frac{1}{\tan A\,\tan C}&amp;=\frac{\tan B}{\tan A+\tan B+\tan C}\\ \frac{1}{\tan B\,\tan C}&amp;=\frac{\tan A}{\tan A+\tan B+\tan C}\\ \end{aligned}
-\]</span></p>
-<p>三个式子相加即可</p>
-<h3 id="正余割半角">正余割半角</h3>
-<p><span class="math display">\[
-\cot \frac{A}{2}\cot \frac{B}{2}\cot \frac{C}{2} = \cot \frac{A}{2}\,\cot \frac{B}{2}\,\cot \frac{C}{2} \tag{7}
-\]</span></p>
-<p>证： 受到 (5) 启发，只需证明</p>
-<p><span class="math display">\[
-cot \frac{C}{2} = -\frac{\cot \frac{A}{2}+\cot \frac{B}{2}}{1-\cot \frac{A}{2}\,\cot \frac{B}{2}}
-\]</span></p>
-<p>即证：</p>
-<p><span class="math display">\[
-\begin{gather*} \tan\frac{C}{2} =\frac{\cot \frac{A}{2}\,\cot \frac{B}{2}-1}{\cot \frac{A}{2}+\cot \frac{B}{2}}\\ \Leftarrow \tan\frac{C}{2} = \frac{1-\tan\frac{A}{2}\tan\frac{B}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}} \end{gather*}
-\]</span></p>
-<p>推论：</p>
-<p><span class="math display">\[
-\tan\frac{A}{2}\tan\frac{B}{2}+\tan\frac{B}{2}\tan\frac{C}{2}+\tan\frac{A}{2}\tan\frac{C}{2} = 1 \tag{8}
-\]</span></p>
-<p>由 (7) 移项得到</p>
-<p><span class="math display">\[
-\begin{gather*} \tan\frac{A}{2}\tan\frac{B}{2}=\frac{\tan\frac{A}{2}\,\tan\frac{B}{2}\,\tan\frac{B}{2}\,\cot\frac{C}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}+\tan\frac{C}{2}}\\ \tan\frac{A}{2}\tan\frac{C}{2}=\frac{\tan\frac{A}{2}\,\tan\frac{B}{2}\,\tan\frac{B}{2}\,\cot\frac{B}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}+\tan\frac{C}{2}}\\ \tan\frac{B}{2}\tan\frac{C}{2}=\frac{\tan\frac{A}{2}\,\tan\frac{B}{2}\,\tan\frac{B}{2}\,\cot\frac{A}{2}}{\tan\frac{A}{2}+\tan\frac{B}{2}+\tan\frac{C}{2}}\\ \end{gather*} \\
-\]</span></p>
-<p>三个式子相加即可</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>不等式</title>
-    <url>/2022/07/05/%E6%95%B0%E5%AD%A6/%E4%B8%8D%E7%AD%89%E5%BC%8F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="oscillation">Oscillation</h2>
-<p>Example:</p>
-<p><span class="math display">\[
-\begin{gather}
-b_n=c_n \, a_n=(-1)^{n+1}a_n \text, \, a_n \geq 0\\
-\sum_{n=1}^{N} b_n \leq \sum_{n=1}^{N}\left| b_n \right| = \sum_{n=1}^N a_n
-\end{gather}
-\]</span></p>
-<p>Use <em>Euler's formula</em> to rewrite</p>
-<p><span class="math display">\[
-(-1)^n=e^{2\pi in\frac{1}{2}}=\cos(2\pi n\frac{1}{2})+i\sin(2\pi n\frac{1}{2})
-\]</span></p>
-<p>Periodicity is 2. Moreover , Take periodicity k</p>
-<p><span class="math display">\[
-(e^{2\pi i\frac{1}{k}})^{n+k}= (e^{2\pi i\frac{1}{k}})^{n}\\
-\]</span></p>
-<h3 id="fourier-series">Fourier series</h3>
-<p>More generally, for $ x$, consider <span class="math inline">\(e^{-i\omega n}\)</span>: Periodicity <span class="math inline">\(\frac{1}{x}\)</span>, and <span class="math inline">\(\omega = \frac{2\pi}{x}\)</span></p>
-<p><span class="math display">\[
-F(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}\text{     ,              }
-F_N(x):= \sum_{n=-\infty}^\infty a_n e^{-i\omega n}
-\]</span></p>
-<p>Generate a new function on <span class="math inline">\(\left[-1,1\right]\)</span> , known as Fourier analysis.</p>
-<p>Since <span class="math inline">\(|e^{i\theta}|\leq 1\)</span>, therefore</p>
-<h3 id="introduction-a-norm">introduction a norm</h3>
-<p>For a sequence <span class="math inline">\((a_n)_{n\in\mathbb{Z}}\in\mathbb{R}\)</span>, Let</p>
-<p><span class="math display">\[
-\left\|a_n \right\|_{\boldsymbol l^2}:= (\sum _{n=-\infty}^\infty |a_n|^p )^\frac{1}{p} \text{  for } p\in [1,\infty]
-\]</span></p>
-<p>and</p>
-<p><span class="math display">\[
-\|a_n\| = \mathop{sup}\limits_{n\in\mathbb{Z}}|a_n|
-\]</span></p>
-<p>We can measure the distance between two sequences e.g. for <span class="math inline">\(c_n=(-1)^{n+1}\)</span> and <span class="math inline">\(d_n=(-1)^{n+1}(1+\frac{1}{n})\)</span>.</p>
-<p><span class="math display">\[
-\|c_n-d_n\|=(\sum_{n=-\infty}^{\infty}\frac{1}{n^2})^\frac{1}{2}=\frac{\pi}{\sqrt6}\leq2
-\]</span></p>
-<h3 id="l2-estimate-crude"><span class="math inline">\(L^2\)</span>-estimate: Crude</h3>
-<p>Recall the crude estimate :<span class="math inline">\(|F_N(x)| \leq \sum_{n=-N}^{n=N} a_n\)</span> ：no oscillation</p>
-<p>This yields</p>
+    <title>Zero123</title>
+    <url>/2023/11/08/%E7%A7%91%E5%AD%A6/20231108-Zero123/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="zero-1-to-3">Zero-1-to-3:</h1>
+<p>Zero-shot One Image to 3D Object</p>
+<h1 id="introduction">Introduction</h1>
+<ul>
+<li>Novel synthesizes views</li>
+</ul>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231108165759.png" alt="demo" /><figcaption aria-hidden="true">demo</figcaption>
+</figure>
+<h1 id="overview">Overview</h1>
+<ul>
+<li><p>Manipulate the camera viewpoint in large-scale diffusion models</p></li>
+<li><p>Learn controls for camera poses during the generation</p></li>
+</ul>
+<h1 id="diffusion-model">Diffusion Model</h1>
+<ul>
+<li>正向传播</li>
+</ul>
 <p><span class="math display">\[
 \begin{aligned}
-\|F_N\|_{L^2}&amp;=(\int_{-1}^1(F_N(x))^2d\,x)^\frac{1}{2}\\
-&amp;\leq(\int_{-1}^1a_n^2d\,x)^\frac{1}{2})\\
-&amp;=2^{\frac{1}{2}}\sum_{n=-N}^{N} a_n
+&amp; \text { Noised images } \quad \text { Output Mean } \mu_t \quad \text { Variance } \Sigma_t \\
+&amp; q\left(x_t \mid x_{t-1}\right)=\mathcal{N}\left(x_t ; \sqrt{1-\beta_t} x_{t-1}, \beta_t I\right)
 \end{aligned}
 \]</span></p>
-<p>In particular, if <span class="math inline">\(a_n=1\)</span> for all <span class="math inline">\(|n|\leq N\)</span> then</p>
-<p><span class="math display">\[
-\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| \leq 2^\frac{3}{2}N
-\]</span></p>
-<p><span class="math inline">\(L^2\)</span> -size of <span class="math inline">\(F_N(x)\)</span> is bounded by <span class="math inline">\(O(N)\)</span></p>
-<h3 id="theorem-3-parsevals-identity">Theorem 3 (Parseval's identity)</h3>
-<p><span class="math display">\[
-\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| \leq 2N^\frac{3}{2}\ll2^\frac{3}{2}N
-\]</span></p>
-<p>Multiplying out the square:</p>
+<ul>
+<li><p>Closed form <span class="math display">\[
+\left.\boldsymbol{x}_t \sim q\left(\boldsymbol{x}_t \mid \boldsymbol{x}_0\right)=\mathcal{N}\left(\boldsymbol{x}_t ; \sqrt{\overline{\alpha_t}} \boldsymbol{x}_0,\left(1-\bar{\alpha}_t\right) \mathbf{I}\right)\right), \quad \bar{\alpha}_t=\prod_{s=1}^t \alpha_s
+\]</span></p></li>
+<li><p>整个前向的后验估计 $$</p></li>
+</ul>
+<p>q(x_{1:T} x_0) = <em>{t=1} ^ T q(x_t x</em>{t-1}) $$</p>
+<h1 id="diffusion-model-1">Diffusion Model</h1>
+<ul>
+<li>逆向过程 （Denoise）</li>
+</ul>
 <p><span class="math display">\[
 \begin{aligned}
-\|\sum_{n=-N}^N e^{-i\omega n}\| &amp;=(\int_{-1}^1(\sum_{n=-N}^N e^{-i\omega n}) ^2d\,x)^\frac{1}{2}\\
-&amp;=\int_{-1}^1 \sum_{n=-N}^N e^{-i\omega n}\sum_{m=-N}^N e^{-i\omega n}d\,x\\
-&amp;= \sum_{n=-N}^N\sum_{m=-N}^N \int_{-1}^1  e^{-i\omega (n-m)}d\,x
+&amp; p_\theta\left(x_t \mid x_{t-1}\right)=\mathcal{N}\left(x_{t-1} ; \mu_\theta(x_t,t), \Sigma_\theta(x_t,t)\right)
 \end{aligned}
 \]</span></p>
-<p>For the diagonal case (m=n)</p>
+<ul>
+<li><p>Loss = <span class="math inline">\(-\log(p_\theta(x_0))\)</span></p></li>
+<li><p>下界</p></li>
+</ul>
 <p><span class="math display">\[
-\int_{-1}^1  e^{-i\omega (n-m)}d\,x =2
-\]</span></p>
-<p>For the non-diagonal case (<span class="math inline">\(n\neq m\)</span>)</p>
-<p><span class="math display">\[
-\int_{-1}^1  e^{-i\omega (n-m)}d\,x =-\frac{1}{2\pi i (n-m)}(e^{-2\pi i (n-m)}-e^{2\pi i (n-m)})=0
-\]</span></p>
-<p>Same argument shows more generally</p>
-<p><span class="math display">\[
-\begin{gather}
-\text{For any }a_n \;s.t.\|a_n\|_{l^2}=(\sum_{n=-\infty}^\infty |a_n|^2)^{\frac{1}{2}}&lt;\infty.\\
-\|\sum_{n=-\infty}^\infty e^{-i\omega n}\| _{l^2}=2^{\frac{1}{2}}\|a_n\|_{l^2}
-\end{gather}
-\]</span></p>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>将数量场转为向量场</title>
-    <url>/2022/06/28/%E6%95%B0%E5%AD%A6/%E5%B0%86%E6%95%B0%E9%87%8F%E5%9C%BA%E8%BD%AC%E4%B8%BA%E5%90%91%E9%87%8F%E5%9C%BA/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="题面">题面</h3>
-<pre><code>设$\Sigma(t)$ 是平面 $x+y+z=t$ 被球面 $x^2+y^2+z^2=1$ 截下的部分，设</code></pre>
-<p><span class="math display">\[
-F(x,y,z)=1-(x^2+y^2+z^2),
-\]</span></p>
-<pre><code>求证，对于$\left| t \right| \leq \sqrt 3$ 时，有</code></pre>
-<p><span class="math display">\[
-\int _{\Sigma(t)} F(x,y,z)\,d\sigma = \frac{\pi}{18} (3-t^2)^2
-\]</span></p>
-<span id="more"></span>
-<h3 id="方法一">方法一</h3>
-<pre><code>将原坐标系$X Y Z$ 进行变换，新坐标系的 $X&#39;OY&#39;$ 平面为原坐标系的平面 $x+y+z=0$ ，坐标 $z&#39;$ 为点在原坐标系下距离 $\Sigma(0)$ 的距离，$z&#39; = \frac &#123;t&#125;&#123;\sqrt3&#125;$ ， 为了渐变就沿用 $xyz$ 命名好了。接下来就是很普通的在 $z=\frac&#123;t&#125;&#123;\sqrt 3&#125;$ 上将 $xy$ 化为极坐标的积分了。</code></pre>
-<p><span class="math display">\[
-\begin{gather}
-\begin{aligned}
-\iint _{z=\frac{t}{\sqrt 3}} 1-z^2\,d\sigma &amp;= \int_0^{2\pi}d\theta \int_0^{\sqrt {1-\frac{t^2}{3}}}(1-\frac{t^2}{3}-r^2) r\,dr\\
- &amp;=\frac{\pi}{18} (3-t^2)^2
- \end{aligned}
-\end{gather}
-\]</span></p>
-<h3 id="方法二">方法二</h3>
-<pre><code>这个方法比较绕，是利用$Gauss$ 定理 + 补面的方式。但是 F 是个数量场，怎么把它变成向量场呢?</code></pre>
-<p><span class="math display">\[
-\begin{equation}
-\iint_S F dS  =\iint_S \boldsymbol{v}\, \vec{n} \,dS
-\end{equation}
-\]</span></p>
-<p>所以现在就是需要去确定一种 <span class="math inline">\(\vec{v}\)</span> 和 <span class="math inline">\(\vec{n}\)</span> 使其点乘为 <span class="math inline">\(F\)</span> ， 为了简便 <span class="math inline">\(\vec{v} = (1-z^2) \,\vec{k}\)</span> ，<span class="math inline">\(\vec{n}=\vec{k}\)</span>， 在进行补面就能使用高斯公式了，设 <span class="math inline">\(V\)</span> 为 <span class="math inline">\(S_1:z=\frac{t}{\sqrt3}\)</span> 和球面 <span class="math inline">\(S_2:x^2+y^2+z^2=1\)</span> 围成的面积。</p>
-<p><span class="math display">\[
-\begin{gather}
-\begin{aligned}
-\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS &amp; = \iiint_V \Delta\,\vec{v} \, d\vec{S}\\
-&amp;=\iiint_V2z \,  dxdydz
-\end{aligned}
-\end{gather}
-\]</span></p>
-<p>注意因为高斯定理要求向量场指向平面的外侧，上面公式的 <span class="math inline">\(\vec{v}\)</span> 的方向与的我们构造的<span class="math inline">\(\vec{v}\)</span> 之间方向相反。</p>
-<p>再将<span class="math inline">\(xyz\)</span> 换为极坐标 (注意这里和 <span class="math inline">\(t\)</span> 没什么关系，<span class="math inline">\(t\)</span> 只是个常数)</p>
-<p><span class="math display">\[
-\begin{cases}
-x= (1-z^2)\,r\,cos\theta\\
-y= (1-z^2)\,r\,sin\theta\\
-z=z\\
-\end{cases}
-\]</span></p>
-<p>然后三重积分</p>
-<p><span class="math display">\[
-\begin{gather}
-\begin{aligned}
-\iiint_V2z \,  dxdydz &amp;= 2\pi\int_{\frac{t}{\sqrt3}}^1z\,dz\int_0^{\sqrt{1-z^2}}r\,dr\\
-&amp; = -\frac{\pi}{18}(3-t^2)^2
-\end{aligned}
-\end{gather}
-\]</span></p>
-<p>而另一方面</p>
-<p><span class="math display">\[
-\because 1-z^2 = 0 \,\text{in} \,S_2\\
-\therefore
-\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS = 0\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{gathered}
-\begin{aligned}
-\iint_{S_1} \boldsymbol{v}\, \vec{n} \,dS &amp;=\iint_{S_1+S_2} \boldsymbol{v}\, \vec{n} \,dS-\iint_{S_2} \boldsymbol{v}\, \vec{n} \,dS \\
-&amp;=\frac{\pi}{18}(3-t^2)^2
-\end{aligned}
-\end{gathered}
-\]</span></p>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>偷影子的人</title>
-    <url>/2023/01/22/%E6%9D%82%E8%B0%88/%E5%81%B7%E5%BD%B1%E5%AD%90%E7%9A%84%E4%BA%BA/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>读完这本书，很多地方感到迷惑。</p>
-<p>『 我』的母亲是个平凡的母亲形象，包括隐瞒病情，和书末母亲去世前为迎接我做的准备，以及『 吃剩的淋了枫糖浆的苹果卡卡蛋糕』无不让人动容。至于母亲为什么把父亲的信藏起来，推测或许是为了断绝我和父亲的来往，将我据为己有？另一个母亲是我在城里的楼上的老妇人艾丽丝。这个老妇人虽然儿女不怎么孝顺，但是却依旧如此幽默和豁达的生活。摔了一跤还那么开心，最后还想认我和吕克为自己的儿子。也许是长期身处异乡吧，我和吕克对老妇人就像对待自己母亲一般，透露出大城市里相互依靠的温情。</p>
-<p>友情线主要是和面包店老板的儿子吕克，感觉也没太多感人的细节。倒是吕克喜欢上主人公的女友这个剧情显得很奇怪。倒是伊凡我觉得是更能理解『 我』的朋友，而且彼此之间相互支持。文中『 解放了禁锢在童年的枷锁』出现了两次。第一次是我将信交给伊凡的影子，伊凡所说，随后辞职。第二次是母亲去世后，伊凡给我留下母亲当年写的信时，我心里所想。看到一位知友说伊凡也有偷影子的能力。这也解释了为什么伊凡能知道父亲离开我这件事，而且似乎知道我偷影子的秘密。</p>
-<p>主人公的形象感觉前后突兀。一开始以为主人公在班上被欺负，应该属于比较文弱、自卑的性格。但是为什么最后能胜任班长，而且几乎是全票当选。主人公有些时候显得很笨拙，比如父亲的地址不知道，和克蕾儿分别之后如果还喜欢她的话，为什么那么久不去那个小镇寻找，『 我』那么多年都没有想到过克蕾儿吗？ 最后去音乐学院连个人都不会找还得靠吕克。</p>
-<p>全篇偷影子这个能力没有体现出更多的作用，尤其是在后半段，可有可无。</p>
-]]></content>
-      <categories>
-        <category>杂谈</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>启功带你学书法-破除迷信</title>
-    <url>/2022/07/05/%E6%9D%82%E8%B0%88/%E5%90%AF%E5%8A%9F%E7%BB%99%E4%BD%A0%E8%AE%B2%E4%B9%A6%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>启功先生以破除迷信的思想贯穿全书，很实在，不故弄玄虚。扫清各种神秘的古怪学说为初学者造成的困惑和恐吓。</p>
-<span id="more"></span>
-<h3 id="碑和帖">碑和帖</h3>
-<p>碑在《说文解字》中解释为「竖石也」。原本是坟墓面前的石头。后来逐渐扩展为活人也立碑，比如谁在此留下丰功伟绩。常常带有纪念意义，史学价值比较高，所以需要是大家共同认得的字。所以大部分时间里，碑都是以楷书为主要的，但是也有例外。比如武则天为张昌宗立碑，叫《升仙太子碑》，完全用草书写，成为草书写碑的开端。碑通常是书写者直接在碑上书写，是书写者与刻工的共同参与。</p>
-<pre><code>帖是字条，是平常生活中用来彼此传达信息的，是一种随意的书写，字体行草书偏多。刻帖要求还书写精神的原貌，需要先用墨迹摹写之后，再以字勾勒。</code></pre>
-<h3 id="入门练习">入门练习</h3>
-<p>临帖和读帖同样重要，不能偏废。</p>
-<p>临帖临碑时注意和现实中的用笔区别，再好的拓本也只能反映字的外形轮廓，里面墨色的浓淡、干湿、轻重的细节是丢失的。另外，有的石刻过于方正，是可能用排笔，板刷写出的，不用强求。</p>
-<h3 id="用笔">用笔</h3>
-<blockquote>
-<p>赵雪松云：“书法以用笔为上，而结字亦须用工”。窃以为不然。</p>
-</blockquote>
-<p>不可被用笔至上论所迷惑，以结字为先。</p>
-<blockquote>
-<p>无麻不成笔</p>
-</blockquote>
-<h3 id="选临碑帖">选临碑帖</h3>
-<p>可以有自己的创造性，按照古代已有的方法去做，吸取最有效的部分，为我所用。</p>
-<blockquote>
-<p>名家之书，皆古人之妙处与自家之病处相结合耳。</p>
-</blockquote>
-<h3 id="悬腕之说">悬腕之说</h3>
-<p>「悬腕」是宋初以后的说法，宋代以前，没有高桌椅，都是席地而坐，因此没有地方能够搁放自己的手腕和手肘，显得用笔灵活，上下左右，提按自如。但是如今在高桌椅上写<strong>小字</strong>的时候，如果强行悬腕，反而右臂僵硬，无法运用臂力。</p>
-<h3 id="求人不如求己">求人不如求己</h3>
-<blockquote>
-<p>文章千古事，得失寸心知</p>
-</blockquote>
-<p>意思是做文章是千古的事情，有失有得，只有自家知道。</p>
-<p>书中有一个方法：把自己认为写的好的贴在墙上，过几天再瞧，就觉得很惭愧了，然后再修改，自己就明白了。</p>
-]]></content>
-      <categories>
-        <category>杂谈</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>大理火把节来历</title>
-    <url>/2022/08/01/%E6%9D%82%E8%B0%88/%E5%A4%A7%E7%90%86%E7%81%AB%E6%8A%8A%E8%8A%82%E6%9D%A5%E5%8E%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>普遍流传火烧松明楼的故事缺乏证据。该说法大概在明清时期广泛为人接受。如清代学者</p>
-<p>师范曾在《滇系·杂载》中总结出以下几点：</p>
-<ol type="1">
-<li>火把节即星回节</li>
-<li>起源一：武侯征南，于是日擒孟获，侵夜入城，城中父老设庭燎以迎之</li>
-<li>起源二：纪念曼阿奴之妻阿南，焚夫衣后横刀自断。</li>
-<li><strong>起源三：火烧松明楼，纪念慈善夫人（也称柏洁夫人），此最为广传的一种。</strong></li>
-</ol>
-<p>但元明清常常流传着很多关于大理白族火把节的记载与南诏时期不符。比如南诏时期，《太平广记》中引南诏王诗文《星回节游避风台与清平官赋》:</p>
-<blockquote>
-<p>避风善阐台,极目见藤越,悲哉古与今,依然烟与月。自我居震旦,翊卫类夔契。伊昔颈皇运,艰难仰忠烈。不觉岁云暮,感极星回节。元昶同一心,子孙堪贻厥。</p>
-</blockquote>
-<p>从「岁云暮」应该看出星回节应该位于年末，而火把节位于六月二十五，二者应该是两个节日。但是在明清的记载中大多将二者混为一谈。</p>
-<p>因此，《火烧松明楼》作为白族火把节的起源这一说法，应该只是穿凿附会之说。</p>
-<p>尽管如此，纪念柏洁夫人已然作为节日庆祝的主要载体。比如海东镇的赛龙舟与“捞尸会”，染手花（虽然已经不多见）与白洁夫人手刨火烧残余至十指染血有关，大理北门村和西门村等多地更是将“白洁夫人”奉为本主。</p>
-<p>目前还有一种的说法是大理白族火把节其真正的象征源于男性的垄断生育。抢升斗的必须是新婚的男性，象征着得子。</p>
-]]></content>
-      <categories>
-        <category>杂谈</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>火把节记录</title>
-    <url>/2022/08/01/%E6%9D%82%E8%B0%88/%E7%81%AB%E6%8A%8A%E8%8A%82%E6%84%9F%E5%8F%97/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>大理白族的火把节在每年六月二十日，分为竖火把，点火，抢升斗，耍火把等环节，具有独特且浓郁的名族特色，也是白族最盛大的传统节日。</p>
-<h2 id="竖火把">竖火把</h2>
-<p>火把节的资金往往由村中的新生儿女的几户人家均摊。火把往往在本主庙院子里或者附近竖立，然后在竖立的挖坑以便插入。不同于彝族，白族火把节往往高竖火把，由松木制成。然后再旁边插上竹条和稻草等助燃。最后制作『升斗』，是由细木和彩纸糊成，旁边再插上旗子，共有三层，故曰『连升三级』，象征着婴儿的出世。</p>
+L_{\text {simple }}(\theta):=\mathbb{E}_{t, \mathbf{x}_0, \boldsymbol{\epsilon}}\left[\left\|\boldsymbol{\epsilon}-\boldsymbol{\epsilon}_\theta\left(x_t, t\right)\right\|^2\right] 
+\]</span> 其中 <span class="math inline">\(x_t = \sqrt{\bar{\alpha}_t} \mathbf{x}_0+\sqrt{1-\bar{\alpha}_t} \boldsymbol{\epsilon}\)</span></p>
+<h1 id="u-net">U-Net</h1>
+<ul>
+<li><p>在每一个训练轮次每个训练样本(图像)随机选择一个时间步长t。</p></li>
+<li><p>对每个图像应用高斯噪声(对应于t)。</p></li>
+<li><p>将时间步长转换为嵌入(向量)。</p></li>
+</ul>
+<h1 id="background">Background</h1>
+<ul>
+<li>3D generative models
+<ul>
+<li>Diffusion Model : 昂贵的标定 3D 数据，未标定的图像， Internet → <strong>Bias</strong></li>
+<li>利用 NeRF ： DreamFields， CLIP</li>
+</ul></li>
+<li>Single-view object reconstruction：
+<ul>
+<li>显示表示泛化能力差，全局 conditioning</li>
+</ul></li>
+<li>Zero-shot ： 在无需针对训练的情况下给出响应</li>
+</ul>
+<h1 id="motivation">Motivation</h1>
+<ul>
+<li><p>Diffusion Models 的数据集中包含不同视角的图像</p></li>
+<li><p>引导模型控制相机外参</p></li>
+</ul>
 <figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012330672.png" alt="连升三级" /><figcaption aria-hidden="true">连升三级</figcaption>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231108175859.png" alt="Right" /><figcaption aria-hidden="true">Right</figcaption>
 </figure>
-<h2 id="点火">点火</h2>
-<p>火把节的操办具有地域性，每个村寨都有自己的本主庙，而所有村落按照本主庙划分为不同的「辖区」，每个区域都竖立自己单独的火把，火种必须从本主庙迎出来。</p>
-<video src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012337426.mp4" title="南潘溪村迎火">
-99
-</video>
-<p>然后将火把顶上的稻草引燃</p>
+<h1 id="learning-to-control-camera-viewpoint">Learning to control camera viewpoint</h1>
+<ul>
+<li><p>Input: paired images and their relative camera extrinsics <span class="math inline">\(\{(x,x_{(R,T)}, R, T)\}\)</span></p></li>
+<li><p>Latent diffusion</p>
+<ul>
+<li>Encoder <span class="math inline">\(\varepsilon\)</span></li>
+<li>Denoiser U-Net <span class="math inline">\(\epsilon_{\theta}\)</span></li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+\min _\theta \mathbb{E}_{z \sim \mathcal{E}(x), t, \epsilon \sim \mathcal{N}(0,1)}\left\|\epsilon-\epsilon_\theta\left(z_t, t, c(x, R, T)\right)\right\|_2^2
+\]</span></p>
+<ul>
+<li>Inference model generate from a Gaussian noise image conditioned on <span class="math inline">\(c(x,R,T)\)</span></li>
+</ul>
+<h1 id="view-conditioned-diffusion">View-Conditioned Diffusion</h1>
+<ul>
+<li>CLIP embedding <span class="math inline">\(c(x,R,T)\)</span></li>
+<li>cross-attention to condition denoising U-Net</li>
+</ul>
+<h1 id="geometry">Geometry</h1>
+<ul>
+<li>Score Jacobian Chaining (SJC)</li>
+</ul>
+<ol type="1">
+<li>随机采样视点，做体渲染</li>
+<li>在图像上添加高斯噪声</li>
+<li>通过 conditional U-Net
+<ul>
+<li>image x</li>
+<li>embedding <span class="math inline">\(c(x,R,T)\)</span></li>
+<li>timestep <span class="math inline">\(t\)</span></li>
+</ul></li>
+<li>PAAS score toward the non-noisy input <span class="math inline">\(x_{\pi}\)</span></li>
+</ol>
+<p><span class="math display">\[
+\nabla \mathcal{L}_{S J C}=\nabla_{I_\pi} \log p_{\sqrt{2} \epsilon}\left(x_\pi\right)
+\]</span></p>
+<h1 id="live-demo-novel-synthesizes-views">Live Demo (Novel synthesizes views)</h1>
 <figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012350457.png" alt="南潘上登火把节" /><figcaption aria-hidden="true">南潘上登火把节</figcaption>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231108230535.png" alt="20231108230535" /><figcaption aria-hidden="true">20231108230535</figcaption>
 </figure>
-<h2 id="抢升斗">抢升斗</h2>
-<p>抢升斗的人选必须是刚婚的男性，抢下『连升三级』，祝愿着得子。</p>
-<h2 id="耍火把">耍火把</h2>
-<p>这应该是火把节最高潮和有趣的部分了。每家人挤在迎来的火种前引燃自己手中的火把，将火焰传递的温暖送入自家门中。</p>
+<h2 id="view-from-above">View from above</h2>
 <figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012356921.png" alt="借火" /><figcaption aria-hidden="true">借火</figcaption>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231108230924.png" alt="540px" /><figcaption aria-hidden="true">540px</figcaption>
 </figure>
-<p>纵然黑夜降临，但亲朋好友之间互相取火，将薪火不断传递，『万炬纵横，灿如星海』。正如同明代诗人杨慎笔下的『松炬荧荧宵作平』。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020001028.jpg" /></p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020107106.jpg" /></p>
-<p>撒一把松明子，烈焰迸发，火光四射。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020009767.jpg" /></p>
-<p>尽情挥舞手中的火把，让疾风为火焰注入生命力，让黑暗中染上绚丽炽红的轨迹。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020012250.jpg" /></p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020105980.jpg" /></p>
-<p>火把上的大火直冲云霄，点亮一片天空。火星四溅，松木崩裂，感受到火炬内部有股强劲的生命力在迸发。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020021338.jpg" /></p>
-<p>最终火把却被这股生命力反噬，仿佛英雄垂暮，摇摇欲坠，大厦将倾。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020024687.jpg" /></p>
-<p>最终轰然倒塌，仿佛火山爆发，岩浆滚滚流淌而下，又如浴火重生。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020026118.jpg" /></p>
-<p>火把节如同不断上演的光影艺术剧，绚丽多姿，多彩纷呈。白子们通过火焰的传递，传承苍洱间祖祖辈辈生活的土地。又如同一首苍老的山歌，遒劲有力，发自肺腑，全出于本性，没有丝毫扭捏造作。火焰的力量从火把的根部直顶头部，穿云裂石。舞动时，划过黑暗。这就是为何火把节象征着生育的根本吧。</p>
-<p>欢迎各位来西南地区体会独特的风土人情。</p>
+<h2 id="left">Left</h2>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231108231136.png" alt="Left" /><figcaption aria-hidden="true">Left</figcaption>
+</figure>
+<h1 id="sjc">SJC</h1>
+<h1 id="reference">Reference</h1>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3poLWNuLyVFNSVBNCU5QSVFNSU4NSU4MyVFNiVBRCVBMyVFNiU4MCU4MSVFNSU4OCU4NiVFNSVCOCU4Mw==">多元正态分布<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3poLWNuLyVFNSU4RCU4RiVFNiU5NiVCOSVFNSVCNyVBRSVFNyU5RiVBOSVFOSU5OCVCNQ==">协方差矩阵<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9odWIuYmFhaS5hYy5jbi92aWV3LzIzNTg2">Diffusion 和Stable Diffusion的数学和工作原理详细解释<i class="fa fa-external-link-alt"></i></span></p>
 ]]></content>
       <categories>
-        <category>杂谈</category>
+        <category>科学</category>
+      </categories>
+      <tags>
+        <tag>NeRF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Neuralangelo</title>
+    <url>/2023/10/09/%E7%A7%91%E5%AD%A6/20231009-Neuralangelo/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="neuralangelo">Neuralangelo</h1>
+<p>High-Fidelity Neural Surface Reconstruction</p>
+<h1 id="motivation">Motivation</h1>
+<ul>
+<li>Muti-resolution 3D hash grid</li>
+<li>numerical gradients for computing higher-order derivatives as a smoothing operation</li>
+</ul>
+<h1 id="background">Background</h1>
+<ul>
+<li><strong>Volume rendering of SDF</strong> opacity value <span class="math inline">\(\alpha_i\)</span> introduced by Neus <img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231009-Neuralangelo-2023-10-10-22-46-26.png" alt="20231009-Neuralangelo-2023-10-10-22-46-26" /></li>
+</ul>
+<p><span class="math inline">\(\Phi_s\)</span> is sigmoid function</p>
+<p># Background - Multi-resolution hash encoding. Input position <span class="math inline">\(x_i\)</span> Resolution <span class="math inline">\(l\)</span> <img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231009-Neuralangelo-2023-10-10-22-49-06.png" alt="20231009-Neuralangelo-2023-10-10-22-49-06" /></p>
+<p># Numerical Gradient Computation - Eikonal loss 需要求二阶导 - 解析梯度只能优化相邻的 vertex <img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231009-Neuralangelo-2023-10-11-00-43-51.png" alt="20231009-Neuralangelo-2023-10-11-00-43-51" /></p>
+<h1 id="numerical-gradient-computation">Numerical Gradient Computation</h1>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231009-Neuralangelo-2023-10-11-00-44-54.png" alt="bg right 100%" /> step size 作为对解析导数平滑度的指标 - <span class="math inline">\(\epsilon\)</span> 越大，重建越平滑的区域 - 反之，则重建细节 - 根据 hash grid 调整 <span class="math inline">\(\epsilon\)</span></p>
+<h1 id="progressive-levels-of-details">Progressive Levels of Details</h1>
+<ul>
+<li>先激活 coarse grid</li>
+<li>降低 <span class="math inline">\(\epsilon\)</span> 的同时，激活 fine grid</li>
+<li>weight decay 避免单一分辨率主导</li>
+</ul>
+<h1 id="curvature-loss">curvature loss</h1>
+<p>Encourage smoothness<br />
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231009-Neuralangelo-2023-10-11-01-01-28.png" alt="20231009-Neuralangelo-2023-10-11-01-01-28" /></p>
+]]></content>
+      <categories>
+        <category>科学</category>
       </categories>
   </entry>
   <entry>
-    <title>甘南游记</title>
-    <url>/2022/07/14/%E6%9D%82%E8%B0%88/%E7%94%98%E5%8D%97%E6%B8%B8%E8%AE%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="备冬草">备冬草</h2>
-<p>于是乎直接沿着最快的线路，沿着京昆高速和兰海高速直抵舟曲县。随后沿着一条小路经过腊子口到达岷县。在路上遇到了牧民准备冬草。把收割的草晒在路沿上，然后在收起来打捆屯在冬天。准备冬草规模浩大，十分忙碌，大概就是农忙？草原气候，夏季多雨，草肥物盛，冬季雪灾，大雪也会覆盖在草场上，牛羊没有新鲜牧草可以吃，所以趁着牧草枯草前割掉一些，晒干后作为牛羊冬天的食物。</p>
+    <title>前人工作</title>
+    <url>/2023/11/23/%E7%A7%91%E5%AD%A6/20231123-%E5%89%8D%E4%BA%BA%E5%B7%A5%E4%BD%9C/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="archaide"><span class="exturl" data-url="aHR0cDovL3d3dy5hcmNoYWlkZS5ldS8=">Archaide<i class="fa fa-external-link-alt"></i></span></h1>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231123160034.png" alt="20231123160034" /> - 参考数据集的构建：几何类型（双耳细颈瓶），装饰</p>
+<h1 id="reference-database">Reference database</h1>
 <figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142030421.jpg" alt="储备冬草" /><figcaption aria-hidden="true">储备冬草</figcaption>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231123163040.png" alt="20231123163040" /><figcaption aria-hidden="true">20231123163040</figcaption>
 </figure>
-<h2 id="铁尺梁">铁尺梁</h2>
-<pre><code>然后顺着蜿蜒的山路盘旋而上，到达险关腊子口，红军在此激战，突破了国民党军队的防线。可以沿着栈道顺着腊子河谷看到留下的碉堡。</code></pre>
+<h1 id="recognising-decorations">Recognising decorations</h1>
 <figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142031021.jpg" alt="腊子口纪念碑" /><figcaption aria-hidden="true">腊子口纪念碑</figcaption>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231123163954.png" alt="20231123163954" /><figcaption aria-hidden="true">20231123163954</figcaption>
 </figure>
-<h2 id="铁尺梁-1">铁尺梁</h2>
-<pre><code>铁尺梁因如直立的铁尺而得名，众山之巅，诸神之上。无色经幡飘扬。可以俯瞰蜿蜒的盘山公路，散落在低谷的人家。平视可以看到叠锋隐约，错落有致，有个山峰形状酷似。据说毛泽东在此写下七律长征。</code></pre>
+<h1 id="matching">Matching</h1>
 <figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142034408.jpg" alt="酷似熊的山峰" /><figcaption aria-hidden="true">酷似熊的山峰</figcaption>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231123164935.png" alt="20231123164935" /><figcaption aria-hidden="true">20231123164935</figcaption>
 </figure>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142036607.jpg" alt="月亮与经幡" /><figcaption aria-hidden="true">月亮与经幡</figcaption>
-</figure>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142038251.jpg" alt="成群的牛羊" /><figcaption aria-hidden="true">成群的牛羊</figcaption>
-</figure>
-<h2 id="达尔宗圣湖">达尔宗圣湖</h2>
+<h1 id="思考">思考</h1>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9odWdnaW5nZmFjZS5jby9kb2NzL2RpZmZ1c2Vycy92MC4xMy4wL2VuL3RyYWluaW5nL3RleHQyaW1hZ2U=">Fine tune<i class="fa fa-external-link-alt"></i></span> diffusion 模型</li>
+<li>通过残片的语义生成的 prompt</li>
+<li>拼凑现有方法</li>
+</ul>
+<h1 id="reference">Reference</h1>
+<ul>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy5hcmNoYWlkZS5ldS8=">Archaide<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuc2NpZW5jZWRpcmVjdC5jb20vc2NpZW5jZS9hcnRpY2xlL3BpaS9TMDE2Nzg2NTUyMDMwMDM2Mg==">Recognising decorations in archaeological finds through the analysis of characteristic curves on 3D models<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuc2NpZW5jZWRpcmVjdC5jb20vc2NpZW5jZS9hcnRpY2xlL3BpaS9TMDE2Nzg2NTUyMDMwMDExOA==">Matching ostraca fragments using a siamese neural network<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h1 id="组会总结">组会总结</h1>
+<ul>
+<li>Dreamfusion 的语义更好</li>
+<li>SDS 的语义更加丰富，想象力更好</li>
+<li>SDS 的关键</li>
+</ul>
 ]]></content>
       <categories>
-        <category>杂谈</category>
+        <category>科学</category>
       </categories>
   </entry>
   <entry>
-    <title>蛤蟆先生去看心理医生</title>
-    <url>/2023/01/19/%E6%9D%82%E8%B0%88/%E8%9B%A4%E8%9F%86%E5%85%88%E7%94%9F%E5%8E%BB%E7%9C%8B%E5%BF%83%E7%90%86%E5%8C%BB%E7%94%9F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>讲述了一只抑郁的蛤蟆通过心理咨询，最终成长的故事。</p>
-<p>一开始蛤蟆内心深处并非自己意愿。苍鹭告诉他只有当蛤蟆真正担起想要改变的责任的时候才能真正开始。心理咨询更像是一场“<strong>合作</strong>”来访者和咨询者的都需要同主动参与。</p>
-<p>随后在谈话之中逐渐引入一些概念。虽然感觉没什么很特别的，但是当把这些概念联系到自身经历，又让人醍醐灌顶。以下是人面对事物的三种状态。</p>
-<p>第一个是『 儿童自我状态』。人与生俱来的情感包括：开心、悲伤、愤怒、恐惧。 但是在成长过程中受到影响之后，这些基本的情感就会混合成各式各样的别的情绪和行为。这些影响又主要来源于父母。儿童无法离开父母，于是衍生不得不各种各样的行为是为了适应在家庭环境，顺从和取悦父母，<strong>并不意味真正理解父母输出的价值观</strong>。比如愤怒的方式，我也一度感觉自己不怎么生气。发现只是愤怒发泄的方式不同，我和蛤蟆一样往往就会怄气，会变得异常安静，从而减少攻击性。通常是在父母的权威之下做出的适应。</p>
-<p>第二个是『 父母自我状态』。我们会表现地如同自己地父母，包括价值观和道德观，以此来审判某个人。但是每个人地运作方式又有不同。有的人审判别人，而我和蛤蟆会选择审判自己，谴责自己有罪。我常常在想：为什么我明明知道自己做的不对，就是不做出行动去改呢？我推测我的矛盾源自是父母自我状态和儿童自我状态的对抗。比如我明明知道我房间很乱，又不想去整理，然后开始责怪自己，责怪的声音源自于父母，此时我儿童的状态又出现了，作为儿童的天性，又很抵触听从父母的话，如此往复，所谓的<strong>知道</strong> 只是一种来自父母状态的假象，内心深处还是产生对不明所以的强迫的抵触情绪。</p>
-<p>第三个是『 成人自我状态』。在这个状态下，我们能理性的合理行事，而不再被脑子里父母过去的声音所驱使，也不会被童年的情绪所围困。说实话，没看懂这个状态的来龙去脉。我把成人自我状态看作是自己真正通过知识和道理来掌控自己的状态，这些知识是自我真正理解和接受的。所以在小时候，父母去强迫施加的那些道理，比如生活上的一些琐事就难以进入状态中。因为从小时候起，这些道理就在自己儿童状态和父母状态中产生着矛盾，很难一下子化解。而像一些我从学校学习的新知识，我更自由地使用和应用它们，父母的声音不会在解数学题时响起。“不愤不启，不悱不发”，合理的引导，积极地思考获得的认知，使用时才会感到更自由和畅快。</p>
-<p>最后是『 自证预言』。按照自己童年的观点，构建出一个世界。我们会控制事件的发生，来反复确认自己的信念，让世界和自己预想的一样。仿佛自己在上演一出剧本。具有不同人生坐标的人会有玩着不一样的游戏，如果和自己预想的一样，那么就取得胜利。比如 认为自己和差劲，别人都比他好的人，会玩让自己变成受害者的游戏，来印证自己是生活的受害者的认知。比如，有意的招惹别人，看别人能对自己宽容到什么程度，接着说：”我早说过你会这样对我，证明我是真的很差劲。“ 想起来真的很后怕，尊敬你和爱你的人都会备受伤害，甚至离你远去，最终孤苦伶仃，一个人。没错，达成了游戏的目的，赢了游戏，却输了人生。</p>
-<p>读罢此书，蛤蟆怎么好起来的我还是不是不清楚，毕竟咨询的时间线是很长的，我顶多明白自己或者他人行为背后的一部分原因，但是怎么去改变还是一头雾水。</p>
+    <title>Lora</title>
+    <url>/2023/11/28/%E7%A7%91%E5%AD%A6/20231128-Lora/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="fine-tune">Fine Tune</h1>
+<h1 id="全参数微调">全参数微调</h1>
+<ul>
+<li>显存占用高
+<ul>
+<li>前向传播，记录中间计算结果</li>
+<li>反向传播，计算梯度</li>
+<li>优化器记录前几次梯度状态</li>
+</ul></li>
+</ul>
+<h1 id="lora">LoRA</h1>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231130160342.png" alt="bg right 80%" /><figcaption aria-hidden="true">bg right 80%</figcaption>
+</figure>
+<ul>
+<li><p>分解成两个小矩阵 <span class="math inline">\(W_B, W_A\)</span></p></li>
+<li><p>可插拔分支</p></li>
+<li><p>推理前将 LoRA 分支 Merge 到 <span class="math inline">\(W\)</span> 中</p></li>
+</ul>
+<h1 id="textual-inversion">Textual Inversion</h1>
+<ul>
+<li><p>从图像中学习新的“词语”<br />
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231130163833.png" alt="20231130163833" /></p></li>
+<li><p><code>python   --placeholder_token="&lt;cat-toy&gt;" --initializer_token="toy" \   prompt = "A &lt;cat-toy&gt; backpack"</code></p></li>
+</ul>
+<h1 id="reference">Reference</h1>
+<ul>
+<li><span class="exturl" data-url="aHR0cDovL2FyeGl2Lm9yZy9hYnMvMjMwMy4xMTMyOA==">LoRA<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2Nsb25lb2ZzaW1vL2xvcmE=">cloneofsimo/lora<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9odWdnaW5nZmFjZS5jby9kb2NzL2RpZmZ1c2Vycy92MC4zLjAvZW4vdHJhaW5pbmcvdGV4dF9pbnZlcnNpb24jOn46dGV4dD1UZXh0dWFsJTIwSW52ZXJzaW9uJTIwaXMlMjBhJTIwdGVjaG5pcXVlLHRleHQlMkR0byUyRGltYWdlJTIwcGlwZWxpbmVzLg==">Textual inversion<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
 ]]></content>
       <categories>
-        <category>杂谈</category>
+        <category>科学</category>
       </categories>
   </entry>
   <entry>
-    <title>赣行规划</title>
-    <url>/2023/04/17/%E6%9D%82%E8%B0%88/%E8%B5%A3%E8%A1%8C%E8%A7%84%E5%88%92/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>江西地处中国东南部，它三面环山，庐山镇守北大门，北部平原坦荡，中部丘陵，盆地相间。数千条河流纵横交错，其中大部分汇入了鄱阳湖，从而与长江相连。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202304171943554.png" alt="image-20230417193555806" style="zoom:50%;" /></p>
-<h1 id="五月一日">五月一日</h1>
-<ol type="1">
-<li><p>自上海出发乘高铁抵达玉山南站</p></li>
-<li><p>玉山南站打车到汽车站，去三清山有两种班车，分别是去东部金沙和<strong>南部外双溪</strong>的，票价16元/人</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202304171943466.png" alt="image-20230417194259736" style="zoom:50%;" /></p></li>
-<li><p>票务费用: 学生票 185/人</p></li>
-<li><p>从南门外双溪索道上山，到日上山庄放行李</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202304180102939.png" alt="img" style="zoom:67%;" /></p></li>
-</ol>
-<h1 id="号">2号</h1>
-<ol type="1">
-<li>日出观景点在玉清台 里营地1h</li>
-<li>中午，东门乘 <strong>金沙索道下山</strong>，乘坐班车到婺源（1.5h)</li>
-<li>婺源到皇陵</li>
-</ol>
-<h1 id="号-返程">3号 返程</h1>
-<ol type="1">
-<li>在婺源悠闲地休息以下</li>
-<li>下午四点返程</li>
-</ol>
+    <title>Inpainting</title>
+    <url>/2023/12/07/%E7%A7%91%E5%AD%A6/20231207-Inpainting/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="fine-tune">Fine Tune</h1>
+<h1 id="全参数微调">全参数微调</h1>
+<ul>
+<li>显存占用高
+<ul>
+<li>前向传播，记录中间计算结果</li>
+<li>反向传播，计算梯度</li>
+<li>优化器记录前几次梯度状态</li>
+</ul></li>
+</ul>
+<h1 id="lora">LoRA</h1>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231130160342.png" alt="bg right 80%" /><figcaption aria-hidden="true">bg right 80%</figcaption>
+</figure>
+<ul>
+<li><p>分解成两个小矩阵 <span class="math inline">\(W_B, W_A\)</span></p></li>
+<li><p>可插拔分支</p></li>
+<li><p>推理前将 LoRA 分支 Merge 到 <span class="math inline">\(W\)</span> 中</p></li>
+</ul>
+<h1 id="textual-inversion">Textual Inversion</h1>
+<ul>
+<li><p>从图像中学习新的“词语”<br />
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/20231130163833.png" alt="20231130163833" /></p></li>
+<li><p><code>python   --placeholder_token="&lt;cat-toy&gt;" --initializer_token="toy" \   prompt = "A &lt;cat-toy&gt; backpack"</code></p></li>
+</ul>
+<h1 id="reference">Reference</h1>
+<ul>
+<li><span class="exturl" data-url="aHR0cDovL2FyeGl2Lm9yZy9hYnMvMjMwMy4xMTMyOA==">LoRA<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2Nsb25lb2ZzaW1vL2xvcmE=">cloneofsimo/lora<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9odWdnaW5nZmFjZS5jby9kb2NzL2RpZmZ1c2Vycy92MC4zLjAvZW4vdHJhaW5pbmcvdGV4dF9pbnZlcnNpb24jOn46dGV4dD1UZXh0dWFsJTIwSW52ZXJzaW9uJTIwaXMlMjBhJTIwdGVjaG5pcXVlLHRleHQlMkR0byUyRGltYWdlJTIwcGlwZWxpbmVzLg==">Textual inversion<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
 ]]></content>
       <categories>
-        <category>杂谈</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>镀金时代</title>
-    <url>/2022/11/03/%E6%9D%82%E8%B0%88/%E9%95%80%E9%87%91%E6%97%B6%E4%BB%A3/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="第二次工业革命">第二次工业革命</h1>
-<h2 id="工业经济">工业经济</h2>
-<p>从小农场的手工制造业转型为工业社会。“迅速彻底的革命”。五大湖，匹兹堡钢铁中心，原材料</p>
-<h2 id="铁路">铁路</h2>
-<ol type="1">
-<li>同一轨距</li>
-<li>批量化生产，全国连锁店 全国性品牌</li>
-</ol>
-<h2 id="发明创造">发明创造</h2>
-<ol type="1">
-<li>爱迪生</li>
-</ol>
-<h2 id="竞争与合并">竞争与合并</h2>
-<ol type="1">
-<li>防止恶性竞争咯昂段</li>
-</ol>
-<h2 id="thomas-a.-scott">Thomas A. Scott</h2>
-<ol type="1">
-<li>慈善</li>
-<li>集权方法，连轴转</li>
-<li></li>
-</ol>
-<h2 id="工人自由">工人自由</h2>
-<ol type="1">
-<li>利益分配不均</li>
-<li>少部分产业技术工人能经济独立：钢铁</li>
-<li>半技术工人：操作机器，死亡率高</li>
-<li>妇女恶劣的工作环境，“如同内战前一样”</li>
-</ol>
-<h2 id="阶级分化">阶级分化</h2>
-<ol type="1">
-<li>贫富差距</li>
-</ol>
-<h1 id="西部转型">西部转型</h1>
-<p>资本主义流入 自然条件 美国文化的特别素质实在西部形成的，西部是安全阀门，将东部对自己不满的人吸引，从而抵消社会动乱。</p>
-<h2 id="西进定居">西进定居</h2>
-<p>农场主：东部出生本土，重建后南部逃离的黑人</p>
-<h2 id="大型农场">大型农场</h2>
-<p>主要仍然是家庭弄工厂</p>
-<p>加州大型农场</p>
-<h2 id="牛仔">牛仔</h2>
-<p>牛群驱赶活动</p>
-<ol type="1">
-<li>西部城市人口比例高</li>
-<li>矿山铁路</li>
-</ol>
-<h2 id="印第安人">印第安人</h2>
-<ol type="1">
-<li>摧毁伊甸人的经济基础</li>
-<li>联邦军队与部落</li>
-<li>文化打击</li>
-<li><strong>道斯法</strong> ： 将印第安人土地分解，分配个家庭，剩余的出售</li>
-<li>1924年赋予所有印第安人</li>
-</ol>
-<h1 id="政治">政治</h1>
-<p>Mark Twain</p>
-<h2 id="政治腐败">政治腐败</h2>
-<p>大股份公司</p>
-<p><strong>腐败政治机器</strong></p>
-<p>共和党：控制工业化北部，中西部，西部</p>
-<p>政治僵局时代，</p>
-<h2 id="政府与经济">政府与经济</h2>
-<ol type="1">
-<li>联邦权力小</li>
-<li>政党被利益集团控制，共和当坚持高关税，保护美国工业</li>
-<li>金本控制</li>
-</ol>
-<h2 id="改革立法">改革立法</h2>
-<ol type="1">
-<li>文官改革法 竞争性考试</li>
-<li>ICC 保障为农场主所收费用合理</li>
-</ol>
-<h2 id="州政治冲突">州政治冲突</h2>
-<h1 id="镀金时代的自由">镀金时代的自由</h1>
-<ol type="1">
-<li>劳工关系</li>
-<li>达尔文 契约自由</li>
-</ol>
-<h1 id="劳工与共和国">劳工与共和国</h1>
-<ol type="1">
-<li>铁路大罢工</li>
-<li>改革者堆小生产时代的的怀旧，</li>
-<li>劳工运动</li>
-</ol>
-<h2 id="贝拉米乌托邦">贝拉米乌托邦</h2>
-<ol type="1">
-<li>社会主义《合作社会》</li>
-</ol>
-<h2 id="劳工与政治">劳工与政治</h2>
-]]></content>
-      <categories>
-        <category>杂谈</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>隔离日记</title>
-    <url>/2022/12/23/%E6%9D%82%E8%B0%88/%E9%9A%94%E7%A6%BB%E6%97%A5%E8%AE%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="day0-day1">Day0 &amp; Day1</h1>
-<p>21日开始发低烧，感觉自己可能要阳了，但是抗原测出来的结果都没有明显的T线。自己可能终究要为自己的自负付出代价了吧。为了让自己可能的阳性对大家来讲没有那么突然，于是开始跟猫和室友不断说我铁定阳了，我想这样提前预告也许能缓和自己内心的害怕和别人的冷眼吧，但内心总是怀着没阳的侥幸。就如同考试后无论好坏总会跟别人大肆宣扬自己考的多么多么差，但内心却依旧不相信，只是通过这种方式能缓解出分时的失望。然后又把刚拿的体温计摔了，就变得十分暴躁，然后zll又让我填那个信息，让我现在去1号楼，我也是神志不清，别人叫我去我就去了。但是当时感觉挺委屈的，大晚上都没什么准备就让我离开寝室，另一方面又害怕自己万一真阳了也对室友不太好。路上突然发现自己也拿捏不准一号楼的位置，只能凭着感觉走。到了一号楼下，望着上面灯光，我环顾了一下其他楼，好像亮的灯都差不多，估计里面应该是人满为患了吧。门口坐着一个穿防护服的人，我便确信的向着门走去，报了一下名字，拿上睡袋和水瓶就上楼了。到了1311门口，敲门许久，终于有人开门了。我走了进去，进去的一瞬间，我有点绝望，好像突然才意识到，我已经出不去了，无论是否感染与否，都会阳。但是进来之后发现寝室十分宽敞和亮堂，况且室友也是非常好，性格也很开朗，也很爱干净。我突然对住在这里感到有一丝兴奋，舒适的环境，新的室友。跟心中所想也有反差，原来，充满病毒的地方并不可怕，人还是可以在这里很好的生活，反倒是外面所谓安全之处，充满着被感染和感染的担忧，不知道自己阳没阳的不确定性，带着薄薄的口罩假装防护。我摘下口罩畅快地大口呼吸，一天焦躁地神经也松弛下来，心情也变得轻快起来。第一天晚上睡得睡袋感觉也非常的新奇，虽然有点小，而且头不怎么好放，最好就在头下面垫裤子，感觉好多了。</p>
-<p>第二天发现突然没有烧了，很高兴，觉得自己是新冠免疫者。还就受到猫咪的物资和被子，很感动，很后悔晚上对她发气，呜呜，其实这件事就是我的自负罢了。虽然没有发烧但是起来之后一直流鼻涕，脑子有点糊涂，就这么磨磨蹭蹭的改了一天的论文。下午三点做了核酸之后还在很盼望自己能阴性，心里居然还有这样的侥幸心理。晚上猫咪胃疼，本来应该好好照顾她的，不能陪在身边就应该，多说点话，但是我就是不知道说什么东西。反倒是猫讲了个小兔子的故事，小兔子一开始怎么也卖不出柠檬汁，于是他把自己最喜欢的毛绒玩具拿出来说谁买柠檬汁，谁就能玩毛绒玩具，然后有个小狮子走过来买走了柠檬汁，rua了小兔子一把。然后大家发现小兔子是可以rua的，于是大家就都来买柠檬汁然后rua小兔子。最后小兔子被老奶奶买走了。</p>
-<h1 id="day2">Day2</h1>
-<p>今天起床和昨天也差不多，也没什么很重的症状。因为室友要早上模拟考，于是早上多躺了一会儿，《天黑以后》看了一半，感觉第二遍读还是没怎么看懂，那个白领程序员那副体面的样子还是挺典型的。下午和晚上又改了一下美国史论文，Brett 一直强调 topic 是美国最重要的时期但是大部分时代之间根本就不是同一个主题，演进的方向也有区别，很难去直接比较谁更重要，彼此之间都是有依赖关系的，那怎么说最重要的难道不得追溯到地球诞生起？ 所以这个 topic 就有问题。然后还老是让我多引用 primary source, 但是教材里那么一大段话放进去字数不就轻松就超过了，我还写什么。 然后晚上有点头晕，但是洗个澡之后瞬间就好了，估计是长期久坐导致血液循环不畅。多起来活动一下。</p>
-<p>睡前故事：从前有一只漂亮小鸭子，大家都觉得他是一只天鹅，于是小鸭子也觉得自己是一只天鹅，于是他从小就跟一群小天鹅一起学习和生活，前几年他依然没大家公认是最棒的小鸭子，都对他寄予厚望，小鸭子也很对此很骄傲，甚至有些傲慢，瞧不起身边其他的小天鹅。然后想不出来了</p>
-<h1 id="day3">Day3</h1>
-<p>今天棋来神清气爽。本以为晚上可能严重但是没有，鼻涕也没有了，也不怎么咳嗽。完全回到两天前的状态，应该是完全好了。看了会儿小马，下午物理一开始有点看不进去，好几天没学了，然后热学那一堆公式也没怎么理清楚，没理解到主线是什么。晚上玩了一下 goose goose duck 游戏，不适合我这种社恐人，但还是可以作为机会锻炼一下。这个隔离日记本来想着是记录一下得了新冠之后的心路历程和症状的，结果出乎意料的好的很快，感觉可以结帖了。</p>
-<h1 id="day4">Day4</h1>
-<p>今天还是状态挺好，很高兴的是我的23号的核酸居然阴性！那天我晚上我还感觉有点发烧，简直是奇迹。也就是说，我21号晚上住进去，22号核酸阳性，然后23号就阴了。走了一个室友，要是在做一次核酸是阴性就可以出去了，我实在没料到好的这么快，而且没什么痛苦，感觉可以吹一辈子。今天上午还有抗原还是有一点点T线，于是下午漱了口再去做的核酸，然后她桶的有点认真，感觉有点悬。然后猫大老远从图书观出来看我，好久没看猫了，恍如隔世。感觉我自己还是有点危险，然后就匆匆回去了。</p>
-<h1 id="day5">Day5</h1>
-<p>今天猫和室友都有点发烧，我感觉有点不妙。但是好消息是我的核酸居然有阴了，成功出狱。结果那个比我早来几天的室友的又复阳了，感觉自己还是很幸运的。结帖！！！</p>
-]]></content>
-      <categories>
-        <category>杂谈</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>面纱</title>
-    <url>/2023/02/09/%E6%9D%82%E8%B0%88/%E9%9D%A2%E7%BA%B1/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>正如书名,本书中人们的关系都存在着一层若隐若现的面纱，有时彼此之间都明白，或许只有一方明白。究竟是戳破笼罩彼此的面纱，还是保持现状，寻求新的出路？</p>
-<p>对于沃尔特来讲，在一开始，沃尔特想竭力地隐瞒自己所谓的智慧，让凯蒂觉得自己很蠢，这就是他最初地面纱。但个人认为沃尔特是全篇看似智慧，其实才是真正最愚蠢的人。首先沃尔特如果真的早就看透凯蒂，就不应该和她结婚，即使自己多么爱她。在与凯蒂相处中，总是沉默，好像在隐藏自己的情绪，还给凯蒂一种可怕的感觉，不愿沟通。吵个架都是都是不动声色，一点人情味都没有。很不喜欢和那种输了棋之后一点垂头丧气的表现都没有。他的自我意识过于强烈，他的爱显得很自私。就像一句话说得：『 我爱你，与你无关。』这怎么可能，你的爱肯定会把别人卷进你自己自导自演的那出戏之中，摆出一副运筹帷幄、居高临下的模样，接着露出那幅嘲讽而又鄙视的神情说：『 我知道你愚蠢、轻浮、无知，可我爱你。』凯蒂问他为什么不直接揍查理一顿，他说自己『 自视清高，不屑动武』。不屑动武的结果就是最后想带着爱的人去送死？沃尔特其实的情感很强烈，他愤怒，并且伤心欲绝，但是他偏偏就是嘴上说自己不在乎，因为自己『 清高』的自尊，最后压抑的情感把自己逼疯了，生着闷气一同去赴死。一开始他到底想让先谁去死，按照自导自演的心理，说不定原本想让自己死，看下凯蒂的反应，他就可以临死前用自己的高尚反衬她的轻浮，或者让她内疚。最终他在凯蒂怀孕的时候还是反悔毕竟还是有人的情感，坦白了自己一开始是想让置凯蒂于死地，并执意让凯蒂离开。但是他估计千算万算没想到凯蒂在修道院变了，变得不在轻浮，他已经丢失了鄙视凯蒂的资本。反观沃尔特，根据沃尔丁的说法，他并不是冲在前线的医生，而是作为细菌学家的身份做实验，文中也没有直接描写沃尔特是如何工作的，其实他比凯蒂更安全。 他真的没想到，结果完全反过来了，自己是有不纯动机的，而凯蒂变成那首挽歌里的大善人，自己本质还是一条咬人的疯狗，一只鄙视自己爱的人的疯狗。而他的死究竟是意外感染，还是自己故意感染，我更偏向后者。</p>
-<p>凯蒂算是全书里面能最好理解的一个『 正常人』。因为是主人公，所以内心独白是最多的，比较好看清她的心理路程。简单的着急，于是匆匆结婚，之后爱上了风流的查理，被查理所骗。故事的转折在凯蒂在修道院见到高尚的修女以及庄严、和蔼可亲的院长时，她逐渐意识到自己的浅薄和愚蠢。在疫情肆虐的地方还想着男女之事。修女们在这片修道院中展现出的欢乐，对待困苦的超然，庄严肃穆的亲切，自我奉献的辛福，让凯蒂觉得自己被这篇神秘的精神乐园拒之门外，而这正是她渴望的幸福，也就是所谓的『 道』。在这种精神的鼓舞下，凯蒂开始到修道院帮忙照顾孩子们，我想这也是沃尔特万万没想到的。修女对自己的丈夫称赞不绝，她也承认自己的沃尔特拥有着非凡的品质，而反观查理汤森，却是一个品质平庸的普通人。尽管她仍然不爱沃尔特，知道自己永远不会爱他，但他希望能与他和解，希望他能原谅她，至少成为朋友的关系。怀孕是一次和解的机会，她本来可以撒谎说，这是他的孩子。但是此时的她觉得撒谎不值得，回答：“我不知道”。凯蒂是个感性的人，只是不爱沃尔特罢了，但她同情，理解沃尔特，并为他的死去感到痛苦和后悔。在知道沃尔特可能拿因为是自杀感染死去时，她辩护道：『 沃尔特是因为心碎才死的。』 当凯蒂回到香港后，她的理智告诉汤森是个卑鄙的小人，但是他对汤森的爱欲还是不可避免的复燃了。在懊丧和怨恨的孤独之下，她终于离开了香港，回到了家中，母亲已经去世。</p>
-<p>凯蒂的母亲是个虚荣、挑剔、专横、野心勃勃的人，对父亲也是严加管教，父亲在家里毫无地位，甚至因为无法为家人提供更奢华的生活而瞧不起。看似父亲是个忠诚的好丈夫，但是横亘在父亲和妻女之间的面纱是父亲的苦难和冷漠的隔阂。而这面纱被母亲的离世揭开了。父亲永远解脱了，他得到了自由，崭新的生活在他面前展开。他在也不用拼命工作而养活儿女，可以放手去追逐自己想要的『 道』。但，当凯蒂问他：『 我不能和你一起去吗？』。他屈服于自己的责任感，放弃了自己的全部希望，表示乐意和凯蒂一同生活。这是全书最令人动容的时刻，体现出父亲的伟大之处。随后在理解对方的苦楚之后，他们彼此相拥，双方都感受到骨肉之亲真正的温暖，这才是他们两个真正追求的『 道』。是本书唯一消融与和解的『 面纱』，也是全篇的结束。</p>
-]]></content>
-      <categories>
-        <category>杂谈</category>
+        <category>科学</category>
       </categories>
   </entry>
   <entry>
@@ -1113,22 +1464,90 @@ z=z\\
       </tags>
   </entry>
   <entry>
-    <title>黔行山水间</title>
-    <url>/2022/09/22/%E6%9D%82%E8%B0%88/%E9%BB%94%E8%A1%8C%E5%B1%B1%E6%B0%B4%E9%97%B4/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>贵州，中国唯一没有平原支撑的省份，群山环绕，数千条河流将其塑造为喀斯特岩溶地貌的王国。大量的山林河谷让这片土地充斥着浓郁的神秘气息。我于是怀着敬畏和些许的恐惧抵达了贵阳。</p>
-<p>贵阳的交通是立体的。坐车身在其中，各条道路在眼前不断地交织绕的人晕头转向，难辨东西。黔灵山公园的猕猴让人有些期待，在公园里跋涉许久才终于看到两只猕猴间互相厮杀，其中一只差点失足从屋檐下掉落，令人捏一把汗。又行了几步，终于发现一群猕猴，哦，不，应该是一群强盗吧。幸亏身上没带食物，否则肯定被哄抢的一干二净。在甲秀楼溜达完后，然后再附近找了家餐馆，叫“雷家圆子”，就是用豆腐做的油炸圆子，配上其特有的调料，口感外脆内嫩，味道鲜美，算是特色小吃吧。</p>
-<p>饭后到高铁站后与社会实践团队会合，大家神态不一，有的社交达人如鱼得水和旁人侃侃而谈，也有的社恐面露羞涩，一言不发。我显然属于后者，所以高铁路上一直假装睡觉，害怕与旁边的组员交谈。我想，以后会有机会和大家熟悉的，也不必过多担心。</p>
-<p>在六盘水经过一晚的修整，来到了本次调研的第一站：水城古镇。这里坐落着一个三线博物馆，纪念的是西南三线建设的历史。沿路的房屋墙壁上都有显赫的那个时代的标语。“人亲堪比阶级爱”，“好人好马上三线”，“为人民服务”等等。参观了博物馆后，知道三线建设是上世纪我国的重大军事战略计划，对西南地区的现代工业化起到了积极的推动作用。让人感到有趣的是一个手动的防空警报器，但是却被工人们用作闹钟，同学们开始疯狂转警报器，空厅传响，整个博物馆瞬间弥漫着一种紧张的备战氛围，霎时间回到那段峥嵘岁月。之后我们便开始在水城古镇进行街头访谈，收获颇丰。突然天空下起大雨，我于是坐在伞下和一个来自广东的游客聊了一下关于三线的问题，谈到当时韶关是广东的三线建设的重点，当时的备战气氛其实非常紧张，很多工业，和技术人员都从东部比如上海等地迁往西部。然后我们小组向一个小卖部的老板考察了水城古镇的历史。在这里未开发以前，这里基本都是住宅区，都用的自己的房子做点小生意，后来政府为了开发古镇景区拆迁了旧的房屋，但是没有给足相应的补贴，如今又向这里的摊位收取较为高昂的租金，这里百姓对此忿忿不平。听到这些话，我感到有些唏嘘。但是我们又采访了一位烙锅店的左氏老板，她对此的看法却又截然不同。她从小生活在水城，她母亲曾经是在路边做烙豆腐的。她对景区的开发持非常积极的态度，街道变得更加整洁了，社会环境和治安也有了很大改善，比如之前女孩子从来不敢走夜路，如今她也不会担心走夜路，游客更多使得生意更加兴隆。我想，之所以产生不同看法的原因是从不同的方面看待水城的变迁。政府在协调拆迁问题时确实存在着过失，百姓原本的生产经营方式突然改变，又缺乏补贴，引起了一部分原本生意蒸蒸日上的商家的忿怨。而后面采访的这位，较为年轻的老板更关注于变迁带来的好的环境改变。尽管如此，政府也应该更多的考虑和协调百姓的不满。然后晚上也品尝了水城的特色小吃—烙锅。用土砂锅烙烤食物，蘸一下辣椒面，香辣爽口，油而不腻。只是有点难以控制火候大小，容易热油飞溅，还是略微有些危险。</p>
-<p>第二天从六盘水前往久负盛名的黄果树瀑布，作为最大的瀑布群。做观光车的一路上都能看到一些小型的瀑布。离大瀑布的远近不同，感受也不同。从远处看去，夹在两山之间，激起的云雾在山谷中升腾，是秀美。而逐渐走进后，一下多了一个感官维度--触觉。激荡的水珠在脸上胡乱地拍打，心中升起阵阵凉意，耳边隆隆，水风忽忽，闭上双眼依然能感到震撼。更神奇的事，瀑布的背后，隐藏着一条溶洞，如同西游记里地水帘洞，从背面这个角度观飞瀑实属新奇，飞落地水花出奇的白，仿佛瀑布化身成了雪崩。不得不再一次感叹大自然的鬼斧神工。除了壮阔的黄果树瀑布，还有秀美的银链坠潭瀑布。其落差不大，潭沿面凸起的石面，像一片片莲叶一般，静谧而柔美地流泻如同绸缎。不知这些水滴从高处坠落时是否感到害怕，分明刚刚还在水平如面镜的水流中缓缓流淌，下一刻便倏忽间从平滑的水面坠落倾泻而下，让我不免后怕坐在飞机上的失重感</p>
-<p>第三天终于有实操环节了--摘刺梨。之前喝过名叫“刺柠吉”的饮料，印象中爽口。可是当亲眼看到刺梨时，浑身是刺的它似乎并不那么友好，令人不知从哪里下嘴，终于忍住牙床的刺痛艰难咬下一口时，一股酸涩令人倒吸一口气。看来刺梨的确不适合直接食用，难怪必须通过进一步加工才能除去它的酸涩味，以充分其清热爽口的优点。听完讲解后，我们便兴致勃勃地戴上手套下田采摘。这里的农田也是起伏不平，地面湿滑容易摔倒，下坡只能让旁边的玉米受苦了，一群人经过后，玉米全部都垂头丧气的倒了下来。刺梨一簇簇地挂在枝头，生熟让人难以判断，管他呢，权且当搞点小破坏。结果就发现用一层手套摘刺梨稍微一用力就能轻易地被戳穿，只得戴上两层手套，捏住刺梨之后使劲往一个方向转，就能轻易地摘下来了。大家都摘得热火朝天，尽管被刺的惨叫声此起彼伏，最后还是收获了半筐刺梨，半载而归。好心的村民想把刺梨送给我们，但是实在是苦于揣着兜里的麻烦，只得一再推却。</p>
-<p>采摘刺梨的之后的一天，我们团队又调查了一家刺梨加工企业，参观了刺梨加工的生产线。了解到刺梨的营养价值很高，尤其是维C含量。又介绍了很多用刺梨作为原材料的产品，除了刺梨原浆，刺梨酒，还有用来解腻用的饮品，大家都仔细品尝了一番。并且与书亦烧仙草合作推出刺梨口味的奶茶。这是确凿的事实，后来从六盘水返回到贵阳的时候，我就在高铁站奶茶店喝到了这熟悉的味道，在喝到的第一口有些莫名感动。刺梨相貌本身不讨好，原本味道又有些苦涩，但是却能被人们坚持发掘价值，经过一系列加工与其他食材配合，最终能华丽蜕变为一种竞品在市场上销售，博得消费者的喜爱，实在是催人奋进。</p>
-<p>还令人难以忘怀的就是乌蒙大草原。在海拔两千多米的高山间，竟然滋养出一片西南地区最大的天然草场。与平时所见一马平川的草原不同，乌蒙大草原不断给人遐想和未知期待。山丘起伏挡住了视线，让人一眼看不到全貌，越过眼前的小土坡也许就又能看见奔跑的羊群，抑或是听见阵阵牛羚，而稍微挪动脚步又能看到一只威风凛然的黄牛盘踞在下一个山头。长期在这样有趣的坡道行走，也丝毫不觉得疲惫，反倒妙趣横生。草原上还看到一群穿着布依族服饰的姑娘们围成一圈，随着音乐的节奏欢快的舞蹈，旁边的游客也逐渐加入这场草原盛会，其乐融融。我坐在草地上，和煦的风吹得我醉眼迷离，恍惚地看这片热闹的草地，人们与牛羊甚至骆驼结伴，风筝在白云间游走，山顶上徐徐旋转地大风车。这片深处群山腹地的草原就如同，尽管有些老套，但的确是贵州高原上的明珠。使生活在此的人们，能够在地无三尺平的贵州，在一片广阔的草地尽情撒欢，释放内心的烦闷，遥望连绵的草野。</p>
-<p>另外，我在团队中负责视频后期，当然也承担了小部分的拍摄工作。我之前没有任何关于视频创作的经验，完全是从头学起。因为要和配合新闻稿做两个视频，时间非常紧迫。白天不仅坐车和拍摄非常辛苦，晚上还得紧张工作。为了呈现更好的效果，我一帧一帧的处理视频细节，一开始很不熟练，导致效率很低，还出现一堆问题，前几天不得不工作到凌晨2点。后面也感受到自己愈发熟练，效率也逐渐提高，过程虽然很辛苦，但是看到做出来的视频还是非常有成就感，并且学习了一项新的技能。与团队成员的协作共事，同甘共苦，让大家很快成为一个紧密的团体，不善言语的我也认识了很多新的好伙伴。</p>
-<p>在这七天里，少不了车马困顿。“天下山峰何其多，唯有此处峰成林”。每个镇乡之间的都要绕行大量的山路。感觉贵州的建设实属不易。交通方面是一个难题，不过越来越多的高桥正在飞架，据统计，贵州桥梁数量达到20000多座，全世界排名100座桥梁当中，有80多座来自中国；这80多座大桥之中，就有一大半来自贵州。但是六盘水铁路线还是处于落后局面，基本靠六安一条线路，我认为如果毕节-六盘水能通铁路能加强黔西和四川的联系。大量山地加上云贵准静止锋带来长期阴雨的天气，制约了贵州的农业发展。除了少量优良的土地能种植猕猴桃等经济作物，而沿途看到的大部分作物还是玉米。尽管如此贵州有着丰富的旅游资源、多彩的民族文化，源远流长的酒文化。在我心中，贵州是一片神圣而又神秘的土地，不同于开阔、壮丽的西藏那样强烈宗教带来的神圣，恰恰相反，崎岖、起伏的峰林赋予贵州一股质朴、平易近人的灵气。在参观农民画时，无意听到苗族山歌，回声嘹亮，空灵婉转，仿佛一场与山灵的对话。我想以后我还会来到贵州，在此体味淡泊自得的生活态度，去追寻信奉神巫的山间传说，涤荡内心，直面自我。</p>
+    <title>Neus</title>
+    <url>/2023/05/26/%E7%A7%91%E5%AD%A6/Neus/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="motivation">Motivation</h1>
+<p>IDR: 无法处理深度图上的突变，需要 object mask 监督</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261755910.png" alt="image-20230526175549538" /><figcaption aria-hidden="true">image-20230526175549538</figcaption>
+</figure>
+<p>NeRF 优点： 体积渲染方法能够训练网络找到远处的表面来产生正确的场景表示</p>
+<h1 id="method">Method</h1>
+<p>we developed a novel volume rendering method to render images from the implicit SDF and minimize the difference between the rendered images and the input images</p>
+<h2 id="rendering-procedure">Rendering Procedure</h2>
+<h3 id="scene-representation">Scene representation</h3>
+<p>物体表面 $SDF = 0 $</p>
+<h3 id="s-density">S-density</h3>
+<p>logistic density distribution, 标准差为 <span class="math inline">\(1/s\)</span> ,当网络收敛时, <span class="math inline">\(1/s\)</span> 收敛于 <span class="math inline">\(0\)</span>.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261804177.png" alt="image-20230526180401502" style="zoom: 67%;" /></p>
+<h3 id="rendering">Rendering</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261809614.png" alt="image-20230526180958103" style="zoom:67%;" /></p>
+<p>weight function <span class="math inline">\(w(t)\)</span></p>
+<h3 id="requirements-on-weight-function">Requirements on weight function</h3>
+<ol type="1">
+<li><p><strong>Unbiased</strong> . Given a camera ray <span class="math inline">\(p(t), w(t)\)</span> attains a locally maximal value at a surface intersection point $ p(t)$, <em>i.e.</em> with <span class="math inline">\(f(p(t)) = 0,\)</span> that is, the point $ p(t) $ is on the zero-level set of the <span class="math inline">\(SDF (x)\)</span>.</p>
+<p>保证与SDF为０的采样点，贡献最大</p></li>
+<li><p><strong>Occlusion-aware</strong>.(遮挡的识别和处理) Given any two depth values $t0 $ and $t1 $ satisfying <span class="math inline">\(f(t0) = f(t1), w(t0) &gt; 0, w(t1) &gt; 0\)</span>, and, $ t0 &lt; t1$, there is $ w(t_0) &gt; w(t_1)$. That is, when two points have the same SDF value (thus the same SDF-induced S-density value), the point nearer to the view point should have a larger contribution to the final output color than does the other point.</p>
+<p>距离相机越近的采样点贡献越大　（SDF相同的情况下）</p>
+<h4 id="naive-solution">Naive solution</h4>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261819723.png" alt="image-20230526181920993" style="zoom:67%;" /></p></li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261819916.png" alt="image-20230526181947212" style="zoom:67%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261848805.png" alt="image-20230526184750903" style="zoom: 67%;" /></p>
+<h4 id="our-solution">Our solution</h4>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261849307.png" alt="image-20230526184949149" style="zoom:67%;" /></p>
+<p>Unbiased but not occulusion-aware. 当光线穿过两个平面时, SDF函数 <span class="math inline">\(f\)</span> 有两个零点,导致 <span class="math inline">\(w(t)\)</span> 有两个相同峰值.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261854401.png" alt="image-20230526185439894" style="zoom:67%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261815655.png" alt="image-20230526181525877" style="zoom:67%;" /></p>
+<h4 id="how-we-derive-opaque-density">How we derive opaque density</h4>
+<pre><code>经过复杂的数学推导,</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261900999.png" alt="image-20230526190003816" style="zoom:80%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261901341.png" alt="image-20230526190114158" style="zoom:67%;" /></p>
+<pre><code>在写出体渲染的离散化写出:
+
+`&lt;img src=&quot;https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261905780.png&quot; alt=&quot;image-20230526190533946&quot; style=&quot;zoom:67%;&quot; /&gt;`</code></pre>
+<h3 id="training">Training</h3>
+<p>不依赖其他监督,只依赖颜色</p>
+<p>损失函数</p>
+<p><img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20230526190715720.png" alt="image-20230526190715720" style="zoom:80%;" /></p>
+<h4 id="hierarchical-sampling.">Hierarchical sampling.</h4>
+<p>我们首先沿着光线均匀采样64个点，然后我们迭代地进行4次重要性采样.只保留一个 fine NN, 第一次采样的概率基于 S-density <span class="math inline">\(\phi_s(f(x))\)</span> ,<span class="math inline">\(s\)</span> 是固定的, 第二次采样时学习后的 <span class="math inline">\(s\)</span>.</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261915853.png" alt="image-20230526191520712" /><figcaption aria-hidden="true">image-20230526191520712</figcaption>
+</figure>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261917631.png" alt="image-20230526191713633" /><figcaption aria-hidden="true">image-20230526191713633</figcaption>
+</figure>
 ]]></content>
       <categories>
-        <category>杂谈</category>
+        <category>科学</category>
       </categories>
+      <tags>
+        <tag>NeRF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Variable Bitrate Neural Fields</title>
+    <url>/2022/12/14/%E7%A7%91%E5%AD%A6/Variable_Bitrate/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="motivation">Motivation</h1>
+<ol type="1">
+<li>压缩3D信息用于更高效的数据传输，和直播</li>
+<li>传统Nerf 的问题：因为需要很大的网络对场景进行编码，很多光线，每个点都要过这个大网络，因此渲染慢。</li>
+<li>feature grids: 每个顶点包含一个 feature vector. 任意一个点用插值的到特征。网络只需要对所有顶点进行编码, 网络减小，速度增加。但是储存的feature grids 占用的空间却比之前一个网络的多。</li>
+<li>ngp: 每个顶点的坐标通过 hash 映射到一个 codebook 的 index 上。但是需要多层，每层的codebook也很大，最终的存储还是很大。</li>
+</ol>
+<h1 id="vq-feature-grids-with-learning">VQ feature grids with learning</h1>
+<ol type="1">
+<li>直接在顶点上储存 index 并学习</li>
+<li>为了解决不可微的问题，使用 softmax 的技巧。 储存一系列浮点数，取max。<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202212141921446.png" alt="Vector quantized feaature grids with learning" /></li>
+</ol>
+]]></content>
+      <categories>
+        <category>科学</category>
+      </categories>
+      <tags>
+        <tag>NeRF</tag>
+      </tags>
   </entry>
   <entry>
     <title>instant-ngp复现</title>
@@ -1186,65 +1605,14 @@ z=z\\
       </tags>
   </entry>
   <entry>
-    <title>ngp代码阅读</title>
-    <url>/2022/11/09/%E7%A7%91%E5%AD%A6/ngp%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="implement">Implement</h1>
-<p>具体的实现细节</p>
-<h2 id="performance-vs-quality">Performance vs quality</h2>
-<p>hash table 的大小<span class="math inline">\(T\)</span> 过大导致GPU内存不足。</p>
-<p>经过实验取得 <span class="math inline">\(F=2,L=16\)</span></p>
-<h2 id="implicit-hash-collision-resolution">Implicit hash collision resolution</h2>
-<ol type="1">
-<li>一对点不太可能同时在每一层都发生碰撞,而且 <span class="math inline">\(N_{min}\)</span> 保证不发生冲突</li>
-<li>一对点对梯度的贡献是不同的,表面的点的影响更大</li>
-<li>分辨率的分布是几何的, 分辨率越大的较少的选取</li>
-</ol>
-<h2 id="online-adaptivity">Online adaptivity</h2>
-<p>如果输入 <span class="math inline">\(x\)</span> 的分布集中在一个小的区域,那么精细网格会更少的发生哈希冲突,能学习的更精确.</p>
-<p><strong>Neural Radiance Caching</strong></p>
-<h2 id="model-architecture">Model Architecture</h2>
-<p>由两个 MLP 并联</p>
-<ol type="1">
-<li><p><strong>density MLP</strong>: maps encoded position <span class="math inline">\(enc(\bold{x},\theta)\)</span> to 16 outputs values ， <span class="math inline">\(\theta\)</span> is the encoding parameters</p></li>
-<li><p><strong>color MLP</strong>:</p>
-<p><strong>Input</strong></p>
-<p>the 16 output values of the density MLP, and the view direction projected onto the first 16 coefficients of the spherical harmonics basis. This is a natural frequency encoding over unit vectors</p>
-<p><strong>output:</strong></p>
-<p>RGB color triplet.</p>
-<p>sRGB: sigmoid activation</p>
-<p>HDR: exponential activation</p>
-<p>1-hidden-layer density MLP and a 2-hidden-layer color MLP, both 64 neurons wide.</p>
-<h2 id="accelerated-ray-marching">Accelerated ray marching</h2>
-<p>we concentrate samples near surfaces by maintaining an occupancy grid that coarsely marks empty vs. nonempty space.</p>
-<h3 id="ray-marching-step-size-and-stopping">Ray Marching Step Size and Stopping</h3>
-<ol type="1">
-<li><strong>synthetic NeRF scenes:</strong> step size $t= /1024 $ in the unit cube <span class="math inline">\([0,1]^3\)</span></li>
-<li><strong>Others</strong>: <span class="math inline">\(t\)</span> exponential growth, which means that the computation cost grows only logarithmically in scene diameter, with no perceivable loss of quality.</li>
-<li>Stop ray marching and set the remaining contribution to zero as soon as the transmittance of the ray drops below a threshold</li>
-</ol>
-<h2 id="occupancy-grids">Occupancy Grids</h2>
-<p>During ray marching, whenever a sample is to be placed according to the step size from the previous section, the sample is skipped if its grid cell’s bit is low. Which one of the 𝐾 grids is queried is determined by both the sample position x and the step size Δ𝑡: among the grids covering x, the finest one with cell side length larger than Δ𝑡 is queried.</p>
-<p><em>update the occupancy grids</em>. a second set of grids that store full-precision floating density. update every 16 training steps.</p>
-<h2 id="number-of-rays-versus-batch-size">Number of Rays Versus Batch size</h2>
-<p>batch size = Samples per ray * Rays per batch</p>
-<p><strong>Training from a larger number of rays, i.e. incorporating more viewpoint variation into the batch. </strong>Include as many rays as possible in batches of fixed size rather that building variable-size batches from a fixed ray count</p></li>
-</ol>
-<h1 id="input">Input</h1>
-<ol type="1">
-<li><p>load <code>config/base.json</code>: 包括 <code>loss</code>, <code>optimizer</code>, <code>encoding</code> 的超参等 <code>envmap</code>?</p></li>
-<li><p><code>train</code></p></li>
-<li><p><code>training_prep_nerf</code>: 每过16次迭代，更新occupancy grids.</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (m_training_step &lt; <span class="number">256</span>) &#123;</span><br><span class="line">		<span class="built_in">update_density_grid_nerf</span>(alpha, <span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()*n_cascades, <span class="number">0</span>, stream);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="built_in">update_density_grid_nerf</span>(alpha, <span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()/<span class="number">4</span>*n_cascades, <span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()/<span class="number">4</span>*n_cascades, stream);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p><code>train_nerf_step(uint32_t target_batch_size, Testbed::NerfCounters&amp; counters, cudaStream_t stream)</code>:</p></li>
-<li><p><code>generate_training_samples_nerf</code></p></li>
-</ol>
+    <title>长安的荔枝</title>
+    <url>/2023/04/15/%E6%9D%82%E8%B0%88/20230415-%E9%95%BF%E5%AE%89%E7%9A%84%E8%8D%94%E6%9E%9D/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>为什么李善德如此一定要去完成这个不可能完成的任务？李善德最初也许这是想随便试试看，但是随着试验的不断改进的深入，方案的完善，并且为此绞尽脑汁地计算。我想他甚至开始不计成本的热爱探索运输方案可能性本身了，放到现在，李善德一定是科研好手。可悲的是只有他一人专注于一个实质的问题：“荔枝转运的极限在哪里？”当他奔走呼号于各个衙门之间说：”我想出来了！“，官吏们却只在乎这其中的蝇营狗苟，对李善德的热枕置之不理。正如书中所说，『他不懂官场之术，不谙修辞之道，他这一生熟悉的只有数字，也只信任数字，当危机降临时，他唯一能依靠的，亦只有数字』，只有李善德他在认真脚踏实地去解决问题，而这样一个诚恳，脚踏实地做事的人却永无飞黄腾达之时，反而是『 谈起治国理政说的天花乱坠，』的宦官高高在上。另一个可悲的时李善德至始至终也无法自己掌控自己的命运，更不用说他的朋友与妻女。像一只蚊子，一巴掌就能拍死，即使多次绝境逢生，无非只是高力士的棋子罢了。他苦心经营换出来的结果，也只是博得妃子一笑，劳民伤财的工具罢了。</p>
+<p>优点在于作者一气呵成地写，读者一气呵成地读。故事设定新颖，大大扩充了『一骑红尘妃子笑无人知是荔枝 』内涵，启发我们关注历史中的小人物。其中的穿插一些『 抖机灵』的讽刺，行文活泼有趣，很平易近人，适合放松阅读。缺点在于人物形象的塑造过于单薄，尤其时次要人物，有时很『 出戏』。不过定位既然不属于严肃文学，不必较真这些细节</p>
 ]]></content>
       <categories>
-        <category>科学</category>
+        <category>杂谈</category>
       </categories>
-      <tags>
-        <tag>NeRF</tag>
-      </tags>
   </entry>
   <entry>
     <title>ngp背景重建</title>
@@ -1391,19 +1759,57 @@ z=z\\
       </tags>
   </entry>
   <entry>
-    <title>Variable Bitrate Neural Fields</title>
-    <url>/2022/12/14/%E7%A7%91%E5%AD%A6/Variable_Bitrate/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="motivation">Motivation</h1>
+    <title>ngp代码阅读</title>
+    <url>/2022/11/09/%E7%A7%91%E5%AD%A6/ngp%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="implement">Implement</h1>
+<p>具体的实现细节</p>
+<h2 id="performance-vs-quality">Performance vs quality</h2>
+<p>hash table 的大小<span class="math inline">\(T\)</span> 过大导致GPU内存不足。</p>
+<p>经过实验取得 <span class="math inline">\(F=2,L=16\)</span></p>
+<h2 id="implicit-hash-collision-resolution">Implicit hash collision resolution</h2>
 <ol type="1">
-<li>压缩3D信息用于更高效的数据传输，和直播</li>
-<li>传统Nerf 的问题：因为需要很大的网络对场景进行编码，很多光线，每个点都要过这个大网络，因此渲染慢。</li>
-<li>feature grids: 每个顶点包含一个 feature vector. 任意一个点用插值的到特征。网络只需要对所有顶点进行编码, 网络减小，速度增加。但是储存的feature grids 占用的空间却比之前一个网络的多。</li>
-<li>ngp: 每个顶点的坐标通过 hash 映射到一个 codebook 的 index 上。但是需要多层，每层的codebook也很大，最终的存储还是很大。</li>
+<li>一对点不太可能同时在每一层都发生碰撞,而且 <span class="math inline">\(N_{min}\)</span> 保证不发生冲突</li>
+<li>一对点对梯度的贡献是不同的,表面的点的影响更大</li>
+<li>分辨率的分布是几何的, 分辨率越大的较少的选取</li>
 </ol>
-<h1 id="vq-feature-grids-with-learning">VQ feature grids with learning</h1>
+<h2 id="online-adaptivity">Online adaptivity</h2>
+<p>如果输入 <span class="math inline">\(x\)</span> 的分布集中在一个小的区域,那么精细网格会更少的发生哈希冲突,能学习的更精确.</p>
+<p><strong>Neural Radiance Caching</strong></p>
+<h2 id="model-architecture">Model Architecture</h2>
+<p>由两个 MLP 并联</p>
 <ol type="1">
-<li>直接在顶点上储存 index 并学习</li>
-<li>为了解决不可微的问题，使用 softmax 的技巧。 储存一系列浮点数，取max。<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202212141921446.png" alt="Vector quantized feaature grids with learning" /></li>
+<li><p><strong>density MLP</strong>: maps encoded position <span class="math inline">\(enc(\bold{x},\theta)\)</span> to 16 outputs values ， <span class="math inline">\(\theta\)</span> is the encoding parameters</p></li>
+<li><p><strong>color MLP</strong>:</p>
+<p><strong>Input</strong></p>
+<p>the 16 output values of the density MLP, and the view direction projected onto the first 16 coefficients of the spherical harmonics basis. This is a natural frequency encoding over unit vectors</p>
+<p><strong>output:</strong></p>
+<p>RGB color triplet.</p>
+<p>sRGB: sigmoid activation</p>
+<p>HDR: exponential activation</p>
+<p>1-hidden-layer density MLP and a 2-hidden-layer color MLP, both 64 neurons wide.</p>
+<h2 id="accelerated-ray-marching">Accelerated ray marching</h2>
+<p>we concentrate samples near surfaces by maintaining an occupancy grid that coarsely marks empty vs. nonempty space.</p>
+<h3 id="ray-marching-step-size-and-stopping">Ray Marching Step Size and Stopping</h3>
+<ol type="1">
+<li><strong>synthetic NeRF scenes:</strong> step size $t= /1024 $ in the unit cube <span class="math inline">\([0,1]^3\)</span></li>
+<li><strong>Others</strong>: <span class="math inline">\(t\)</span> exponential growth, which means that the computation cost grows only logarithmically in scene diameter, with no perceivable loss of quality.</li>
+<li>Stop ray marching and set the remaining contribution to zero as soon as the transmittance of the ray drops below a threshold</li>
+</ol>
+<h2 id="occupancy-grids">Occupancy Grids</h2>
+<p>During ray marching, whenever a sample is to be placed according to the step size from the previous section, the sample is skipped if its grid cell’s bit is low. Which one of the 𝐾 grids is queried is determined by both the sample position x and the step size Δ𝑡: among the grids covering x, the finest one with cell side length larger than Δ𝑡 is queried.</p>
+<p><em>update the occupancy grids</em>. a second set of grids that store full-precision floating density. update every 16 training steps.</p>
+<h2 id="number-of-rays-versus-batch-size">Number of Rays Versus Batch size</h2>
+<p>batch size = Samples per ray * Rays per batch</p>
+<p><strong>Training from a larger number of rays, i.e. incorporating more viewpoint variation into the batch. </strong>Include as many rays as possible in batches of fixed size rather that building variable-size batches from a fixed ray count</p></li>
+</ol>
+<h1 id="input">Input</h1>
+<ol type="1">
+<li><p>load <code>config/base.json</code>: 包括 <code>loss</code>, <code>optimizer</code>, <code>encoding</code> 的超参等 <code>envmap</code>?</p></li>
+<li><p><code>train</code></p></li>
+<li><p><code>training_prep_nerf</code>: 每过16次迭代，更新occupancy grids.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (m_training_step &lt; <span class="number">256</span>) &#123;</span><br><span class="line">		<span class="built_in">update_density_grid_nerf</span>(alpha, <span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()*n_cascades, <span class="number">0</span>, stream);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="built_in">update_density_grid_nerf</span>(alpha, <span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()/<span class="number">4</span>*n_cascades, <span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()*<span class="built_in">NERF_GRIDSIZE</span>()/<span class="number">4</span>*n_cascades, stream);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>train_nerf_step(uint32_t target_batch_size, Testbed::NerfCounters&amp; counters, cudaStream_t stream)</code>:</p></li>
+<li><p><code>generate_training_samples_nerf</code></p></li>
 </ol>
 ]]></content>
       <categories>
@@ -1412,6 +1818,18 @@ z=z\\
       <tags>
         <tag>NeRF</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>在轮下</title>
+    <url>/2023/07/30/%E6%9D%82%E8%B0%88/20230730-%E5%9C%A8%E8%BD%AE%E4%B8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>细腻和生动的描写将少年时期的迷茫，反抗，自尊与畏惧的心理表现的恰到好处，甚至刻画了当今中学生的内心困境。身为一名『 好』学生，背负着教师、校长和父亲甚至包括自己的期望，去进入神学校。汉斯被小镇人们的不负责任的期望推搡这前进，但并不明白将来真心喜欢或热爱某一事物。与其说青春期自尊心使汉斯憧憬美好的未来，倒不如是对失败感到的深深恐惧，害怕跌落与平庸，害怕辜负被寄语的期望。可是汉斯也许没想过，到干酪店或事务所当学徒又会怎样呢？比当牧师差在哪呢？</p>
+<p>只有遵循内心的指引才能将自身引导幸福之地，汉斯钓鱼、养兔、种花时是快乐的，这是已得的幸福。而校长和老师却将其剥去，将分明以唾手可得的幸福安放于遥不可及的将来。而其他任何人对未来的指引都夹杂着名誉心。书中有两点印象很深，在汉斯考试那天，鞋匠法兰克一家为汉斯虔诚祷告，而牧师只是说：『 那孩子一定会出人头地的，这样我教他的拉丁文就没有白教了』。另一个是希腊语考试考砸后，父亲骂道：『 为什么不好好考？难道不应该沉着一点吗?真是可恶。』，没有半点关怀。牧师的目的也许是为了能从学生身上沾一点光，而父亲也是希望『 自己所横生出来的枝干，向着自己所遥不可及的尊贵领域衍生而去』。除了鞋匠以为，小镇上的人都不关心汉斯真正内心的忧伤和苦痛，甚至都未进行安慰。汉斯退学当上学徒后，老师、校长对其也不闻不问，直到举行葬礼时，汉斯才重新在镇上出名。</p>
+<p>在神学校的日子里，海尔纳的出现点亮了全书冷漠和哀伤的氛围。作为一个放荡不羁，多愁善感的诗人，海尔纳是对生活充满热情和反抗精神的天才，写大胆的文章，不敬师长。与此同时，身为少年的他，又难忍无人理解的孤寂，『耸动的言词来批评学校和生活就得有人安静而热心地倾听不可』，因此海尔纳和汉斯地关系迅速甚至很快便超过了普通的友谊。书中有一段关于学校教育与天才地探讨，似乎学校的老师在压抑着学生的天性，除去危险的自然气息。继而提出一个批判性的问题，『两者之间，到底是谁让对方的灵魂和生活变得一败涂地、污秽不堪的呢？』天才永远不会屈服于学校，他们会自我疗愈，突破阻碍，他们的意志是超越禁止和命令的，最终产生优秀的作品和思想。校长曾对汉斯说：『一泄气就会被压在车轮下了。』可笑的是真正的天才根本不在乎你所谓的这只轮子，当无数普通人费劲艰辛而维持着车轮的平衡之时，他早就再一旁造起舒适的躺椅。但与此同时因内心反抗而最终幻灭的人也不再少数。海尔纳和汉斯分别对应着前者和后者。据说黑塞将自己在神学院抒情，热爱诗歌的一面给了海尔纳，而将对生命倦怠，哀伤和迷惘的一面赋予了汉斯。我想，正是黑塞心中对诗文的强烈热枕，使他度过这段苦涩郁闷的青春时代，正如海尔纳对汉斯的指引一般。</p>
+<p>可惜汉斯并不想黑塞那般幸运，离开海尔纳后，他彻底垮掉，退学后当起了之前自己看不起的学徒。他脱去了长衫，不再向技工们投以哀怜的目光，而是真实体验到身为劳动人民独有的快乐。最终遗留的问题是汉斯究竟是怎么掉入河中的？我愿意相信最后一个浪漫的说法：『由于疲倦和不安，使他不由自主地投入到死亡的阴影里的吧』不是因为沉痛和强烈的悲伤，只是记忆中的矛盾带来深深的疲倦，太累了，想好好歇一会儿，于是安静又满足的睡着了...</p>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
   </entry>
   <entry>
     <title>一文搞懂字符编码</title>
@@ -1478,172 +1896,21 @@ z=z\\
       </categories>
   </entry>
   <entry>
-    <title>Neus</title>
-    <url>/2023/05/26/%E7%A7%91%E5%AD%A6/Neus/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="motivation">Motivation</h1>
-<p>IDR: 无法处理深度图上的突变，需要 object mask 监督</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261755910.png" alt="image-20230526175549538" /><figcaption aria-hidden="true">image-20230526175549538</figcaption>
-</figure>
-<p>NeRF 优点： 体积渲染方法能够训练网络找到远处的表面来产生正确的场景表示</p>
-<h1 id="method">Method</h1>
-<p>we developed a novel volume rendering method to render images from the implicit SDF and minimize the difference between the rendered images and the input images</p>
-<h2 id="rendering-procedure">Rendering Procedure</h2>
-<h3 id="scene-representation">Scene representation</h3>
-<p>物体表面 $SDF = 0 $</p>
-<h3 id="s-density">S-density</h3>
-<p>logistic density distribution, 标准差为 <span class="math inline">\(1/s\)</span> ,当网络收敛时, <span class="math inline">\(1/s\)</span> 收敛于 <span class="math inline">\(0\)</span>.</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261804177.png" alt="image-20230526180401502" style="zoom: 67%;" /></p>
-<h3 id="rendering">Rendering</h3>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261809614.png" alt="image-20230526180958103" style="zoom:67%;" /></p>
-<p>weight function <span class="math inline">\(w(t)\)</span></p>
-<h3 id="requirements-on-weight-function">Requirements on weight function</h3>
-<ol type="1">
-<li><p><strong>Unbiased</strong> . Given a camera ray $p(t), w(t) $attains a locally maximal value at a surface intersection point $ p(t)$, <em>i.e.</em> with <span class="math inline">\(f(p(t)) = 0,\)</span> that is, the point $ p(t) $ is on the zero-level set of the <span class="math inline">\(SDF (x).\)</span></p>
-<p>保证与SDF为０的采样点，贡献最大</p></li>
-<li><p><strong>Occlusion-aware</strong>.(遮挡的识别和处理) Given any two depth values $t0 $ and $t1 $ satisfying <span class="math inline">\(f(t0) = f(t1), w(t0) &gt; 0, w(t1) &gt; 0\)</span>, and, $ t0 &lt; t1$, there is $ w(t0) &gt; w(t1)$. That is, when two points have the same SDF value (thus the same SDF-induced S-density value), the point nearer to the view point should have a larger contribution to the final output color than does the other point.</p>
-<p>距离相机越近的采样点贡献越大　（SDF相同的情况下）</p>
-<h4 id="naive-solution">Naive solution</h4>
-<p><code>&lt;img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261819723.png" alt="image-20230526181920993" style="zoom:67%;" /&gt;</code></p></li>
-</ol>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261819916.png" alt="image-20230526181947212" style="zoom:67%;" /></p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261848805.png" alt="image-20230526184750903" style="zoom: 67%;" /></p>
-<h4 id="our-solution">Our solution</h4>
-<pre><code>`&lt;img src=&quot;https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261849307.png&quot; alt=&quot;image-20230526184949149&quot; style=&quot;zoom:67%;&quot; /&gt;`</code></pre>
-<p>Unbiased but not occulusion-aware. 当光线穿过两个平面时, SDF函数 <span class="math inline">\(f\)</span> 有两个零点,导致 <span class="math inline">\(w(t)\)</span> 有两个相同峰值.</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261854401.png" alt="image-20230526185439894" style="zoom:67%;" /></p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261815655.png" alt="image-20230526181525877" style="zoom:67%;" /></p>
-<h4 id="how-we-derive-opaque-density">How we derive opaque density</h4>
-<pre><code>经过复杂的数学推导,</code></pre>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261900999.png" alt="image-20230526190003816" style="zoom:80%;" /></p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261901341.png" alt="image-20230526190114158" style="zoom:67%;" /></p>
-<pre><code>在写出体渲染的离散化写出:
-
-`&lt;img src=&quot;https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261905780.png&quot; alt=&quot;image-20230526190533946&quot; style=&quot;zoom:67%;&quot; /&gt;`</code></pre>
-<h3 id="training">Training</h3>
-<p>不依赖其他监督,只依赖颜色</p>
-<p>损失函数</p>
-<p><img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20230526190715720.png" alt="image-20230526190715720" style="zoom:80%;" /></p>
-<h4 id="hierarchical-sampling.">Hierarchical sampling.</h4>
-<p>我们首先沿着光线均匀采样64个点，然后我们迭代地进行4次重要性采样.只保留一个 fine NN, 第一次采样的概率基于 S-density <span class="math inline">\(\phi_s(f(x))\)</span> ,<span class="math inline">\(s\)</span> 是固定的, 第二次采样时学习后的 <span class="math inline">\(s\)</span>.</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261915853.png" alt="image-20230526191520712" /><figcaption aria-hidden="true">image-20230526191520712</figcaption>
-</figure>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202305261917631.png" alt="image-20230526191713633" /><figcaption aria-hidden="true">image-20230526191713633</figcaption>
-</figure>
-]]></content>
-      <categories>
-        <category>科学</category>
-      </categories>
-      <tags>
-        <tag>NeRF</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2023年成都双年展：时间引力</title>
-    <url>/2023/09/03/%E6%9D%82%E8%B0%88/20230903-2023%E5%B9%B4%E6%88%90%E9%83%BD%E5%8F%8C%E5%B9%B4%E5%B1%95%EF%BC%9A%E6%97%B6%E9%97%B4%E5%BC%95%E5%8A%9B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="瞬间永恒">瞬间永恒</h1>
-<p>策展人：王绍强</p>
-<p>本版块试图在“瞬间 ' “过程 ' “数字化 ' ' 三个维度中，以国内 外当代艺术中的经典作品为案例对主题展开回应。与此同时，展览的有限性与作品泪求永恒的诚意一如瞬间与永恒 的辩证。在刹那绽放永恒的光芒，让永恒于刹那间收藏。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202309032146808.png" style="zoom:80%;" /></p>
-<p>静穆古典的画风中赋予陌生感，<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3poLWhhbnMvJUU4JUI2JTg1JUU3JThFJUIwJUU1JUFFJTlFJUU0JUI4JUJCJUU0JUI5JTg5Izp+OnRleHQ9JUU3JUJBJUFGJUU3JUIyJUI5JUU3JTlBJTg0JUU3JUIyJUJFJUU3JUE1JTlFJUU4JTg3JUFBJUU1JThBJUE4JUU0JUI4JUJCJUU0JUI5JTg5LCVFOCVCNiU4NSVFNyU4RSVCMCVFNSVBRSU5RSVFNCVCOCVCQiVFNCVCOSU4OSVFNiU5NiU4NyVFNSVBRCVBNiVFNCVCRCU5QyVFNSU5MyU4MSVFMyU4MCU4Mg==">超现实主义<i class="fa fa-external-link-alt"></i></span></p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202309032153253.png" alt="郑重宾，星系座X-01 03 02" /><figcaption aria-hidden="true">郑重宾，星系座X-01 03 02</figcaption>
-</figure>
-<p>光在裂隙之间</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202309032157820.png" alt="徐冰,英文方块字书法教室" /><figcaption aria-hidden="true">徐冰,英文方块字书法教室</figcaption>
-</figure>
-<figure>
-<img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20230903215842564.png" alt="徐冰，英文方块字书法：桃花源记" /><figcaption aria-hidden="true">徐冰，英文方块字书法：桃花源记</figcaption>
-</figure>
-<p>与《天书》的『伪文字』不同，它是可阅读的。一切都似乎是熟悉的：从不解到释然的过程，传统的创作工具和线条。但同时又是崭新的，新的书写体系。不变的是理解新事物的兴奋。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202309032216865.png" alt="乔治·巴塞利兹，也许太大了" /><figcaption aria-hidden="true">乔治·巴塞利兹，也许太大了</figcaption>
-</figure>
-<p>新表现主义的代表人物，喜欢上下颠倒作画。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202309032247396.jpg" alt="Wernber Bouwens 地球仪内的空间" style="zoom:50%;" /></p>
-<p>光滑的地球仪是对地球的粗暴简单地抽象，背后却是错综复杂的地形结构，与此同时，其他颜色也隐匿于蓝绿色的主导下。</p>
-<h1 id="存在遥望">存在遥望</h1>
-<p>策展人：Philipp Ziegler</p>
-<p>在这场想象、知和表达的饕餮盛宴中，约三十位国内外知 名艺术家将围绕主题"存在遥望"为本届双年展带来四十多件作品，将现在视为过往已至的耒来，帮助人们拓展对所在世界复杂性的理解，同时，通过展现自然和人工生命体相互融合的生态系统以及技术实体与有机实体的共生栖居之所，预见人类的未来。交互式装置、虚拟现实及人工智能等作品展示了媒体艺术的最新发展，同时带来了测试新技术以及论证其运用能使社会受益的各种艺术表达。我们的时代面临着复杂的生态及社会经济挑战，而所有参展作品都希望建立人们的这种意识。它们不仅表明了寻找新方法应对今日危机的必要性，同时诠释了通过艺术创意展望未来的可能性，在这个未来里，我们与自然、技术和其他共生体 （ 包栝人类和非人 类 ） 和谐地生活在一起。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202309040000296.png" alt="克丽斯塔 ． 佐梅雷尔 &amp; 劳伦 ． 米尼奥诺，飞蝇人生" /><figcaption aria-hidden="true">克丽斯塔 ． 佐梅雷尔 &amp; 劳伦 ． 米尼奥诺，飞蝇人生</figcaption>
-</figure>
-<p>静止不动时，苍蝇飞走，做出动作时，苍蝇就会在人的轮廓。对人们日常的行为另一个视角的解读。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202309040001024.png" alt="Kerstin Ergenzinger，太空胡须" /><figcaption aria-hidden="true">Kerstin Ergenzinger，太空胡须</figcaption>
-</figure>
-<p>设计初衷应该是，受到气流影响，这些胡须就会移动、弯曲、左右伸展、颤动，就像受到了突如其 来的神经冲动的刺激或者被一阵神秘的风所吹动。"雕塑受器组与传器 〈 热丝风速计 ） 相连，测量室内空 气流速。胡须在这种噪声下表现出不安和轻微的紧张状态，反映并转化气流变化的信号。” 但是实际上观众的影响微乎其微，我用嘴吹了很久都没效果，可能室内的空调影响更大。</p>
-<figure>
-<img src="https://justineemard.com/wp-content/uploads/2020/09/7D8A0407-OK-470x313.jpg" alt="贾斯汀·埃马尔,超有机体" /><figcaption aria-hidden="true">贾斯汀·埃马尔,超有机体</figcaption>
-</figure>
-<p>系统的不可预测性使我们生活在一种独特的体验中。这个新的有组织的存在的光和声音在共生中反应，同时彼此惊讶，在一个结构化的、有机的和漂浮的星座中碰撞。从这套装置中散发出一种集体智慧的形式：一个超有机体栩栩如生，产生新的图像，这是由装置时空中投射的阴影和反射产生的。而观众却永远无法探知神经网络的运作，玄秘且动人，欣喜又恐惧。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202309032333683.png" alt="肥皂剧" /><figcaption aria-hidden="true">肥皂剧</figcaption>
-</figure>
-<p>当我们使用机器手臂完成吹泡泡这一行为时，是否仍然能够捕捉到儿时的乐趣和愉悦；也同时思考工业机器人能否成为想象力的创新力的源泉？但是周围小朋友的惊呼和欢乐回答了这个问题。</p>
-]]></content>
-      <categories>
-        <category>杂谈</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>MRTK2</title>
-    <url>/2023/08/14/%E6%8A%80%E6%9C%AF/20230814-MRTK2/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="简介">简介</h1>
-<p>为加快 MR 应用开发的一套组件和特性。</p>
-<h2 id="the-main-configuration-profile">The Main configuration profile</h2>
-<p>绑定在 <em>MixedRealityToolkit</em> 对象上，为 Toolkit 提供入点</p>
-<h1 id="配置文件">配置文件</h1>
-<ul>
-<li>Expeience settings : 默认的 MR 环境尺度</li>
-<li>Camera:</li>
-<li>Input system settings:</li>
-</ul>
-<h1 id="特性分类">特性分类</h1>
-<h2 id="输入系统">输入系统</h2>
-<ul>
-<li>Interactable: 根据输入时间进行相应的 UX 组件 （interactable.cs)</li>
-<li>Cursor</li>
-<li>Focus</li>
-<li>Pointer：分为远近，Near Pointer 包括 Grab 和 Poke.</li>
-<li>Controller</li>
-<li>Device Manager : Input Data Providers, 用于检测创建和管理 Contrller 的生命周期</li>
-</ul>
-<p>由下至上构建输入系统，Device Manager 需要提过一个 InputSystemProfile 来进行配置。</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>长安的荔枝</title>
-    <url>/2023/04/15/%E6%9D%82%E8%B0%88/20230415-%E9%95%BF%E5%AE%89%E7%9A%84%E8%8D%94%E6%9E%9D/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>为什么李善德如此一定要去完成这个不可能完成的任务？李善德最初也许这是想随便试试看，但是随着试验的不断改进的深入，方案的完善，并且为此绞尽脑汁地计算。我想他甚至开始不计成本的热爱探索运输方案可能性本身了，放到现在，李善德一定是科研好手。可悲的是只有他一人专注于一个实质的问题：“荔枝转运的极限在哪里？”当他奔走呼号于各个衙门之间说：”我想出来了！“，官吏们却只在乎这其中的蝇营狗苟，对李善德的热枕置之不理。正如书中所说，『他不懂官场之术，不谙修辞之道，他这一生熟悉的只有数字，也只信任数字，当危机降临时，他唯一能依靠的，亦只有数字』，只有李善德他在认真脚踏实地去解决问题，而这样一个诚恳，脚踏实地做事的人却永无飞黄腾达之时，反而是『 谈起治国理政说的天花乱坠，』的宦官高高在上。另一个可悲的时李善德至始至终也无法自己掌控自己的命运，更不用说他的朋友与妻女。像一只蚊子，一巴掌就能拍死，即使多次绝境逢生，无非只是高力士的棋子罢了。他苦心经营换出来的结果，也只是博得妃子一笑，劳民伤财的工具罢了。</p>
-<p>优点在于作者一气呵成地写，读者一气呵成地读。故事设定新颖，大大扩充了『一骑红尘妃子笑无人知是荔枝 』内涵，启发我们关注历史中的小人物。其中的穿插一些『 抖机灵』的讽刺，行文活泼有趣，很平易近人，适合放松阅读。缺点在于人物形象的塑造过于单薄，尤其时次要人物，有时很『 出戏』。不过定位既然不属于严肃文学，不必较真这些细节</p>
-]]></content>
-      <categories>
-        <category>杂谈</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>在轮下</title>
-    <url>/2023/07/30/%E6%9D%82%E8%B0%88/20230730-%E5%9C%A8%E8%BD%AE%E4%B8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>细腻和生动的描写将少年时期的迷茫，反抗，自尊与畏惧的心理表现的恰到好处，甚至刻画了当今中学生的内心困境。身为一名『 好』学生，背负着教师、校长和父亲甚至包括自己的期望，去进入神学校。汉斯被小镇人们的不负责任的期望推搡这前进，但并不明白将来真心喜欢或热爱某一事物。与其说青春期自尊心使汉斯憧憬美好的未来，倒不如是对失败感到的深深恐惧，害怕跌落与平庸，害怕辜负被寄语的期望。可是汉斯也许没想过，到干酪店或事务所当学徒又会怎样呢？比当牧师差在哪呢？</p>
-<p>只有遵循内心的指引才能将自身引导幸福之地，汉斯钓鱼、养兔、种花时是快乐的，这是已得的幸福。而校长和老师却将其剥去，将分明以唾手可得的幸福安放于遥不可及的将来。而其他任何人对未来的指引都夹杂着名誉心。书中有两点印象很深，在汉斯考试那天，鞋匠法兰克一家为汉斯虔诚祷告，而牧师只是说：『 那孩子一定会出人头地的，这样我教他的拉丁文就没有白教了』。另一个是希腊语考试考砸后，父亲骂道：『 为什么不好好考？难道不应该沉着一点吗?真是可恶。』，没有半点关怀。牧师的目的也许是为了能从学生身上沾一点光，而父亲也是希望『 自己所横生出来的枝干，向着自己所遥不可及的尊贵领域衍生而去』。除了鞋匠以为，小镇上的人都不关心汉斯真正内心的忧伤和苦痛，甚至都未进行安慰。汉斯退学当上学徒后，老师、校长对其也不闻不问，直到举行葬礼时，汉斯才重新在镇上出名。</p>
-<p>在神学校的日子里，海尔纳的出现点亮了全书冷漠和哀伤的氛围。作为一个放荡不羁，多愁善感的诗人，海尔纳是对生活充满热情和反抗精神的天才，写大胆的文章，不敬师长。与此同时，身为少年的他，又难忍无人理解的孤寂，『耸动的言词来批评学校和生活就得有人安静而热心地倾听不可』，因此海尔纳和汉斯地关系迅速甚至很快便超过了普通的友谊。书中有一段关于学校教育与天才地探讨，似乎学校的老师在压抑着学生的天性，除去危险的自然气息。继而提出一个批判性的问题，『两者之间，到底是谁让对方的灵魂和生活变得一败涂地、污秽不堪的呢？』天才永远不会屈服于学校，他们会自我疗愈，突破阻碍，他们的意志是超越禁止和命令的，最终产生优秀的作品和思想。校长曾对汉斯说：『一泄气就会被压在车轮下了。』可笑的是真正的天才根本不在乎你所谓的这只轮子，当无数普通人费劲艰辛而维持着车轮的平衡之时，他早就再一旁造起舒适的躺椅。但与此同时因内心反抗而最终幻灭的人也不再少数。海尔纳和汉斯分别对应着前者和后者。据说黑塞将自己在神学院抒情，热爱诗歌的一面给了海尔纳，而将对生命倦怠，哀伤和迷惘的一面赋予了汉斯。我想，正是黑塞心中对诗文的强烈热枕，使他度过这段苦涩郁闷的青春时代，正如海尔纳对汉斯的指引一般。</p>
-<p>可惜汉斯并不想黑塞那般幸运，离开海尔纳后，他彻底垮掉，退学后当起了之前自己看不起的学徒。他脱去了长衫，不再向技工们投以哀怜的目光，而是真实体验到身为劳动人民独有的快乐。最终遗留的问题是汉斯究竟是怎么掉入河中的？我愿意相信最后一个浪漫的说法：『由于疲倦和不安，使他不由自主地投入到死亡的阴影里的吧』不是因为沉痛和强烈的悲伤，只是记忆中的矛盾带来深深的疲倦，太累了，想好好歇一会儿，于是安静又满足的睡着了...</p>
-]]></content>
-      <categories>
-        <category>杂谈</category>
-      </categories>
-  </entry>
-  <entry>
     <title>那一天</title>
     <url>/2023/08/09/%E6%9D%82%E8%B0%88/20230809-%E9%82%A3%E4%B8%80%E5%A4%A9/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>森山大道说摄影师想创作出好的作品一定要有强烈的欲望。 欲望不仅仅只是按下快门的冲动。我们通常喜欢强调通过快速的抓拍去捕捉决定性瞬间。 但往往忽视了对作品耐心地锤炼和细心的打磨。作者在水旁的静候，秋日的落叶，排练小男孩的奔跑动作，都是对更极致的美的追求。 在按下快门已经零成本的今天，依旧需要对场景进行详细的考究。有时，日落下的铁轨打动了你，并非意味着随手拍一张就是妙手，或许等待一辆列车穿行而过会更锦上添花。 再者，摄影切不可急功近利，好的作品可遇不可求，毕竟像这样相机不离手的大师，花了几十年的光阴，好的作品也很有限。至于那些错过的决定性瞬间，尽管让它们骤然而至，安然而去，享受错失的遗憾也是另一种乐趣</p>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>无声告白</title>
+    <url>/2023/08/21/%E6%9D%82%E8%B0%88/20230821-%E6%97%A0%E5%A3%B0%E5%91%8A%E7%99%BD/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>经过前半段的铺垫，《无声告白》的后半段逐步精彩，情节向着想象的方向推进，在感动与不解中读完了这本小说。</p>
+<p>据说这本书通过六年的构思，的确在铺陈的回忆，场景，甚至各种中布下草绳灰线，在后半段双线交汇中，成为情绪的强烈爆发点，增强了“亲子关系”这种老套剧情的可读性。比如目前的第一本赠书是《空气无所不在》，略加细想便脊背发凉，空气无所不在，就如父母的爱与期待一般，盘旋萦绕着，绝望的窒息感。</p>
+<p>父母的形象远不及孩子塑造的真实，可我没当过父母，只是一面之词。但如果说詹姆斯和玛利亚从没感受到孩子的想法，我是万万不信的。父母执念太过夸张，或者说太明确了。</p>
+<p>不可抗的天降束缚和爱的绑架也许是作者的用意。探讨着身为儿女该如何是好。孩子们在这恶劣饥饿的家庭环境中，也早已演化出独特的生存方式，敬小慎微的维护着脆弱，畸形的平衡。汉娜是最成功的角色，也是相对幸运的角色。她渴望着关爱，像一只受宠的宠物小狗，稍有风吹草动，变偷藏起来。她懂得更多，也是个旁观者，一切都一清二楚。 关爱与期待有的人渴望拥有，也有人为此痛苦煎熬。</p>
 ]]></content>
       <categories>
         <category>杂谈</category>
@@ -1829,12 +2096,400 @@ z=z\\
       </categories>
   </entry>
   <entry>
-    <title>无声告白</title>
-    <url>/2023/08/21/%E6%9D%82%E8%B0%88/20230821-%E6%97%A0%E5%A3%B0%E5%91%8A%E7%99%BD/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>经过前半段的铺垫，《无声告白》的后半段逐步精彩，情节向着想象的方向推进，在感动与不解中读完了这本小说。</p>
-<p>据说这本书通过六年的构思，的确在铺陈的回忆，场景，甚至各种中布下草绳灰线，在后半段双线交汇中，成为情绪的强烈爆发点，增强了“亲子关系”这种老套剧情的可读性。比如目前的第一本赠书是《空气无所不在》，略加细想便脊背发凉，空气无所不在，就如父母的爱与期待一般，盘旋萦绕着，绝望的窒息感。</p>
-<p>父母的形象远不及孩子塑造的真实，可我没当过父母，只是一面之词。但如果说詹姆斯和玛利亚从没感受到孩子的想法，我是万万不信的。父母执念太过夸张，或者说太明确了。</p>
-<p>不可抗的天降束缚和爱的绑架也许是作者的用意。探讨着身为儿女该如何是好。孩子们在这恶劣饥饿的家庭环境中，也早已演化出独特的生存方式，敬小慎微的维护着脆弱，畸形的平衡。汉娜是最成功的角色，也是相对幸运的角色。她渴望着关爱，像一只受宠的宠物小狗，稍有风吹草动，变偷藏起来。她懂得更多，也是个旁观者，一切都一清二楚。 关爱与期待有的人渴望拥有，也有人为此痛苦煎熬。</p>
+    <title>2023年成都双年展：时间引力</title>
+    <url>/2023/09/03/%E6%9D%82%E8%B0%88/20230903-2023%E5%B9%B4%E6%88%90%E9%83%BD%E5%8F%8C%E5%B9%B4%E5%B1%95%EF%BC%9A%E6%97%B6%E9%97%B4%E5%BC%95%E5%8A%9B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="瞬间永恒">瞬间永恒</h1>
+<p>策展人：王绍强</p>
+<p>本版块试图在“瞬间 ' “过程 ' “数字化 ' ' 三个维度中，以国内 外当代艺术中的经典作品为案例对主题展开回应。与此同时，展览的有限性与作品泪求永恒的诚意一如瞬间与永恒 的辩证。在刹那绽放永恒的光芒，让永恒于刹那间收藏。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202309032146808.png" style="zoom:80%;" /></p>
+<p>静穆古典的画风中赋予陌生感，<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3poLWhhbnMvJUU4JUI2JTg1JUU3JThFJUIwJUU1JUFFJTlFJUU0JUI4JUJCJUU0JUI5JTg5Izp+OnRleHQ9JUU3JUJBJUFGJUU3JUIyJUI5JUU3JTlBJTg0JUU3JUIyJUJFJUU3JUE1JTlFJUU4JTg3JUFBJUU1JThBJUE4JUU0JUI4JUJCJUU0JUI5JTg5LCVFOCVCNiU4NSVFNyU4RSVCMCVFNSVBRSU5RSVFNCVCOCVCQiVFNCVCOSU4OSVFNiU5NiU4NyVFNSVBRCVBNiVFNCVCRCU5QyVFNSU5MyU4MSVFMyU4MCU4Mg==">超现实主义<i class="fa fa-external-link-alt"></i></span></p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202309032153253.png" alt="郑重宾，星系座X-01 03 02" /><figcaption aria-hidden="true">郑重宾，星系座X-01 03 02</figcaption>
+</figure>
+<p>光在裂隙之间</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202309032157820.png" alt="徐冰,英文方块字书法教室" /><figcaption aria-hidden="true">徐冰,英文方块字书法教室</figcaption>
+</figure>
+<figure>
+<img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20230903215842564.png" alt="徐冰，英文方块字书法：桃花源记" /><figcaption aria-hidden="true">徐冰，英文方块字书法：桃花源记</figcaption>
+</figure>
+<p>与《天书》的『伪文字』不同，它是可阅读的。一切都似乎是熟悉的：从不解到释然的过程，传统的创作工具和线条。但同时又是崭新的，新的书写体系。不变的是理解新事物的兴奋。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202309032216865.png" alt="乔治·巴塞利兹，也许太大了" /><figcaption aria-hidden="true">乔治·巴塞利兹，也许太大了</figcaption>
+</figure>
+<p>新表现主义的代表人物，喜欢上下颠倒作画。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202309032247396.jpg" alt="Wernber Bouwens 地球仪内的空间" style="zoom:50%;" /></p>
+<p>光滑的地球仪是对地球的粗暴简单地抽象，背后却是错综复杂的地形结构，与此同时，其他颜色也隐匿于蓝绿色的主导下。</p>
+<h1 id="存在遥望">存在遥望</h1>
+<p>策展人：Philipp Ziegler</p>
+<p>在这场想象、知和表达的饕餮盛宴中，约三十位国内外知 名艺术家将围绕主题"存在遥望"为本届双年展带来四十多件作品，将现在视为过往已至的耒来，帮助人们拓展对所在世界复杂性的理解，同时，通过展现自然和人工生命体相互融合的生态系统以及技术实体与有机实体的共生栖居之所，预见人类的未来。交互式装置、虚拟现实及人工智能等作品展示了媒体艺术的最新发展，同时带来了测试新技术以及论证其运用能使社会受益的各种艺术表达。我们的时代面临着复杂的生态及社会经济挑战，而所有参展作品都希望建立人们的这种意识。它们不仅表明了寻找新方法应对今日危机的必要性，同时诠释了通过艺术创意展望未来的可能性，在这个未来里，我们与自然、技术和其他共生体 （ 包栝人类和非人 类 ） 和谐地生活在一起。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202309040000296.png" alt="克丽斯塔 ． 佐梅雷尔 &amp; 劳伦 ． 米尼奥诺，飞蝇人生" /><figcaption aria-hidden="true">克丽斯塔 ． 佐梅雷尔 &amp; 劳伦 ． 米尼奥诺，飞蝇人生</figcaption>
+</figure>
+<p>静止不动时，苍蝇飞走，做出动作时，苍蝇就会在人的轮廓。对人们日常的行为另一个视角的解读。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202309040001024.png" alt="Kerstin Ergenzinger，太空胡须" /><figcaption aria-hidden="true">Kerstin Ergenzinger，太空胡须</figcaption>
+</figure>
+<p>设计初衷应该是，受到气流影响，这些胡须就会移动、弯曲、左右伸展、颤动，就像受到了突如其 来的神经冲动的刺激或者被一阵神秘的风所吹动。"雕塑受器组与传器 〈 热丝风速计 ） 相连，测量室内空 气流速。胡须在这种噪声下表现出不安和轻微的紧张状态，反映并转化气流变化的信号。” 但是实际上观众的影响微乎其微，我用嘴吹了很久都没效果，可能室内的空调影响更大。</p>
+<figure>
+<img src="https://justineemard.com/wp-content/uploads/2020/09/7D8A0407-OK-470x313.jpg" alt="贾斯汀·埃马尔,超有机体" /><figcaption aria-hidden="true">贾斯汀·埃马尔,超有机体</figcaption>
+</figure>
+<p>系统的不可预测性使我们生活在一种独特的体验中。这个新的有组织的存在的光和声音在共生中反应，同时彼此惊讶，在一个结构化的、有机的和漂浮的星座中碰撞。从这套装置中散发出一种集体智慧的形式：一个超有机体栩栩如生，产生新的图像，这是由装置时空中投射的阴影和反射产生的。而观众却永远无法探知神经网络的运作，玄秘且动人，欣喜又恐惧。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202309032333683.png" alt="肥皂剧" /><figcaption aria-hidden="true">肥皂剧</figcaption>
+</figure>
+<p>当我们使用机器手臂完成吹泡泡这一行为时，是否仍然能够捕捉到儿时的乐趣和愉悦；也同时思考工业机器人能否成为想象力的创新力的源泉？但是周围小朋友的惊呼和欢乐回答了这个问题。</p>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>偷影子的人</title>
+    <url>/2023/01/22/%E6%9D%82%E8%B0%88/%E5%81%B7%E5%BD%B1%E5%AD%90%E7%9A%84%E4%BA%BA/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>读完这本书，很多地方感到迷惑。</p>
+<p>『 我』的母亲是个平凡的母亲形象，包括隐瞒病情，和书末母亲去世前为迎接我做的准备，以及『 吃剩的淋了枫糖浆的苹果卡卡蛋糕』无不让人动容。至于母亲为什么把父亲的信藏起来，推测或许是为了断绝我和父亲的来往，将我据为己有？另一个母亲是我在城里的楼上的老妇人艾丽丝。这个老妇人虽然儿女不怎么孝顺，但是却依旧如此幽默和豁达的生活。摔了一跤还那么开心，最后还想认我和吕克为自己的儿子。也许是长期身处异乡吧，我和吕克对老妇人就像对待自己母亲一般，透露出大城市里相互依靠的温情。</p>
+<p>友情线主要是和面包店老板的儿子吕克，感觉也没太多感人的细节。倒是吕克喜欢上主人公的女友这个剧情显得很奇怪。倒是伊凡我觉得是更能理解『 我』的朋友，而且彼此之间相互支持。文中『 解放了禁锢在童年的枷锁』出现了两次。第一次是我将信交给伊凡的影子，伊凡所说，随后辞职。第二次是母亲去世后，伊凡给我留下母亲当年写的信时，我心里所想。看到一位知友说伊凡也有偷影子的能力。这也解释了为什么伊凡能知道父亲离开我这件事，而且似乎知道我偷影子的秘密。</p>
+<p>主人公的形象感觉前后突兀。一开始以为主人公在班上被欺负，应该属于比较文弱、自卑的性格。但是为什么最后能胜任班长，而且几乎是全票当选。主人公有些时候显得很笨拙，比如父亲的地址不知道，和克蕾儿分别之后如果还喜欢她的话，为什么那么久不去那个小镇寻找，『 我』那么多年都没有想到过克蕾儿吗？ 最后去音乐学院连个人都不会找还得靠吕克。</p>
+<p>全篇偷影子这个能力没有体现出更多的作用，尤其是在后半段，可有可无。</p>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>启功带你学书法-破除迷信</title>
+    <url>/2022/07/05/%E6%9D%82%E8%B0%88/%E5%90%AF%E5%8A%9F%E7%BB%99%E4%BD%A0%E8%AE%B2%E4%B9%A6%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>启功先生以破除迷信的思想贯穿全书，很实在，不故弄玄虚。扫清各种神秘的古怪学说为初学者造成的困惑和恐吓。</p>
+<span id="more"></span>
+<h3 id="碑和帖">碑和帖</h3>
+<p>碑在《说文解字》中解释为「竖石也」。原本是坟墓面前的石头。后来逐渐扩展为活人也立碑，比如谁在此留下丰功伟绩。常常带有纪念意义，史学价值比较高，所以需要是大家共同认得的字。所以大部分时间里，碑都是以楷书为主要的，但是也有例外。比如武则天为张昌宗立碑，叫《升仙太子碑》，完全用草书写，成为草书写碑的开端。碑通常是书写者直接在碑上书写，是书写者与刻工的共同参与。</p>
+<pre><code>帖是字条，是平常生活中用来彼此传达信息的，是一种随意的书写，字体行草书偏多。刻帖要求还书写精神的原貌，需要先用墨迹摹写之后，再以字勾勒。</code></pre>
+<h3 id="入门练习">入门练习</h3>
+<p>临帖和读帖同样重要，不能偏废。</p>
+<p>临帖临碑时注意和现实中的用笔区别，再好的拓本也只能反映字的外形轮廓，里面墨色的浓淡、干湿、轻重的细节是丢失的。另外，有的石刻过于方正，是可能用排笔，板刷写出的，不用强求。</p>
+<h3 id="用笔">用笔</h3>
+<blockquote>
+<p>赵雪松云：“书法以用笔为上，而结字亦须用工”。窃以为不然。</p>
+</blockquote>
+<p>不可被用笔至上论所迷惑，以结字为先。</p>
+<blockquote>
+<p>无麻不成笔</p>
+</blockquote>
+<h3 id="选临碑帖">选临碑帖</h3>
+<p>可以有自己的创造性，按照古代已有的方法去做，吸取最有效的部分，为我所用。</p>
+<blockquote>
+<p>名家之书，皆古人之妙处与自家之病处相结合耳。</p>
+</blockquote>
+<h3 id="悬腕之说">悬腕之说</h3>
+<p>「悬腕」是宋初以后的说法，宋代以前，没有高桌椅，都是席地而坐，因此没有地方能够搁放自己的手腕和手肘，显得用笔灵活，上下左右，提按自如。但是如今在高桌椅上写<strong>小字</strong>的时候，如果强行悬腕，反而右臂僵硬，无法运用臂力。</p>
+<h3 id="求人不如求己">求人不如求己</h3>
+<blockquote>
+<p>文章千古事，得失寸心知</p>
+</blockquote>
+<p>意思是做文章是千古的事情，有失有得，只有自家知道。</p>
+<p>书中有一个方法：把自己认为写的好的贴在墙上，过几天再瞧，就觉得很惭愧了，然后再修改，自己就明白了。</p>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>大理火把节来历</title>
+    <url>/2022/08/01/%E6%9D%82%E8%B0%88/%E5%A4%A7%E7%90%86%E7%81%AB%E6%8A%8A%E8%8A%82%E6%9D%A5%E5%8E%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>普遍流传火烧松明楼的故事缺乏证据。该说法大概在明清时期广泛为人接受。如清代学者</p>
+<p>师范曾在《滇系·杂载》中总结出以下几点：</p>
+<ol type="1">
+<li>火把节即星回节</li>
+<li>起源一：武侯征南，于是日擒孟获，侵夜入城，城中父老设庭燎以迎之</li>
+<li>起源二：纪念曼阿奴之妻阿南，焚夫衣后横刀自断。</li>
+<li><strong>起源三：火烧松明楼，纪念慈善夫人（也称柏洁夫人），此最为广传的一种。</strong></li>
+</ol>
+<p>但元明清常常流传着很多关于大理白族火把节的记载与南诏时期不符。比如南诏时期，《太平广记》中引南诏王诗文《星回节游避风台与清平官赋》:</p>
+<blockquote>
+<p>避风善阐台,极目见藤越,悲哉古与今,依然烟与月。自我居震旦,翊卫类夔契。伊昔颈皇运,艰难仰忠烈。不觉岁云暮,感极星回节。元昶同一心,子孙堪贻厥。</p>
+</blockquote>
+<p>从「岁云暮」应该看出星回节应该位于年末，而火把节位于六月二十五，二者应该是两个节日。但是在明清的记载中大多将二者混为一谈。</p>
+<p>因此，《火烧松明楼》作为白族火把节的起源这一说法，应该只是穿凿附会之说。</p>
+<p>尽管如此，纪念柏洁夫人已然作为节日庆祝的主要载体。比如海东镇的赛龙舟与“捞尸会”，染手花（虽然已经不多见）与白洁夫人手刨火烧残余至十指染血有关，大理北门村和西门村等多地更是将“白洁夫人”奉为本主。</p>
+<p>目前还有一种的说法是大理白族火把节其真正的象征源于男性的垄断生育。抢升斗的必须是新婚的男性，象征着得子。</p>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>火把节记录</title>
+    <url>/2022/08/01/%E6%9D%82%E8%B0%88/%E7%81%AB%E6%8A%8A%E8%8A%82%E6%84%9F%E5%8F%97/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>大理白族的火把节在每年六月二十日，分为竖火把，点火，抢升斗，耍火把等环节，具有独特且浓郁的名族特色，也是白族最盛大的传统节日。</p>
+<h2 id="竖火把">竖火把</h2>
+<p>火把节的资金往往由村中的新生儿女的几户人家均摊。火把往往在本主庙院子里或者附近竖立，然后在竖立的挖坑以便插入。不同于彝族，白族火把节往往高竖火把，由松木制成。然后再旁边插上竹条和稻草等助燃。最后制作『升斗』，是由细木和彩纸糊成，旁边再插上旗子，共有三层，故曰『连升三级』，象征着婴儿的出世。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012330672.png" alt="连升三级" /><figcaption aria-hidden="true">连升三级</figcaption>
+</figure>
+<h2 id="点火">点火</h2>
+<p>火把节的操办具有地域性，每个村寨都有自己的本主庙，而所有村落按照本主庙划分为不同的「辖区」，每个区域都竖立自己单独的火把，火种必须从本主庙迎出来。</p>
+<video src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012337426.mp4" title="南潘溪村迎火">
+99
+</video>
+<p>然后将火把顶上的稻草引燃</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012350457.png" alt="南潘上登火把节" /><figcaption aria-hidden="true">南潘上登火把节</figcaption>
+</figure>
+<h2 id="抢升斗">抢升斗</h2>
+<p>抢升斗的人选必须是刚婚的男性，抢下『连升三级』，祝愿着得子。</p>
+<h2 id="耍火把">耍火把</h2>
+<p>这应该是火把节最高潮和有趣的部分了。每家人挤在迎来的火种前引燃自己手中的火把，将火焰传递的温暖送入自家门中。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208012356921.png" alt="借火" /><figcaption aria-hidden="true">借火</figcaption>
+</figure>
+<p>纵然黑夜降临，但亲朋好友之间互相取火，将薪火不断传递，『万炬纵横，灿如星海』。正如同明代诗人杨慎笔下的『松炬荧荧宵作平』。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020001028.jpg" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020107106.jpg" /></p>
+<p>撒一把松明子，烈焰迸发，火光四射。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020009767.jpg" /></p>
+<p>尽情挥舞手中的火把，让疾风为火焰注入生命力，让黑暗中染上绚丽炽红的轨迹。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020012250.jpg" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020105980.jpg" /></p>
+<p>火把上的大火直冲云霄，点亮一片天空。火星四溅，松木崩裂，感受到火炬内部有股强劲的生命力在迸发。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020021338.jpg" /></p>
+<p>最终火把却被这股生命力反噬，仿佛英雄垂暮，摇摇欲坠，大厦将倾。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020024687.jpg" /></p>
+<p>最终轰然倒塌，仿佛火山爆发，岩浆滚滚流淌而下，又如浴火重生。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202208020026118.jpg" /></p>
+<p>火把节如同不断上演的光影艺术剧，绚丽多姿，多彩纷呈。白子们通过火焰的传递，传承苍洱间祖祖辈辈生活的土地。又如同一首苍老的山歌，遒劲有力，发自肺腑，全出于本性，没有丝毫扭捏造作。火焰的力量从火把的根部直顶头部，穿云裂石。舞动时，划过黑暗。这就是为何火把节象征着生育的根本吧。</p>
+<p>欢迎各位来西南地区体会独特的风土人情。</p>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>甘南游记</title>
+    <url>/2022/07/14/%E6%9D%82%E8%B0%88/%E7%94%98%E5%8D%97%E6%B8%B8%E8%AE%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="备冬草">备冬草</h2>
+<p>于是乎直接沿着最快的线路，沿着京昆高速和兰海高速直抵舟曲县。随后沿着一条小路经过腊子口到达岷县。在路上遇到了牧民准备冬草。把收割的草晒在路沿上，然后在收起来打捆屯在冬天。准备冬草规模浩大，十分忙碌，大概就是农忙？草原气候，夏季多雨，草肥物盛，冬季雪灾，大雪也会覆盖在草场上，牛羊没有新鲜牧草可以吃，所以趁着牧草枯草前割掉一些，晒干后作为牛羊冬天的食物。</p>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142030421.jpg" alt="储备冬草" /><figcaption aria-hidden="true">储备冬草</figcaption>
+</figure>
+<h2 id="铁尺梁">铁尺梁</h2>
+<pre><code>然后顺着蜿蜒的山路盘旋而上，到达险关腊子口，红军在此激战，突破了国民党军队的防线。可以沿着栈道顺着腊子河谷看到留下的碉堡。</code></pre>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142031021.jpg" alt="腊子口纪念碑" /><figcaption aria-hidden="true">腊子口纪念碑</figcaption>
+</figure>
+<h2 id="铁尺梁-1">铁尺梁</h2>
+<pre><code>铁尺梁因如直立的铁尺而得名，众山之巅，诸神之上。无色经幡飘扬。可以俯瞰蜿蜒的盘山公路，散落在低谷的人家。平视可以看到叠锋隐约，错落有致，有个山峰形状酷似。据说毛泽东在此写下七律长征。</code></pre>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142034408.jpg" alt="酷似熊的山峰" /><figcaption aria-hidden="true">酷似熊的山峰</figcaption>
+</figure>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142036607.jpg" alt="月亮与经幡" /><figcaption aria-hidden="true">月亮与经幡</figcaption>
+</figure>
+<figure>
+<img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202207142038251.jpg" alt="成群的牛羊" /><figcaption aria-hidden="true">成群的牛羊</figcaption>
+</figure>
+<h2 id="达尔宗圣湖">达尔宗圣湖</h2>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>组会</title>
+    <url>/2023/10/19/%E6%9D%82%E8%B0%88/%E7%BB%84%E4%BC%9A/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="姊俩">姊俩</h1>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>蛤蟆先生去看心理医生</title>
+    <url>/2023/01/19/%E6%9D%82%E8%B0%88/%E8%9B%A4%E8%9F%86%E5%85%88%E7%94%9F%E5%8E%BB%E7%9C%8B%E5%BF%83%E7%90%86%E5%8C%BB%E7%94%9F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>讲述了一只抑郁的蛤蟆通过心理咨询，最终成长的故事。</p>
+<p>一开始蛤蟆内心深处并非自己意愿。苍鹭告诉他只有当蛤蟆真正担起想要改变的责任的时候才能真正开始。心理咨询更像是一场“<strong>合作</strong>”来访者和咨询者的都需要同主动参与。</p>
+<p>随后在谈话之中逐渐引入一些概念。虽然感觉没什么很特别的，但是当把这些概念联系到自身经历，又让人醍醐灌顶。以下是人面对事物的三种状态。</p>
+<p>第一个是『 儿童自我状态』。人与生俱来的情感包括：开心、悲伤、愤怒、恐惧。 但是在成长过程中受到影响之后，这些基本的情感就会混合成各式各样的别的情绪和行为。这些影响又主要来源于父母。儿童无法离开父母，于是衍生不得不各种各样的行为是为了适应在家庭环境，顺从和取悦父母，<strong>并不意味真正理解父母输出的价值观</strong>。比如愤怒的方式，我也一度感觉自己不怎么生气。发现只是愤怒发泄的方式不同，我和蛤蟆一样往往就会怄气，会变得异常安静，从而减少攻击性。通常是在父母的权威之下做出的适应。</p>
+<p>第二个是『 父母自我状态』。我们会表现地如同自己地父母，包括价值观和道德观，以此来审判某个人。但是每个人地运作方式又有不同。有的人审判别人，而我和蛤蟆会选择审判自己，谴责自己有罪。我常常在想：为什么我明明知道自己做的不对，就是不做出行动去改呢？我推测我的矛盾源自是父母自我状态和儿童自我状态的对抗。比如我明明知道我房间很乱，又不想去整理，然后开始责怪自己，责怪的声音源自于父母，此时我儿童的状态又出现了，作为儿童的天性，又很抵触听从父母的话，如此往复，所谓的<strong>知道</strong> 只是一种来自父母状态的假象，内心深处还是产生对不明所以的强迫的抵触情绪。</p>
+<p>第三个是『 成人自我状态』。在这个状态下，我们能理性的合理行事，而不再被脑子里父母过去的声音所驱使，也不会被童年的情绪所围困。说实话，没看懂这个状态的来龙去脉。我把成人自我状态看作是自己真正通过知识和道理来掌控自己的状态，这些知识是自我真正理解和接受的。所以在小时候，父母去强迫施加的那些道理，比如生活上的一些琐事就难以进入状态中。因为从小时候起，这些道理就在自己儿童状态和父母状态中产生着矛盾，很难一下子化解。而像一些我从学校学习的新知识，我更自由地使用和应用它们，父母的声音不会在解数学题时响起。“不愤不启，不悱不发”，合理的引导，积极地思考获得的认知，使用时才会感到更自由和畅快。</p>
+<p>最后是『 自证预言』。按照自己童年的观点，构建出一个世界。我们会控制事件的发生，来反复确认自己的信念，让世界和自己预想的一样。仿佛自己在上演一出剧本。具有不同人生坐标的人会有玩着不一样的游戏，如果和自己预想的一样，那么就取得胜利。比如 认为自己和差劲，别人都比他好的人，会玩让自己变成受害者的游戏，来印证自己是生活的受害者的认知。比如，有意的招惹别人，看别人能对自己宽容到什么程度，接着说：”我早说过你会这样对我，证明我是真的很差劲。“ 想起来真的很后怕，尊敬你和爱你的人都会备受伤害，甚至离你远去，最终孤苦伶仃，一个人。没错，达成了游戏的目的，赢了游戏，却输了人生。</p>
+<p>读罢此书，蛤蟆怎么好起来的我还是不是不清楚，毕竟咨询的时间线是很长的，我顶多明白自己或者他人行为背后的一部分原因，但是怎么去改变还是一头雾水。</p>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>赣行规划</title>
+    <url>/2023/04/17/%E6%9D%82%E8%B0%88/%E8%B5%A3%E8%A1%8C%E8%A7%84%E5%88%92/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>江西地处中国东南部，它三面环山，庐山镇守北大门，北部平原坦荡，中部丘陵，盆地相间。数千条河流纵横交错，其中大部分汇入了鄱阳湖，从而与长江相连。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202304171943554.png" alt="image-20230417193555806" style="zoom:50%;" /></p>
+<h1 id="五月一日">五月一日</h1>
+<ol type="1">
+<li><p>自上海出发乘高铁抵达玉山南站</p></li>
+<li><p>玉山南站打车到汽车站，去三清山有两种班车，分别是去东部金沙和<strong>南部外双溪</strong>的，票价16元/人</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202304171943466.png" alt="image-20230417194259736" style="zoom:50%;" /></p></li>
+<li><p>票务费用: 学生票 185/人</p></li>
+<li><p>从南门外双溪索道上山，到日上山庄放行李</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mxfg-incense/picture@main/test/202304180102939.png" alt="img" style="zoom:67%;" /></p></li>
+</ol>
+<h1 id="号">2号</h1>
+<ol type="1">
+<li>日出观景点在玉清台 里营地1h</li>
+<li>中午，东门乘 <strong>金沙索道下山</strong>，乘坐班车到婺源（1.5h)</li>
+<li>婺源到皇陵</li>
+</ol>
+<h1 id="号-返程">3号 返程</h1>
+<ol type="1">
+<li>在婺源悠闲地休息以下</li>
+<li>下午四点返程</li>
+</ol>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>镀金时代</title>
+    <url>/2022/11/03/%E6%9D%82%E8%B0%88/%E9%95%80%E9%87%91%E6%97%B6%E4%BB%A3/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="第二次工业革命">第二次工业革命</h1>
+<h2 id="工业经济">工业经济</h2>
+<p>从小农场的手工制造业转型为工业社会。“迅速彻底的革命”。五大湖，匹兹堡钢铁中心，原材料</p>
+<h2 id="铁路">铁路</h2>
+<ol type="1">
+<li>同一轨距</li>
+<li>批量化生产，全国连锁店 全国性品牌</li>
+</ol>
+<h2 id="发明创造">发明创造</h2>
+<ol type="1">
+<li>爱迪生</li>
+</ol>
+<h2 id="竞争与合并">竞争与合并</h2>
+<ol type="1">
+<li>防止恶性竞争咯昂段</li>
+</ol>
+<h2 id="thomas-a.-scott">Thomas A. Scott</h2>
+<ol type="1">
+<li>慈善</li>
+<li>集权方法，连轴转</li>
+<li></li>
+</ol>
+<h2 id="工人自由">工人自由</h2>
+<ol type="1">
+<li>利益分配不均</li>
+<li>少部分产业技术工人能经济独立：钢铁</li>
+<li>半技术工人：操作机器，死亡率高</li>
+<li>妇女恶劣的工作环境，“如同内战前一样”</li>
+</ol>
+<h2 id="阶级分化">阶级分化</h2>
+<ol type="1">
+<li>贫富差距</li>
+</ol>
+<h1 id="西部转型">西部转型</h1>
+<p>资本主义流入 自然条件 美国文化的特别素质实在西部形成的，西部是安全阀门，将东部对自己不满的人吸引，从而抵消社会动乱。</p>
+<h2 id="西进定居">西进定居</h2>
+<p>农场主：东部出生本土，重建后南部逃离的黑人</p>
+<h2 id="大型农场">大型农场</h2>
+<p>主要仍然是家庭弄工厂</p>
+<p>加州大型农场</p>
+<h2 id="牛仔">牛仔</h2>
+<p>牛群驱赶活动</p>
+<ol type="1">
+<li>西部城市人口比例高</li>
+<li>矿山铁路</li>
+</ol>
+<h2 id="印第安人">印第安人</h2>
+<ol type="1">
+<li>摧毁伊甸人的经济基础</li>
+<li>联邦军队与部落</li>
+<li>文化打击</li>
+<li><strong>道斯法</strong> ： 将印第安人土地分解，分配个家庭，剩余的出售</li>
+<li>1924年赋予所有印第安人</li>
+</ol>
+<h1 id="政治">政治</h1>
+<p>Mark Twain</p>
+<h2 id="政治腐败">政治腐败</h2>
+<p>大股份公司</p>
+<p><strong>腐败政治机器</strong></p>
+<p>共和党：控制工业化北部，中西部，西部</p>
+<p>政治僵局时代，</p>
+<h2 id="政府与经济">政府与经济</h2>
+<ol type="1">
+<li>联邦权力小</li>
+<li>政党被利益集团控制，共和当坚持高关税，保护美国工业</li>
+<li>金本控制</li>
+</ol>
+<h2 id="改革立法">改革立法</h2>
+<ol type="1">
+<li>文官改革法 竞争性考试</li>
+<li>ICC 保障为农场主所收费用合理</li>
+</ol>
+<h2 id="州政治冲突">州政治冲突</h2>
+<h1 id="镀金时代的自由">镀金时代的自由</h1>
+<ol type="1">
+<li>劳工关系</li>
+<li>达尔文 契约自由</li>
+</ol>
+<h1 id="劳工与共和国">劳工与共和国</h1>
+<ol type="1">
+<li>铁路大罢工</li>
+<li>改革者堆小生产时代的的怀旧，</li>
+<li>劳工运动</li>
+</ol>
+<h2 id="贝拉米乌托邦">贝拉米乌托邦</h2>
+<ol type="1">
+<li>社会主义《合作社会》</li>
+</ol>
+<h2 id="劳工与政治">劳工与政治</h2>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>隔离日记</title>
+    <url>/2022/12/23/%E6%9D%82%E8%B0%88/%E9%9A%94%E7%A6%BB%E6%97%A5%E8%AE%B0/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="fc589d1da9fa4278be5f8cd558419b02ddbdfebb0d6704c8b18fe1ce9b09b0ab">c109a95bf29f68615109f8cadff634f76089413210d05049a1b40581df388de33ea55a96535a2ba96e2e2363ed71be95206affc254c67f8e14a57f65c42c14caa5dfdcbb85b365f7292edb31b774585ca55fe582f87d544beeb81c1e993f17d493cd397599f8f93f1875beb164259fc9ea35066f5c5ba6268446f9e17c6015782c1147800126ab4ddb49cfc2165300a7490f06cb307acbe2261ff491ba3232dec841974e5aed53a6e7226ba78d50943322fdb2cf79ed5ce926071ef6440e50bc80f98830c4b842454f19bb2862bdc4266c85b633326c05a569d4ddb8d4ff68eacae42ae0ab3841c5579f140040518b95b3be3e02d7c5e1c452ed790c55779794d7862d2afeef45e98f8b82eb61e25bf27817585f2af08f909bf11a8699846d31a6eda33d6714e1ba23744c19e600598796678738200b5b4d53d96b245655486ab72eac412198787618e46e5360a1e2f8c82928af3034cee8e5f5452e10e5180966357dc4b8e4be0bdb9571bf447917c20eceff139fc0543f79a1b967a7341f96ee3dd086b26d9a7d5ca81b514ebea1fb635873202954f38292ed3418dd01ce2dca09c0c331a84951f494e7d405c85ec337bedd66c8f4e0356e14a18d8edfec24f998446ee9eb6c9f8185e80ef052d2c493d420a5e9141d965fe849e7d24516bbf17e22877d8d6c97930d53383b63dff68bd0d1b63e014b8786c59efc7993c41d4e7efe2c8cee18f06d16deaba1fd4ed889b9991d75f6abcc4961385e274cccdb838505a96fd67fc997e8ccd523ffb700450931d3ac867429d0bb74655f7835865d84e3b7444979bafefd3cfa8cadd4789e24fa021e1021ea665402ec8b6592747a83e4f5693407b98c3d7bf4cc155c25093ee4ad09cab856d324bfd6cdc4c9732fa9c5d5416d9ae509cbf92d2519082bea5eeee16c5fe73f5b3f37935d91c26f509df5b7437d10fd8142661a48d76fc9aaa459646ee9e3edb0cbc076a35bee8e86eed0062397fe8398fdfec55dbb8b227506a09367376c12e59f59eb29a6054ed7fe4feda8862f085c29f827e3cb6a241fc331e4d4af02e3bf4599a087c14533e89c596621507dd6529b298d4eccb4a1eaeb383e1a9e71fd60050f092c3e8de229e9d09e681a27783dbb485480ec8ccef371e00d6e4f7c7751038cd93ce648f92d0116bd394565855b1b5ee7d35d7f767f9dcc61544cbf17cee90191d61a5513a4568ff0369fb24fff28c07b1bc998fc56a309fc5b724e8753a0cedc1f77a4f69d6c399608a276579ee6d34cb101e9681642061a1abe1932ca830fc91db9f87162807f713b72591d6fbc7fc16d0e6605e68124025d927dbe0d0fe6b9d7ff1c9795d1c4f8e8ced00a037da71f50577f9308fe66c89ac96e2b421d303ffa2effa9505b53a6debc878871329f3b50f2914d5e722f6c22ec7b3d152a87eea4f41f9c0884df17b0bc11468059ff4e19ff6afd37eb710f01126c5aed774321603ae67db004e059491a5ebb27948d4b27807a07c73da8fce1562a4fe4a1ee6696b0ec885f4ce352e460278ece36723b044309a885ea505c247043675a648e826b147e81225da005d364a5708f6726f1693dc57a5d34f8a1ee3c1864acc0004737b661dbcbc620b7c9d6bc871271f0c53117c02b2b4d53374259ea2f99e8bd4af26cf64884799725ce6a3e1dc2a01204595b54152d322815193f84a610703c91631a06746e99b9f1527b68ab69aa72f7f75df774dc6da91febfe5f7a55e02f50a49628770328b9c90a8d04a016def1852e2441dbbc66e573a82318fddfb7279a926d625e757ff07dcc36bcb1c6bc3b646107d69782c82f84da9da61ae6ed9a9dd9d622077a9b0f2bf9496a16e5ed76254d1fd2c3d8a83f0446ae6312502db3f823705313122d114130fe82198beb111b2dc90fde114ad7c5506ad1e619ef7483d0749f55dbe48238dffd0b76af81cc9d94603f21a56b1f43e95b5fde92f34172dcbfc0524cdcaa0d22a0e6d55d65fef2d392471251275219fb955523008b3cfd21ca92d264099744916d7fee62cd43d0fa8fdbb356521d2103af5d9b29f09ffa1aae7d7f395744220a3f874c157246f7a4abe1951b7c43e30d0f542aafdc5f8a058f498f0af03e9f79e54fd2c5411f493cd86beb6e242ede9f0d00d58427e220e2afc17ecdbeb1fb877b6333b273981609df898a688914c09c7f37553f07fae303ad26748535564d056f084f6aee362eee874868dcc5441861ec18e6b6b460a5bc2317fa75e88251f8df86df4f7690056210000473a8ccbcffc6cc552bf1be8f4d60940fbdd41734506e8249089f6fdb2e89158dc8e38bd61c3bad3ecd31bc3670b209a407bc8887922ebd9508705ef32acc900fc95111ef1decb0a0dc05f7bddeaa6c6fbc5bd73c2ad9d1c10048ae19b41df3aed5165e58835ffba8f3f0871de9ec420afafa36c843e3c7afa9b4f2bc82bca1e39262aee2f98f46764f0ec867f5dc1455b432c47dfe25c30f89d6159cede6da085f7fd5ed379cd03d0eaade9e7c23c3c0ea3858f3e6691a4a6a27d9105a4a93f9ab135d83683ffa0084f491b736f90d398e2808252c2f7b35a9fe45bf072973a863032a0262e2bc2d0610ae03858a1efce38757f40e556aec554c1a3a498d41a5d701d769786c853dde39b1cb070d2bbb84b40b1e5716cab9fbdcb9c984fa8743c504aaaa845e12f14abf746c256721e43837f0e32552e14cd9ed93a3d5027b723d80842fcc93fe5f39b70fe5f2ca886cae58f1021e8ef214f9778c7d0eec427e838d5ff9d10926204bccd71c105471a4cbf4503c22f8dc41e89fbaee1809cfbc491864d1362439dde29c6ac7cfcd5ba3692596fb385e50e3de113a2a4a6ccf198818548577d5ce6c4dc50bdb223c0e2c3d7252f8b37ba73440158472a88029abd2f74067fc287c02f8606c3d730dfdfc49a4b198e847a8ac4f15c8170668de521e388822b1327a363e7e53615a08c880e5ed66a663f82204d1259bc0a90b5d214309880811fc8378933dcf466b0f84cf09471ffa6b902a36fb9f459640d54c6708cbd83f3a37f8e810310b33243516e6b940db1e48f61c917ea6cf7b596dd84be31aa63a57543ebc473df2b2377974444cc054aad64492500407940dbf47a274ef4b7d566ba3913f1f2a11e311abd7b725da739dcebb5f391ac7b58d36c0d9810f3c35a1e9129cde3e7523962867dc8e095372b48c07b489b14fcc0af41be493fa583f76d7bee351029dbcadf70404b8a4abc082df3286b38cab374d63659a1ec6504d3dcad4a7250622d0f21aeb93f9cff2fea75384c6427fb7516d5aa78a77d02ca5996af389a27e79cdcb9c4d53dfce61582246b97a009027f6b8d80270d6ba4e8e96da2b3810b516b7679e1ff8a4836eeefdb56dbab0bd5adf328ccf6c5d13f9da0fd5737927e9bbae40c85eb5554168c8f8698a625788f8327afe7ba889589d0439593a6ff3065017cc6232aaab9499d767eb19225ac3642d96f20797980ba1a353f1308b4a5265d956eeb0107529e9b29796914200539a4baf2075be3ca9bc22f6cd3cbeb4992464d01fcce63d22417d8a944a820c967a6dcb430ccb183358046806a4ba7fc5c647a45cf0cf017a3b3c49fc8ac77ba5bc2e05f857aac1bbe92de264a476bd954c3e0721b755b2074b329637b385b14ed008c10077de6c91af8b9491b05f81b9876801735e29bcd27de3a841edbafc5b4022f2d3be6f22232893f1143ca0a015689407f9819063183fa5b4b3f9d40184ca9f589cde385af0b36039ca0ce2a6e7056e7273088fbc68bd527f110e641407020e221c3a1468fe0d45bea74292f37b7bd72d525b1eba10cce4440f77d2e3bd929c72bee39f27b2ee15374c4b5f2eb69038d1266ed393dbadc1f577bd083c2b9304b586e87def062a6ceac43667999579163874f4bf033a3413fd41d6172273a2c03e41676af0cc8849e5574551b01087990bb0d387e13442ecdb7d7eeb0f66f220c1cbd8efa8b07fd39e4c2eb833f8fa84d494531b58cc224097af1b86cc86a18afb2d27ff5f53b2bf073c44798ff64957a878e1237169c00a1e6ebf36b2911f17aa451b3392e1e702565e1317463af05f9a232317b6d63569bb6b67c613386affff5e017f361702b9b2cd24b5c5c28deceb7eb30ef3f8fdec1b3d4b4753eabcd9ea88a2a968191358c5c08a01aaabec8c148c4eeb349ab6aa3fc44a9da1d1a6ed5f7150e86c03057873a85ef5ba0a38de01c4d89bf471b7e13f3842300bc284f03e48f6e942e3b6e2933c23dc09aba488c321bf2db36d0edf6eda041d47f6dfb62c5828d4f149c64ae69c4ee86323e538647b1e70709e44f72460283d5ee41be866ee858e9b185ed07eeb8359565ed3c8d8b14fc8388815a03b1a6925892b77a461104af3bc70b4f26fe3d04049b5bdfa77a7bb8838fd67bda9e285e788afc016d835e8ade236f942468cb45a0d893a916a594e3a51c889369f6a220bbe5b7dfa5a72a50609032b99ca4c625f99f02c6bf01f936241fa6e4ca519146c259f6aee44756661d7d4254b21a398f2f400ebfa305ddf3a3724de73d6ecbe59995bbf385b33753c4b1b49df53353cddb67fe2be1b8de6fdadc24fa88eb0a21a60cf79f1fa1dcd0da147cd1138d4e1046fb9d734c5535853c6a1069c71a63d1f166dacdfdb86b8945e8a13509a962360e83cf66afff6d33e10bcc8a63f13a1bfb2f2167ca09737088cfba1965e95fa12c5b795d0d2bc0a45141b09ca74fa21c95a5320b2e5d04e9ba437a3ddfae5990e545dd52ddc1eb7991c49a8d19ff77935bbba43166c4cd41b04f80870b07fecf2d5063149797a13ceffb5f7b15c5cc5cf0081502d80ddd754f30c0385a31176c7031b7ac26353bcb29816ca1be9b74f18065b1c5fe28e76bf93144c2ba2db998d949db20c635bada593d0d7db1730d8bc5b9aa83ef82706b028e072541fd35e1335b18cdecd3919038d76603978a7494e1986449006761895ddbf27ba317b5b7d27780360ff0ba1072708b27f8ddc653e801af8607804493820734b5e551099a1762c0e11ee1388e2aac4927c2cf23873f6eb8cc5ce6070db730b264bcec549e6905a6ec266917cd2a09d45c44fdd226c4b93b707fa7678dd4c6b41a1923d5ce4a4e002dd82097c458c1bb04082280e9dd82b49c604149e5717935e9fd87573d3bcba093fe4514d06118d327c4ad8ebb8e30e63457b66a409d3a660881a1c879d380317c31d2fb7055532c93867cef4915a6b3bcb48e1b64f689eb1f7cdbbb3433e97993436196672d1c582807451aeec557efcb5a931bf124adcdb53fe877e1d9af31d255eb4b1130ce44c908bae6be182bfd2cd7e233ced0adc48e93e6dc387e54a3cda31cbf6eff57cd37e124fb597d1dab33165870738be0cf3b12ac75043f7b7cbdbd913d2c93ee412536af79b71c6ccbd339f09d160470d062f4ff9efa06525fe1f76f4a8bccf224e33ff6515d94991401dd2e71924db2cbeddeaecf3cdb602e7200fc5b866168458a6efe282457b4cb32c4b236f96c0329fedf421aa9903d8e6101d430977fe11d45554d0ed3be160eda6547779e6cb65d3f561c8abcce86fd7bee119fc963d17acb76ffd732398c8f7b53708f02da9e2dc0405cdffa285cf2586b0d1a3738d4f0d1ff3b6285a31acd9e13a4857104546fa139089affce8458b2835499687bfee7f64e2688ff33dc4d880ed14c7e47167c17920aa13ceae712754f076474ad35b046dd153abc1f9cf9a25188baf09fadbbbb832c9fcc907a33742c9157a6344fdbb43927479d9ca7ed313db5ad5eddf10d942e62dc7a0c64ab4f0dbd90ede205ca13df0605bf5bd822a5fea026e0cace90808c170294d44ed059f31758f8cc0a493abd49254b02028e9fbad01ee08745c802fce787d76e9cb24baa79155e626a7163b7b6ddb5278508d7d67c52b5a48c8b5dfd0d838e3ff0d902cb543a22b6d3d7d2fc6df1a2aa31701bcb38138236763da3ee0738eae0741c2bc9c50cccebf141646206f98ce53db961e94b95bc58d1c81966b6ec5aa977f13774234769327583f34d30413a4cbd30c5ee2b94e82367436d05e67a3ae47b7907d61abcd29638f3863517845754aafc495d348e12c7835a4cf2197c4bf315232b92aeb9fdb6bfff3d444a11be3d22f2704d0c19430544f34cc033742e05aa8d304d0941b94f7507e15149b1a67314a6a968c8d6c00cefb4c4ffb5b2bddbdcc3398d72eba21ffce4242d2fca4ab1b6f5de741e3bd0eec8560a04b63146e92227cf65c31dfefe556be2cc04f7b5996823d5752b7b3b11532870e31bd2e7c2feab17823941cf9f728fb64f31adeb90aaff76e0b88656ab47bff19d3840568440ecd5ce03165fb12e627b840d21005b93039cb46db68a9b2e09e6e84b56ac4c9b9cf230406c1ea13efc2a7f1deefa0cfc0b63b9b89df3a2b1b0a3756f6d8bac81b4929669ddf1ee5df39ab073fb6bef49eb054a3445ee0abddbfe1dc050552f9e9ffd456c50a71fa2a98fee249951be0aafca16abf913390a4a553949754bf7f132a650ac547f68531e3a580093a0656c4d993f4f3ee030695d404db4577f2c58bb452896e40cb8d34469f084ff7053939223bedc7a72dfe782d754a2338718299970d008fae145f5186aeb77b4fe825e18dd0da552cbfaeec544598a5b773230a7841cb282ddddaa7ada349a62864cc14eb6ed6066de028cca7107e0868443b65ccf3c4b9a1c2ed7b743ed42f8610567aea9dc6a37e98835dad3f212a36dcdde09a6198caef86ea6a2e56f54395eec163d450f24fc4338ab74de910370c8ae493a094ee46036b3e707da1a10a946b97a31d85455f52c768ef0f316d91cc9a19a6792c58a2772aef63893e9ba042d7556131030782749904a26787e76735a5ecdc0898f3d107d06228ad1c3370871d09ec6b0e38dd95f0ec547ca0277377ca5e1cc2c2e645cae4a7b855c52abd5ae78e938af49deea5687a9f7c11467e82c5e269aebbc241b334cdfb30d4c0013a01c28b6598078c351fd2e2b895d7c9a201c7d7fa2ec3e7490e850c81e4ed2f6963eb925154b4cf2ccf63994936ed9c55134bfe109ea30eadf5c78bff62ab6ac1c583f6b07780891b88f37be65e518cc72af556440a22e551a4b1e8b7bf5bacdacadfdc1f459eba20e289a41762bd2fb6b89fb0d7558646a768143a4c0d7b4b997f7d4a16653f506a31ca20c5e19bff08b785bebef1105e7df3b0059bf088d0abd59c23477b90eff1e3bffdd8cb1e15ba615cdd6c56b88689e1c118fabf5d0d7ce26710d034b4b5296c13cf3384a035d8f751aa7dbfe93d7a32014688687119879229e8d28c2d39f9d50981fbf046e613456a84133e7424fdf875d8c05c356796e5bb157f21bef9e9d29e88acd7216e328f8e446983f576488b969b3ddd363cb5b8dba49cda12c3b8e7d9f48c6e60c5d7b8d9a1dc85ffbec89fa01988f6b9205182d01e4b5e4236561ac51942c363409b0930c1a621de0bba0347011294d85166ae9de044b65e94cfea5284bbe513f6fa206c7c97070a60b14e4ce02dd5c7db85e7246068472a23b6a4cedbf4b85efeca7addb3a01526d0b92502318f22e80e11b71ce949d55985266651c7844bb9b72d5ab6113ce13b4cb3ede1ff9e773d7713dad86af7ce0babd63ebe5de1aac3b44cbbe8c94d299bf5d9c079f5d3b013dfe64b834f9563df5dac174fc6d0341c3d45dec3d7867ebc7a3d516687d89db34e234dbf0cde1bdc0a522c92902ef2da7a2050c6c539309eafe717933490a371a9a223512c5102cea9d01e364a03db8a6878cd3bcf25f0f4223f18a7130ffe50d07c96af447884f08bd94d47e8159ae8cd1cbb1a01de83cbfb55be7971fde9049a96274a23ae0704c7317e96129fbe560496ab2a5b5b6b6a1b02b7c06e6d20f65ec78656815f183ddf6e48125eb2a97c2a85c7784061e6732dd503705bce6df345d0d6096ae0f19d90fb744705e3964fdd32d70746116e28b2410b7e4a0b6852324b594b73bd262eb301391c69a41b4a1c1ff2aeed198b2e8c4a8e41e3aee5ce86cf4894e9eb7c78494d924215a8b75aae16019cf3e802c4c6de509dd001ad1aec5537b9d09657562f3b98807ccfaf2d174097399e4d6522a158eb0c958a3e8180be16b5fac429cae9bf56f997c5c3010b094b3b5344757b9f576baadcbff176db3c695d2bf0470bef19b6f203c7cae91fe91d5f6e82a94a38efbcb2d600a795618f122446d086ce9433d86b9d01f296141126c1d2d481b0cf7715a94e7261272722911c351ab8ffd2c7f542d13703d781dd54198894ac3a7d4ab2fe63cf916f7875958eba26437413b6c93bc5d87f77545fa71f75e230a8c3f1e0136f7dd083ec40a583a70f85f08e6c568b2c2dcd01cf72cf314431f105bf69c53025b2ac2e526323aba2971c8e22eeb53e8787409b8c8bd61e981f51c6f48142a3c5f0761aee075667833451a315865e78f1419c7db735909e1975ba4ac4a688f257f2793a51e859feccfafc41665985b2934eff2a5c967e6ebcc98a3ba7898c957078c6807e77ec472c3d43114d169413b795a6214bbb009675e563d146f3b175841cb46fe5e0d3067f1969ff096835f8568f9b918139465199787e247a16b883c30236d4a74065026f03fe8e4dc2d51300bd4119d3621a2de0c01de94e1e5fa116764c310afc893110e5ed372a09f5ec4e2c990a05cf529b1e9e618b04f270855d650fcc30a5614e65eebf62029da43a040aef1627239bc119b7f2d47bc78feca6486983b157889760aa9234905f67c2cffbb255b9da4d0380915523e22bfd5b871ee67c642676be463f616a2ab53a416525107db0a61899faaecc87f5aec7c35f416eedd045f676bedb5d1b1a558ae5ea4f60ad11c6ce1b4e4533efc48f9ecebe095a9d4d32fe110b832280acca6554d65877842f91d6b1ebc6af73d274890fa11d6b95896b8650845bf90e53b4d46606cd3898a7e798e71492e501af5669dfe02e3c28a33cc308a4cff037ca1c8a6260acaaf6dbad676fd0b155d3677093f5a469d62262dd7dfaa89aef81604a4c2f6cdfd0bbe64f14eca06ade52cea63ef593339eeece997bc0ec4f41fb561a123e0697620e36f857ea79835d8d12b0a25c792493d20f00dbff1b25a8ce86e109c65b259edad47e2fd9aefc72fe12386886</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>面纱</title>
+    <url>/2023/02/09/%E6%9D%82%E8%B0%88/%E9%9D%A2%E7%BA%B1/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>正如书名,本书中人们的关系都存在着一层若隐若现的面纱，有时彼此之间都明白，或许只有一方明白。究竟是戳破笼罩彼此的面纱，还是保持现状，寻求新的出路？</p>
+<p>对于沃尔特来讲，在一开始，沃尔特想竭力地隐瞒自己所谓的智慧，让凯蒂觉得自己很蠢，这就是他最初地面纱。但个人认为沃尔特是全篇看似智慧，其实才是真正最愚蠢的人。首先沃尔特如果真的早就看透凯蒂，就不应该和她结婚，即使自己多么爱她。在与凯蒂相处中，总是沉默，好像在隐藏自己的情绪，还给凯蒂一种可怕的感觉，不愿沟通。吵个架都是都是不动声色，一点人情味都没有。很不喜欢和那种输了棋之后一点垂头丧气的表现都没有。他的自我意识过于强烈，他的爱显得很自私。就像一句话说得：『 我爱你，与你无关。』这怎么可能，你的爱肯定会把别人卷进你自己自导自演的那出戏之中，摆出一副运筹帷幄、居高临下的模样，接着露出那幅嘲讽而又鄙视的神情说：『 我知道你愚蠢、轻浮、无知，可我爱你。』凯蒂问他为什么不直接揍查理一顿，他说自己『 自视清高，不屑动武』。不屑动武的结果就是最后想带着爱的人去送死？沃尔特其实的情感很强烈，他愤怒，并且伤心欲绝，但是他偏偏就是嘴上说自己不在乎，因为自己『 清高』的自尊，最后压抑的情感把自己逼疯了，生着闷气一同去赴死。一开始他到底想让先谁去死，按照自导自演的心理，说不定原本想让自己死，看下凯蒂的反应，他就可以临死前用自己的高尚反衬她的轻浮，或者让她内疚。最终他在凯蒂怀孕的时候还是反悔毕竟还是有人的情感，坦白了自己一开始是想让置凯蒂于死地，并执意让凯蒂离开。但是他估计千算万算没想到凯蒂在修道院变了，变得不在轻浮，他已经丢失了鄙视凯蒂的资本。反观沃尔特，根据沃尔丁的说法，他并不是冲在前线的医生，而是作为细菌学家的身份做实验，文中也没有直接描写沃尔特是如何工作的，其实他比凯蒂更安全。 他真的没想到，结果完全反过来了，自己是有不纯动机的，而凯蒂变成那首挽歌里的大善人，自己本质还是一条咬人的疯狗，一只鄙视自己爱的人的疯狗。而他的死究竟是意外感染，还是自己故意感染，我更偏向后者。</p>
+<p>凯蒂算是全书里面能最好理解的一个『 正常人』。因为是主人公，所以内心独白是最多的，比较好看清她的心理路程。简单的着急，于是匆匆结婚，之后爱上了风流的查理，被查理所骗。故事的转折在凯蒂在修道院见到高尚的修女以及庄严、和蔼可亲的院长时，她逐渐意识到自己的浅薄和愚蠢。在疫情肆虐的地方还想着男女之事。修女们在这片修道院中展现出的欢乐，对待困苦的超然，庄严肃穆的亲切，自我奉献的辛福，让凯蒂觉得自己被这篇神秘的精神乐园拒之门外，而这正是她渴望的幸福，也就是所谓的『 道』。在这种精神的鼓舞下，凯蒂开始到修道院帮忙照顾孩子们，我想这也是沃尔特万万没想到的。修女对自己的丈夫称赞不绝，她也承认自己的沃尔特拥有着非凡的品质，而反观查理汤森，却是一个品质平庸的普通人。尽管她仍然不爱沃尔特，知道自己永远不会爱他，但他希望能与他和解，希望他能原谅她，至少成为朋友的关系。怀孕是一次和解的机会，她本来可以撒谎说，这是他的孩子。但是此时的她觉得撒谎不值得，回答：“我不知道”。凯蒂是个感性的人，只是不爱沃尔特罢了，但她同情，理解沃尔特，并为他的死去感到痛苦和后悔。在知道沃尔特可能拿因为是自杀感染死去时，她辩护道：『 沃尔特是因为心碎才死的。』 当凯蒂回到香港后，她的理智告诉汤森是个卑鄙的小人，但是他对汤森的爱欲还是不可避免的复燃了。在懊丧和怨恨的孤独之下，她终于离开了香港，回到了家中，母亲已经去世。</p>
+<p>凯蒂的母亲是个虚荣、挑剔、专横、野心勃勃的人，对父亲也是严加管教，父亲在家里毫无地位，甚至因为无法为家人提供更奢华的生活而瞧不起。看似父亲是个忠诚的好丈夫，但是横亘在父亲和妻女之间的面纱是父亲的苦难和冷漠的隔阂。而这面纱被母亲的离世揭开了。父亲永远解脱了，他得到了自由，崭新的生活在他面前展开。他在也不用拼命工作而养活儿女，可以放手去追逐自己想要的『 道』。但，当凯蒂问他：『 我不能和你一起去吗？』。他屈服于自己的责任感，放弃了自己的全部希望，表示乐意和凯蒂一同生活。这是全书最令人动容的时刻，体现出父亲的伟大之处。随后在理解对方的苦楚之后，他们彼此相拥，双方都感受到骨肉之亲真正的温暖，这才是他们两个真正追求的『 道』。是本书唯一消融与和解的『 面纱』，也是全篇的结束。</p>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>黔行山水间</title>
+    <url>/2022/09/22/%E6%9D%82%E8%B0%88/%E9%BB%94%E8%A1%8C%E5%B1%B1%E6%B0%B4%E9%97%B4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>贵州，中国唯一没有平原支撑的省份，群山环绕，数千条河流将其塑造为喀斯特岩溶地貌的王国。大量的山林河谷让这片土地充斥着浓郁的神秘气息。我于是怀着敬畏和些许的恐惧抵达了贵阳。</p>
+<p>贵阳的交通是立体的。坐车身在其中，各条道路在眼前不断地交织绕的人晕头转向，难辨东西。黔灵山公园的猕猴让人有些期待，在公园里跋涉许久才终于看到两只猕猴间互相厮杀，其中一只差点失足从屋檐下掉落，令人捏一把汗。又行了几步，终于发现一群猕猴，哦，不，应该是一群强盗吧。幸亏身上没带食物，否则肯定被哄抢的一干二净。在甲秀楼溜达完后，然后再附近找了家餐馆，叫“雷家圆子”，就是用豆腐做的油炸圆子，配上其特有的调料，口感外脆内嫩，味道鲜美，算是特色小吃吧。</p>
+<p>饭后到高铁站后与社会实践团队会合，大家神态不一，有的社交达人如鱼得水和旁人侃侃而谈，也有的社恐面露羞涩，一言不发。我显然属于后者，所以高铁路上一直假装睡觉，害怕与旁边的组员交谈。我想，以后会有机会和大家熟悉的，也不必过多担心。</p>
+<p>在六盘水经过一晚的修整，来到了本次调研的第一站：水城古镇。这里坐落着一个三线博物馆，纪念的是西南三线建设的历史。沿路的房屋墙壁上都有显赫的那个时代的标语。“人亲堪比阶级爱”，“好人好马上三线”，“为人民服务”等等。参观了博物馆后，知道三线建设是上世纪我国的重大军事战略计划，对西南地区的现代工业化起到了积极的推动作用。让人感到有趣的是一个手动的防空警报器，但是却被工人们用作闹钟，同学们开始疯狂转警报器，空厅传响，整个博物馆瞬间弥漫着一种紧张的备战氛围，霎时间回到那段峥嵘岁月。之后我们便开始在水城古镇进行街头访谈，收获颇丰。突然天空下起大雨，我于是坐在伞下和一个来自广东的游客聊了一下关于三线的问题，谈到当时韶关是广东的三线建设的重点，当时的备战气氛其实非常紧张，很多工业，和技术人员都从东部比如上海等地迁往西部。然后我们小组向一个小卖部的老板考察了水城古镇的历史。在这里未开发以前，这里基本都是住宅区，都用的自己的房子做点小生意，后来政府为了开发古镇景区拆迁了旧的房屋，但是没有给足相应的补贴，如今又向这里的摊位收取较为高昂的租金，这里百姓对此忿忿不平。听到这些话，我感到有些唏嘘。但是我们又采访了一位烙锅店的左氏老板，她对此的看法却又截然不同。她从小生活在水城，她母亲曾经是在路边做烙豆腐的。她对景区的开发持非常积极的态度，街道变得更加整洁了，社会环境和治安也有了很大改善，比如之前女孩子从来不敢走夜路，如今她也不会担心走夜路，游客更多使得生意更加兴隆。我想，之所以产生不同看法的原因是从不同的方面看待水城的变迁。政府在协调拆迁问题时确实存在着过失，百姓原本的生产经营方式突然改变，又缺乏补贴，引起了一部分原本生意蒸蒸日上的商家的忿怨。而后面采访的这位，较为年轻的老板更关注于变迁带来的好的环境改变。尽管如此，政府也应该更多的考虑和协调百姓的不满。然后晚上也品尝了水城的特色小吃—烙锅。用土砂锅烙烤食物，蘸一下辣椒面，香辣爽口，油而不腻。只是有点难以控制火候大小，容易热油飞溅，还是略微有些危险。</p>
+<p>第二天从六盘水前往久负盛名的黄果树瀑布，作为最大的瀑布群。做观光车的一路上都能看到一些小型的瀑布。离大瀑布的远近不同，感受也不同。从远处看去，夹在两山之间，激起的云雾在山谷中升腾，是秀美。而逐渐走进后，一下多了一个感官维度--触觉。激荡的水珠在脸上胡乱地拍打，心中升起阵阵凉意，耳边隆隆，水风忽忽，闭上双眼依然能感到震撼。更神奇的事，瀑布的背后，隐藏着一条溶洞，如同西游记里地水帘洞，从背面这个角度观飞瀑实属新奇，飞落地水花出奇的白，仿佛瀑布化身成了雪崩。不得不再一次感叹大自然的鬼斧神工。除了壮阔的黄果树瀑布，还有秀美的银链坠潭瀑布。其落差不大，潭沿面凸起的石面，像一片片莲叶一般，静谧而柔美地流泻如同绸缎。不知这些水滴从高处坠落时是否感到害怕，分明刚刚还在水平如面镜的水流中缓缓流淌，下一刻便倏忽间从平滑的水面坠落倾泻而下，让我不免后怕坐在飞机上的失重感</p>
+<p>第三天终于有实操环节了--摘刺梨。之前喝过名叫“刺柠吉”的饮料，印象中爽口。可是当亲眼看到刺梨时，浑身是刺的它似乎并不那么友好，令人不知从哪里下嘴，终于忍住牙床的刺痛艰难咬下一口时，一股酸涩令人倒吸一口气。看来刺梨的确不适合直接食用，难怪必须通过进一步加工才能除去它的酸涩味，以充分其清热爽口的优点。听完讲解后，我们便兴致勃勃地戴上手套下田采摘。这里的农田也是起伏不平，地面湿滑容易摔倒，下坡只能让旁边的玉米受苦了，一群人经过后，玉米全部都垂头丧气的倒了下来。刺梨一簇簇地挂在枝头，生熟让人难以判断，管他呢，权且当搞点小破坏。结果就发现用一层手套摘刺梨稍微一用力就能轻易地被戳穿，只得戴上两层手套，捏住刺梨之后使劲往一个方向转，就能轻易地摘下来了。大家都摘得热火朝天，尽管被刺的惨叫声此起彼伏，最后还是收获了半筐刺梨，半载而归。好心的村民想把刺梨送给我们，但是实在是苦于揣着兜里的麻烦，只得一再推却。</p>
+<p>采摘刺梨的之后的一天，我们团队又调查了一家刺梨加工企业，参观了刺梨加工的生产线。了解到刺梨的营养价值很高，尤其是维C含量。又介绍了很多用刺梨作为原材料的产品，除了刺梨原浆，刺梨酒，还有用来解腻用的饮品，大家都仔细品尝了一番。并且与书亦烧仙草合作推出刺梨口味的奶茶。这是确凿的事实，后来从六盘水返回到贵阳的时候，我就在高铁站奶茶店喝到了这熟悉的味道，在喝到的第一口有些莫名感动。刺梨相貌本身不讨好，原本味道又有些苦涩，但是却能被人们坚持发掘价值，经过一系列加工与其他食材配合，最终能华丽蜕变为一种竞品在市场上销售，博得消费者的喜爱，实在是催人奋进。</p>
+<p>还令人难以忘怀的就是乌蒙大草原。在海拔两千多米的高山间，竟然滋养出一片西南地区最大的天然草场。与平时所见一马平川的草原不同，乌蒙大草原不断给人遐想和未知期待。山丘起伏挡住了视线，让人一眼看不到全貌，越过眼前的小土坡也许就又能看见奔跑的羊群，抑或是听见阵阵牛羚，而稍微挪动脚步又能看到一只威风凛然的黄牛盘踞在下一个山头。长期在这样有趣的坡道行走，也丝毫不觉得疲惫，反倒妙趣横生。草原上还看到一群穿着布依族服饰的姑娘们围成一圈，随着音乐的节奏欢快的舞蹈，旁边的游客也逐渐加入这场草原盛会，其乐融融。我坐在草地上，和煦的风吹得我醉眼迷离，恍惚地看这片热闹的草地，人们与牛羊甚至骆驼结伴，风筝在白云间游走，山顶上徐徐旋转地大风车。这片深处群山腹地的草原就如同，尽管有些老套，但的确是贵州高原上的明珠。使生活在此的人们，能够在地无三尺平的贵州，在一片广阔的草地尽情撒欢，释放内心的烦闷，遥望连绵的草野。</p>
+<p>另外，我在团队中负责视频后期，当然也承担了小部分的拍摄工作。我之前没有任何关于视频创作的经验，完全是从头学起。因为要和配合新闻稿做两个视频，时间非常紧迫。白天不仅坐车和拍摄非常辛苦，晚上还得紧张工作。为了呈现更好的效果，我一帧一帧的处理视频细节，一开始很不熟练，导致效率很低，还出现一堆问题，前几天不得不工作到凌晨2点。后面也感受到自己愈发熟练，效率也逐渐提高，过程虽然很辛苦，但是看到做出来的视频还是非常有成就感，并且学习了一项新的技能。与团队成员的协作共事，同甘共苦，让大家很快成为一个紧密的团体，不善言语的我也认识了很多新的好伙伴。</p>
+<p>在这七天里，少不了车马困顿。“天下山峰何其多，唯有此处峰成林”。每个镇乡之间的都要绕行大量的山路。感觉贵州的建设实属不易。交通方面是一个难题，不过越来越多的高桥正在飞架，据统计，贵州桥梁数量达到20000多座，全世界排名100座桥梁当中，有80多座来自中国；这80多座大桥之中，就有一大半来自贵州。但是六盘水铁路线还是处于落后局面，基本靠六安一条线路，我认为如果毕节-六盘水能通铁路能加强黔西和四川的联系。大量山地加上云贵准静止锋带来长期阴雨的天气，制约了贵州的农业发展。除了少量优良的土地能种植猕猴桃等经济作物，而沿途看到的大部分作物还是玉米。尽管如此贵州有着丰富的旅游资源、多彩的民族文化，源远流长的酒文化。在我心中，贵州是一片神圣而又神秘的土地，不同于开阔、壮丽的西藏那样强烈宗教带来的神圣，恰恰相反，崎岖、起伏的峰林赋予贵州一股质朴、平易近人的灵气。在参观农民画时，无意听到苗族山歌，回声嘹亮，空灵婉转，仿佛一场与山灵的对话。我想以后我还会来到贵州，在此体味淡泊自得的生活态度，去追寻信奉神巫的山间传说，涤荡内心，直面自我。</p>
 ]]></content>
       <categories>
         <category>杂谈</category>
