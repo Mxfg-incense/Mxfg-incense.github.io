@@ -1,4 +1,8 @@
 http://example.pthm/2023/12/23/%E6%8A%80%E6%9C%AF/20231223-%E9%B8%9F%E5%93%A5%E7%9A%84Linux%E7%A7%81%E6%88%BF%E8%8F%9C/
+http://example.pthm/2024/02/01/%E6%9D%82%E8%B0%88/zero/
+http://example.pthm/2024/02/01/%E6%8A%80%E6%9C%AF/20240201-Port%20Utilization/
+http://example.pthm/2024/01/27/%E6%8A%80%E6%9C%AF/20240127/
+http://example.pthm/2024/01/06/%E6%8A%80%E6%9C%AF/20240106-Git%E5%AE%9E%E6%88%98/
 http://example.pthm/2023/12/07/%E7%A7%91%E5%AD%A6/20231207-Inpainting/
 http://example.pthm/2023/11/28/%E7%A7%91%E5%AD%A6/20231128-Lora/
 http://example.pthm/2023/11/23/%E7%A7%91%E5%AD%A6/20231123-%E5%89%8D%E4%BA%BA%E5%B7%A5%E4%BD%9C/
@@ -65,8 +69,8 @@ http://example.pthm/
 http://example.pthm/tags/HTML/
 http://example.pthm/tags/Hexo/
 http://example.pthm/tags/NeRF/
-http://example.pthm/categories/%E6%95%B0%E5%AD%A6/
 http://example.pthm/categories/%E5%B7%A5%E5%85%B7/
+http://example.pthm/categories/%E6%95%B0%E5%AD%A6/
 http://example.pthm/categories/%E6%8A%80%E6%9C%AF/
-http://example.pthm/categories/%E7%A7%91%E5%AD%A6/
 http://example.pthm/categories/%E6%9D%82%E8%B0%88/
+http://example.pthm/categories/%E7%A7%91%E5%AD%A6/
